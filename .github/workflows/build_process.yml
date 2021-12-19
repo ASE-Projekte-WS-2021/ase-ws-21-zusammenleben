@@ -1,6 +1,9 @@
 name: Build process for Debug APK
 
-on: [push] // every time someone pushes a change to the repository or merges a pull request; every branch
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
