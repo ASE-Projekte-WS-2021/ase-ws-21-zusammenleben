@@ -14,4 +14,10 @@ jobs:
     
     steps:
       - name: checks the repository onto the runner
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
+      
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17.0.1
+          
