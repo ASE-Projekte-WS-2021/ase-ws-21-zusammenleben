@@ -1,0 +1,16 @@
+name: Build process for Debug APK
+
+on: [push] // every time someone pushes a change to the repository or merges a pull request; every branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: checks the repository onto the runner
+      - uses: actions/checkout@v2
+      
+    
+    
+
+
