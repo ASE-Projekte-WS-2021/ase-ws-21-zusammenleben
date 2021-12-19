@@ -15,8 +15,3 @@ jobs:
     steps:
       - name: checks the repository onto the runner
       - uses: actions/checkout@v2
-      
-    
-    
-
-
