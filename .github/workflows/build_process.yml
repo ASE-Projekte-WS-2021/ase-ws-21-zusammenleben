@@ -21,6 +21,9 @@ jobs:
         with:
           distribution: temurin
           java-version: 17.0.1
+
+      - name: Run tests
+        run: ./gradlew test
       
       - name: debug apk
         run: ./gradlew clean assembleDebug
