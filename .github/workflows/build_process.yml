@@ -22,8 +22,15 @@ jobs:
           distribution: temurin
           java-version: 11
 
-      - name: Run tests
+      - name: Run Unit tests
         run: ./gradlew test
+
+      - name: By Findings Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: Unit Test-Reports
+          path: app/build/reports
+        if: always()
 
       - name: Build Debug_Apk
         run: ./gradlew assembleDebug
