@@ -1,4 +1,4 @@
-name: Actions for Branch "development"
+name: Testing
 
 on:
   push:
