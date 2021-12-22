@@ -33,3 +33,16 @@ jobs:
           name: Unit-Test-Report
           path: app/build/reports
         if: always()
+
+  Run Checkstyle:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checks the repository onto the runner
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: temurin
+          java-version: 11
