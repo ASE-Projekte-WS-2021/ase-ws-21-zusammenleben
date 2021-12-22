@@ -1,1 +1,35 @@
+name: Actions for Branch "development"
 
+on:
+  push:
+    branches:
+      - main
+      - development
+  pull_request:
+    branches:
+      - main
+      - development
+
+jobs:
+  Run-Unit-Test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checks the repository onto the runner
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: temurin
+          java-version: 11
+
+      - name: Run Unit test
+        run: ./gradlew test
+
+      - name: By Findings Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: Unit-Test-Report
+          path: app/build/reports
+        if: always()
