@@ -51,4 +51,29 @@ jobs:
         uses: github/super-linter@v4.8.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          #DISABLE_ERRORS: true
+          DISABLE_ERRORS: true
+          
+  Run_Checkstyle:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: checks the repository onto the runner
+        uses: actions/checkout@v2
+        
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: temurin
+          java-version: 11
+    
+      - name: Run check style
+        uses: nikitasavinov/checkstyle-action@0.4.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          reporter: 'github-pr-check'
+          tool_name: 'testtool'
+        
+        
+        
+        
+      
