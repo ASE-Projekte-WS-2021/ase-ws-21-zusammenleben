@@ -1,14 +1,14 @@
-  name: Testing Branch Development
+name: Testing Branch Development
 
-  on:
-    push:
-      branches:
-        - main
-    pull_request:
-      branches:
-        - main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-  jobs:
+jobs:
     name: Run Unit Tests
     runs-on: ubuntu-latest
 
