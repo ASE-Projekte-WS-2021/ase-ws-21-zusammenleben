@@ -70,12 +70,3 @@ jobs:
         uses: nikitasavinov/checkstyle-action@0.4.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Push Checkstyle report
-        uses: jwgmeligmeyling/checkstyle-github-action@v1.2
-        with:
-          path: '**/checkstyle-result.xml'
-        
-        
-        
-      
