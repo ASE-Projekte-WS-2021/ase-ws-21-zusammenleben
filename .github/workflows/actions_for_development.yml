@@ -46,3 +46,21 @@ jobs:
         with:
           distribution: temurin
           java-version: 11
+  
+  Super-Linter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checks the repository onto the runner
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: temurin
+          java-version: 11
+      
+      - name: Super-Linter
+        uses: github/super-linter@v4.8.5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
