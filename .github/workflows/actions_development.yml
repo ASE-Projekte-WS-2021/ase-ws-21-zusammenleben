@@ -1,4 +1,4 @@
-name: Build process for Debug APK
+name: Actions for development branch
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  - name: Run Unit Tests
     runs-on: ubuntu-latest
     
     steps:
@@ -22,7 +22,6 @@ jobs:
           distribution: temurin
           java-version: 11
 
-      # Testing
       - name: Run Unit tests
         run: ./gradlew test
 
@@ -32,15 +31,3 @@ jobs:
           name: Unit Test-Reports
           path: app/build/reports
         if: always()
-
-      #Building and Upload
-      - name: Build Debug_Apk
-        run: ./gradlew assembleDebug
-
-      - name: Upload Debug_APK
-        uses: actions/upload-artifact@v2
-        with:
-          name: debug_apk
-          path: app/build/outputs/apk/debug/app-debug.apk
-
-      #Create Release
