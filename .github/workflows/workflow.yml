@@ -1,4 +1,4 @@
-name: Issue Actions # Test Release 2
+name: Issue Actions
 on: [push]
 jobs:
   build:
