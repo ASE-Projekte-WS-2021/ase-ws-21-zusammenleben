@@ -1,11 +1,11 @@
-name: "Issue Actions"
-on: ["push"]
+name: Issue Actions
+on: [push]
 jobs:
   build:
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: "actions/checkout@main"
-      - name: "Add a TODO-Comment to Issue"
-        uses: "alstr/todo-to-issue-action@v4.5"
-        id: "todo"
+      - uses: actions/checkout@main
+      - name: Add a TODO-Comment to Issue
+        uses: alstr/todo-to-issue-action@v4.5
+        id: todo
