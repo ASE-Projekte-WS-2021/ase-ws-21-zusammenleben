@@ -5,7 +5,7 @@ jobs:
     runs-on: "ubuntu-latest"
 
     steps:
-      - uses: "actions/checkout@master"
+      - uses: "actions/checkout@main"
       - name: "Add a TODO-Comment to Issue"
         uses: "alstr/todo-to-issue-action@v4.5"
         id: "todo"
