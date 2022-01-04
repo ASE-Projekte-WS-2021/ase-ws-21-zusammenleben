@@ -6,3 +6,5 @@ Der Neubezug in eine WG ist meistens sehr stressig. Ein*e Mitbewohner*in geht un
 Nutzer*innen können nach dem Einkauf Zahlungen, die geleistet wurden in die Anwendung eintragen und auf beliebig viele Mitbewohner*innen aufteilen.
 Durch die einfache Übersicht werden geleistete Zahlungen miteinander verrechnet und am Ende eines Zeitraums erhalten alle beteiligten Nutzer*innen eine Begleich-Aufforderung, der sie in der App nachkommen können. Die geleisteten Zahlungen können daraufhin aus der App entfernt werden, bleiben aber in einer Übersicht erhalten. 
 In einer Gesamtübersicht können alle Ausgaben und die Verwendungszwecke in Kategorien eingesehen werden. So kann auch nach längerer Zeit über das Speichern der Ausgaben in einer Datenbank Anteilsrechnungen exakt weitergereicht werden.
+
+# testcomment 
