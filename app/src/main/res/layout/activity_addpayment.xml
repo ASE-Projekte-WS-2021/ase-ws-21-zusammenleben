@@ -20,7 +20,7 @@
             android:id="@+id/check_participants"
             android:layout_width="match_parent"
             android:layout_height="175dp"
-            android:text="@string/checkedtextview" />
+            android:text="checkedtextview" />
 
         <EditText
             android:id="@+id/input_usage"
