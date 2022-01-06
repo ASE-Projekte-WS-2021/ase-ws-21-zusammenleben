@@ -19,6 +19,9 @@
         android:layout_width="203dp"
         android:layout_height="34dp"
         android:text="Benutzername"
+        android:textAlignment="center"
+        android:textColor="#070707"
+        android:textSize="20sp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="106dp"
         tools:layout_editor_absoluteY="189dp" />
@@ -29,6 +32,8 @@
         android:layout_height="25dp"
         android:minHeight="48dp"
         android:text="Push-Benachrichtigungen"
+        android:textSize="20sp"
+        android:textStyle="normal"
         tools:ignore="MissingConstraints,TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck"
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="559dp" />
@@ -38,9 +43,12 @@
         android:layout_width="328dp"
         android:layout_height="57dp"
         android:background="#FA2415"
+        android:backgroundTint="#F44336"
         android:foregroundTint="#F44336"
         android:text="Abmelden"
-        android:textColor="#000000"
+        android:textAlignment="center"
+        android:textColor="#FFFDFD"
+        android:textSize="20sp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="623dp" />
@@ -53,9 +61,10 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Zahlungsübersicht"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="251dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="251dp" />
 
     <EditText
         android:id="@+id/editTextTextPersonName3"
@@ -65,9 +74,10 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Ihr Profil"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="310dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="310dp" />
 
     <EditText
         android:id="@+id/editTextTextPersonName4"
@@ -77,9 +87,10 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Einstellungen"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="377dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="377dp" />
 
     <EditText
         android:id="@+id/editTextTextPersonName5"
@@ -89,8 +100,9 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Hilfe"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="445dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="445dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
