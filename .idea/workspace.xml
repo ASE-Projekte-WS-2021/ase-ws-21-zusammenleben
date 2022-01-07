@@ -9,6 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="76a6e852-5b0b-449a-aea6-35616d57700c" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/app/src/main/res/color/bar_red.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/burgermenu.webp" afterDir="false" />
@@ -18,12 +19,19 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="76a6e852-5b0b-449a-aea6-35616d57700c" name="Default Changelist" comment="" />
+>>>>>>> 1f45afbbf513755576d9383541cad7c0ccd83305
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/marcobeetz/.android/avd/Pixel_5_API_28.avd]" />
+=======
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Laute\.android\avd\Galaxy_Nexus_API_28.avd]" />
+>>>>>>> 1f45afbbf513755576d9383541cad7c0ccd83305
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -121,12 +129,20 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="54f42ef2-501c-41c3-9546-061b82de79c6" name="Default Changelist" comment="" />
+      <changelist id="76a6e852-5b0b-449a-aea6-35616d57700c" name="Default Changelist" comment="test" />
       <created>1641115708667</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641115708667</updated>
     </task>
+    <task id="LOCAL-00001" summary="Payment overview XML">
+      <created>1641569618980</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1641569618981</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,6 +158,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+<<<<<<< HEAD
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+=======
+    <MESSAGE value="Payment overview XML" />
+    <option name="LAST_COMMIT_MESSAGE" value="Payment overview XML" />
+>>>>>>> 1f45afbbf513755576d9383541cad7c0ccd83305
   </component>
 </project>
