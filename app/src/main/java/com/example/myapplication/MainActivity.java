@@ -10,6 +10,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //try to setup and test my stuff
-        setContentView(R.layout.activity_addpayment);
+        setContentView(R.layout.activity_main);
     }
 }
