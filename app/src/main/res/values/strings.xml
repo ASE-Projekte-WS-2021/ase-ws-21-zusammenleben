@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="folge_den_anweisungen_um_eine_neue_ausgabe_einzurichten">Folge den Anweisungen, um eine neue Ausgabe einzurichten</string>
+    <string name="_00_00">00,00</string>
+    <string name="verwendungszweck">Verwendungszweck</string>
+    <string name="klicke_auf_die_mitglieder_um_die_zahlung_auf_sie_aufzuteilen">Klicke auf die Mitglieder, um die Zahlung auf sie aufzuteilen</string>
+    <string name="als_vorlage_speichern">Als Vorlage speichern?</string>
 </resources>
