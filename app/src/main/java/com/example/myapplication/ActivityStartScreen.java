@@ -11,6 +11,7 @@ import android.widget.Button;
 public class ActivityStartScreen extends AppCompatActivity {
 
     Button button;
+    Button buttonnew;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class ActivityStartScreen extends AppCompatActivity {
         final Context context = this;
 
         button = (Button) findViewById(R.id.button2);
+        buttonnew = (Button) findViewById(R.id.button6);
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -32,6 +34,18 @@ public class ActivityStartScreen extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 Intent intent = new Intent(context, ActivityOverview.class);
+                startActivity(intent);
+
+            }
+
+        });
+
+        buttonnew.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(context, ActivityUserProfile.class);
                 startActivity(intent);
 
             }
