@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addpayment.xml" value="0.18885869565217392" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_paymentoverview.xml" value="0.146875" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_add_payment.xml" value="0.2233912746547052" />
         <entry key="app/src/main/res/layout/activity_groups.xml" value="0.3265170674866233" />
@@ -13,7 +15,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
