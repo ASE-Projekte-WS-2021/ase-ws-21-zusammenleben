@@ -116,16 +116,7 @@
         app:layout_constraintHorizontal_bias="0.167"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.948" /><![CDATA[
-
-
->>>>>>> a074ba6b1b4d50afe6dd9bd4fb0bd89a7e260950
-
-
-
-
-
-    ]]>
+        app:layout_constraintVertical_bias="0.948" />
 
     <ImageButton
         android:id="@+id/imageButton_cancelpayment"
