@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".MainActivity"
+            android:name=".ActivityStartScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +20,21 @@
 
         <activity
             android:name=".ActivityAddPayment"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".ActivityOverview"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".ActivityPaymentOverview"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".ActivityUserProfile"
             android:exported="true">
         </activity>
 

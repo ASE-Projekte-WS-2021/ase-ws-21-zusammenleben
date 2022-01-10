@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<<<<<<< HEAD
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tbd"
+        android:paddingLeft="100dp"
+        android:paddingTop="100dp"
+        tools:ignore="MissingConstraints">
+    </TextView>
+=======
 
     <TextView
         android:id="@+id/text_instructions"
@@ -152,6 +162,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView_member4"
         app:srcCompat="@android:drawable/checkbox_off_background"
         tools:ignore="SpeakableTextPresentCheck" />
+>>>>>>> a074ba6b1b4d50afe6dd9bd4fb0bd89a7e260950
 
     <ImageButton
         android:id="@+id/imageButton_cancelpayment"
