@@ -3,13 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_userprofile.xml" value="0.25" />
-        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/add_userprofile.xml" value="0.20520833333333333" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/activity_add_payment.xml" value="0.2233912746547052" />
+        <entry key="app/src/main/res/layout/activity_addpayment.xml" value="0.7301587301587301" />
+        <entry key="app/src/main/res/layout/activity_groups.xml" value="0.3265170674866233" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20729283325570755" />
+        <entry key="app/src/main/res/layout/activity_overview.xml" value="0.1982250104314144" />
+        <entry key="app/src/main/res/layout/activity_paymentoverview.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_startscreen.xml" value="0.1203125" />
+        <entry key="app/src/main/res/layout/activity_userprofile.xml" value="0.1766304347826087" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
