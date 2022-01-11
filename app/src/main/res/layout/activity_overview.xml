@@ -75,7 +75,6 @@
         android:id="@+id/overview_recentactivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:gravity="center"
         android:text="Letzte Aktivität \n \n+500 € von Jonas \n \n'Miete'"
         android:textAlignment="center"
@@ -125,23 +124,20 @@
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="47dp"
         android:background="#F6F5F5"
         android:text="Zahlungen\nverwalten"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.321"
+        app:layout_constraintHorizontal_bias="0.203"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
+        app:layout_constraintVertical_bias="0.952" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
         android:background="#FFFFFF"
         android:backgroundTint="@color/white"
         android:text="Mitglieder\nverwalten"

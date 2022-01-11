@@ -50,7 +50,6 @@
         android:id="@+id/text_targetuser"
         android:layout_width="205dp"
         android:layout_height="38dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/klicke_auf_die_mitglieder_um_die_zahlung_auf_sie_aufzuteilen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
