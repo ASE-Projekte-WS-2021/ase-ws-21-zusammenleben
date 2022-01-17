@@ -41,6 +41,10 @@
             android:name=".ActivityLogin"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".ActivitySignup"
+            android:exported="true">
+        </activity>
 
     </application>
 
