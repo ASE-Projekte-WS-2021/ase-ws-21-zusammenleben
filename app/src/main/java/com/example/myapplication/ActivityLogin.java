@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ActivityLogin extends AppCompatActivity {
 
     TextView signup;
+    Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class ActivityLogin extends AppCompatActivity {
         final Context context = this;
 
         signup = (TextView) findViewById(R.id.login_signup);
+        login = (Button) findViewById(R.id.login);
 
         signup.setOnClickListener(new View.OnClickListener() {
 
@@ -33,6 +35,18 @@ public class ActivityLogin extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 Intent intent = new Intent(context, ActivitySignup.class);
+                startActivity(intent);
+
+            }
+
+        });
+
+        login.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(context, ActivityStartScreen.class);
                 startActivity(intent);
 
             }
