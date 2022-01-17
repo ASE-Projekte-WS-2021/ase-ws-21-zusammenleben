@@ -39,7 +39,7 @@
         android:layout_width="322dp"
         android:layout_height="68dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:text="Passwort"
         android:textSize="24sp"
         android:drawableLeft="@drawable/ic_baseline_screen_lock_portrait_24"
