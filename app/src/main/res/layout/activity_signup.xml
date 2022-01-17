@@ -47,7 +47,7 @@
         android:hint="Passwort"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:drawableLeft="@drawable/ic_baseline_screen_lock_portrait_24"
+        android:drawableLeft="@drawable/ic_baseline_lock_24"
         android:drawablePadding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
