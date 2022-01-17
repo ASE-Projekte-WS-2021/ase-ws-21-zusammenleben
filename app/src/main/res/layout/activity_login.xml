@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.793" />
 
     <EditText
-        android:id="@+id/username_e_mail"
+        android:id="@+id/login_username"
         android:layout_width="322dp"
         android:layout_height="68dp"
         android:ems="10"
@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.416" />
 
     <EditText
-        android:id="@+id/account_password"
+        android:id="@+id/login_password"
         android:layout_width="322dp"
         android:layout_height="68dp"
         android:ems="10"
@@ -65,7 +65,7 @@
         app:layout_constraintVertical_bias="0.626" />
 
     <TextView
-        android:id="@+id/sign_up"
+        android:id="@+id/login_signup"
         android:layout_width="132dp"
         android:layout_height="54dp"
         android:text="Sign up"
@@ -79,7 +79,7 @@
         app:layout_constraintVertical_bias="0.915" />
 
     <TextView
-        android:id="@+id/header_title"
+        android:id="@+id/login_title"
         android:layout_width="298dp"
         android:layout_height="108dp"
         android:text="WGFinance"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/e_mail"
+        android:id="@+id/signup_e_mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.364" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/signup_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.453" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/signup_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -55,7 +55,7 @@
         android:id="@+id/create_Account"
         android:layout_width="332dp"
         android:layout_height="68dp"
-        android:text="Sign up"
+        android:text="Account erstellen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -64,7 +64,7 @@
         app:layout_constraintVertical_bias="0.793" />
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/signup_title"
         android:layout_width="206dp"
         android:layout_height="77dp"
         android:text="Account erstellen"
