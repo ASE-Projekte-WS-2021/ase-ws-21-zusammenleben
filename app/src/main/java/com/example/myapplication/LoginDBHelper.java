@@ -30,11 +30,12 @@ public class LoginDBHelper extends SQLiteOpenHelper {
 
     }
 
-    public Boolean insertData(String username, String password){
+    public Boolean insertData(String username, String email, String password){
 
         SQLiteDatabase UserDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
+        contentValues.put("e-mail", email);
         contentValues.put("password", password);
         long results = UserDB.insert("users", null, contentValues);
         if(results==-1) return false;

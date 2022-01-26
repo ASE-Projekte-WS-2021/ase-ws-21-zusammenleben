@@ -34,16 +34,17 @@ public class ActivitySignup extends AppCompatActivity {
             public void onClick(View view) {
 
                 String user = username.getText().toString();
+                String email = e_mail.getText().toString();
                 String pass = password.getText().toString();
                 String repass = repeat_password.getText().toString();
 
-                if (user.equals("")||pass.equals("")||repass.equals(""))
+                if (user.equals("")||email.equals("")||pass.equals("")||repass.equals(""))
                     Toast.makeText(ActivitySignup.this, "Bitte füllen Sie alle notwendige Angaben aus", Toast.LENGTH_SHORT).show();
                 else{
                     if (pass.equals(repass)){
                         Boolean checkuser = UserDB.checkusername(user);
                         if (checkuser==false){
-                             Boolean insert = UserDB.insertData(user, pass);
+                             Boolean insert = UserDB.insertData(user, email, pass);
                              if (insert==true){
                                  Toast.makeText(ActivitySignup.this, "Registrierung erfolgreich", Toast.LENGTH_SHORT).show();
                                  Intent intent = new Intent(getApplicationContext(),ActivityStartScreen.class);
