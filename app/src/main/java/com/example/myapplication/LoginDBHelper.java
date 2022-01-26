@@ -19,7 +19,7 @@ public class LoginDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase UserDB) {
 
-        UserDB.execSQL("create Table users(username TEXT primary Key, password TEXT)");
+        UserDB.execSQL("create Table users(username TEXT primary Key, email TEXT, password TEXT)");
 
     }
 
@@ -35,7 +35,7 @@ public class LoginDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase UserDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
-        contentValues.put("e-mail", email);
+        contentValues.put("email", email);
         contentValues.put("password", password);
         long results = UserDB.insert("users", null, contentValues);
         if(results==-1) return false;
