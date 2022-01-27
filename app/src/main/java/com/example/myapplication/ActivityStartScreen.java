@@ -29,6 +29,12 @@ public class ActivityStartScreen extends AppCompatActivity {
         PaymentMemo testMemo = new PaymentMemo("Stuff", 5, 3.50, 101);
         Log.d(LOG_TAG, "Content of the Testmemo: " + testMemo.toString());
         dataSource = new PaymentMemoDataSource(this);
+
+        Log.d(LOG_TAG, "Opening Datasource.");
+        dataSource = new PaymentMemoDataSource(this);
+
+        Log.d(LOG_TAG, "Closing Datasource.");
+        dataSource.close();
     }
 
     public void addListenerOnButton() {

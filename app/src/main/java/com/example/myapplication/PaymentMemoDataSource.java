@@ -15,4 +15,15 @@ public class PaymentMemoDataSource {
         Log.d(LOG_TAG, "The DataSource creates the dbHelper.");
         dbHelper = new PaymentMemoDbHelper(context);
     }
+
+    public void open() {
+        Log.d(LOG_TAG, "Reference to database.");
+        database = dbHelper.getWritableDatabase();
+        Log.d(LOG_TAG, "Database reference accessed. Path to Database: " + database.getPath());
+    }
+
+    public void close() {
+        dbHelper.close();
+        Log.d(LOG_TAG, "Database is closed");
+    }
 }
