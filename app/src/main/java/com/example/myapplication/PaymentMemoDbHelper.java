@@ -4,7 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
+ /* This is a help class. It defines the characteristics of the database
+    and the table and it creates the one can create the table with a
+    SQL-statement.
+ */
 public class PaymentMemoDbHelper extends SQLiteOpenHelper {
 
     private static final String LOG_TAG = PaymentMemoDbHelper.class.getSimpleName();
