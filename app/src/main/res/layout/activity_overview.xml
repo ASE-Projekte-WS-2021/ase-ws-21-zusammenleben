@@ -61,7 +61,7 @@
         android:background="#BDF7FF"
         android:fontFamily="sans-serif"
         android:gravity="center"
-        android:text="Zahlungsübersicht"
+        android:text="Overview"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Letzte Aktivität \n \n+500 € von Jonas \n \n'Miete'"
+        android:text="Latest payment \n \n+500 € by Jonas \n \n'rent'"
         android:textAlignment="center"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -121,11 +121,11 @@
         app:srcCompat="@drawable/selfie" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/btn_managePayments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#F6F5F5"
-        android:text="Zahlungen\nverwalten"
+        android:text="Manage\nPayments"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,12 +135,12 @@
         app:layout_constraintVertical_bias="0.952" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/btn_manageMembers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:backgroundTint="@color/white"
-        android:text="Mitglieder\nverwalten"
+        android:text="Manage\Members"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

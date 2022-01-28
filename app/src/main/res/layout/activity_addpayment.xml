@@ -9,7 +9,7 @@
         android:id="@+id/text_instructions"
         android:layout_width="242dp"
         android:layout_height="42dp"
-        android:text="@string/folge_den_anweisungen_um_eine_neue_ausgabe_einzurichten"
+        android:text="@string/follow_the_instructions"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/_00_00"
+        android:text="@string/_00_00"
         android:inputType="number"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +37,7 @@
         android:layout_width="209dp"
         android:layout_height="70dp"
         android:ems="10"
-        android:hint="@string/verwendungszweck"
+        android:hint="@string/purpose"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
         android:id="@+id/text_targetuser"
         android:layout_width="205dp"
         android:layout_height="38dp"
-        android:text="@string/klicke_auf_die_mitglieder_um_die_zahlung_auf_sie_aufzuteilen"
+        android:text="@string/Click_on_members"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +109,7 @@
         android:id="@+id/checkedText_template"
         android:layout_width="154dp"
         android:layout_height="19dp"
-        android:text="@string/als_vorlage_speichern"
+        android:text="@string/save_as_template"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.167"
@@ -118,7 +118,7 @@
         app:layout_constraintVertical_bias="0.948" />
 
     <ImageButton
-        android:id="@+id/imageButton_cancelpayment"
+        android:id="@+id/imgbtn_cancelPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -131,7 +131,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/button_addpayment"
+        android:id="@+id/btn_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/done"

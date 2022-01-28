@@ -48,15 +48,15 @@ public class ActivityLogin extends AppCompatActivity {
                 String pass = password.getText().toString();
 
                 if(user.equals("")||pass.equals(""))
-                    Toast.makeText(ActivityLogin.this, "Bitte geben Sie ihr Daten an.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityLogin.this, "Please enter your data.", Toast.LENGTH_SHORT).show();
                 else{
                     Boolean checkuserpass = UserDB.checkusernamepassword(user, pass);
                     if(checkuserpass==true){
-                        Toast.makeText(ActivityLogin.this, "Anmeldung erfolgreich", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivityLogin.this, "Login successful!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), ActivityStartScreen.class);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(ActivityLogin.this, "Ungültige Anmeldedaten", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivityLogin.this, "Data invalid!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

@@ -15,8 +15,8 @@ public class ActivityStartScreen extends AppCompatActivity {
     public static final String LOG_TAG = ActivityStartScreen.class.getSimpleName();
     private PaymentMemoDataSource dataSource;
 
-    Button button;
-    Button buttonnew;
+    Button button_saGroup1;
+    Button button_createNewGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +41,10 @@ public class ActivityStartScreen extends AppCompatActivity {
 
         final Context context = this;
 
-        button = (Button) findViewById(R.id.button2);
-        buttonnew = (Button) findViewById(R.id.button6);
+        button_saGroup1 = (Button) findViewById(R.id.btn_sAGroup1);
+        button_createNewGroup = (Button) findViewById(R.id.btn_createNewGroup);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        button_saGroup1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -56,7 +56,7 @@ public class ActivityStartScreen extends AppCompatActivity {
 
         });
 
-        buttonnew.setOnClickListener(new View.OnClickListener() {
+        button_createNewGroup.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {

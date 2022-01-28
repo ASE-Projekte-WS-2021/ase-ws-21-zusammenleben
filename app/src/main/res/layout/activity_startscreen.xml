@@ -7,13 +7,13 @@
     tools:ignore="MissingConstraints">
 
     <EditText
-        android:id="@+id/editTextTextPersonName7"
+        android:id="@+id/editText_members2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Mitglieder: "
+        android:text="Members: "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -22,13 +22,13 @@
         app:layout_constraintVertical_bias="0.578" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName8"
+        android:id="@+id/editText_balance2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Saldo:"
+        android:text="Balance:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -37,10 +37,10 @@
         app:layout_constraintVertical_bias="0.672" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_sAGroup2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="WG GRUPPE 2"
+        android:text="SA Group 2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -49,13 +49,13 @@
         app:layout_constraintVertical_bias="0.478" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName6"
+        android:id="@+id/editText_balance1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Mitglieder: "
+        android:text="Balance: "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
@@ -64,13 +64,13 @@
         app:layout_constraintVertical_bias="0.386" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editText_members1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Saldo:"
+        android:text="Members:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -82,7 +82,7 @@
         android:id="@+id/textView"
         android:layout_width="203dp"
         android:layout_height="34dp"
-        android:text="Gruppen"
+        android:text="Groups"
         android:textAlignment="center"
         android:textColor="#070707"
         android:textSize="20sp"
@@ -95,10 +95,10 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_sAGroup1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="WG GRUPPE 1"
+        android:text="SA Group 1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,10 +106,10 @@
         app:layout_constraintVertical_bias="0.194" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btn_createNewGroup"
         android:layout_width="243dp"
         android:layout_height="49dp"
-        android:text="Neue Gruppe gründen"
+        android:text="Create new group"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.577"
@@ -118,10 +118,10 @@
         app:layout_constraintVertical_bias="0.777" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btn_inviteYourFriends"
         android:layout_width="243dp"
         android:layout_height="49dp"
-        android:text="Freunde einladen"
+        android:text="Invite your friends"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.577"

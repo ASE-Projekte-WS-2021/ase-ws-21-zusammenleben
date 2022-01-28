@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ActivitySignup extends AppCompatActivity {
 
     EditText username, password, e_mail, repeat_password;
-    Button create_account;
+    Button button_createAccount;
     LoginDBHelper UserDB;
 
     @Override
@@ -26,10 +26,10 @@ public class ActivitySignup extends AppCompatActivity {
         e_mail = (EditText) findViewById(R.id.signup_e_mail);
         password = (EditText) findViewById(R.id.signup_password);
         repeat_password = (EditText) findViewById(R.id.signup_repassword);
-        create_account = (Button) findViewById(R.id.create_Account);
+        button_createAccount = (Button) findViewById(R.id.btn_createAccount);
         UserDB = new LoginDBHelper(this);
 
-        create_account.setOnClickListener(new View.OnClickListener() {
+        button_createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -39,24 +39,24 @@ public class ActivitySignup extends AppCompatActivity {
                 String repass = repeat_password.getText().toString();
 
                 if (user.equals("")||email.equals("")||pass.equals("")||repass.equals(""))
-                    Toast.makeText(ActivitySignup.this, "Bitte füllen Sie alle notwendige Angaben aus", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivitySignup.this, "Please enter the required data", Toast.LENGTH_SHORT).show();
                 else{
                     if (pass.equals(repass)){
                         Boolean checkuser = UserDB.checkusername(user);
                         if (checkuser==false){
                              Boolean insert = UserDB.insertData(user, email, pass);
                              if (insert==true){
-                                 Toast.makeText(ActivitySignup.this, "Registrierung erfolgreich", Toast.LENGTH_SHORT).show();
+                                 Toast.makeText(ActivitySignup.this, "Registration successful!", Toast.LENGTH_SHORT).show();
                                  Intent intent = new Intent(getApplicationContext(),ActivityStartScreen.class);
                                  startActivity(intent);
                              } else{
-                                 Toast.makeText(ActivitySignup.this, "Registrierung fehlgeschlagen", Toast.LENGTH_SHORT).show();
+                                 Toast.makeText(ActivitySignup.this, "Registration failed!", Toast.LENGTH_SHORT).show();
                              }
                         } else{
-                            Toast.makeText(ActivitySignup.this, "Der Benutzer existiert bereits. Bitte melden Sie sich an!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ActivitySignup.this, "User already exists. Please sign in!", Toast.LENGTH_SHORT).show();
                         }
                     } else{
-                        Toast.makeText(ActivitySignup.this, "Die Passwörter stimmen nicht überein.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivitySignup.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

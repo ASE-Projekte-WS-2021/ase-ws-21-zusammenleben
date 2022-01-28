@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class ActivityAddPayment extends AppCompatActivity {
 
-    Button button_overview;
+    Button button_done;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +24,9 @@ public class ActivityAddPayment extends AppCompatActivity {
 
         final Context context = this;
 
-        button_overview = (Button) findViewById(R.id.button_addpayment);
+        button_done = (Button) findViewById(R.id.btn_done);
 
-        button_overview.setOnClickListener(new View.OnClickListener() {
+        button_done.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {

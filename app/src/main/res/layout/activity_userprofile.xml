@@ -22,7 +22,7 @@
         android:id="@+id/textView"
         android:layout_width="203dp"
         android:layout_height="34dp"
-        android:text="Benutzername"
+        android:text="Username"
         android:textAlignment="center"
         android:textColor="#070707"
         android:textSize="20sp"
@@ -38,7 +38,7 @@
         android:layout_width="326dp"
         android:layout_height="25dp"
         android:minHeight="48dp"
-        android:text="Push-Benachrichtigungen"
+        android:text="Push-Notifications"
         android:textSize="20sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,13 +50,13 @@
         tools:ignore="MissingConstraints,TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_logout"
         android:layout_width="328dp"
         android:layout_height="57dp"
         android:background="#FA2415"
         android:backgroundTint="#F44336"
         android:foregroundTint="#F44336"
-        android:text="Abmelden"
+        android:text="Logout"
         android:textAlignment="center"
         android:textColor="#FFFDFD"
         android:textSize="20sp"
@@ -69,13 +69,13 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editText_paymentoverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Zahlungsübersicht"
+        android:text="Payment Overview"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,13 +86,13 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/editText_yourprofile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Ihr Profil"
+        android:text="Your profile"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,13 +103,13 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/editText_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Einstellungen"
+        android:text="Settings"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -120,13 +120,13 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/editText_faq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Hilfe"
+        android:text="FAQ"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

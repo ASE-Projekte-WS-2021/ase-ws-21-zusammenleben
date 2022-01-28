@@ -10,7 +10,7 @@ import android.widget.Button;
 
 public class ActivityUserProfile extends AppCompatActivity {
 
-    Button button_abmelden;
+    Button button_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +24,9 @@ public class ActivityUserProfile extends AppCompatActivity {
 
         final Context context = this;
 
-        button_abmelden = (Button) findViewById(R.id.button);
+        button_logout = (Button) findViewById(R.id.btn_logout);
 
-        button_abmelden.setOnClickListener(new View.OnClickListener() {
+        button_logout.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {

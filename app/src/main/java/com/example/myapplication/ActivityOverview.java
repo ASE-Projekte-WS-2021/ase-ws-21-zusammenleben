@@ -10,7 +10,7 @@ import android.widget.Button;
 
 public class ActivityOverview extends AppCompatActivity {
 
-    Button button_new;
+    Button button_managePayments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +24,9 @@ public class ActivityOverview extends AppCompatActivity {
 
         final Context context = this;
 
-        button_new = (Button) findViewById(R.id.button7);
+        button_managePayments = (Button) findViewById(R.id.btn_managePayments);
 
-        button_new.setOnClickListener(new View.OnClickListener() {
+        button_managePayments.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
