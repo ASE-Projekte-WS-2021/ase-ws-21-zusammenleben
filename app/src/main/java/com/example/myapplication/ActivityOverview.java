@@ -7,10 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class ActivityOverview extends AppCompatActivity {
 
-    Button button_managePayments;
+    ImageButton button_managePayments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class ActivityOverview extends AppCompatActivity {
 
         final Context context = this;
 
-        button_managePayments = (Button) findViewById(R.id.btn_managePayments);
+        button_managePayments = (ImageButton) findViewById(R.id.btn_managePayments);
 
         button_managePayments.setOnClickListener(new View.OnClickListener() {
 
