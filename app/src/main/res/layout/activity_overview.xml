@@ -36,17 +36,11 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< Updated upstream
         app:layout_constraintHorizontal_bias="0.889"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/overwiev"
         app:layout_constraintVertical_bias="0.23" />
-=======
-        app:layout_constraintHorizontal_bias="0.584"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.328" />
->>>>>>> Stashed changes
+
 
     <TextView
         android:id="@+id/overwiev"
