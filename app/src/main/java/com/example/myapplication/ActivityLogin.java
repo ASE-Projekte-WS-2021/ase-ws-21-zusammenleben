@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,13 +10,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Locale;
-
 public class ActivityLogin extends AppCompatActivity {
 
     EditText username, password;
     TextView signup;
-    Button login;
+    Button button_login;
     LoginDBHelper UserDB;
 
     @Override
@@ -28,7 +25,7 @@ public class ActivityLogin extends AppCompatActivity {
         username = (EditText) findViewById(R.id.login_username);
         password = (EditText) findViewById(R.id.login_password);
         signup = (TextView) findViewById(R.id.login_signup);
-        login = (Button) findViewById(R.id.login);
+        button_login = (Button) findViewById(R.id.btn_login);
         UserDB = new LoginDBHelper(this);
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +37,7 @@ public class ActivityLogin extends AppCompatActivity {
             }
         });
 
-        login.setOnClickListener(new View.OnClickListener() {
+        button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
