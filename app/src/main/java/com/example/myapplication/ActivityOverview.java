@@ -6,10 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-<<<<<<< Updated upstream
-import android.widget.Button;
-=======
->>>>>>> Stashed changes
 import android.widget.ImageButton;
 
 public class ActivityOverview extends AppCompatActivity {
