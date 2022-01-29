@@ -7,7 +7,7 @@
     android:layout_alignParentBottom="true">
 
     <TextView
-        android:id="@+id/payments"
+        android:id="@+id/overwiev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Payments"
@@ -90,7 +90,7 @@
         app:layout_constraintVertical_bias="0.26" />
 
     <Switch
-        android:id="@+id/switch3"
+        android:id="@+id/recurrent_payment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
