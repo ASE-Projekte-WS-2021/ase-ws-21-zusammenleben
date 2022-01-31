@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class ActivityOverview extends AppCompatActivity {
 
     ImageButton button_managePayments;
+    //TextView testtext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +20,7 @@ public class ActivityOverview extends AppCompatActivity {
         //try to setup and test my stuff
         setContentView(R.layout.activity_overview);
         addListenerOnButton();
+        //displaytext();
     }
 
     public void addListenerOnButton() {
@@ -39,4 +42,11 @@ public class ActivityOverview extends AppCompatActivity {
         });
 
     }
+/*
+    public void displaytext(){
+        ActivityPaymentOverview inst = new ActivityPaymentOverview();
+        testtext = (TextView) findViewById(R.id.last_Payments);
+        testtext.setText(inst.getInputCosts()+":"+inst.getInputPurpose());
+    }
+*/
 }
