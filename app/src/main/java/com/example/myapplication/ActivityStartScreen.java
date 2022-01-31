@@ -7,13 +7,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.view.inputmethod.InputMethodManager;
+import android.text.TextUtils;
+import android.widget.EditText;
+import android.widget.ListView;
+
+import java.util.List;
 
 public class ActivityStartScreen extends AppCompatActivity {
 
-    // For testing the database
-    public static final String LOG_TAG = ActivityStartScreen.class.getSimpleName();
-    private PaymentMemoDataSource dataSource;
+
     Button button_newPayment;
 
     @Override
@@ -31,18 +36,5 @@ public class ActivityStartScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-        //database test stuff
-        PaymentMemo testMemo = new PaymentMemo("Stuff", 5, 3.50, 101);
-        Log.d(LOG_TAG, "Content of the Testmemo: " + testMemo.toString());
-        dataSource = new PaymentMemoDataSource(this);
-
-        Log.d(LOG_TAG, "Opening Datasource.");
-        dataSource = new PaymentMemoDataSource(this);
-
-        Log.d(LOG_TAG, "Closing Datasource.");
-        dataSource.close();
     }
-
-    }
+}

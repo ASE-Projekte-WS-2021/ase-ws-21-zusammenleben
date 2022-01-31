@@ -6,21 +6,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.List;
 
 public class ActivityPaymentOverview extends AppCompatActivity {
 
-    String purpose;
-    int costs;
+    // For testing the database
+    public static final String LOG_TAG = ActivityStartScreen.class.getSimpleName();
+    private PaymentMemoDataSource dataSource;
 
     Button button_savepayment;
     EditText input_purpose, input_costs;
 
-    TextView testtext;
+    TextView testtext = (TextView) findViewById(R.id.share_your_bill);
+
 
 
     @Override
@@ -28,22 +36,63 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //try to setup and test my stuff
         setContentView(R.layout.activity_paymentoverview);
-        addListenerOnButton();
+        /*addListenerOnButton();
+        getInputCosts();
+        getInputPurpose();
+        //displaytext();*/
 
-        input_costs = (EditText)findViewById(R.id.insert_costs);
-        input_purpose = (EditText)findViewById(R.id.insert_purpose);
-        testtext = (TextView) findViewById(R.id.share_your_bill);
+        /*
+        //database test stuff
+        PaymentMemo testMemo = new PaymentMemo("Stuff", 5, 3.50, 101);
+        Log.d(LOG_TAG, "Content of the Testmemo: " + testMemo.toString());
+        dataSource = new PaymentMemoDataSource(this);
+        */
 
-        //displaytext();
-        //checkForUserInput();
+        Log.d(LOG_TAG, "Opening Datasource.");
+        dataSource = new PaymentMemoDataSource(this);
+
+        /*
+        Log.d(LOG_TAG, "Closing Datasource.");
+        dataSource.close();
+        */
+
+        safePayment();
+
     }
-/*
-    @Override
-    protected void onStart(){
-        super.onStart();
-        checkForUserInput();
-    }*/
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.d(LOG_TAG, "opening database...");
+        dataSource.open();
+
+        Log.d(LOG_TAG, "show all database entries...");
+        showAllListEntries(); //method will be finished later
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Log.d(LOG_TAG, "closing database...");
+        dataSource.close();
+    }
+
+    private void showAllListEntries (){
+        List<PaymentMemo> paymentMemoList = dataSource.getAllPaymentMemos();
+
+        ArrayAdapter<PaymentMemo> paymentMemoArrayAdapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_multiple_choice,
+                paymentMemoList);
+
+        ListView paymentMemosListView = (ListView) findViewById(R.id.listview_payment_memos);
+        paymentMemosListView.setAdapter(paymentMemoArrayAdapter);
+
+    }
+
+    /*
     public void addListenerOnButton() {
 
         final Context context = this;
@@ -53,48 +102,70 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         button_savepayment.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View view) {
+            public void onClick(View arg0) {
                 //get and save input from input_purpose and input_costs into db
-                Intent intent = new Intent(context, ActivityOverview.class);
-                startActivity(intent);
-                //ActivityPaymentOverview.this.startActivity(new Intent(ActivityPaymentOverview.this, ActivityOverview.class));
+                //Intent intent = new Intent(context, ActivityPaymentOverview.class);
+                //startActivity(intent);
+                //testtext.setText(getInputCosts()+":"+getInputPurpose());
+                ActivityPaymentOverview.this.startActivity(new Intent(ActivityPaymentOverview.this, ActivityOverview.class));
             }
 
         });
 
     }
-/*
-    public void checkForUserInput (){
-
-        if (getInputCosts().isEmpty()){
-            Log.i("myApp", "Empty");
-        }
-        else {getInputCosts();}
-
-        if (getInputPurpose().isEmpty()){
-            Log.i("myApp", "EmptyP");
-        }
-        else { getInputPurpose();}
-        displaytext();
-    }
+    */
 
     public String getInputCosts(){
-        return String.valueOf(costs = Integer.valueOf(input_costs.getText().toString()));
+        input_costs = (EditText)findViewById(R.id.insert_costs);
+        return input_costs.getText().toString();
     }
 
     public String getInputPurpose(){
-        return purpose = input_purpose.getText().toString();
+        input_purpose = (EditText)findViewById(R.id.insert_purpose);
+        return input_purpose.getText().toString();
     }
 
+    private void safePayment() {
+        button_savepayment = (Button) findViewById(R.id.btn_save_payment);
+        final EditText editTextCost = (EditText) findViewById(R.id.insert_costs);
+        final EditText editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
+
+        button_savepayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String costString = editTextCost.getText().toString();
+                String purpose = editTextPurpose.getText().toString();
+
+                if(TextUtils.isEmpty(costString)) {
+                    //editTextCost.setError(getString(R.string.editText_errorMessage));
+                    return;
+                }
+                if(TextUtils.isEmpty(purpose)) {
+                    //editTextPurpose.setError(getString(R.string.editText_errorMessage));
+                    return;
+                }
+
+                double cost = Double.parseDouble(costString);
+                editTextCost.setText("");
+                editTextPurpose.setText("");
+
+                dataSource.createPaymentMemo(cost, purpose);// change parameters in createPaymentMemo
+
+                InputMethodManager inputMethodManager;
+                inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                if(getCurrentFocus() != null) {
+                    inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                }
+
+                showAllListEntries();
+            }
+        });
+    }
+
+/*
     public void displaytext(){
         testtext.setText(getInputCosts()+":"+getInputPurpose());
-    }
-
-    @Override
-    public void onDestroy() {
-        // stop the Service
-        stopService(new Intent(this, ActivityPaymentOverview.class));
-        super.onDestroy();
     }
 */
 }

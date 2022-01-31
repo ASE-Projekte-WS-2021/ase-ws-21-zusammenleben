@@ -40,7 +40,7 @@ public class PaymentMemoDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
         try {
-            Log.d(LOG_TAG, "The Table will be created through the SQL-statement: " + SQL_CREATE + " angelegt.");
+            Log.d(LOG_TAG, "The Table will be created through the SQL-statement: " + SQL_CREATE);
             sqLiteDatabase.execSQL(SQL_CREATE);
         }
         catch (Exception e) {
