@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         safePayment();
 
     }
-
+/*
     @Override
     protected void onResume() {
         super.onResume();
@@ -68,7 +69,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         Log.d(LOG_TAG, "show all database entries...");
         showAllListEntries(); //method will be finished later
     }
-
+*/
     @Override
     protected void onPause() {
         super.onPause();
@@ -77,20 +78,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         dataSource.close();
     }
 
-    private void showAllListEntries (){
-        List<PaymentMemo> paymentMemoList = dataSource.getAllPaymentMemos();
-
-        ArrayAdapter<PaymentMemo> paymentMemoArrayAdapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_multiple_choice,
-                paymentMemoList);
-
-        ListView paymentMemosListView = (ListView) findViewById(R.id.listview_payment_memos);
-        paymentMemosListView.setAdapter(paymentMemoArrayAdapter);
-
-    }
-
-    /*
+   /*
     public void addListenerOnButton() {
 
         final Context context = this;
@@ -135,7 +123,9 @@ public class ActivityPaymentOverview extends AppCompatActivity {
 
                 String costString = editTextCost.getText().toString();
                 String purpose = editTextPurpose.getText().toString();
-
+                TextView shareBill = (TextView)findViewById(R.id.share_your_bill);
+                shareBill.setText(costString + purpose);
+                        /*
                 if(TextUtils.isEmpty(costString)) {
                     //editTextCost.setError(getString(R.string.editText_errorMessage));
                     return;
@@ -157,8 +147,21 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                     inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                 }
 
-                showAllListEntries();
+                showAllListEntries(); */
             }
         });
     }
+/*
+    private void showAllListEntries (){
+        List<PaymentMemo> paymentMemoList = dataSource.getAllPaymentMemos();
+
+        ArrayAdapter<PaymentMemo> paymentMemoArrayAdapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_multiple_choice,
+                paymentMemoList);
+
+        ListView paymentMemosListView = (ListView) findViewById(R.id.listview_payment_memos);
+        paymentMemosListView.setAdapter(paymentMemoArrayAdapter);
+
+    }*/
 }
