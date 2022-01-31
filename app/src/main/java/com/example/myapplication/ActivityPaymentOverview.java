@@ -2,10 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -25,21 +21,19 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     private PaymentMemoDataSource dataSource;
 
     Button button_savepayment;
-    EditText input_purpose, input_costs;
-
-    TextView testtext = (TextView) findViewById(R.id.share_your_bill);
-
-
+    EditText editTextCost, editTextPurpose;
+/*
+    public ActivityPaymentOverview(EditText editTextCost, EditText editTextPurpose) {
+        this.editTextCost = editTextCost;
+        this.editTextPurpose = editTextPurpose;
+    }
+*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //try to setup and test my stuff
         setContentView(R.layout.activity_paymentoverview);
-        /*addListenerOnButton();
-        getInputCosts();
-        getInputPurpose();
-        //displaytext();*/
 
         /*
         //database test stuff
@@ -50,6 +44,10 @@ public class ActivityPaymentOverview extends AppCompatActivity {
 
         Log.d(LOG_TAG, "Opening Datasource.");
         dataSource = new PaymentMemoDataSource(this);
+
+        button_savepayment = (Button) findViewById(R.id.btn_save_payment);
+        editTextCost = (EditText) findViewById(R.id.insert_costs);
+        editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
 
         /*
         Log.d(LOG_TAG, "Closing Datasource.");
@@ -114,7 +112,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
 
     }
     */
-
+/*
     public String getInputCosts(){
         input_costs = (EditText)findViewById(R.id.insert_costs);
         return input_costs.getText().toString();
@@ -124,11 +122,12 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         input_purpose = (EditText)findViewById(R.id.insert_purpose);
         return input_purpose.getText().toString();
     }
+*/
 
     private void safePayment() {
-        button_savepayment = (Button) findViewById(R.id.btn_save_payment);
+        /*button_savepayment = (Button) findViewById(R.id.btn_save_payment);
         final EditText editTextCost = (EditText) findViewById(R.id.insert_costs);
-        final EditText editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
+        final EditText editTextPurpose = (EditText) findViewById(R.id.insert_purpose);*/
 
         button_savepayment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,10 +161,4 @@ public class ActivityPaymentOverview extends AppCompatActivity {
             }
         });
     }
-
-/*
-    public void displaytext(){
-        testtext.setText(getInputCosts()+":"+getInputPurpose());
-    }
-*/
 }
