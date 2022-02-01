@@ -49,9 +49,10 @@ public class PaymentMemo {
 
     @Override
     public String toString() {
-        String output = cost + " x " + product;
-
+            String output = cost + "#" + product;
         return output;
     }
 }
+
+
 
