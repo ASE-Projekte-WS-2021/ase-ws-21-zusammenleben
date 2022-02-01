@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,7 +22,6 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     // For testing the database
     public static final String LOG_TAG = ActivityStartScreen.class.getSimpleName();
     private PaymentMemoDataSource dataSource;
-
     private PaymentMemo payment;
     Button button_savepayment;
     EditText editTextCost, editTextPurpose;
@@ -134,6 +134,9 @@ private void savePayment() {
                 System.out.println("Successfull!");
                 Toast.makeText(getApplicationContext(), "Successfull!",Toast.LENGTH_LONG).show();
 
+                Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
+                startActivity(intent);
+
            //     InputMethodManager inputMethodManager;
              //   inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
               //  if(getCurrentFocus() != null) {
@@ -157,3 +160,4 @@ private void savePayment() {
 
     }*/
 }
+
