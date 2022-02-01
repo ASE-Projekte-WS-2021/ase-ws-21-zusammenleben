@@ -39,7 +39,6 @@ public class ActivityAddPayment extends AppCompatActivity {
         });
 
     }
-    //test push
 
 
 
