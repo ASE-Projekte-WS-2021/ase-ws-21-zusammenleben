@@ -2,6 +2,17 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import android.content.ContentValues;
+import android.database.Cursor;
+import java.util.ArrayList;
+import java.util.List;package com.example.myapplication;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import android.content.ContentValues;
@@ -14,80 +25,87 @@ import java.util.List;
     the table can be started...
  */
 
-public class PaymentMemoDataSource {
 
-    private static final String LOG_TAG = PaymentMemoDataSource.class.getSimpleName();
+public class PaymentMemoDataSource extends SQLiteOpenHelper{
 
-    private SQLiteDatabase database;
-    private PaymentMemoDbHelper dbHelper;
+    private static final int DB_VERSION = 1;
+    private static final String DB_NAME = "PaymentManager";
+    private static final String TABLE_NAME = "Payments";
 
-    private String[] columns = {
-            PaymentMemoDbHelper.COLUMN_ID,
-            PaymentMemoDbHelper.COLUMN_PRODUCT,
-            PaymentMemoDbHelper.COLUMN_COST
-    };
+    private static final String KEY_ID = "id";
+    private static final String KEY_COST = "cost";
+    private static final String KEY_PRODUCT = "product";
 
     public PaymentMemoDataSource(Context context) {
-        Log.d(LOG_TAG, "The DataSource creates the dbHelper.");
-        dbHelper = new PaymentMemoDbHelper(context);
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
-    public void open() {
-        Log.d(LOG_TAG, "Reference to database.");
-        database = dbHelper.getWritableDatabase();
-        Log.d(LOG_TAG, "Database reference accessed. Path to Database: " + database.getPath());
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        String CREATE_TABLE_PAYMENTS =
+                "CREATE TABLE " + TABLE_NAME +"("+KEY_ID+" INTEGER PRIMARY KEY,"+KEY_COST+" TEXT,"
+                        +KEY_PRODUCT+" TEXT"+")";
+        db.execSQL(CREATE_TABLE_PAYMENTS);
     }
 
-    public void close() {
-        dbHelper.close();
-        Log.d(LOG_TAG, "Database is closed");
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(db);
     }
-
-    public PaymentMemo createPaymentMemo(String cost, String product){
+    public void addPayment(PaymentMemo p) {
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(PaymentMemoDbHelper.COLUMN_PRODUCT, product);
-        values.put(PaymentMemoDbHelper.COLUMN_COST, cost);
+        values.put(KEY_COST, p.getCost());
+        values.put(KEY_PRODUCT, p.getProduct());
 
-        long insertId = database.insert(PaymentMemoDbHelper.TABLE_PAYMENT_LIST, null, values);
-
-        Cursor cursor = database.query(PaymentMemoDbHelper.TABLE_PAYMENT_LIST, columns, PaymentMemoDbHelper.COLUMN_ID + "=" + insertId, null, null, null, null);
-        //cursor moves to first item of db. One can use "moveToLast" equivalent..
-        cursor.moveToFirst();
-        PaymentMemo paymentMemo = cursorToPaymentMemo(cursor);
-        cursor.close();
-
-        return paymentMemo;
-    }
-
-    private PaymentMemo cursorToPaymentMemo(Cursor cursor) {
-        int idIndex = cursor.getColumnIndex(PaymentMemoDbHelper.COLUMN_ID);
-        int idProduct = cursor.getColumnIndex(PaymentMemoDbHelper.COLUMN_PRODUCT);
-        int idCost = cursor.getColumnIndex(PaymentMemoDbHelper.COLUMN_COST);
-
-        String product = cursor.getString(idProduct);
-        double cost = cursor.getDouble(idCost);
-        long id = cursor.getLong(idIndex);
-
-        PaymentMemo paymentMemo = new PaymentMemo(product, cost, id);
-
-        return paymentMemo;
-    }
-
-    public List<PaymentMemo> getAllPaymentMemos() {
-        List<PaymentMemo> paymentMemoList = new ArrayList<>();
-
-        Cursor cursor = database.query(PaymentMemoDbHelper.TABLE_PAYMENT_LIST, columns, null, null, null, null, null);
-
-        cursor.moveToFirst();
-        PaymentMemo paymentMemo;
-
-        while(!cursor.isAfterLast()) {
-            paymentMemo = cursorToPaymentMemo(cursor);
-            paymentMemoList.add(paymentMemo);
-            Log.d(LOG_TAG, "ID: " + paymentMemo.getId() + ", Content: " + paymentMemo);
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return paymentMemoList;
+        db.insert(TABLE_NAME,null,values);
+        db.close();
     }
 }
+
+ /* this class is the Datasource and keeps the connection to the database.
+    A ref to the database object can be requested and the creation process of
+    the table can be started...
+ */
+
+
+public class PaymentMemoDataSource extends SQLiteOpenHelper{
+
+    private static final int DB_VERSION = 1;
+    private static final String DB_NAME = "PaymentManager";
+    private static final String TABLE_NAME = "Payments";
+
+    private static final String KEY_ID = "id";
+    private static final String KEY_COST = "cost";
+    private static final String KEY_PRODUCT = "product";
+
+    public PaymentMemoDataSource(Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        String CREATE_TABLE_PAYMENTS =
+                "CREATE TABLE " + TABLE_NAME +"("+KEY_ID+" INTEGER PRIMARY KEY,"+KEY_COST+" TEXT,"
+                        +KEY_PRODUCT+" TEXT"+")";
+        db.execSQL(CREATE_TABLE_PAYMENTS);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(db);
+    }
+    public void addPayment(PaymentMemo p) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_COST, p.getCost());
+        values.put(KEY_PRODUCT, p.getProduct());
+
+        db.insert(TABLE_NAME,null,values);
+        db.close();
+    }
+}
+
+
