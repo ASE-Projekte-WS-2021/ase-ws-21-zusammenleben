@@ -112,43 +112,33 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     }
 */
 
-    private void savePayment() {
-        /*button_savepayment = (Button) findViewById(R.id.btn_save_payment);
+private void savePayment() {
+        button_savepayment = (Button) findViewById(R.id.btn_save_payment);
         final EditText editTextCost = (EditText) findViewById(R.id.insert_costs);
         final EditText editTextPurpose = (EditText) findViewById(R.id.insert_purpose);*/
 
         button_savepayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String costString = editTextCost.getText().toString();
                 String purpose = editTextPurpose.getText().toString();
                 TextView shareBill = (TextView)findViewById(R.id.share_your_bill);
                 shareBill.setText(costString + purpose);
-                        /*
-                if(TextUtils.isEmpty(costString)) {
-                    //editTextCost.setError(getString(R.string.editText_errorMessage));
-                    return;
-                }
-                if(TextUtils.isEmpty(purpose)) {
-                    //editTextPurpose.setError(getString(R.string.editText_errorMessage));
-                    return;
-                }
 
-                double cost = Double.parseDouble(costString);
-                editTextCost.setText("");
-                editTextPurpose.setText("");
+                payment = new PaymentMemo(costString, purpose);
+                dataSource.addPayment(payment);
 
-                dataSource.createPaymentMemo(cost, purpose);
 
-                InputMethodManager inputMethodManager;
-                inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                if(getCurrentFocus() != null) {
-                    inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                System.out.println("Successfull!");
+                Toast.makeText(getApplicationContext(), "Successfull!",Toast.LENGTH_LONG).show();
+
+           //     InputMethodManager inputMethodManager;
+             //   inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+              //  if(getCurrentFocus() != null) {
+              //      inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                 }
 
-                showAllListEntries(); */
-            }
+
         });
     }
 /*
