@@ -15,6 +15,7 @@ import java.util.List;
     the table can be started...
  */
 
+
 public class PaymentMemoDataSource extends SQLiteOpenHelper{
 
     private static final int DB_VERSION = 1;
@@ -51,6 +52,22 @@ public class PaymentMemoDataSource extends SQLiteOpenHelper{
         db.insert(TABLE_NAME,null,values);
         db.close();
     }
+
+    public PaymentMemo getPaymentMemo() {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor resultSet = db.rawQuery("SELECT * from Payments", null);
+        resultSet.moveToFirst();
+        String cost = resultSet.getString(1);
+        String product = resultSet.getString(2);
+        PaymentMemo paymentMemo = new PaymentMemo(cost, product);
+        return paymentMemo;
+    }
+
 }
+
+ /* this class is the Datasource and keeps the connection to the database.
+    A ref to the database object can be requested and the creation process of
+    the table can be started...
+ */
 
 
