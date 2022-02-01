@@ -15,7 +15,8 @@ import java.util.List;
     the table can be started...
  */
 
-public class PaymentMemoDataSource extends SQLiteOpenHelper {
+
+public class PaymentMemoDataSource extends SQLiteOpenHelper{
 
     private static final int DB_VERSION = 1;
     private static final String DB_NAME = "PaymentManager";
@@ -32,8 +33,8 @@ public class PaymentMemoDataSource extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE_PAYMENTS =
-                "CREATE TABLE " + TABLE_NAME + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_COST + " TEXT,"
-                        + KEY_PRODUCT + " TEXT" + ")";
+                "CREATE TABLE " + TABLE_NAME +"("+KEY_ID+" INTEGER PRIMARY KEY,"+KEY_COST+" TEXT,"
+                        +KEY_PRODUCT+" TEXT"+")";
         db.execSQL(CREATE_TABLE_PAYMENTS);
     }
 
@@ -42,14 +43,13 @@ public class PaymentMemoDataSource extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
-
     public void addPayment(PaymentMemo p) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_COST, p.getCost());
         values.put(KEY_PRODUCT, p.getProduct());
 
-        db.insert(TABLE_NAME, null, values);
+        db.insert(TABLE_NAME,null,values);
         db.close();
     }
 
@@ -57,13 +57,18 @@ public class PaymentMemoDataSource extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor resultSet = db.rawQuery("SELECT * from Payments", null);
         resultSet.moveToFirst();
-        String cost = resultSet.getString(0);
-        String product = resultSet.getString(1);
+        String cost = resultSet.getString(1);
+        String product = resultSet.getString(2);
         PaymentMemo paymentMemo = new PaymentMemo(cost, product);
         return paymentMemo;
     }
 
 }
+
+ /* this class is the Datasource and keeps the connection to the database.
+    A ref to the database object can be requested and the creation process of
+    the table can be started...
+ */
 
 
 
