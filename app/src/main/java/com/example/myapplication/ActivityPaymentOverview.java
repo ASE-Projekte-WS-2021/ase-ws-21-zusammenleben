@@ -55,7 +55,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         dataSource.close();
         */
 
-        safePayment();
+        savePayment();
 
     }
 /*
@@ -112,7 +112,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     }
 */
 
-    private void safePayment() {
+    private void savePayment() {
         /*button_savepayment = (Button) findViewById(R.id.btn_save_payment);
         final EditText editTextCost = (EditText) findViewById(R.id.insert_costs);
         final EditText editTextPurpose = (EditText) findViewById(R.id.insert_purpose);*/
@@ -139,7 +139,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 editTextCost.setText("");
                 editTextPurpose.setText("");
 
-                dataSource.createPaymentMemo(cost, purpose);// change parameters in createPaymentMemo
+                dataSource.createPaymentMemo(cost, purpose);
 
                 InputMethodManager inputMethodManager;
                 inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
