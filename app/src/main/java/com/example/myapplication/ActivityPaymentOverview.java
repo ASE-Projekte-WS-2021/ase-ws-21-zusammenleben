@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     public static final String LOG_TAG = ActivityStartScreen.class.getSimpleName();
     private PaymentMemoDataSource dataSource;
 
+    private PaymentMemo payment;
     Button button_savepayment;
     EditText editTextCost, editTextPurpose;
 /*
@@ -115,7 +117,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
 private void savePayment() {
         button_savepayment = (Button) findViewById(R.id.btn_save_payment);
         final EditText editTextCost = (EditText) findViewById(R.id.insert_costs);
-        final EditText editTextPurpose = (EditText) findViewById(R.id.insert_purpose);*/
+        final EditText editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
 
         button_savepayment.setOnClickListener(new View.OnClickListener() {
             @Override
