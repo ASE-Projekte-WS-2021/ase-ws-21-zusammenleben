@@ -5,14 +5,12 @@ public class PaymentMemo {
     // All Data of the dataset. Pls add what ya need. this is probably not the complete list
     private String product;
     //private int quantity;
-    private double cost;
+    private String cost;
     private long id;
 
-    public PaymentMemo (String product, /*int quantity,*/ double cost, long id) {
-        this.product = product;
-        //this.quantity = quantity;
+    public PaymentMemo (String cost, String product) {
         this.cost = cost;
-        this.id = id;
+        this.product = product;
     }
 
     public String getProduct() {
@@ -33,11 +31,11 @@ public class PaymentMemo {
     }
     */
 
-    public double getCost() {
+    public String getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(String cost) {
         this.cost = cost;
     }
 
@@ -56,3 +54,4 @@ public class PaymentMemo {
         return output;
     }
 }
+
