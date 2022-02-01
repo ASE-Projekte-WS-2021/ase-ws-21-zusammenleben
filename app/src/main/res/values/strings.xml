@@ -6,4 +6,5 @@
     <string name="Click_on_members">Click on members to split the payment!</string>
     <string name="save_as_template">Save as template?</string>
     <string name="done">Done</string>
+    <string name="editText_errorMessage">Error, please enter value!</string>
 </resources>

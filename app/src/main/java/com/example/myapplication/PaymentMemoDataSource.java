@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
 import android.content.ContentValues;
 import android.database.Cursor;
 import java.util.ArrayList;
@@ -23,7 +24,6 @@ public class PaymentMemoDataSource {
     private String[] columns = {
             PaymentMemoDbHelper.COLUMN_ID,
             PaymentMemoDbHelper.COLUMN_PRODUCT,
-            PaymentMemoDbHelper.COLUMN_QUANTITY,
             PaymentMemoDbHelper.COLUMN_COST
     };
 
@@ -43,10 +43,9 @@ public class PaymentMemoDataSource {
         Log.d(LOG_TAG, "Database is closed");
     }
 
-    public PaymentMemo createPaymentMemo(double cost, String product){
+    public PaymentMemo createPaymentMemo(String cost, String product){
         ContentValues values = new ContentValues();
         values.put(PaymentMemoDbHelper.COLUMN_PRODUCT, product);
-        //values.put(PaymentMemoDbHelper.COLUMN_QUANTITY, quantity);
         values.put(PaymentMemoDbHelper.COLUMN_COST, cost);
 
         long insertId = database.insert(PaymentMemoDbHelper.TABLE_PAYMENT_LIST, null, values);
@@ -63,15 +62,13 @@ public class PaymentMemoDataSource {
     private PaymentMemo cursorToPaymentMemo(Cursor cursor) {
         int idIndex = cursor.getColumnIndex(PaymentMemoDbHelper.COLUMN_ID);
         int idProduct = cursor.getColumnIndex(PaymentMemoDbHelper.COLUMN_PRODUCT);
-        int idQuantity = cursor.getColumnIndex(PaymentMemoDbHelper.COLUMN_QUANTITY);
         int idCost = cursor.getColumnIndex(PaymentMemoDbHelper.COLUMN_COST);
 
         String product = cursor.getString(idProduct);
-        int quantity = cursor.getInt(idQuantity);
         double cost = cursor.getDouble(idCost);
         long id = cursor.getLong(idIndex);
 
-        PaymentMemo paymentMemo = new PaymentMemo(product,quantity, cost, id);
+        PaymentMemo paymentMemo = new PaymentMemo(product, cost, id);
 
         return paymentMemo;
     }
@@ -83,10 +80,11 @@ public class PaymentMemoDataSource {
 
         cursor.moveToFirst();
         PaymentMemo paymentMemo;
+
         while(!cursor.isAfterLast()) {
             paymentMemo = cursorToPaymentMemo(cursor);
             paymentMemoList.add(paymentMemo);
-            Log.d(LOG_TAG, "ID: " + paymentMemo.getId() + ", Content: " + paymentMemo.toString());
+            Log.d(LOG_TAG, "ID: " + paymentMemo.getId() + ", Content: " + paymentMemo);
             cursor.moveToNext();
         }
         cursor.close();

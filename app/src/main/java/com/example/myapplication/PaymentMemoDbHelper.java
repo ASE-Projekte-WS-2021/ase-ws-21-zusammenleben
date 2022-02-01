@@ -19,19 +19,16 @@ public class PaymentMemoDbHelper extends SQLiteOpenHelper {
 
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_PRODUCT = "product";
-    public static final String COLUMN_QUANTITY = "quantity";
     public static final String COLUMN_COST = "cost";
 
     public static final String SQL_CREATE = "CREATE TABLE " + TABLE_PAYMENT_LIST +
             "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_PRODUCT + " TEXT NOT NULL, " +
-                COLUMN_QUANTITY + " INTEGER NOT NULL, " +
-                COLUMN_COST + " DOUBLE NOT NULL);";
+                COLUMN_PRODUCT + " STRING NOT NULL, " +
+                COLUMN_COST + " STRING NOT NULL);";
 
 
 
     public PaymentMemoDbHelper(Context context) {
-        /*super(context, "PLACEHOLDER_DATABASENAME", null, 1); was just for testing purpose*/
         super(context, DB_NAME, null, DB_VERSION);
         Log.d(LOG_TAG, "DbHelper has successfully created the Database: " + getDatabaseName() + "!");
     }
