@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">WGFinance</string>
     <string name="follow_the_instructions">Follow the instructions to create a new payment!</string>
     <string name="_00_00">00,00</string>
     <string name="purpose">Purpose</string>
