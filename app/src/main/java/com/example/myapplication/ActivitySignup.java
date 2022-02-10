@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivitySignup extends AppCompatActivity {
@@ -18,6 +19,17 @@ public class ActivitySignup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Create Account");
+        //implement BackButton
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed(); //return to previous screen/activity
+        return super.onSupportNavigateUp();
+    }
 }
