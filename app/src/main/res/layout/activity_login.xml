@@ -5,20 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="332dp"
-        android:layout_height="68dp"
-        android:text="Login"
+    <!--Setup UI for Loginscreen-->
+
+    <!--Setup TextView-->
+    <TextView
+        android:id="@+id/login_title"
+        android:layout_width="298dp"
+        android:layout_height="108dp"
+        android:text="WGFinance"
+        android:textAlignment="center"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.793" />
+        app:layout_constraintVertical_bias="0.126" />
 
+    <!--Setup E-Mail and Password for Login-->
     <EditText
-        android:id="@+id/login_username"
+        android:id="@+id/login_email"
         android:layout_width="322dp"
         android:layout_height="68dp"
         android:ems="10"
@@ -51,6 +57,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.538" />
 
+    <!--Reset Password-->
     <TextView
         android:id="@+id/forgot_password"
         android:layout_width="268dp"
@@ -63,6 +70,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.626" />
+
+    <!--Setup Buttons (Login and SignUp)-->
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="332dp"
+        android:layout_height="68dp"
+        android:text="Login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.793" />
 
     <TextView
         android:id="@+id/login_signup"
@@ -77,19 +97,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.915" />
-
-    <TextView
-        android:id="@+id/login_title"
-        android:layout_width="298dp"
-        android:layout_height="108dp"
-        android:text="WGFinance"
-        android:textAlignment="center"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.126" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

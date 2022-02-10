@@ -5,6 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--Setup UI for SignUpScreen-->
+
+    <TextView
+        android:id="@+id/signup_title"
+        android:layout_width="206dp"
+        android:layout_height="77dp"
+        android:text="Create\nAccount"
+        android:textColor="#0E0E0E"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.273"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09" />
+
+    <!--Registerinformation E-Mail and Password-->
     <EditText
         android:id="@+id/signup_e_mail"
         android:layout_width="345dp"
@@ -69,20 +86,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.793" />
-
-    <TextView
-        android:id="@+id/signup_title"
-        android:layout_width="206dp"
-        android:layout_height="77dp"
-        android:text="Create\nAccount"
-        android:textColor="#0E0E0E"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.273"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
