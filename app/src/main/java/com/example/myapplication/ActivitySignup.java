@@ -60,9 +60,9 @@ public class ActivitySignup extends AppCompatActivity {
                     signupemail.setError("Wrong E-Mail");
                     signupemail.setFocusable(true);
                 }
-                else if (password.length()<8){
+                else if (password.length()<6){
                     // check password
-                    signuppassword.setError("Password must be 8 characters");
+                    signuppassword.setError("Password must be 6 characters");
                     signuppassword.setFocusable(true);
                 }
                 else {
