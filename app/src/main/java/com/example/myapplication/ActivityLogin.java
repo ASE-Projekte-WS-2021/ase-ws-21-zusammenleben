@@ -54,7 +54,7 @@ public class ActivityLogin extends AppCompatActivity {
             public void onClick(View view) {
 
                 String email = loginemail.getText().toString().trim();
-                String password = loginemail.getText().toString().trim();
+                String password = loginpassword.getText().toString().trim();
 
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                     loginemail.setError("Invalid");
