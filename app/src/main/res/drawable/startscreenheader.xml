@@ -4,4 +4,7 @@
 
     <gradient android:startColor="@color/Primary"/>
 
+    <corners android:topLeftRadius="30dp"
+        android:topRightRadius="30dp" />
+
 </shape>
