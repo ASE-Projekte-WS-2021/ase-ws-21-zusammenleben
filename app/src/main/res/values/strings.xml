@@ -10,4 +10,5 @@
     <string name="tag_line">Better together</string>
     <string name="label_login">Login</string>
     <string name="hint_e_mail">E-Mail</string>
+    <string name="label_signup">Create Account</string>
 </resources>
