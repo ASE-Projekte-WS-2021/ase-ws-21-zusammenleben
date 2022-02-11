@@ -7,4 +7,7 @@
     <string name="save_as_template">Save as template?</string>
     <string name="done">Done</string>
     <string name="editText_errorMessage">Error, please enter value!</string>
+    <string name="tag_line">Better together</string>
+    <string name="label_login">Login</string>
+    <string name="hint_e_mail">E-Mail</string>
 </resources>
