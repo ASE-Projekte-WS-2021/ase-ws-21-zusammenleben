@@ -64,15 +64,17 @@
         app:layout_constraintVertical_bias="0.047" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="410dp"
+        android:layout_height="528dp"
         android:background="@drawable/background_for_login"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewSupporter">
+        app:layout_constraintTop_toBottomOf="@id/viewSupporter"
+        app:layout_constraintVertical_bias="0.189">
 
         <Button
             android:id="@+id/btn_newPayment"
@@ -99,5 +101,13 @@
             app:layout_constraintVertical_bias="0.578" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_bar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
