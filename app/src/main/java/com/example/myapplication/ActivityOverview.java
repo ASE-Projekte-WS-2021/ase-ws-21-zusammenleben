@@ -1,13 +1,17 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.w3c.dom.Text;
 
@@ -16,6 +20,7 @@ public class ActivityOverview extends AppCompatActivity {
     ImageButton button_managePayments;
     PaymentMemo payment;
     //TextView testtext;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,28 @@ public class ActivityOverview extends AppCompatActivity {
         setContentView(R.layout.activity_overview);
         addListenerOnButton();
         //displaytext();
+
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.payment);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.payment:
+                        return true;
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(),ActivityStartScreen.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.user:
+                        startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override

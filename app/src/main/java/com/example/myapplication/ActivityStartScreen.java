@@ -2,6 +2,11 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.FragmentKt;
+import androidx.navigation.ui.NavigationUI;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +35,8 @@ public class ActivityStartScreen extends AppCompatActivity {
     Button button_newPayment, button_signout;
     TextView useremail;
 
+    BottomNavigationView bottomNavigationView;
+
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -38,13 +45,35 @@ public class ActivityStartScreen extends AppCompatActivity {
         //try to setup and test my stuff
         setContentView(R.layout.activity_startscreen);
 
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.payment:
+                        startActivity(new Intent(getApplicationContext(),ActivityOverview.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.home:
+                        return true;
+                    case R.id.user:
+                        startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+
         firebaseAuth = FirebaseAuth.getInstance();
 
         useremail = findViewById(R.id.show_email);
 
         button_signout = (Button) findViewById(R.id.btn_signout);
         button_newPayment = (Button) findViewById(R.id.btn_newPayment);
-
 
         button_signout.setOnClickListener(new View.OnClickListener() {
             @Override

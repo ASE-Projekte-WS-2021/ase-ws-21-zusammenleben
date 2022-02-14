@@ -1,41 +1,50 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ActivityUserProfile extends AppCompatActivity {
 
-    Button button_logout;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //try to setup and test my stuff
         setContentView(R.layout.activity_userprofile);
-        addListenerOnButton();
-    }
 
-    public void addListenerOnButton() {
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.user);
 
-        final Context context = this;
-
-        button_logout = (Button) findViewById(R.id.btn_logout);
-
-        button_logout.setOnClickListener(new View.OnClickListener() {
-
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View arg0) {
-
-                Intent intent = new Intent(context, ActivityStartScreen.class);
-                startActivity(intent);
-
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.payment:
+                        startActivity(new Intent(getApplicationContext(),ActivityOverview.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(),ActivityStartScreen.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.user:
+                        return true;
+                }
+                return false;
             }
-
         });
 
     }
