@@ -35,11 +35,12 @@ public class ActivitySignup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Create Account");
+        //ActionBar actionBar = getSupportActionBar();
+        //actionBar.setTitle("Create Account");
         //implement BackButton
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setDisplayShowHomeEnabled(true);
+
 
         //initialize FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
