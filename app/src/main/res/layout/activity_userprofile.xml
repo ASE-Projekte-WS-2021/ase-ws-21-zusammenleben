@@ -136,4 +136,15 @@
         app:layout_constraintVertical_bias="0.628"
         tools:ignore="MissingConstraints" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomnavview"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_bar" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
