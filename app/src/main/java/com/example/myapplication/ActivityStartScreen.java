@@ -31,8 +31,6 @@ import java.util.List;
 
 public class ActivityStartScreen extends AppCompatActivity {
 
-
-    Button button_newPayment, button_signout;
     TextView useremail;
 
     BottomNavigationView bottomNavigationView;
@@ -69,29 +67,7 @@ public class ActivityStartScreen extends AppCompatActivity {
 
 
         firebaseAuth = FirebaseAuth.getInstance();
-
         useremail = findViewById(R.id.show_email);
-
-        button_signout = (Button) findViewById(R.id.btn_signout);
-        button_newPayment = (Button) findViewById(R.id.btn_newPayment);
-
-        button_signout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                firebaseAuth.signOut();
-                checkUserStatus();
-
-            }
-        });
-
-        button_newPayment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(getApplicationContext(),ActivityOverview.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void checkUserStatus (){

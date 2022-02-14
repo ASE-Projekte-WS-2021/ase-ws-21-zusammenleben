@@ -36,7 +36,7 @@ public class ActivityLogin extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //ActionBar actionBar = getSupportActionBar();
-       // actionBar.setTitle("Login");
+        // actionBar.setTitle("Login");
         //implement BackButton
         //actionBar.setDisplayHomeAsUpEnabled(true);
         //actionBar.setDisplayShowHomeEnabled(true);
