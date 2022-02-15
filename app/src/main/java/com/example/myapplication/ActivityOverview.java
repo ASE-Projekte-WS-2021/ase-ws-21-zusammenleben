@@ -61,13 +61,12 @@ public class ActivityOverview extends AppCompatActivity {
             payment = db.getPaymentMemo();
             updateTextView();
         } catch (android.database.CursorIndexOutOfBoundsException e){
-            System.out.println("Database stoll empty...");
+            System.out.println("Database still empty...");
         }
-        System.out.println(payment);
-
     }
 
     private void updateTextView() {
+        System.out.println("hier " +payment);
         String s = payment.toString();
         System.out.println(s);
         String[] substring = s.split("#");
