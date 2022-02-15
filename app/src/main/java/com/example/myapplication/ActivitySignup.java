@@ -83,7 +83,7 @@ public class ActivitySignup extends AppCompatActivity {
                             // Sign in success, start register activity
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(ActivitySignup.this, "Registered...\n"+user.getEmail(), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(ActivitySignup.this, ActivityStartScreen.class));
+                            startActivity(new Intent(ActivitySignup.this, ActivityCreateWG.class));
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.

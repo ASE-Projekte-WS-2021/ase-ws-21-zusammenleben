@@ -28,7 +28,7 @@ public class ActivityCreateWG extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext(),ActivityStartScreen.class);
+                Intent intent = new Intent(getApplicationContext(),ActivityAddWg.class);
                 startActivity(intent);
             }
         });
