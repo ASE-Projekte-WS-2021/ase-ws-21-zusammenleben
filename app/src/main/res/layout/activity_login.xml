@@ -112,6 +112,7 @@
             android:padding="5dip"
             android:text="LOGIN"
             android:textAllCaps="false"
+            android:textColor="#0E0E0E"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
