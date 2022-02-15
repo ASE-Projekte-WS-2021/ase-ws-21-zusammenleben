@@ -55,7 +55,7 @@ public class PaymentMemoDataSource extends SQLiteOpenHelper{
 
     public PaymentMemo getPaymentMemo() {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor resultSet = db.rawQuery("SELECT * from Payments", null);
+        Cursor resultSet = db.rawQuery("SELECT * from Payments ORDER BY id DESC LIMIT 1", null);
         resultSet.moveToFirst();
         String cost = resultSet.getString(1);
         String product = resultSet.getString(2);
