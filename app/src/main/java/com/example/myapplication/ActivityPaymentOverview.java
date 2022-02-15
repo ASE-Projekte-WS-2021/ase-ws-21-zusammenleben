@@ -159,5 +159,11 @@ private void savePayment() {
         paymentMemosListView.setAdapter(paymentMemoArrayAdapter);
 
     }*/
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed(); //return to previous screen/activity
+        return super.onSupportNavigateUp();
+    }
 }
 
