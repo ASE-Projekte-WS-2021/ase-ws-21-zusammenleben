@@ -1,30 +1,34 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 public class ActivityPaymentOverview extends AppCompatActivity {
 
     // For testing the database
     public static final String LOG_TAG = ActivityStartScreen.class.getSimpleName();
-    private PaymentMemoDataSource dataSource;
     private PaymentMemo payment;
     Button button_savepayment;
     EditText editTextCost, editTextPurpose;
+    FirebaseAuth firebaseAuth;
+    TextView useremail;
+
+
 /*
     public ActivityPaymentOverview(EditText editTextCost, EditText editTextPurpose) {
         this.editTextCost = editTextCost;
@@ -37,6 +41,9 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //try to setup and test my stuff
         setContentView(R.layout.activity_paymentoverview);
+        useremail = findViewById(R.id.show_email);
+        firebaseAuth = FirebaseAuth.getInstance();
+
 
         /*
         //database test stuff
@@ -46,7 +53,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         */
 
         Log.d(LOG_TAG, "Opening Datasource.");
-        dataSource = new PaymentMemoDataSource(this);
+        //dataSource = new PaymentMemoDataSource(this);
 
         button_savepayment = (Button) findViewById(R.id.btn_save_payment);
         editTextCost = (EditText) findViewById(R.id.insert_costs);
@@ -72,12 +79,14 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         showAllListEntries(); //method will be finished later
     }
 */
+
+
     @Override
     protected void onPause() {
         super.onPause();
 
-        Log.d(LOG_TAG, "closing database...");
-        dataSource.close();
+        //Log.d(LOG_TAG, "closing database...");
+        //dataSource.close();
     }
 
    /*
@@ -118,17 +127,25 @@ private void savePayment() {
         button_savepayment = (Button) findViewById(R.id.btn_save_payment);
         final EditText editTextCost = (EditText) findViewById(R.id.insert_costs);
         final EditText editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
-
+        final TextView editTextMail = (TextView) findViewById(R.id.show_email);
         button_savepayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String costString = editTextCost.getText().toString();
                 String purpose = editTextPurpose.getText().toString();
+                String useremail = editTextMail.getText().toString();
                 TextView shareBill = (TextView)findViewById(R.id.share_your_bill);
                 shareBill.setText(costString + purpose);
+                // Write a message to the database
+                FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
+                DatabaseReference myRef = database.getReference("Payments");
+                PaymentMemo payment = new PaymentMemo(costString, purpose, useremail);
 
-                payment = new PaymentMemo(costString, purpose);
-                dataSource.addPayment(payment);
+                myRef.push().setValue(payment);
+
+
+                //payment = new PaymentMemo(costString, purpose);
+                //dataSource.addPayment(payment);
 
 
                 System.out.println("Successfull!");
@@ -146,6 +163,15 @@ private void savePayment() {
 
         });
     }
+
+    private void checkUserStatus (){
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null){
+            useremail.setText(user.getEmail());
+        } else {
+            finish();
+        }
+    }
 /*
     private void showAllListEntries (){
         List<PaymentMemo> paymentMemoList = dataSource.getAllPaymentMemos();
@@ -161,7 +187,14 @@ private void savePayment() {
     }*/
 
     @Override
+    protected void onStart() {
+        checkUserStatus();
+        super.onStart();
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
+
         onBackPressed(); //return to previous screen/activity
         return super.onSupportNavigateUp();
     }

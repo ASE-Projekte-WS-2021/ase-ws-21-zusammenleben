@@ -53,17 +53,17 @@ public class ActivityOverview extends AppCompatActivity {
         });
     }
 
-    @Override
+/*    @Override
     protected void onResume() {
         super.onResume();
-        PaymentMemoDataSource db = new PaymentMemoDataSource(this);
+        //PaymentMemoDataSource db = new PaymentMemoDataSource(this);
         try {
-            payment = db.getPaymentMemo();
+            //payment = db.getPaymentMemo();
             updateTextView();
         } catch (android.database.CursorIndexOutOfBoundsException e){
             System.out.println("Database still empty...");
         }
-    }
+    }*/
 
     private void updateTextView() {
         System.out.println("hier " +payment);

@@ -3,22 +3,24 @@ package com.example.myapplication;
 public class PaymentMemo {
 
     // All Data of the dataset. Pls add what ya need. this is probably not the complete list
-    private String product;
+    private String purpose;
     //private int quantity;
     private String cost;
-    private long id;
+    //private long id;
+    private String name;
 
-    public PaymentMemo (String cost, String product) {
+    public PaymentMemo (String cost, String purpose, String name) {
         this.cost = cost;
-        this.product = product;
+        this.purpose = purpose;
+        this.name = name;
     }
 
-    public String getProduct() {
-        return product;
+    public String getPurpose() {
+        return purpose;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
     }
 
     /*
@@ -31,6 +33,8 @@ public class PaymentMemo {
     }
     */
 
+    public String getName(){return name;}
+
     public String getCost() {
         return cost;
     }
@@ -39,19 +43,8 @@ public class PaymentMemo {
         this.cost = cost;
     }
 
-    public long getId(){
-        return id;
-    }
+    public void setName(String name) {this.name = name;}
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-            String output = cost + "#" + product;
-        return output;
-    }
 }
 
 
