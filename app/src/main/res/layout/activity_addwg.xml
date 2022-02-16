@@ -74,13 +74,13 @@
         <!--Registerinformation E-Mail and Password-->
 
         <EditText
-            android:id="@+id/enter_flatshare"
+            android:id="@+id/address"
             android:layout_width="345dp"
             android:layout_height="48dp"
             android:drawableLeft="@drawable/ic_baseline_home_work_24"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:hint="Flat share name"
+            android:hint="Enter your Address"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -91,13 +91,13 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/enter_cityname"
+            android:id="@+id/size_of_flat"
             android:layout_width="345dp"
             android:layout_height="48dp"
             android:drawableLeft="@drawable/ic_baseline_location_city_24"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:hint="City"
+            android:hint="Enter how many people live together"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -108,13 +108,13 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/first_name"
+            android:id="@+id/person_name"
             android:layout_width="345dp"
             android:layout_height="48dp"
             android:drawableLeft="@drawable/ic_baseline_person_24"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:hint="Enter your first name"
+            android:hint="Enter your name"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -124,13 +124,13 @@
             app:layout_constraintVertical_bias="0.114" />
 
         <EditText
-            android:id="@+id/second_name"
+            android:id="@+id/flat_share_name"
             android:layout_width="345dp"
             android:layout_height="48dp"
             android:drawableLeft="@drawable/ic_baseline_person_24"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:hint="Enter your second name"
+            android:hint="Enter your Flat share name"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
