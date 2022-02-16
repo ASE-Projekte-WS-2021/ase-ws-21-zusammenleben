@@ -44,49 +44,32 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         useremail = findViewById(R.id.show_email);
         firebaseAuth = FirebaseAuth.getInstance();
 
-
-        /*
-        //database test stuff
-        PaymentMemo testMemo = new PaymentMemo("Stuff", 5, 3.50, 101);
-        Log.d(LOG_TAG, "Content of the Testmemo: " + testMemo.toString());
-        dataSource = new PaymentMemoDataSource(this);
-        */
-
         Log.d(LOG_TAG, "Opening Datasource.");
-        //dataSource = new PaymentMemoDataSource(this);
 
         button_savepayment = (Button) findViewById(R.id.btn_save_payment);
         editTextCost = (EditText) findViewById(R.id.insert_costs);
         editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
 
-        /*
-        Log.d(LOG_TAG, "Closing Datasource.");
-        dataSource.close();
-        */
-
         savePayment();
 
     }
-/*
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        Log.d(LOG_TAG, "opening database...");
-        dataSource.open();
-
-        Log.d(LOG_TAG, "show all database entries...");
-        showAllListEntries(); //method will be finished later
-    }
-*/
+    /*
+     *   @Override
+     *   protected void onResume() {
+     *      super.onResume();
+     *
+     *       Log.d(LOG_TAG, "opening database...");
+     *       dataSource.open();
+     *
+     *      Log.d(LOG_TAG, "show all database entries...");
+     *      showAllListEntries(); //method will be finished later
+     *   }
+     */
 
 
     @Override
     protected void onPause() {
         super.onPause();
-
-        //Log.d(LOG_TAG, "closing database...");
-        //dataSource.close();
     }
 
    /*

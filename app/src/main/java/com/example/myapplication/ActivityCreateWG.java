@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ActivityCreateWG extends AppCompatActivity {
 
     Button button_createNewGroup;
+    Button button_joinGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +24,22 @@ public class ActivityCreateWG extends AppCompatActivity {
         //actionBar.hide();
 
         button_createNewGroup = (Button) findViewById(R.id.btn_createNewGroup);
+        button_joinGroup = (Button) findViewById(R.id.btn_inviteYourFriends);
 
         button_createNewGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent intent = new Intent(getApplicationContext(),ActivityAddWg.class);
+                startActivity(intent);
+            }
+        });
+
+        button_joinGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(),ActivityJoinWG.class);
                 startActivity(intent);
             }
         });

@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addwg.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_createwg.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_joinwg.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_add_payment.xml" value="0.2233912746547052" />
         <entry key="app/src/main/res/layout/activity_addpayment.xml" value="0.7301587301587301" />
