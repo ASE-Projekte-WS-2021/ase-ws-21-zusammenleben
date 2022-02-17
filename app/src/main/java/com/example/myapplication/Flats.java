@@ -4,6 +4,10 @@ public class Flats {
 
     String firstUser, secondUser, thirdUser, fourthUser, fifthUser, address, flatSize, name;
 
+
+    public Flats(){
+
+    }
     public Flats(String firstUser, String secondUser, String address, String flatSize, String name){
         this.firstUser = firstUser;
         this.secondUser = secondUser;
