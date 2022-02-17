@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +39,8 @@ public class ActivityAddWg extends AppCompatActivity {
     EditText userName, address, size, flat_name;
     String flatUserName, flatAddress, flatSize, flatName;
     DatabaseReference databaseReference;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +48,17 @@ public class ActivityAddWg extends AppCompatActivity {
         setupUIComponents();
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
         databaseReference = database.getReference("Flats");
+        mAuth = FirebaseAuth.getInstance();
 
         addwg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                flatUserName = userName.getText().toString();
+                //flatUserName = userName.getText().toString();
                 flatAddress = address.getText().toString();
                 flatSize = size.getText().toString();
                 flatName = flat_name.getText().toString();
+                FirebaseUser user = mAuth.getCurrentUser();
+                flatUserName = user.getEmail();
 
                 Flats flats;
 
@@ -81,6 +88,8 @@ public class ActivityAddWg extends AppCompatActivity {
                         Toast.makeText(ActivityAddWg.this, "Data inserted!", Toast.LENGTH_LONG).show();
                         break;
                 }
+                startActivity(new Intent(ActivityAddWg.this, ActivityOverview.class));
+
             }
         });
     }
