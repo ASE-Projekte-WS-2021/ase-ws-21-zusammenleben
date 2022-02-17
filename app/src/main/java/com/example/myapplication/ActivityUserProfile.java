@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class ActivityUserProfile extends AppCompatActivity {
 
     Button button_signout;
+    Button button_leaving;
     BottomNavigationView bottomNavigationView;
     FirebaseAuth firebaseAuth;
     TextView useremail;
@@ -39,6 +40,7 @@ public class ActivityUserProfile extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         button_signout = (Button) findViewById(R.id.btn_logout);
+        button_leaving = (Button) findViewById(R.id.btn_leaving);
         useremail = findViewById(R.id.show_email);
 
         bottomNavigationView = findViewById(R.id.bottomnavview);
@@ -69,6 +71,14 @@ public class ActivityUserProfile extends AppCompatActivity {
                 firebaseAuth.signOut();
                 checkUserStatus();
 
+            }
+        });
+
+        button_leaving.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ActivityCreateWG.class);
+                startActivity(intent);
             }
         });
     }

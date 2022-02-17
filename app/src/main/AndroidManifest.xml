@@ -15,9 +15,12 @@
         <activity
             android:name=".ActivityAddWg"
             android:exported="false" />
+
         <activity
             android:name=".ActivityJoinWG"
             android:exported="false" />
+
+
         <activity
             android:name=".ActivityStartScreen"
             android:exported="true">

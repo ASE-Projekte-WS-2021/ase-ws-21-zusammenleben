@@ -108,12 +108,13 @@
             app:layout_constraintVertical_bias="0.59"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <TextView
+        <EditText
             android:id="@+id/flat_name"
             android:layout_width="345dp"
             android:layout_height="48dp"
             android:drawablePadding="20dp"
             android:ems="10"
+            android:hint="Search for your flat"
             android:inputType="textPersonName"
             android:drawableLeft="@drawable/ic_baseline_home_work_24"
             android:minHeight="48dp"

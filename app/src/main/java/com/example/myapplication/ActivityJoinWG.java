@@ -19,13 +19,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ActivityJoinWG extends AppCompatActivity {
 
     Button joinWG;
-    EditText userName;
-    TextView flatSize, flatName;
+    EditText userName, flatName;
+    TextView flatSize;
     DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_joinwg);
         setupUIComponents();
 
         joinWG.setOnClickListener(new View.OnClickListener() {
@@ -38,8 +39,7 @@ public class ActivityJoinWG extends AppCompatActivity {
     }
 
     private void setupUIComponents() {
-        setContentView(R.layout.activity_joinwg);
-        joinWG = findViewById(R.id.btn_addwg);
+        joinWG = findViewById(R.id.btn_joinwg);
         userName = findViewById(R.id.person_name);
         flatSize = findViewById(R.id.current_size_of_flat);
         flatName = findViewById(R.id.flat_name);
