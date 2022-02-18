@@ -46,7 +46,7 @@
         app:layout_constraintVertical_bias="0.189">
 
         <TextView
-            android:id="@+id/costs"
+            android:id="@+id/costs_overview"
             android:layout_width="91dp"
             android:layout_height="52dp"
             android:drawableRight="@drawable/ic_baseline_attach_money_24"

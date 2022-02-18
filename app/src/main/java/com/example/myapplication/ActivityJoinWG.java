@@ -68,7 +68,7 @@ public class ActivityJoinWG extends AppCompatActivity {
                         for (DataSnapshot snap : snapshot.getChildren()){
                             allFlats = snap.getValue();
                             Log.d("flats", allFlats.toString());
-                            /** TODO : allFlats hat alle WG's. Damit kann man weiterarbeiten und die Daten verwandeln....funktioniert auch alles hier in dieser Methode
+                            // TODO : allFlats hat alle WG's. Damit kann man weiterarbeiten und die Daten verwandeln....funktioniert auch alles hier in dieser Methode
                 }
                 }
                 }
@@ -81,3 +81,10 @@ public class ActivityJoinWG extends AppCompatActivity {
 
     }
 }
+
+//#TODO update eingegebene Flat Name in User Profil anstatt Home Appartment
+//#TODO User Profil Buttons sind nicht richtig beschriftet Invite your Friends
+//#TODO User Namen anstatt Email einblenden, Name wird doppelt hinterlegt einaml beim Sign up einmal bei der erstellung der WG
+//#TODO Daten werden noc nicht von der Erstellung der Zahlung zu der Zahlungsübersicht übertragen
+//#TODO was kommt in das Overview display?
+//#TODO WGs anzeigen die in der Datenbank gespeichert sind damit man einer beitreten kann und ein Limit für die Beitritte setzen

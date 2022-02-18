@@ -27,12 +27,13 @@ import org.w3c.dom.Text;
 public class ActivityOverview extends AppCompatActivity {
 
     ImageButton button_managePayments;
-    PaymentMemo payment;
     BottomNavigationView bottomNavigationView;
     private FirebaseAuth mAuth;
     String userEmail;
+
     TextView paymentPurpose, costs;
     Object cost, purpose;
+
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
     DatabaseReference myRef = database.getReference("Payments");
 
@@ -45,6 +46,14 @@ public class ActivityOverview extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         userEmail = user.getEmail();
+
+        paymentPurpose = findViewById(R.id.payment_purpose);
+        //String retrieveData = ActivityOverview.this.getIntent().getStringExtra("MY Data Key");
+        //paymentPurpose.setText(retrieveData);
+        //Toast.makeText(getApplicationContext(), retrieveData,Toast.LENGTH_LONG).show();
+
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.payment);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -114,15 +123,13 @@ public class ActivityOverview extends AppCompatActivity {
     }
 
 
-
-
-private void setupUIComponents(){
-    setContentView(R.layout.activity_overview);
-    bottomNavigationView = findViewById(R.id.bottomnavview);
-    bottomNavigationView.setSelectedItemId(R.id.payment);
-    button_managePayments = (ImageButton) findViewById(R.id.btn_managePayments);
-    paymentPurpose = findViewById(R.id.payment_purpose);
-    costs = findViewById(R.id.costs);
-}
+    private void setupUIComponents(){
+        setContentView(R.layout.activity_overview);
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.payment);
+        button_managePayments = (ImageButton) findViewById(R.id.btn_managePayments);
+        paymentPurpose = findViewById(R.id.payment_purpose);
+        costs = findViewById(R.id.costs_overview);
+    }
 
 }

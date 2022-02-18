@@ -12,4 +12,5 @@
     <string name="hint_e_mail">E-Mail</string>
     <string name="label_signup">Create Account</string>
     <string name="reset_your_password">Reset your Password</string>
+    <string name="payments">Payments</string>
 </resources>
