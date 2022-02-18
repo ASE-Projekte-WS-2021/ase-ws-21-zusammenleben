@@ -26,20 +26,12 @@ public class ActivityPaymentOverview extends AppCompatActivity {
 
     // For testing the database
     public static final String LOG_TAG = ActivityStartScreen.class.getSimpleName();
-    private PaymentMemo payment;
     Button button_savepayment;
     EditText editTextCost, editTextPurpose;
     FirebaseAuth firebaseAuth;
     TextView useremail;
     long maxId;
 
-
-/*
-    public ActivityPaymentOverview(EditText editTextCost, EditText editTextPurpose) {
-        this.editTextCost = editTextCost;
-        this.editTextPurpose = editTextPurpose;
-    }
-*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,58 +50,13 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         savePayment();
 
     }
-    /*
-     *   @Override
-     *   protected void onResume() {
-     *      super.onResume();
-     *
-     *       Log.d(LOG_TAG, "opening database...");
-     *       dataSource.open();
-     *
-     *      Log.d(LOG_TAG, "show all database entries...");
-     *      showAllListEntries(); //method will be finished later
-     *   }
-     */
+
 
 
     @Override
     protected void onPause() {
         super.onPause();
     }
-
-   /*
-    public void addListenerOnButton() {
-
-        final Context context = this;
-
-        button_savepayment = (Button) findViewById(R.id.btn_save_payment);
-
-        button_savepayment.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                //get and save input from input_purpose and input_costs into db
-                //Intent intent = new Intent(context, ActivityPaymentOverview.class);
-                //startActivity(intent);
-                //testtext.setText(getInputCosts()+":"+getInputPurpose());
-                ActivityPaymentOverview.this.startActivity(new Intent(ActivityPaymentOverview.this, ActivityOverview.class));
-            }
-
-        });
-
-    }
-    */
-/*
-    public String getInputCosts(){
-        input_costs = (EditText)findViewById(R.id.insert_costs);
-        return input_costs.getText().toString();
-    }
-
-    public String getInputPurpose(){
-        input_purpose = (EditText)findViewById(R.id.insert_purpose);
-        return input_purpose.getText().toString();
-    }
-*/
 
 private void savePayment() {
         button_savepayment = (Button) findViewById(R.id.btn_save_payment);
@@ -148,11 +95,6 @@ private void savePayment() {
 
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 startActivity(intent);
-
-           //     InputMethodManager inputMethodManager;
-             //   inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-              //  if(getCurrentFocus() != null) {
-              //      inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                 }
 
 
@@ -167,19 +109,6 @@ private void savePayment() {
             finish();
         }
     }
-/*
-    private void showAllListEntries (){
-        List<PaymentMemo> paymentMemoList = dataSource.getAllPaymentMemos();
-
-        ArrayAdapter<PaymentMemo> paymentMemoArrayAdapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_multiple_choice,
-                paymentMemoList);
-
-        ListView paymentMemosListView = (ListView) findViewById(R.id.listview_payment_memos);
-        paymentMemosListView.setAdapter(paymentMemoArrayAdapter);
-
-    }*/
 
     @Override
     protected void onStart() {

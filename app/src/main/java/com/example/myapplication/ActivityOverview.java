@@ -28,31 +28,23 @@ public class ActivityOverview extends AppCompatActivity {
 
     ImageButton button_managePayments;
     PaymentMemo payment;
-    //TextView testtext;
     BottomNavigationView bottomNavigationView;
     private FirebaseAuth mAuth;
     String userEmail;
+    TextView paymentPurpose, costs;
+    Object cost, purpose;
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
-    DatabaseReference myRef = database.getReference("Payments/");
-
-
+    DatabaseReference myRef = database.getReference("Payments");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //try to setup and test my stuff
-        setContentView(R.layout.activity_overview);
+        setupUIComponents();
         addListenerOnButton();
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         userEmail = user.getEmail();
-        //getData();
-
-        //displaytext();
-
-        bottomNavigationView = findViewById(R.id.bottomnavview);
-        bottomNavigationView.setSelectedItemId(R.id.payment);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -77,64 +69,41 @@ public class ActivityOverview extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //PaymentMemoDataSource db = new PaymentMemoDataSource(this);
         try {
-            //payment = db.getPaymentMemo();
             updateTextView();
         } catch (android.database.CursorIndexOutOfBoundsException e){
-            System.out.println("Database still empty...");
+            Log.d("catch", "Database still empty");
         }
     }
 
+
     private void updateTextView() {
-        /*System.out.println("hier " +payment);
-        String s = payment.toString();
-        System.out.println(s);
-        String[] substring = s.split("#");
-        String cost = substring[0];
-        String product = substring[1];
-        System.out.println(cost);
-        System.out.println(product);
-        TextView description = findViewById(R.id.payment_purpose);
-        TextView costs = findViewById(R.id.costs);
-        description.setText(product);
-        costs.setText(cost);*/
-    }
-
-    //https://firebase.google.com/docs/database/android/read-and-write?authuser=0
-    private void getData() {
-        // [START post_value_event_listener]
-        myRef.addValueEventListener( new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-                PaymentMemo payment = dataSnapshot.getValue(PaymentMemo.class);
-                System.out.println(payment);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    cost = dataSnapshot.child("cost").getValue();
+                    purpose = dataSnapshot.child("purpose").getValue();
+                    paymentPurpose.setText(purpose.toString());
+                    costs.setText(cost.toString());
+                }
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(ActivityOverview.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
-                // Getting Post failed, log a message
-                //Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("catch", "Database still empty.....");
             }
-
-            //mPostReference.addValueEventListener(paymentListener);
-            // [END post_value_event_listener]
         });
+
+
     }
 
     public void addListenerOnButton() {
-
-        //final Context context = this;
-
-        button_managePayments = (ImageButton) findViewById(R.id.btn_managePayments);
-
         button_managePayments.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                //ActivityOverview.this.startActivity(new Intent(ActivityOverview.this, ActivityPaymentOverview.class));
                 Intent intent = new Intent(getApplicationContext(), ActivityPaymentOverview.class);
                 startActivity(intent);
 
@@ -144,11 +113,16 @@ public class ActivityOverview extends AppCompatActivity {
 
     }
 
-/*
-    public void displaytext(){
-        ActivityPaymentOverview inst = new ActivityPaymentOverview();
-        testtext = (TextView) findViewById(R.id.last_Payments);
-        testtext.setText(inst.getInputCosts()+":"+inst.getInputPurpose());
-    }
-*/
+
+
+
+private void setupUIComponents(){
+    setContentView(R.layout.activity_overview);
+    bottomNavigationView = findViewById(R.id.bottomnavview);
+    bottomNavigationView.setSelectedItemId(R.id.payment);
+    button_managePayments = (ImageButton) findViewById(R.id.btn_managePayments);
+    paymentPurpose = findViewById(R.id.payment_purpose);
+    costs = findViewById(R.id.costs);
+}
+
 }
