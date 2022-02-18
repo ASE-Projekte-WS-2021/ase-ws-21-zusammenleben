@@ -34,6 +34,20 @@
         app:layout_constraintBottom_toBottomOf="@id/header"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="144dp"
+        android:layout_height="56dp"
+        android:text="Profile"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.071" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="410dp"
@@ -80,14 +94,13 @@
             android:id="@+id/show_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="72dp"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="Email"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.469"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,21 +108,23 @@
             android:id="@+id/currentflatshare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="368dp"
+            android:layout_marginBottom="344dp"
             android:text="Your current flat share"
             android:textColor="@color/black"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.146"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/show_email"
+            app:layout_constraintVertical_bias="0.847" />
 
         <Button
             android:id="@+id/btn_logout"
             android:layout_width="272dp"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/roundetcorners"
             android:text="Log out"
             android:textAlignment="center"
             android:textColor="#F60808"
@@ -124,6 +139,7 @@
             android:layout_height="28dp"
             android:text="Home Apartment"
             android:textSize="20dp"
+            android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/btn_invite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -135,6 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Username"
+            android:gravity="center"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_logout"
