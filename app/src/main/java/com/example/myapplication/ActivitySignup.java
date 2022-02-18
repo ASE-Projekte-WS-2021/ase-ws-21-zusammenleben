@@ -21,15 +21,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ActivitySignup extends AppCompatActivity {
 
     EditText signupemail, signuppassword, signupname;
     Button createAccount;
     private User newUser;
-
+    long maxId;
 
     //declare instance FirebaseAuth
     private FirebaseAuth mAuth;
@@ -84,6 +87,18 @@ public class ActivitySignup extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference myRef = database.getReference("Users");
 
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                    maxId = (snapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -91,7 +106,8 @@ public class ActivitySignup extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, start register activity
                             User newUser = new User(email,password,name);
-                            myRef.push().setValue(newUser);
+                            String userCount = "U" + String.valueOf(maxId+1);
+                            myRef.child(userCount).setValue(newUser);
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(ActivitySignup.this, "Registered...\n"+user.getEmail(), Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(ActivitySignup.this, ActivityCreateWG.class));

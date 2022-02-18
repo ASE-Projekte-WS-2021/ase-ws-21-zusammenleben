@@ -98,7 +98,7 @@
             android:drawablePadding="20dp"
             android:ems="10"
             android:hint="Enter how many people live together"
-            android:inputType="textPersonName"
+            android:inputType="phone"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

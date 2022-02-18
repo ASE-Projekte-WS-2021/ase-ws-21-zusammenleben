@@ -9,13 +9,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class ActivityPaymentOverview extends AppCompatActivity {
@@ -27,6 +31,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     EditText editTextCost, editTextPurpose;
     FirebaseAuth firebaseAuth;
     TextView useremail;
+    long maxId;
 
 
 /*
@@ -115,6 +120,7 @@ private void savePayment() {
             @Override
             public void onClick(View v) {
                 String costString = editTextCost.getText().toString();
+                double cost = Double.valueOf(costString);
                 String purpose = editTextPurpose.getText().toString();
                 String useremail = editTextMail.getText().toString();
                 TextView shareBill = (TextView)findViewById(R.id.share_your_bill);
@@ -122,16 +128,22 @@ private void savePayment() {
                 // Write a message to the database
                 FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
                 DatabaseReference myRef = database.getReference("Payments");
-                PaymentMemo payment = new PaymentMemo(costString, purpose, useremail);
+                PaymentMemo payment = new PaymentMemo(cost, purpose, useremail);
 
-                myRef.push().setValue(payment);
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists())
+                            maxId = (snapshot.getChildrenCount());
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
+                    }
+                });
 
-                //payment = new PaymentMemo(costString, purpose);
-                //dataSource.addPayment(payment);
-
-
-                System.out.println("Successfull!");
+                String paymentCounter = "P" + String.valueOf(maxId+1);
+                myRef.child(paymentCounter).setValue(payment);
                 Toast.makeText(getApplicationContext(), "Successfull!",Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);

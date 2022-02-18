@@ -4,10 +4,10 @@ public class PaymentMemo {
 
     // All Data of the dataset. Pls add what ya need. this is probably not the complete list
     private String purpose;
-    private String cost;
+    private double cost;
     private String email;
 
-    public PaymentMemo (String cost, String purpose, String email) {
+    public PaymentMemo (double cost, String purpose, String email) {
         this.cost = cost;
         this.purpose = purpose;
         this.email = email;
@@ -23,11 +23,11 @@ public class PaymentMemo {
 
     public String getEmail(){return email;}
 
-    public String getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(String cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 

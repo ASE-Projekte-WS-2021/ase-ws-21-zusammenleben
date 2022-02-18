@@ -2,20 +2,20 @@ package com.example.myapplication;
 
 public class Flats {
 
-    String firstUser, secondUser, thirdUser, fourthUser, fifthUser, address, flatSize, name;
-
+    String firstUser, secondUser, thirdUser, fourthUser, fifthUser, address, name;
+    int flatSize;
 
     public Flats(){
 
     }
-    public Flats(String firstUser, String secondUser, String address, String flatSize, String name){
+    public Flats(String firstUser, String secondUser, String address, int flatSize, String name){
         this.firstUser = firstUser;
         this.secondUser = secondUser;
         this.address = address;
         this.flatSize = flatSize;
         this.name = name;
     }
-    public Flats(String firstUser, String secondUser, String thirdUser, String address, String flatSize, String name){
+    public Flats(String firstUser, String secondUser, String thirdUser, String address, int flatSize, String name){
         this.firstUser = firstUser;
         this.secondUser = secondUser;
         this.thirdUser = thirdUser;
@@ -23,7 +23,7 @@ public class Flats {
         this.flatSize = flatSize;
         this.name = name;
     }
-    public Flats(String firstUser, String secondUser, String thirdUser, String fourthUser, String address, String flatSize, String name){
+    public Flats(String firstUser, String secondUser, String thirdUser, String fourthUser, String address, int flatSize, String name){
         this.firstUser = firstUser;
         this.secondUser = secondUser;
         this.thirdUser = thirdUser;
@@ -32,7 +32,7 @@ public class Flats {
         this.flatSize = flatSize;
         this.name = name;
     }
-    public Flats(String firstUser, String secondUser, String thirdUser, String fourthUser, String fifthUser, String address, String flatSize, String name) {
+    public Flats(String firstUser, String secondUser, String thirdUser, String fourthUser, String fifthUser, String address, int flatSize, String name) {
         this.firstUser = firstUser;
         this.secondUser = secondUser;
         this.thirdUser = thirdUser;
@@ -68,7 +68,7 @@ public class Flats {
         return address;
     }
 
-    public String getFlatSize() {
+    public int getFlatSize() {
         return flatSize;
     }
 
