@@ -13,14 +13,14 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ActivityForgotPassword"
+            android:exported="false" />
+        <activity
             android:name=".ActivityAddWg"
             android:exported="false" />
-
         <activity
             android:name=".ActivityJoinWG"
             android:exported="false" />
-
-
         <activity
             android:name=".ActivityStartScreen"
             android:exported="true">
@@ -32,27 +32,27 @@
         </activity>
         <activity
             android:name=".ActivityAddPayment"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ActivityOverview"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ActivityPaymentOverview"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ActivityCreateWG"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ActivityUserProfile"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ActivityLogin"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" />
         <activity
             android:name=".ActivitySignup"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" />
     </application>
 
 </manifest>
