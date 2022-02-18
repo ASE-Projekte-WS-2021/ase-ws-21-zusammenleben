@@ -46,8 +46,11 @@ public class ActivityJoinWG extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            Flats flats = snapshot.getValue(Flats.class);
+                            String flats1 = String.valueOf(flats);
                             String s = String.valueOf(dataSnapshot.getValue());
                             Log.d("WG", s);
+                            Log.d("WG", flats1);
                         }
                     }
 

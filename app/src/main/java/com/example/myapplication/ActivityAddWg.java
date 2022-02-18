@@ -64,6 +64,8 @@ public class ActivityAddWg extends AppCompatActivity {
 
                 switch (flatSize){
                     case "2":
+                        flatAddress = "#" + flatAddress + "#";
+                        Log.d("Ds", flatAddress);
                         Log.d("WG size: ", "2");
                         flats = new Flats(flatUserName, "Placeholder2", flatAddress, flatSize, flatName);
                         databaseReference.push().setValue(flats);

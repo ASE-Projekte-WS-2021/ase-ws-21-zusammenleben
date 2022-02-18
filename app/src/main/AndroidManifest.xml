@@ -32,9 +32,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityAddPayment"
-            android:exported="true" />
-        <activity
             android:name=".ActivityOverview"
             android:exported="true" />
         <activity
