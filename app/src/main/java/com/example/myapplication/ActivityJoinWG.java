@@ -30,35 +30,21 @@ public class ActivityJoinWG extends AppCompatActivity {
     EditText userName, flatName;
     TextView flatSize;
     DatabaseReference databaseReference;
+    Object allFlats;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_joinwg);
         setupUIComponents();
+        database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
+        databaseReference = database.getReference("Flats");
+        getDataFromFirebase();
 
         joinWG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
-                databaseReference = database.getReference("Flats");
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                            Flats flats = snapshot.getValue(Flats.class);
-                            String flats1 = String.valueOf(flats);
-                            String s = String.valueOf(dataSnapshot.getValue());
-                            Log.d("WG", s);
-                            Log.d("WG", flats1);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
                 Log.d("234", "hey");
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 startActivity(intent);
@@ -71,5 +57,27 @@ public class ActivityJoinWG extends AppCompatActivity {
         userName = findViewById(R.id.person_name);
         flatSize = findViewById(R.id.current_size_of_flat);
         flatName = findViewById(R.id.flat_name);
+    }
+
+    private void getDataFromFirebase(){
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    if(snapshot.exists())
+                        for (DataSnapshot snap : snapshot.getChildren()){
+                            allFlats = snap.getValue();
+                            Log.d("flats", allFlats.toString());
+                            /** TODO : allFlats hat alle WG's. Damit kann man weiterarbeiten und die Daten verwandeln....funktioniert auch alles hier in dieser Methode
+                }
+                }
+                }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("catch", "error!");
+            }
+            });
+
     }
 }
