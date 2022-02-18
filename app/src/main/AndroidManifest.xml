@@ -14,7 +14,8 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ActivityForgotPassword"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" />
         <activity
             android:name=".ActivityAddWg"
             android:exported="false" />
