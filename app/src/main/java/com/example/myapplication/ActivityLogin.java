@@ -44,7 +44,7 @@ public class ActivityLogin extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //init
-        forgotpassword = findViewById(R.id.forgot_password)
+        forgotpassword = findViewById(R.id.forgot_password);
         loginemail = findViewById(R.id.login_email);
         loginpassword = findViewById(R.id.login_password);
         login = findViewById(R.id.btn_login);
