@@ -1,8 +1,16 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="folge_den_anweisungen_um_eine_neue_ausgabe_einzurichten">Folge den Anweisungen, um eine neue Ausgabe einzurichten</string>
+    <string name="app_name">WGFinance</string>
+    <string name="follow_the_instructions">Follow the instructions to create a new payment!</string>
     <string name="_00_00">00,00</string>
-    <string name="verwendungszweck">Verwendungszweck</string>
-    <string name="klicke_auf_die_mitglieder_um_die_zahlung_auf_sie_aufzuteilen">Klicke auf die Mitglieder, um die Zahlung auf sie aufzuteilen</string>
-    <string name="als_vorlage_speichern">Als Vorlage speichern?</string>
+    <string name="purpose">Purpose</string>
+    <string name="Click_on_members">Click on members to split the payment!</string>
+    <string name="save_as_template">Save as template?</string>
+    <string name="done">Done</string>
+    <string name="editText_errorMessage">Error, please enter value!</string>
+    <string name="tag_line">Better together</string>
+    <string name="label_login">Login</string>
+    <string name="hint_e_mail">E-Mail</string>
+    <string name="label_signup">Create Account</string>
+    <string name="reset_your_password">Reset your Password</string>
+    <string name="payments">Payments</string>
 </resources>
