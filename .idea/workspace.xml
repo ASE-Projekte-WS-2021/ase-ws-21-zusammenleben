@@ -15,7 +15,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76a6e852-5b0b-449a-aea6-35616d57700c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_overview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_overview.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imagesforwiki/Breakpoints.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imagesforwiki/Breakpoints2.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imagesforwiki/MapLocal1.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imagesforwiki/MapLocal2.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imagesforwiki/MapRemote1.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imagesforwiki/ReadME.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/PaymentMemoDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/PaymentMemoDataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagesforwiki/MapRemote2.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/imagesforwiki/MapRemote2.PNG" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +109,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
