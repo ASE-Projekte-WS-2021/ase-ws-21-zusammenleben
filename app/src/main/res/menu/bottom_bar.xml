@@ -12,4 +12,8 @@
     <item android:icon="@drawable/ic_baseline_person_24"
         android:id="@+id/user"
         android:title="User"/>
+
+    <item android:icon="@drawable/ic_note_space_24"
+        android:id="@+id/add_note"
+        android:title="Add note"></item>
 </menu>

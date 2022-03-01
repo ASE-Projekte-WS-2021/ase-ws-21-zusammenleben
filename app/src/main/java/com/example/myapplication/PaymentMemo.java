@@ -6,11 +6,13 @@ public class PaymentMemo {
     private String purpose;
     private double cost;
     private String email;
+    //private String flatsize;
 
     public PaymentMemo (double cost, String purpose, String email) {
         this.cost = cost;
         this.purpose = purpose;
         this.email = email;
+        //this.flatsize = flatsize
     }
 
     public String getPurpose() {
@@ -32,6 +34,10 @@ public class PaymentMemo {
     }
 
     public void setEmail(String email) {this.email = email;}
+
+    //public String getFlatSize () {return flatsize;}
+
+    //public void setFlatSize (String flatsize) {this.flatsize = flatsize;}
 
 }
 

@@ -69,33 +69,11 @@ public class ActivityPaymentOverview extends AppCompatActivity implements OnItem
     }
 
     private void utilSpinner(){
+
         Spinner spinner = (Spinner) findViewById(R.id.spinner_members);
 
         spinner.setOnItemSelectedListener(this);
         // TODO lesender Zugriff auf DB um Mitglieder der WG herauszufinden und dann in die jeweilige spinner position zu bringen
-        /*FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference myRefPayments = database.getReference("Members");
-
-        PaymentMemo payment = new PaymentMemo(cost, purpose, useremail);
-
-        myRefPayments.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists())
-                    maxId = (snapshot.getChildrenCount());
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        String paymentCounter = "P" + String.valueOf(maxId+1);
-        myRefPayments.child(paymentCounter).setValue(payment);
-
-        myRefPayments.push().setValue(payment);*/
-
-
 
         List<String> categories = new ArrayList<String>();
         
@@ -148,7 +126,7 @@ private void savePayment() {
                             actualCosts = Integer.valueOf(costString) / 2;
                 }
 
-                // Write a message to the database
+                // Write a message to the database to get the payment branch
                 FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
                 DatabaseReference myRefPayments = database.getReference("Payments");
 

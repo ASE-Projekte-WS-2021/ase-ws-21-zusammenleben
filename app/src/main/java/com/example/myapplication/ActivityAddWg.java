@@ -84,27 +84,32 @@ public class ActivityAddWg extends AppCompatActivity {
                         String flatCounter = "F" + String.valueOf(maxId+1);
                         databaseReference.child(flatCounter).setValue(flats);
                         Toast.makeText(ActivityAddWg.this, "Data inserted!", Toast.LENGTH_LONG).show();
+                        System.out.println(numFlatSize);
                         break;
                     case "3":
                         Log.d("WG size: ", "3");
                         flats = new Flats(flatUserName, "Placeholder2", "Placeholder3",flatAddress, numFlatSize, flatName);
                         flatCounter = "F" + String.valueOf(maxId+1);
-                        databaseReference.child(flatCounter).setValue(flats);                        Toast.makeText(ActivityAddWg.this, "Data inserted!", Toast.LENGTH_LONG).show();
+                        databaseReference.child(flatCounter).setValue(flats);
+                        Toast.makeText(ActivityAddWg.this, "Data inserted!", Toast.LENGTH_LONG).show();
                         break;
                     case "4":
                         Log.d("WG Size: ", "4");
                         flats = new Flats(flatUserName, "Placeholder2", "Placeholder3", "Placeholder4", flatAddress, numFlatSize, flatName);
                         flatCounter = "F" + String.valueOf(maxId+1);
-                        databaseReference.child(flatCounter).setValue(flats);                        Toast.makeText(ActivityAddWg.this, "Data inserted!", Toast.LENGTH_LONG).show();
+                        databaseReference.child(flatCounter).setValue(flats);
+                        Toast.makeText(ActivityAddWg.this, "Data inserted!", Toast.LENGTH_LONG).show();
                         break;
                     case "5":
                         Log.d("WG Size: ", "5");
                         flats = new Flats(flatUserName, "Placeholder2", "Placeholder3", "Placeholder4", "Placeholder5", flatAddress, numFlatSize, flatName);
                         flatCounter = "F" + String.valueOf(maxId+1);
-                        databaseReference.child(flatCounter).setValue(flats);                        Toast.makeText(ActivityAddWg.this, "Data inserted!", Toast.LENGTH_LONG).show();
+                        databaseReference.child(flatCounter).setValue(flats);
+                        Toast.makeText(ActivityAddWg.this, "Data inserted!", Toast.LENGTH_LONG).show();
                         break;
                 }
-                startActivity(new Intent(ActivityAddWg.this, ActivityOverview.class));
+
+                //startActivity(new Intent(ActivityAddWg.this, ActivityOverview.class));
 
             }
         });

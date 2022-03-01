@@ -60,6 +60,10 @@ public class ActivityStartScreen extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
                         overridePendingTransition(0,0);
                         return true;
+                    case R.id.add_note:
+                        startActivity(new Intent(getApplicationContext(),ActivityNoteSpace.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }
