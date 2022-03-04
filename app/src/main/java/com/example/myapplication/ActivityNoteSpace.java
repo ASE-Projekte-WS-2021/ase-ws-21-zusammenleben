@@ -134,7 +134,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
                 Toast.makeText(this, "Please fill up all informations!", Toast.LENGTH_SHORT).show();
                 return;
             }else {
-                // TODO Connect and prepare object to save in datebase
+                // TODO Assign node to flat insteed of current user
                 DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").document();
                 Map<String, Object> note= new HashMap<>();
                 note.put("title", title);
