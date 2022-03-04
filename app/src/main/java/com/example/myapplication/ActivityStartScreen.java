@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.view.inputmethod.InputMethodManager;
 import android.text.TextUtils;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,10 +33,9 @@ import java.util.List;
 public class ActivityStartScreen extends AppCompatActivity {
 
     TextView useremail;
-
     BottomNavigationView bottomNavigationView;
-
     FirebaseAuth firebaseAuth;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,17 @@ public class ActivityStartScreen extends AppCompatActivity {
         //try to setup and test my stuff
         setContentView(R.layout.activity_startscreen);
 
+        imageView = findViewById(R.id.imageAddMain);
+
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.home);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityStartScreen.this, ActivityNoteSpace.class));
+            }
+        });
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
