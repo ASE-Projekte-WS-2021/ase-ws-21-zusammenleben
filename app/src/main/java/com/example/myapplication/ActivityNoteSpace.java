@@ -12,12 +12,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Map;
 
 
 public class ActivityNoteSpace extends AppCompatActivity{
@@ -26,6 +36,9 @@ public class ActivityNoteSpace extends AppCompatActivity{
         private TextView dateandtime;
         ImageView imageViewback;
         ImageView imageViewsave;
+        FirebaseAuth firebaseAuth;
+        FirebaseUser firebaseUser;
+        FirebaseFirestore firebaseFirestore;
 
 
         int noteId;
@@ -38,6 +51,11 @@ public class ActivityNoteSpace extends AppCompatActivity{
             setTitle = findViewById(R.id.inputNoteTitle);
             setSubtitle = findViewById(R.id.noteSubtitle);
             setText = findViewById(R.id.inputNote);
+
+            firebaseAuth = FirebaseAuth.getInstance();
+            firebaseFirestore = FirebaseFirestore.getInstance();
+            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
             dateandtime = findViewById(R.id.textDateTime);
 
             dateandtime.setText(
@@ -104,15 +122,39 @@ public class ActivityNoteSpace extends AppCompatActivity{
         }
 
         private void fillandsaveNote(){
-            if (setTitle.getText().toString().trim().isEmpty()){
+
+            String title = setTitle.getText().toString();
+            String subtitle = setSubtitle.getText().toString();
+            String text= setText.getText().toString();
+
+            if (title.isEmpty()){
                 Toast.makeText(this, "Please enter a note title!", Toast.LENGTH_SHORT).show();
                 return;
-            }else if (setSubtitle.getText().toString().trim().isEmpty() && setText.getText().toString().trim().isEmpty()){
+            }else if (subtitle.isEmpty() && setText.getText().toString().trim().isEmpty()){
                 Toast.makeText(this, "Please fill up all informations!", Toast.LENGTH_SHORT).show();
                 return;
+            }else {
+                // TODO Connect and prepare object to save in datebase
+                DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").document();
+                Map<String, Object> note= new HashMap<>();
+                note.put("title", title);
+                note.put("subtitle", subtitle);
+                note.put("text", text);
+
+                documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(ActivityNoteSpace.this,ActivityStartScreen.class));
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
-            // TODO Connect and prepare object to save in datebase
         }
 
 }
