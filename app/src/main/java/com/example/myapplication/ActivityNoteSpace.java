@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +24,8 @@ public class ActivityNoteSpace extends AppCompatActivity{
 
         private EditText setTitle, setSubtitle, setText;
         private TextView dateandtime;
+        ImageView imageViewback;
+        ImageView imageViewsave;
 
 
         int noteId;
@@ -42,7 +45,15 @@ public class ActivityNoteSpace extends AppCompatActivity{
                     .format(new Date())
             );
 
-            ImageView imageViewback = findViewById(R.id.imageBack);
+            imageViewsave = findViewById(R.id.imageSave);
+            imageViewsave.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    fillandsaveNote();
+                }
+            });
+
+            imageViewback = findViewById(R.id.imageBack);
             imageViewback.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -90,6 +101,18 @@ public class ActivityNoteSpace extends AppCompatActivity{
                     // add your code here
                 }
             });*/
+        }
+
+        private void fillandsaveNote(){
+            if (setTitle.getText().toString().trim().isEmpty()){
+                Toast.makeText(this, "Please enter a note title!", Toast.LENGTH_SHORT).show();
+                return;
+            }else if (setSubtitle.getText().toString().trim().isEmpty() && setText.getText().toString().trim().isEmpty()){
+                Toast.makeText(this, "Please fill up all informations!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // TODO Connect and prepare object to save in datebase
         }
 
 }
