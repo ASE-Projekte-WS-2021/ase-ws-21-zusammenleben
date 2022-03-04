@@ -3,21 +3,39 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.152" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_add_outline.xml" value="0.2655" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_back.xml" value="0.2655" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.203" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.152" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_done.xml" value="0.2655" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_lang.xml" value="0.2655" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_launcher_background.xml" value="0.152" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_search.xml" value="0.2655" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/note_space.xml" value="0.203" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addpayment.xml" value="0.18885869565217392" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addwg.xml" value="0.17119565217391305" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_notespace.xml" value="0.335" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_overview.xml" value="0.296195652173913" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_paymentoverview.xml" value="0.335" />
-        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_startscreen.xml" value="0.165" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_startscreen.xml" value="0.375" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_userprofile.xml" value="0.296195652173913" />
+        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/menu/bottom_bar.xml" value="0.2796875" />
         <entry key="..\:/Users/Laute/Documents/UNI/Wintersemester 21 22/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addpayment.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/Laute/Documents/UNI/Wintersemester 21 22/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_overview.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/Laute/Documents/UNI/Wintersemester 21 22/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_paymentoverview.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/drawable/background_for_login.xml" value="0.1905" />
+        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.1905" />
+        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1905" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.28489583333333335" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.28489583333333335" />
+        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_baseline_article_24.xml" value="0.1905" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_baseline_monetization_on_24.xml" value="0.28489583333333335" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addpayment.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_createwg.xml" value="0.30625" />
+        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_forgotpassword.xml" value="0.22239583333333332" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_login.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_overview.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_overview.xml" value="0.33" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_paymentoverview.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_startscreen.xml" value="0.20520833333333333" />
