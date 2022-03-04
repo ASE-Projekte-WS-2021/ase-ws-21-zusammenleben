@@ -109,7 +109,7 @@ public class ActivityAddWg extends AppCompatActivity {
                         break;
                 }
 
-                //startActivity(new Intent(ActivityAddWg.this, ActivityOverview.class));
+                startActivity(new Intent(ActivityAddWg.this, ActivityOverview.class));
 
             }
         });

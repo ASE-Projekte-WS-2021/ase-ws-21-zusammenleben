@@ -22,6 +22,8 @@ public class ActivityNoteSpace extends AppCompatActivity{
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_notespace);
 
+            /*
+
             TextView noteText = findViewById(R.id.noteText);
 
             // Fetch data that is passed from MainActivity
@@ -59,7 +61,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
                 public void afterTextChanged(Editable editable) {
                     // add your code here
                 }
-            });
+            });*/
         }
 
 }
