@@ -12,10 +12,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 
 
 public class ActivityNoteSpace extends AppCompatActivity{
+
+        private EditText setTitle, setSubtitle, setText;
+        private TextView dateandtime;
+
 
         int noteId;
 
@@ -23,6 +31,16 @@ public class ActivityNoteSpace extends AppCompatActivity{
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_notespace);
+
+            setTitle = findViewById(R.id.inputNoteTitle);
+            setSubtitle = findViewById(R.id.noteSubtitle);
+            setText = findViewById(R.id.inputNote);
+            dateandtime = findViewById(R.id.textDateTime);
+
+            dateandtime.setText(
+                    new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm a", Locale.getDefault())
+                    .format(new Date())
+            );
 
             ImageView imageViewback = findViewById(R.id.imageBack);
             imageViewback.setOnClickListener(new View.OnClickListener() {

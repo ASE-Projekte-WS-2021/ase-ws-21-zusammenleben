@@ -136,8 +136,8 @@
 
         <LinearLayout
             android:id="@+id/layoutQuickActions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="359dp"
+            android:layout_height="79dp"
             android:background="@color/browser_actions_bg_grey"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -182,19 +182,17 @@
 
         <ImageView
             android:id="@+id/imageAddMain"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="61dp"
+            android:layout_height="61dp"
             android:background="@drawable/background_for_header"
             android:contentDescription="@string/app_name"
             android:padding="5dp"
             android:src="@drawable/ic_baseline_add_circle_outline_24"
             android:tint="@color/black"
-            tools:ignore="UseAppTint"
-            tools:layout_editor_absoluteX="310dp"
-            tools:layout_editor_absoluteY="321dp"
             app:layout_constraintBottom_toTopOf="@+id/layoutQuickActions"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/layoutQuickActions"/>
+            app:layout_constraintTop_toTopOf="@+id/layoutQuickActions"
+            tools:ignore="UseAppTint" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
