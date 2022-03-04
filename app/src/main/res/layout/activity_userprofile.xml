@@ -34,19 +34,6 @@
         app:layout_constraintBottom_toBottomOf="@id/header"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="144dp"
-        android:layout_height="56dp"
-        android:text="Profile"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.071" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -66,7 +53,7 @@
             android:id="@+id/btn_leaving"
             android:layout_width="272dp"
             android:layout_height="48dp"
-            android:layout_marginTop="296dp"
+            android:layout_marginTop="352dp"
             android:background="@drawable/roundetcorners"
             android:text="Leaving flat share"
             android:textAlignment="center"
@@ -80,7 +67,7 @@
             android:id="@+id/btn_invite"
             android:layout_width="272dp"
             android:layout_height="48dp"
-            android:layout_marginTop="240dp"
+            android:layout_marginTop="276dp"
             android:background="@drawable/roundetcorners"
             android:text="Invite your Roomates"
             android:textAlignment="center"
@@ -94,7 +81,7 @@
             android:id="@+id/show_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="112dp"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="Email"
@@ -117,13 +104,13 @@
             app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/show_email"
-            app:layout_constraintVertical_bias="0.847" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/btn_logout"
             android:layout_width="272dp"
             android:layout_height="48dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/roundetcorners"
             android:text="Log out"
             android:textAlignment="center"
@@ -150,8 +137,8 @@
             android:id="@+id/get_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Username"
             android:gravity="center"
+            android:text="Username"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_logout"
@@ -159,17 +146,19 @@
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.096" />
+            app:layout_constraintVertical_bias="0.169" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_picture"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_marginTop="44dp"
         android:contentDescription="picture"
         android:onClick="editprofilepicture"
         android:src="@drawable/selfie"
         app:layout_constraintEnd_toEndOf="@+id/header"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/header"
         app:layout_constraintTop_toTopOf="parent" />
 
