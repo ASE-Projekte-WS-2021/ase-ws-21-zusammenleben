@@ -51,4 +51,13 @@ dependencies {
 
     implementation "com.makeramen:roundedimageview:2.3.0"
 
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.google.firebase:firebase-storage:20.0.0'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.4.+'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //glide library
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+
 }
