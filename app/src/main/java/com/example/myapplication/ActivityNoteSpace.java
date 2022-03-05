@@ -22,97 +22,44 @@ import java.util.Locale;
 
 public class ActivityNoteSpace extends AppCompatActivity{
 
-        private EditText setTitle, setSubtitle, setText;
-        private TextView dateandtime;
-        ImageView imageViewback;
-        ImageView imageViewsave;
+        private EditText inputNoteTitle, inputNoteSubtitle, inputNoteText;
+        private TextView textDateTime;
 
-
-        int noteId;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_notespace);
 
-            setTitle = findViewById(R.id.inputNoteTitle);
-            setSubtitle = findViewById(R.id.noteSubtitle);
-            setText = findViewById(R.id.inputNote);
-            dateandtime = findViewById(R.id.textDateTime);
+            ImageView imageBack= findViewById(R.id.imageBack);
+            imageBack.setOnClickListener(new View.OnClickListener() {
 
-            dateandtime.setText(
-                    new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm a", Locale.getDefault())
-                    .format(new Date())
-            );
-
-            imageViewsave = findViewById(R.id.imageSave);
-            imageViewsave.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    fillandsaveNote();
-                }
-            });
-
-            imageViewback = findViewById(R.id.imageBack);
-            imageViewback.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+                    @Override
+                    public void onClick (View view){
                     onBackPressed();
                 }
-            });
+                });
+            inputNoteTitle = findViewById(R.id.inputNoteTitle);
+            inputNoteSubtitle = findViewById(R.id.noteSubtitle);
+            inputNoteText = findViewById(R.id.inputNote);
 
-            /*
+            textDateTime = findViewById(R.id.textDateTime);
 
-            TextView noteText = findViewById(R.id.noteText);
-
-            // Fetch data that is passed from MainActivity
-            Intent intent = getIntent();
-
-            // Accessing the data using key and value
-            noteId = intent.getIntExtra("noteId", -1);
-            if (noteId != -1) {
-                noteText.setText(ActivityStartScreen.notes.get(noteId));
-            } else {
-
-                MainActivity.notes.add("");
-                noteId = MainActivity.notes.size() - 1;
-                MainActivity.arrayAdapter.notifyDataSetChanged();
-
+            textDateTime.setText(
+                    new SimpleDateFormat("EEEE, dd MMMM, yyyy HH:mm a", Locale.getDefault()).format(new Date())
+            );
             }
 
-            noteText.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    // add your code here
-                }
-
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    MainActivity.notes.set(noteId, String.valueOf(charSequence));
-                    MainActivity.arrayAdapter.notifyDataSetChanged();
-                    // Creating Object of SharedPreferences to store data in the phone
-                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
-                    HashSet<String> set = new HashSet(MainActivity.notes);
-                    sharedPreferences.edit().putStringSet("notes", set).apply();
-                }
-
-                @Override
-                public void afterTextChanged(Editable editable) {
-                    // add your code here
-                }
-            });*/
-        }
-
-        private void fillandsaveNote(){
-            if (setTitle.getText().toString().trim().isEmpty()){
-                Toast.makeText(this, "Please enter a note title!", Toast.LENGTH_SHORT).show();
-                return;
-            }else if (setSubtitle.getText().toString().trim().isEmpty() && setText.getText().toString().trim().isEmpty()){
-                Toast.makeText(this, "Please fill up all informations!", Toast.LENGTH_SHORT).show();
+            private void saveNote (){
+            if (inputNoteTitle.getText().toString().trim().isEmpty()){
+            Toast.makeText(this,"Notetitle cant be empty", Toast.LENGTH_LONG).show();
+            return;
+                } else if (inputNoteSubtitle.getText().toString().trim().isEmpty() && inputNoteText.getText().toString().trim().isEmpty()){
+                Toast.makeText(this, "Note cant be empty", Toast.LENGTH_LONG).show();
                 return;
             }
 
-            // TODO Connect and prepare object to save in datebase
-        }
-
+            final Note note = new Note;
+            note.setTitle
+            }
 }
