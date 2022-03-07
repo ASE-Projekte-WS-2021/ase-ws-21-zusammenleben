@@ -110,6 +110,8 @@ public class ActivityStartScreen extends AppCompatActivity {
                 noteViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+                        // TODO Note is shown by klicking on it
                         Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -122,8 +124,10 @@ public class ActivityStartScreen extends AppCompatActivity {
                         popupMenu.getMenu().add("Edit choosen Note").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem menuItem) {
-                                Intent intent = new Intent(view.getContext(),ActivityUserProfile.class);
-                                view.getContext().startActivity(intent);
+                                // TODO Feature Edit Note
+                                //Intent intent = new Intent(view.getContext(),ActivityUserProfile.class);
+                                //view.getContext().startActivity(intent);
+                                Toast.makeText(view.getContext(), "TODO", Toast.LENGTH_SHORT).show();
                                 return false;
                             }
                         });
@@ -201,7 +205,6 @@ public class ActivityStartScreen extends AppCompatActivity {
             List<Integer> colorchange = new ArrayList<>();
             colorchange.add(R.color.orange);
             colorchange.add(R.color.colorNote1);
-            colorchange.add(R.color.colorNote2);
             colorchange.add(R.color.colorNote3);
             colorchange.add(R.color.teal_200);
             colorchange.add(R.color.teal_700);
