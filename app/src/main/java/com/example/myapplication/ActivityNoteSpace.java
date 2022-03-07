@@ -1,11 +1,7 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,7 +21,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 
@@ -123,17 +118,18 @@ public class ActivityNoteSpace extends AppCompatActivity{
 
     private void fillandsaveNote(){
 
-        String title = setTitle.getText().toString();
-        String subtitle = setSubtitle.getText().toString();
-        String text= setText.getText().toString();
+        String title = setTitle.getText().toString().trim();
+        String subtitle = setSubtitle.getText().toString().trim();
+        String text= setText.getText().toString().trim();
 
         if (title.isEmpty()){
             Toast.makeText(this, "Please enter a note title!", Toast.LENGTH_SHORT).show();
             return;
-        }else if (subtitle.isEmpty() && setText.getText().toString().trim().isEmpty()){
+        }else if (subtitle.isEmpty() && text.isEmpty()){
             Toast.makeText(this, "Please fill up all informations!", Toast.LENGTH_SHORT).show();
             return;
         }else {
+            // TODO Note in eigene Klasse auslagern
             // TODO Connect and prepare object to save in datebase
             // TODO Assign node to flat insteed of current user
             DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").document();
