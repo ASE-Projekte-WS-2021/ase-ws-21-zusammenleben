@@ -32,52 +32,52 @@ import java.util.Map;
 
 public class ActivityNoteSpace extends AppCompatActivity{
 
-        private EditText setTitle, setSubtitle, setText;
-        private TextView dateandtime;
-        ImageView imageViewback;
-        ImageView imageViewsave;
-        FirebaseAuth firebaseAuth;
-        FirebaseUser firebaseUser;
-        FirebaseFirestore firebaseFirestore;
+    private EditText setTitle, setSubtitle, setText;
+    private TextView dateandtime;
+    ImageView imageViewback;
+    ImageView imageViewsave;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
+    FirebaseFirestore firebaseFirestore;
 
 
-        int noteId;
+    int noteId;
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_notespace);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_notespace);
 
-            setTitle = findViewById(R.id.inputNoteTitle);
-            setSubtitle = findViewById(R.id.noteSubtitle);
-            setText = findViewById(R.id.inputNote);
+        setTitle = findViewById(R.id.inputNoteTitle);
+        setSubtitle = findViewById(R.id.noteSubtitle);
+        setText = findViewById(R.id.inputNote);
 
-            firebaseAuth = FirebaseAuth.getInstance();
-            firebaseFirestore = FirebaseFirestore.getInstance();
-            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-            dateandtime = findViewById(R.id.textDateTime);
+        dateandtime = findViewById(R.id.textDateTime);
 
-            dateandtime.setText(
-                    new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm a", Locale.getDefault())
-                    .format(new Date())
-            );
+        dateandtime.setText(
+                new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm a", Locale.getDefault())
+                        .format(new Date())
+        );
 
-            imageViewsave = findViewById(R.id.imageSave);
-            imageViewsave.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    fillandsaveNote();
-                }
-            });
+        imageViewsave = findViewById(R.id.imageSave);
+        imageViewsave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fillandsaveNote();
+            }
+        });
 
-            imageViewback = findViewById(R.id.imageBack);
-            imageViewback.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onBackPressed();
-                }
-            });
+        imageViewback = findViewById(R.id.imageBack);
+        imageViewback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
             /*
 
@@ -119,42 +119,43 @@ public class ActivityNoteSpace extends AppCompatActivity{
                     // add your code here
                 }
             });*/
+    }
+
+    private void fillandsaveNote(){
+
+        String title = setTitle.getText().toString();
+        String subtitle = setSubtitle.getText().toString();
+        String text= setText.getText().toString();
+
+        if (title.isEmpty()){
+            Toast.makeText(this, "Please enter a note title!", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (subtitle.isEmpty() && setText.getText().toString().trim().isEmpty()){
+            Toast.makeText(this, "Please fill up all informations!", Toast.LENGTH_SHORT).show();
+            return;
+        }else {
+            // TODO Connect and prepare object to save in datebase
+            // TODO Assign node to flat insteed of current user
+            DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").document();
+            Map<String, Object> note= new HashMap<>();
+            note.put("title", title);
+            note.put("subtitle", subtitle);
+            note.put("text", text);
+
+            documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(ActivityNoteSpace.this,ActivityStartScreen.class));
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
-        private void fillandsaveNote(){
-
-            String title = setTitle.getText().toString();
-            String subtitle = setSubtitle.getText().toString();
-            String text= setText.getText().toString();
-
-            if (title.isEmpty()){
-                Toast.makeText(this, "Please enter a note title!", Toast.LENGTH_SHORT).show();
-                return;
-            }else if (subtitle.isEmpty() && setText.getText().toString().trim().isEmpty()){
-                Toast.makeText(this, "Please fill up all informations!", Toast.LENGTH_SHORT).show();
-                return;
-            }else {
-                // TODO Assign node to flat insteed of current user
-                DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").document();
-                Map<String, Object> note= new HashMap<>();
-                note.put("title", title);
-                note.put("subtitle", subtitle);
-                note.put("text", text);
-
-                documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(ActivityNoteSpace.this,ActivityStartScreen.class));
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-
-        }
+    }
 
 }

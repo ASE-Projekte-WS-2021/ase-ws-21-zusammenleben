@@ -118,7 +118,7 @@
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
                 android:inputType="text"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="12dp"/>
         </LinearLayout>
 

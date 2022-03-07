@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,8 @@ public class ActivityOverview extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
     DatabaseReference myRef = database.getReference("Payments");
 
+    public static final int REQUEST_CODE_ADD_NOTE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,15 +49,8 @@ public class ActivityOverview extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
         userEmail = user.getEmail();
-
-        paymentPurpose = findViewById(R.id.payment_purpose);
-        //String retrieveData = ActivityOverview.this.getIntent().getStringExtra("MY Data Key");
-        //paymentPurpose.setText(retrieveData);
-        //Toast.makeText(getApplicationContext(), retrieveData,Toast.LENGTH_LONG).show();
-
-        bottomNavigationView = findViewById(R.id.bottomnavview);
-        bottomNavigationView.setSelectedItemId(R.id.payment);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -123,6 +120,16 @@ public class ActivityOverview extends AppCompatActivity {
             }
 
         });
+        ImageView imageAddNoteMain = findViewById(R.id.imageAddNote);
+        imageAddNoteMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(
+                        new Intent(getApplicationContext(), ActivityNoteSpace.class),
+                        REQUEST_CODE_ADD_NOTE
+                );
+            }
+        });
 
     }
 
@@ -134,6 +141,9 @@ public class ActivityOverview extends AppCompatActivity {
         button_managePayments = (ImageButton) findViewById(R.id.btn_managePayments);
         paymentPurpose = findViewById(R.id.payment_purpose);
         costs = findViewById(R.id.costs_overview);
+        paymentPurpose = findViewById(R.id.payment_purpose);
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.payment);
     }
 
 }
