@@ -2,11 +2,14 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,9 +20,12 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -90,6 +96,8 @@ public class ActivityStartScreen extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, int i, @NonNull notes notes) {
 
+                ImageView optionbuttons=noteViewHolder.itemView.findViewById(R.id.optionbutton);
+
                 int colorchange = getColorChange();
                 noteViewHolder.note.setBackgroundColor(noteViewHolder.itemView.getResources().getColor(colorchange, null));
 
@@ -97,10 +105,49 @@ public class ActivityStartScreen extends AppCompatActivity {
                 noteViewHolder.subtitle.setText(notes.getSubtitle());
                 noteViewHolder.notice.setText(notes.getNotice());
 
+                String noteid = noteAdapter.getSnapshots().getSnapshot(i).getId();
+
                 noteViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                optionbuttons.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        PopupMenu popupMenu=new PopupMenu(view.getContext(),view);
+                        popupMenu.setGravity(Gravity.END);
+                        popupMenu.getMenu().add("Edit choosen Note").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem menuItem) {
+                                Intent intent = new Intent(view.getContext(),ActivityUserProfile.class);
+                                view.getContext().startActivity(intent);
+                                return false;
+                            }
+                        });
+
+                        popupMenu.getMenu().add("Delete Note").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem menuItem) {
+                                DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").document(noteid);
+                                documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(view.getContext(), "Deleted!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(view.getContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                return false;
+                            }
+                        });
+
+                        popupMenu.show();
                     }
                 });
 
@@ -180,7 +227,7 @@ public class ActivityStartScreen extends AppCompatActivity {
             //checkUserStatus();
             super.onStop();
             if (noteAdapter != null) {
-                noteAdapter.startListening();
+                noteAdapter.stopListening();
             }
         }
 
