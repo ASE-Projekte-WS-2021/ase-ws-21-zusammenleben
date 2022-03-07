@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class ActivityNoteSpace extends AppCompatActivity{
 
-    private EditText setTitle, setSubtitle, setText;
+    private EditText setTitle, setSubtitle, setNotice;
     private TextView dateandtime;
     ImageView imageViewback;
     ImageView imageViewsave;
@@ -45,7 +45,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
 
         setTitle = findViewById(R.id.inputNoteTitle);
         setSubtitle = findViewById(R.id.noteSubtitle);
-        setText = findViewById(R.id.inputNote);
+        setNotice = findViewById(R.id.inputNote);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -118,14 +118,14 @@ public class ActivityNoteSpace extends AppCompatActivity{
 
     private void fillandsaveNote(){
 
-        String title = setTitle.getText().toString().trim();
-        String subtitle = setSubtitle.getText().toString().trim();
-        String text= setText.getText().toString().trim();
+        String title = setTitle.getText().toString();
+        String subtitle = setSubtitle.getText().toString();
+        String notice= setNotice.getText().toString();
 
         if (title.isEmpty()){
             Toast.makeText(this, "Please enter a note title!", Toast.LENGTH_SHORT).show();
             return;
-        }else if (subtitle.isEmpty() && text.isEmpty()){
+        }else if (subtitle.isEmpty() && notice.isEmpty()){
             Toast.makeText(this, "Please fill up all informations!", Toast.LENGTH_SHORT).show();
             return;
         }else {
@@ -136,7 +136,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
             Map<String, Object> note= new HashMap<>();
             note.put("title", title);
             note.put("subtitle", subtitle);
-            note.put("text", text);
+            note.put("notice", notice);
 
             documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override

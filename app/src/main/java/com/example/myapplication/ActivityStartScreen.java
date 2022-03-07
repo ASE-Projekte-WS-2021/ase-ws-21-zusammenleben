@@ -85,9 +85,9 @@ public class ActivityStartScreen extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, int i, @NonNull notes notes) {
 
-                //noteViewHolder.note_title.setText(notes.getTitle());
-                //noteViewHolder.note_subtitle.setText(notes.getSubtitle());
-                //noteViewHolder.note_text.setText(notes.getText());
+                noteViewHolder.title.setText(notes.getTitle());
+                noteViewHolder.subtitle.setText(notes.getSubtitle());
+                noteViewHolder.notice.setText(notes.getNotice());
 
             }
 
@@ -108,18 +108,20 @@ public class ActivityStartScreen extends AppCompatActivity {
 
     public class NoteViewHolder extends RecyclerView.ViewHolder {
 
-        private  TextView note_title;
-        private  TextView note_subtitle;
-        private TextView note_text;
-        LinearLayout mnote;
+        TextView title;
+        TextView subtitle;
+        TextView notice;
+        LinearLayout note;
 
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
-            note_title = findViewById(R.id.inputNoteTitle);
-            note_subtitle = findViewById(R.id.noteSubtitleactivity);
-            note_text = findViewById(R.id.notetextactivity);
-            mnote = findViewById(R.id.note);
+            title = itemView.findViewById(R.id.notetitl);
+            subtitle = itemView.findViewById(R.id.noteSubtitleactivity);
+            notice = itemView.findViewById(R.id.notetextactivity);
+            note = findViewById(R.id.note);
         }
+
+    }
 
         private void checkUserStatus() {
             FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -148,5 +150,4 @@ public class ActivityStartScreen extends AppCompatActivity {
             }
         }
 
-    }
 }
