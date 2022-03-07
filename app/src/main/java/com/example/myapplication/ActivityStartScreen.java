@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class ActivityStartScreen extends AppCompatActivity {
 
@@ -85,9 +90,19 @@ public class ActivityStartScreen extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, int i, @NonNull notes notes) {
 
+                int colorchange = getColorChange();
+                noteViewHolder.note.setBackgroundColor(noteViewHolder.itemView.getResources().getColor(colorchange, null));
+
                 noteViewHolder.title.setText(notes.getTitle());
                 noteViewHolder.subtitle.setText(notes.getSubtitle());
                 noteViewHolder.notice.setText(notes.getNotice());
+
+                noteViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
             }
 
@@ -118,7 +133,7 @@ public class ActivityStartScreen extends AppCompatActivity {
             title = itemView.findViewById(R.id.notetitl);
             subtitle = itemView.findViewById(R.id.noteSubtitleactivity);
             notice = itemView.findViewById(R.id.notetextactivity);
-            note = findViewById(R.id.note);
+            note = itemView.findViewById(R.id.note);
         }
 
     }
@@ -132,6 +147,25 @@ public class ActivityStartScreen extends AppCompatActivity {
                 startActivity(new Intent(ActivityStartScreen.this, ActivityLogin.class));
                 finish();
             }
+        }
+
+        private int getColorChange(){
+
+            List<Integer> colorchange = new ArrayList<>();
+            colorchange.add(R.color.orange);
+            colorchange.add(R.color.colorNote1);
+            colorchange.add(R.color.colorNote2);
+            colorchange.add(R.color.colorNote3);
+            colorchange.add(R.color.teal_200);
+            colorchange.add(R.color.teal_700);
+            colorchange.add(R.color.purple_200);
+            colorchange.add(R.color.purple_500);
+            colorchange.add(R.color.purple_700);
+
+            Random random = new Random();
+            int number = random.nextInt(colorchange.size());
+            return colorchange.get(number);
+
         }
 
         @Override
