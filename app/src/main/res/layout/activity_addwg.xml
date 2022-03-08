@@ -108,7 +108,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/person_name"
+            android:id="@+id/wg_profile_name"
             android:layout_width="345dp"
             android:layout_height="48dp"
             android:drawableLeft="@drawable/ic_baseline_person_24"

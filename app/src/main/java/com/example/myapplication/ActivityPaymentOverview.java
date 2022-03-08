@@ -168,7 +168,6 @@ private void savePayment() {
 
                 String paymentCounter = "P" + String.valueOf(maxId+1);
                 myRefPayments.child(paymentCounter).setValue(payment);
-
                 myRefPayments.push().setValue(payment);
 
 

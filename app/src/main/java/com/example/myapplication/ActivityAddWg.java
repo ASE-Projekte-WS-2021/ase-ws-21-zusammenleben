@@ -36,8 +36,8 @@ import android.widget.Toast;
 public class ActivityAddWg extends AppCompatActivity {
 
     Button addwg;
-    EditText userName, address, size, flat_name;
-    String flatUserName, flatAddress, flatSize, flatName;
+    EditText userName, address, size, flat_name, flatProfile;
+    String flatUserName, flatAddress, flatSize, flatName, flatProfileName;
     int numFlatSize;
     DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
@@ -62,6 +62,8 @@ public class ActivityAddWg extends AppCompatActivity {
                 flatName = flat_name.getText().toString();
                 FirebaseUser user = mAuth.getCurrentUser();
                 flatUserName = user.getEmail();
+                flatProfileName = flatProfile.getText().toString();
+                String toastText;
 
                 Flats flats;
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -69,6 +71,7 @@ public class ActivityAddWg extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists())
                         maxId = (snapshot.getChildrenCount());
+                        Log.d("maxId", String.valueOf(maxId));
                     }
 
                     @Override
@@ -78,30 +81,33 @@ public class ActivityAddWg extends AppCompatActivity {
                 });
                 switch (flatSize){
                     case "2":
-                        Log.d("Ds", flatAddress);
+                        Log.d("Profile Name", flatProfileName);
                         Log.d("WG size: ", "2");
-                        flats = new Flats(flatUserName, "Placeholder2", flatAddress, numFlatSize, flatName);
-                        String flatCounter = "F" + String.valueOf(maxId+1);
-                        databaseReference.child(flatCounter).setValue(flats);
-                        Toast.makeText(ActivityAddWg.this, "Data inserted!", Toast.LENGTH_LONG).show();
+                        flats = new Flats(flatUserName, "Placeholder2", flatAddress, numFlatSize, flatName, flatProfileName);
+                        databaseReference.child(flatProfileName).setValue(flats);
+                        toastText = "Data inserted";
+                        Toast.makeText(ActivityAddWg.this, toastText, Toast.LENGTH_LONG).show();
                         break;
                     case "3":
                         Log.d("WG size: ", "3");
-                        flats = new Flats(flatUserName, "Placeholder2", "Placeholder3",flatAddress, numFlatSize, flatName);
-                        flatCounter = "F" + String.valueOf(maxId+1);
-                        databaseReference.child(flatCounter).setValue(flats);                        Toast.makeText(ActivityAddWg.this, "Data inserted!", Toast.LENGTH_LONG).show();
+                        flats = new Flats(flatUserName, "Placeholder2", "Placeholder3",flatAddress, numFlatSize, flatName, flatProfileName);
+                        databaseReference.child(flatProfileName).setValue(flats);
+                        toastText = "Data inserted";
+                        Toast.makeText(ActivityAddWg.this, toastText, Toast.LENGTH_LONG).show();
                         break;
                     case "4":
                         Log.d("WG Size: ", "4");
-                        flats = new Flats(flatUserName, "Placeholder2", "Placeholder3", "Placeholder4", flatAddress, numFlatSize, flatName);
-                        flatCounter = "F" + String.valueOf(maxId+1);
-                        databaseReference.child(flatCounter).setValue(flats);                        Toast.makeText(ActivityAddWg.this, "Data inserted!", Toast.LENGTH_LONG).show();
+                        flats = new Flats(flatUserName, "Placeholder2", "Placeholder3", "Placeholder4", flatAddress, numFlatSize, flatName, flatProfileName);
+                        databaseReference.child(flatProfileName).setValue(flats);
+                        toastText = "Data inserted";
+                        Toast.makeText(ActivityAddWg.this, toastText, Toast.LENGTH_LONG).show();
                         break;
                     case "5":
                         Log.d("WG Size: ", "5");
-                        flats = new Flats(flatUserName, "Placeholder2", "Placeholder3", "Placeholder4", "Placeholder5", flatAddress, numFlatSize, flatName);
-                        flatCounter = "F" + String.valueOf(maxId+1);
-                        databaseReference.child(flatCounter).setValue(flats);                        Toast.makeText(ActivityAddWg.this, "Data inserted!", Toast.LENGTH_LONG).show();
+                        flats = new Flats(flatUserName, "Placeholder2", "Placeholder3", "Placeholder4", "Placeholder5", flatAddress, numFlatSize, flatName, flatProfileName);
+                        databaseReference.child(flatProfileName).setValue(flats);
+                        toastText = "Data inserted";
+                        Toast.makeText(ActivityAddWg.this, toastText, Toast.LENGTH_LONG).show();
                         break;
                 }
                 startActivity(new Intent(ActivityAddWg.this, ActivityOverview.class));
@@ -114,7 +120,7 @@ public class ActivityAddWg extends AppCompatActivity {
     private void setupUIComponents(){
         setContentView(R.layout.activity_addwg);
         addwg = findViewById(R.id.btn_addwg);
-        userName = findViewById(R.id.person_name);
+        flatProfile = findViewById(R.id.wg_profile_name);
         address = findViewById(R.id.address);
         size = findViewById(R.id.size_of_flat);
         flat_name = findViewById(R.id.flat_share_name);
