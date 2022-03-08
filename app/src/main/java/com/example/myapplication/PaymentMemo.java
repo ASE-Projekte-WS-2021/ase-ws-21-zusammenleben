@@ -3,55 +3,36 @@ package com.example.myapplication;
 public class PaymentMemo {
 
     // All Data of the dataset. Pls add what ya need. this is probably not the complete list
-    private String product;
-    //private int quantity;
-    private String cost;
-    private long id;
+    private String purpose;
+    private double cost;
+    private String email;
 
-    public PaymentMemo (String cost, String product) {
+    public PaymentMemo (double cost, String purpose, String email) {
         this.cost = cost;
-        this.product = product;
+        this.purpose = purpose;
+        this.email = email;
     }
 
-    public String getProduct() {
-        return product;
+    public String getPurpose() {
+        return purpose;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
     }
 
-    /*
-    public int getQuantity() {
-        return quantity;
-    }
+    public String getEmail(){return email;}
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-    */
-
-    public String getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(String cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 
-    public long getId(){
-        return id;
-    }
+    public void setEmail(String email) {this.email = email;}
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-            String output = cost + "#" + product;
-        return output;
-    }
 }
 
 
