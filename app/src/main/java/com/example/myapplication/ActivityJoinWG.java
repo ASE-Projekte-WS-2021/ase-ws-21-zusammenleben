@@ -43,6 +43,10 @@ public class ActivityJoinWG extends AppCompatActivity {
     FirebaseDatabase database;
     private FirebaseAuth mAuth;
 
+    int flatSize;
+    HashMap <String, String> userMap;
+    ArrayList<String> userList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,16 +60,7 @@ public class ActivityJoinWG extends AppCompatActivity {
         joinWG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(flatCanBeJoined()) {
-                    userFlatNameInput = flatName.getText().toString();
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    databaseReference.child(userFlatNameInput).child("secondUser").setValue(user.getEmail());
-                    Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(ActivityJoinWG.this, "Die WG ist schon voll!", Toast.LENGTH_LONG).show();
-                }
-
+                addUserToFlat();
             }
         });
 
@@ -79,13 +74,30 @@ public class ActivityJoinWG extends AppCompatActivity {
         });
     }
 
-    private boolean flatCanBeJoined(){
-        Log.d("Hier", foundFlatPeople.toString());
-        return true;
-    }
+    private void addUserToFlat(){
+        userFlatNameInput = flatName.getText().toString();
+        for (Map.Entry<String, String> map : userMap.entrySet()){
+            String key = map.getKey();
+            String value = map.getValue();
+            if (value.contains("Placeholder")){
+                FirebaseUser user = mAuth.getCurrentUser();
+                databaseReference.child(userFlatNameInput).child(key).setValue(user.getEmail());
+                Toast.makeText(ActivityJoinWG.this, "Successfully joined flat!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(ActivityJoinWG.this, "Can't enter Flat. Try another!", Toast.LENGTH_LONG).show();
+            }
+            }
+        }
+
+
+
+
 
     private void retrieveData() {
         Log.d("debug2", userFlatNameInput);
+        userMap = new HashMap<>();
         Query checkFlatName = databaseReference.orderByChild("profileName").equalTo(userFlatNameInput);
 
         checkFlatName.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -97,6 +109,29 @@ public class ActivityJoinWG extends AppCompatActivity {
                             foundFlatAddress.setText("Adresse: " + snap.getValue(Flats.class).getAddress());
                             foundFlatOwner.setText("Gründer: " + snap.getValue(Flats.class).getFirstUser());
                             foundFlatPeople.setText("Mitbewohner: " + snap.getValue(Flats.class).getFlatSize());
+                            flatSize = snap.getValue(Flats.class).getFlatSize();
+
+                            switch(flatSize) {
+                                case 2:
+                                    userMap.put("secondUser", snap.getValue(Flats.class).getSecondUser());
+                                    break;
+                                case 3:
+                                    userMap.put("secondUser", snap.getValue(Flats.class).getSecondUser());
+                                    userMap.put("thirdUser", snap.getValue(Flats.class).getThirdUser());
+                                    break;
+                                case 4:
+                                    userMap.put("secondUser", snap.getValue(Flats.class).getSecondUser());
+                                    userMap.put("thirdUser", snap.getValue(Flats.class).getThirdUser());
+                                    userMap.put("fourthUser", snap.getValue(Flats.class).getFourthUser());
+                                    break;
+                                case 5:
+                                    userMap.put("secondUser", snap.getValue(Flats.class).getSecondUser());
+                                    userMap.put("thirdUser", snap.getValue(Flats.class).getThirdUser());
+                                    userMap.put("fourthUser", snap.getValue(Flats.class).getFourthUser());
+                                    userMap.put("fifthUser", snap.getValue(Flats.class).getFifthUser());
+                                    break;
+
+                            }
                         }
                 }
             }
