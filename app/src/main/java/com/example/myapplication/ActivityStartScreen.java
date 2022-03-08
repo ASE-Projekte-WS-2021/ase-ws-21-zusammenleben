@@ -110,8 +110,12 @@ public class ActivityStartScreen extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                        // TODO Note is shown by klicking on it
-                        Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(view.getContext(),ActivityNoteInformations.class);
+                        intent.putExtra("title", notes.getTitle());
+                        intent.putExtra("subtitle", notes.getSubtitle());
+                        intent.putExtra("notice", notes.getNotice());
+                        intent.putExtra("noteID", noteid);
+                        view.getContext().startActivity(intent);
                     }
                 });
 
@@ -211,8 +215,6 @@ public class ActivityStartScreen extends AppCompatActivity {
             colorchange.add(R.color.teal_200);
             colorchange.add(R.color.teal_700);
             colorchange.add(R.color.purple_200);
-            colorchange.add(R.color.purple_500);
-            colorchange.add(R.color.purple_700);
 
             Random random = new Random();
             int number = random.nextInt(colorchange.size());
