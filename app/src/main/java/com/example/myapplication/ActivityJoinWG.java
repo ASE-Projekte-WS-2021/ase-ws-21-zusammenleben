@@ -45,7 +45,6 @@ public class ActivityJoinWG extends AppCompatActivity {
 
     int flatSize;
     HashMap <String, String> userMap;
-    ArrayList<String> userList;
 
 
     @Override
