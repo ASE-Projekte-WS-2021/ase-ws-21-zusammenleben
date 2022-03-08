@@ -40,11 +40,14 @@ public class ActivityStartScreen extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
-    ImageView imageView;
+    ImageView imageView, imageNote;
+    ImageView imageAddImage;
 
     RecyclerView recyclerView;
     StaggeredGridLayoutManager staggeredGridLayoutManager;
     FirestoreRecyclerAdapter<notes,NoteViewHolder> noteAdapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,7 @@ public class ActivityStartScreen extends AppCompatActivity {
 
 
         imageView = findViewById(R.id.imageAddMain);
+
 
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -70,10 +74,6 @@ public class ActivityStartScreen extends AppCompatActivity {
                     return true;
                 case R.id.home:
                     return true;
-                /*case R.id.add_note:
-                    startActivity(new Intent(getApplicationContext(),ActivityNoteSpace.class));
-                    overridePendingTransition(0,0);
-                    return true;*/
                 case R.id.user:
                     startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
                     overridePendingTransition(0,0);
@@ -82,7 +82,6 @@ public class ActivityStartScreen extends AppCompatActivity {
             }
             return false;
         });
-
 
         firebaseAuth = FirebaseAuth.getInstance();
         useremail = findViewById(R.id.show_email);
@@ -170,7 +169,10 @@ public class ActivityStartScreen extends AppCompatActivity {
         staggeredGridLayoutManager= new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         recyclerView.setAdapter(noteAdapter);
+
+
     }
+
 
     public class NoteViewHolder extends RecyclerView.ViewHolder {
 

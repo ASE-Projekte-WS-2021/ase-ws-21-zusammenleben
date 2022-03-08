@@ -148,36 +148,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.75">
-
-            <ImageView
-                android:id="@+id/imageAddNote"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_add_outline"
-                android:tint="@color/black"
-                tools:ignore="UseAppTint" />
-
-            <ImageView
-                android:id="@+id/imageAddImage"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="15dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_image"
-                android:tint="@color/black"
-                tools:ignore="UseAppTint" />
-
-            <ImageView
-                android:id="@+id/imageAddWebLink"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="20dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_lang"
-                android:tint="@color/black"
-                tools:ignore="UseAppTint" />
-
         </LinearLayout>
 
         <ImageView

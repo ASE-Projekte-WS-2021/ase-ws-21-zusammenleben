@@ -1,7 +1,14 @@
 package com.example.myapplication;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -9,7 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,6 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -34,9 +45,15 @@ public class ActivityNoteSpace extends AppCompatActivity{
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
+    ImageView imageNote;
+    ImageView imageAddImage;
+
+    private String selectedImagePath;
 
 
-    int noteId;
+    private static final int REQUEST_CODE_STORAGE_PERMISSION =1;
+    private static final int REQUEST_CODE_SELECT_IMAGE = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +69,18 @@ public class ActivityNoteSpace extends AppCompatActivity{
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         dateandtime = findViewById(R.id.textDateTime);
+
+        imageNote= findViewById(R.id.imageNote);
+        imageAddImage = findViewById(R.id.imageAddImage);
+
+        selectedImagePath = "";
+
+        imageAddImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onImageClicked();
+            }
+        });
 
         dateandtime.setText(
                 new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm a", Locale.getDefault())
@@ -137,6 +166,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
             note.put("title", title);
             note.put("subtitle", subtitle);
             note.put("notice", notice);
+            note.put("imagePath", selectedImagePath);
 
             documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -154,4 +184,73 @@ public class ActivityNoteSpace extends AppCompatActivity{
 
     }
 
+    private void onImageClicked() {
+                if (ContextCompat.checkSelfPermission(
+                        getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_DENIED) {
+                    ActivityCompat.requestPermissions(
+                            ActivityNoteSpace.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_STORAGE_PERMISSION
+                    );
+                } else {
+                    selectImage();
+                }
+        Toast.makeText(this, "KClicked on Image", Toast.LENGTH_LONG).show();
+    }
+
+    private void selectImage(){
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        if(intent.resolveActivity(getPackageManager()) != null){
+            startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        if(requestCode == REQUEST_CODE_STORAGE_PERMISSION && grantResults.length > 0){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                selectImage();
+            } else {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_SELECT_IMAGE && requestCode == RESULT_OK) {
+            if (data != null) {
+                Uri selectImageUri = data.getData();
+                if (selectImageUri != null) {
+                    try {
+
+                        InputStream inputStream = getContentResolver().openInputStream(selectImageUri);
+                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                        imageNote.setImageBitmap(bitmap);
+                        imageNote.setVisibility(View.VISIBLE);
+
+                        selectedImagePath = getPathFromURI(selectImageUri);
+
+                    } catch (Exception exception) {
+                        Toast.makeText(this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }
+    }
+    private String getPathFromURI (Uri contentUri){
+        String filePath;
+        Cursor cursor = getContentResolver()
+                .query(contentUri, null, null, null, null);
+        if (cursor == null) {
+            filePath = contentUri.getPath();
+        } else {
+            cursor.moveToFirst();
+            int index = cursor.getColumnIndex("_data");
+            filePath = cursor.getString(index);
+            cursor.close();
+        }
+        return filePath;
+    }
 }

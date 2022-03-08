@@ -33,7 +33,6 @@ public class ActivityOverview extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
     DatabaseReference myRef = database.getReference("Payments");
 
-    public static final int REQUEST_CODE_ADD_NOTE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,18 +113,6 @@ public class ActivityOverview extends AppCompatActivity {
             }
 
         });
-
-        /*ImageView imageAddNoteMain = findViewById(R.id.imageAddNote);
-        imageAddNoteMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivityForResult(
-                        new Intent(getApplicationContext(), ActivityNoteSpace.class),
-                        REQUEST_CODE_ADD_NOTE
-                );
-            }
-        });*/
-
     }
 
 
