@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -53,6 +54,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
 
     private static final int REQUEST_CODE_STORAGE_PERMISSION =1;
     private static final int REQUEST_CODE_SELECT_IMAGE = 2;
+    int TAKE_IMAGE_CODE = 10001;
 
 
     @Override
@@ -197,9 +199,15 @@ public class ActivityNoteSpace extends AppCompatActivity{
     }
 
     private void selectImage(){
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        if(intent.resolveActivity(getPackageManager()) != null){
-            startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE);
+        //Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        //if(intent.resolveActivity(getPackageManager()) != null){
+            //startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE);
+        //}
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            startActivityForResult(intent, TAKE_IMAGE_CODE);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(ActivityNoteSpace.this, "Activity not found", Toast.LENGTH_SHORT).show();
         }
     }
 
