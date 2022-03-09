@@ -90,7 +90,7 @@ public class ActivityAddWg extends AppCompatActivity {
                         break;
                     case "3":
                         Log.d("WG size: ", "3");
-                        flats = new Flats(flatUserName, "Placeholder2", "Placeholder3",flatAddress, numFlatSize, flatName, flatProfileName);
+                        flats = new Flats(flatUserName, "Placeholder2", "Placeholder3", flatAddress, numFlatSize, flatName, flatProfileName);
                         databaseReference.child(flatProfileName).setValue(flats);
                         toastText = "Data inserted";
                         Toast.makeText(ActivityAddWg.this, toastText, Toast.LENGTH_LONG).show();
