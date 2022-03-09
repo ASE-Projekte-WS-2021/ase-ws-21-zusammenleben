@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import android.Manifest;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -46,8 +45,8 @@ public class ActivityNoteSpace extends AppCompatActivity{
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
-    ImageView imageNote;
-    ImageView imageAddImage;
+    private ImageView imageNote;
+    private ImageView imageAddImage;
 
     private String selectedImagePath;
 
@@ -77,12 +76,12 @@ public class ActivityNoteSpace extends AppCompatActivity{
 
         selectedImagePath = "";
 
-        imageAddImage.setOnClickListener(new View.OnClickListener() {
+        /*imageAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onImageClicked();
             }
-        });
+        });*/
 
         dateandtime.setText(
                 new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm a", Locale.getDefault())
@@ -145,6 +144,24 @@ public class ActivityNoteSpace extends AppCompatActivity{
                     // add your code here
                 }
             });*/
+        initMenu();
+    }
+
+    private void initMenu(){
+        imageAddImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //onImageClicked();
+                if (ContextCompat.checkSelfPermission(
+                        getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(
+                            ActivityNoteSpace.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_STORAGE_PERMISSION
+                    );
+                } else {
+                    selectImage();
+                }
+            }
+        });
     }
 
     private void fillandsaveNote(){
@@ -186,7 +203,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
 
     }
 
-    private void onImageClicked() {
+    /*private void onImageClicked() {
                 if (ContextCompat.checkSelfPermission(
                         getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_DENIED) {
                     ActivityCompat.requestPermissions(
@@ -196,25 +213,25 @@ public class ActivityNoteSpace extends AppCompatActivity{
                     selectImage();
                 }
         Toast.makeText(this, "KClicked on Image", Toast.LENGTH_LONG).show();
-    }
+    }*/
 
+    @SuppressWarnings("deprecation")
     private void selectImage(){
-        //Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        //if(intent.resolveActivity(getPackageManager()) != null){
-            //startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE);
-        //}
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        if(intent.resolveActivity(getPackageManager()) != null){
+            startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE);
+        }
+        /*Intent intents = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
-            startActivityForResult(intent, TAKE_IMAGE_CODE);
+            startActivityForResult(intents, TAKE_IMAGE_CODE);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(ActivityNoteSpace.this, "Activity not found", Toast.LENGTH_SHORT).show();
-        }
+        }*/
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
         if(requestCode == REQUEST_CODE_STORAGE_PERMISSION && grantResults.length > 0){
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 selectImage();
@@ -238,7 +255,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
                         imageNote.setImageBitmap(bitmap);
                         imageNote.setVisibility(View.VISIBLE);
 
-                        selectedImagePath = getPathFromURI(selectImageUri);
+                        //selectedImagePath = getPathFromURI(selectImageUri);
 
                     } catch (Exception exception) {
                         Toast.makeText(this, exception.getMessage(), Toast.LENGTH_SHORT).show();
