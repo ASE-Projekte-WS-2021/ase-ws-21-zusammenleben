@@ -73,6 +73,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
 
         imageNote= findViewById(R.id.imageNote);
         imageAddImage = findViewById(R.id.imageAddImage);
+        initMenu();
 
         selectedImagePath = "";
 
@@ -144,66 +145,26 @@ public class ActivityNoteSpace extends AppCompatActivity{
                     // add your code here
                 }
             });*/
-        initMenu();
     }
 
     private void initMenu(){
-        imageAddImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //onImageClicked();
-                if (ContextCompat.checkSelfPermission(
-                        getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(
-                            ActivityNoteSpace.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_STORAGE_PERMISSION
-                    );
-                } else {
-                    selectImage();
-                }
+        imageAddImage.setOnClickListener(view -> {
+            //onImageClicked();
+            System.out.println("image was clicked");
+            if (ContextCompat.checkSelfPermission(
+                    getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                System.out.println("Permission was questioned");
+                ActivityCompat.requestPermissions(
+                        ActivityNoteSpace.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
+                        REQUEST_CODE_STORAGE_PERMISSION
+                );
+            } else {
+                System.out.println("Permission was not questioned");
+                selectImage();
             }
         });
     }
-
-    private void fillandsaveNote(){
-
-        String title = setTitle.getText().toString();
-        String subtitle = setSubtitle.getText().toString();
-        String notice= setNotice.getText().toString();
-
-        if (title.isEmpty()){
-            Toast.makeText(this, "Please enter a note title!", Toast.LENGTH_SHORT).show();
-            return;
-        }else if (subtitle.isEmpty() && notice.isEmpty()){
-            Toast.makeText(this, "Please fill up all informations!", Toast.LENGTH_SHORT).show();
-            return;
-        }else {
-            // TODO Note in eigene Klasse auslagern
-            // TODO Connect and prepare object to save in datebase
-            // TODO Assign node to flat insteed of current user
-            DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").document();
-            Map<String, Object> note= new HashMap<>();
-            note.put("title", title);
-            note.put("subtitle", subtitle);
-            note.put("notice", notice);
-            note.put("imagePath", selectedImagePath);
-
-            documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void unused) {
-                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(ActivityNoteSpace.this,ActivityStartScreen.class));
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-
-    }
-
-    /*private void onImageClicked() {
+        /*private void onImageClicked() {
                 if (ContextCompat.checkSelfPermission(
                         getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_DENIED) {
                     ActivityCompat.requestPermissions(
@@ -264,6 +225,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
             }
         }
     }
+
     private String getPathFromURI (Uri contentUri){
         String filePath;
         Cursor cursor = getContentResolver()
@@ -277,5 +239,44 @@ public class ActivityNoteSpace extends AppCompatActivity{
             cursor.close();
         }
         return filePath;
+    }
+
+    private void fillandsaveNote(){
+
+        String title = setTitle.getText().toString();
+        String subtitle = setSubtitle.getText().toString();
+        String notice= setNotice.getText().toString();
+
+        if (title.isEmpty()){
+            Toast.makeText(this, "Please enter a note title!", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (subtitle.isEmpty() && notice.isEmpty()){
+            Toast.makeText(this, "Please fill up all informations!", Toast.LENGTH_SHORT).show();
+            return;
+        }else {
+            // TODO Note in eigene Klasse auslagern
+            // TODO Connect and prepare object to save in datebase
+            // TODO Assign node to flat insteed of current user
+            DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").document();
+            Map<String, Object> note= new HashMap<>();
+            note.put("title", title);
+            note.put("subtitle", subtitle);
+            note.put("notice", notice);
+            note.put("imagePath", selectedImagePath);
+
+            documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(ActivityNoteSpace.this,ActivityStartScreen.class));
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
     }
 }

@@ -62,7 +62,8 @@
             android:name=".ActivitySignup"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" />
-        <activity android:name=".ActivityNoteSpace"
+        <activity
+            android:name=".ActivityNoteSpace"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
