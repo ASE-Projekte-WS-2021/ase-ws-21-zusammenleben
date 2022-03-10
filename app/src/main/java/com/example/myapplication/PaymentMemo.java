@@ -7,12 +7,14 @@ public class PaymentMemo {
     private double cost;
     private String email;
     private String receiverName;
+    private String flat;
 
-    public PaymentMemo (double cost, String purpose, String email, String receiverName) {
+    public PaymentMemo (double cost, String purpose, String email, String receiverName, String flat) {
         this.cost = cost;
         this.purpose = purpose;
         this.email = email;
         this.receiverName = receiverName;
+        this.flat = flat;
     }
 
     public String getPurpose() {
@@ -38,8 +40,17 @@ public class PaymentMemo {
     public String getReceiverName() {
         return receiverName;
     }
+
     public void setReceiverName(String receiverName){
         this.receiverName = receiverName;
+    }
+
+    public String getFlat(){
+        return flat;
+    }
+
+    public void setFlat(){
+        this.flat = flat;
     }
 
 }

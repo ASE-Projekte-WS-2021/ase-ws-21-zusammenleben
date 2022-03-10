@@ -50,10 +50,8 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
     int flatSize;
 
     String currentUser;
-    String firstMate;
-    String secondMate;
-    String thirdMate;
-    String fourthMate;
+
+    String flatName;
 
     long maxId;
 
@@ -467,6 +465,7 @@ private void savePayment() {
                 TextView shareBill = (TextView)findViewById(R.id.share_your_bill);
                 shareBill.setText(costString +" "+ purpose);
                 String receiverName = shareBill.getText().toString();
+                String flat = getFlat();
 
                 if (costString.isEmpty()){Toast.makeText(getApplicationContext(), "EmptyField!",Toast.LENGTH_LONG).show();}
                 if (!costString.isEmpty()){
@@ -477,7 +476,7 @@ private void savePayment() {
                 FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
                 DatabaseReference myRefPayments = database.getReference("Payments");
 
-                PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName);
+                PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, flat);
 
                 myRefPayments.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -508,6 +507,92 @@ private void savePayment() {
 
 
         });
+    }
+
+    private String getFlat() {
+        currentUser = firebaseAuth.getCurrentUser().getEmail();
+
+        Query checkFlatName = databaseReferenceFlat.orderByChild("FirstUser").equalTo(currentUser);
+
+        checkFlatName.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    flatName = snap.getValue(Flats.class).getProfileName();
+                    System.out.println(flatName);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        Query checkFlatName2 = databaseReferenceFlat.orderByChild("SecondUser").equalTo(currentUser);
+
+        checkFlatName2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    flatName = snap.getValue(Flats.class).getProfileName();
+                    System.out.println(flatName);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        Query checkFlatName3 = databaseReferenceFlat.orderByChild("ThirdUser").equalTo(currentUser);
+
+        checkFlatName3.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    flatName = snap.getValue(Flats.class).getProfileName();
+                    System.out.println(flatName);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        Query checkFlatName4 = databaseReferenceFlat.orderByChild("ForthUser").equalTo(currentUser);
+
+        checkFlatName4.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    flatName = snap.getValue(Flats.class).getProfileName();
+                    System.out.println(flatName);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        Query checkFlatName5 = databaseReferenceFlat.orderByChild("FifthUser").equalTo(currentUser);
+
+        checkFlatName5.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    flatName = snap.getValue(Flats.class).getProfileName();
+                    System.out.println(flatName);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        return flatName;
     }
 
 
