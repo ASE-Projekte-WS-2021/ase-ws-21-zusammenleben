@@ -126,19 +126,19 @@
             android:id="@+id/notesRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="2dp"
             android:clipToPadding="false"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             app:layout_constraintBottom_toTopOf="@+id/layoutQuickActions"
-            app:layout_constraintTop_toBottomOf="@+id/layoutSearch"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutSearch" />
 
         <LinearLayout
             android:id="@+id/layoutQuickActions"
             android:layout_width="359dp"
             android:layout_height="79dp"
-            android:background="@color/browser_actions_bg_grey"
+            android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="15dp"
@@ -152,8 +152,9 @@
 
         <ImageView
             android:id="@+id/imageAddMain"
-            android:layout_width="61dp"
-            android:layout_height="61dp"
+            android:layout_width="81dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="4dp"
             android:background="@drawable/background_for_header"
             android:contentDescription="@string/app_name"
             android:padding="5dp"
@@ -162,6 +163,7 @@
             app:layout_constraintBottom_toTopOf="@+id/layoutQuickActions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/layoutQuickActions"
+            app:layout_constraintVertical_bias="0.606"
             tools:ignore="UseAppTint" />
 
 

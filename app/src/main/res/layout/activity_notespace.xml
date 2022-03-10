@@ -30,7 +30,7 @@
                             android:includeFontPadding="false"
                             android:inputType="text"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="20sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/imageBack" />
@@ -51,7 +51,7 @@
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
                             android:textColor="@color/black"
-                            android:textSize="13sp"
+                            android:textSize="18sp"
                             app:layout_constraintEnd_toEndOf="@id/inputNoteTitle"
                             app:layout_constraintStart_toStartOf="@+id/viewSubtitleIdicator"
                             app:layout_constraintTop_toBottomOf="@+id/textDateTime" />
@@ -136,7 +136,7 @@
                             android:inputType="textMultiLine"
                             android:minHeight="100dp"
                             android:textColor="@color/black"
-                            android:textSize="13sp"
+                            android:textSize="15sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/layoutWebUrl" />
 
