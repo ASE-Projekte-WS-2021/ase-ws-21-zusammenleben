@@ -49,22 +49,7 @@
         tools:ignore="NotSibling">
 
 
-        <EditText
-            android:id="@+id/share_your_bill_input"
-            android:layout_width="196dp"
-            android:layout_height="55dp"
-            android:drawableLeft="@drawable/ic_baseline_local_post_office_24"
-            android:drawablePadding="20dp"
-            android:ems="10"
-            android:hint="Add a person"
-            android:inputType="textPersonName"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_save_payment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/insert_purpose"
-            app:layout_constraintVertical_bias="0.444" />
+
 
         <TextView
             android:id="@+id/share_your_bill"
@@ -75,7 +60,6 @@
             android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/share_your_bill_input"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.225"
             app:layout_constraintStart_toStartOf="parent"
@@ -176,6 +160,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.163" />
 
+        <TextView
+            android:layout_width="322dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/select_mates"
+            android:hint="Select your mates"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_save_payment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/share_your_bill"
+            app:layout_constraintVertical_bias="0.0"
+            android:drawableEnd="@android:drawable/arrow_down_float"
+            android:background="@android:drawable/editbox_background"/>
 
         <View
             android:id="@+id/view"
@@ -202,18 +200,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <Spinner
-            android:id="@+id/spinner_members"
-            android:layout_width="151dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_save_payment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/share_your_bill"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="SpeakableTextPresentCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
