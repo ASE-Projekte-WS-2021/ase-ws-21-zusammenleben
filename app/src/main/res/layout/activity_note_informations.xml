@@ -67,6 +67,7 @@
                 android:padding="4dp"
                 android:src="@drawable/ic_done"
                 android:tint="@color/black"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/imageBack_noteinformation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageBack_noteinformation"
