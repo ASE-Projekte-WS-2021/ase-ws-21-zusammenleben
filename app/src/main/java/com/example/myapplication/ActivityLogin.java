@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -9,56 +10,99 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ActivityLogin extends AppCompatActivity {
 
-    EditText username, password;
-    TextView signup;
-    Button button_login;
-    LoginDBHelper UserDB;
+    //our views
+    EditText loginemail, loginpassword;
+    Button login;
+    TextView signup, forgotpassword;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        username = (EditText) findViewById(R.id.login_username);
-        password = (EditText) findViewById(R.id.login_password);
-        signup = (TextView) findViewById(R.id.login_signup);
-        button_login = (Button) findViewById(R.id.btn_login);
-        UserDB = new LoginDBHelper(this);
+        //ActionBar actionBar = getSupportActionBar();
+        // actionBar.setTitle("Login");
+        //implement BackButton
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setDisplayShowHomeEnabled(true);
 
-        signup.setOnClickListener(new View.OnClickListener() {
+        mAuth = FirebaseAuth.getInstance();
+
+        //init
+        forgotpassword = findViewById(R.id.forgot_password);
+        loginemail = findViewById(R.id.login_email);
+        loginpassword = findViewById(R.id.login_password);
+        login = findViewById(R.id.btn_login);
+        signup = findViewById(R.id.login_signup);
+
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext(),ActivitySignup.class);
-                startActivity(intent);
-            }
-        });
+                String email = loginemail.getText().toString().trim();
+                String password = loginpassword.getText().toString().trim();
 
-        button_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String user = username.getText().toString();
-                String pass = password.getText().toString();
-
-                if(user.equals("")||pass.equals(""))
-                    Toast.makeText(ActivityLogin.this, "Please enter your data.", Toast.LENGTH_SHORT).show();
-                else{
-                    Boolean checkuserpass = UserDB.checkusernamepassword(user, pass);
-                    if(checkuserpass==true){
-                        Toast.makeText(ActivityLogin.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), ActivityStartScreen.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(ActivityLogin.this, "Data invalid!", Toast.LENGTH_SHORT).show();
-                    }
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    loginemail.setError("Invalid");
+                    loginemail.setFocusable(true);
+                } else {
+                    loginUser (email, password);
                 }
+
             }
         });
 
+        forgotpassword.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityLogin.this, ActivityForgotPassword.class));
+            }
+        });
+
+        signup.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityLogin.this, ActivitySignup.class));
+            }
+        });
+    }
+
+    private void loginUser(String email, String password) {
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, and start register activity
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            startActivity(new Intent(ActivityLogin.this, ActivityStartScreen.class));
+                            finish();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(ActivityLogin.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }) .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(ActivityLogin.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }) ;
     }
 }
