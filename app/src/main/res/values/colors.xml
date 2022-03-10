@@ -12,4 +12,10 @@
     <color name="Accent">#F13413</color>
     <color name="colorTextHint">#808080</color>
     <color name="orange">#FFA500</color>
+    <color name="colorNote1">#FDBE38</color>
+    <color name="colorNote2">#FF4842</color>
+    <color name="colorNote3">#3A52Fc</color>
+    <color name="colorNote4">#000000</color>
+    <color name="colorDelete">#FF0000</color>
+    <color name="colorSearchBackground">#333333</color>
 </resources>

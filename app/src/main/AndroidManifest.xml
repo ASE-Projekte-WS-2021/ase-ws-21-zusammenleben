@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
-    <!-- Internet Permission -->
+    <!-- Permission -->
+    <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ActivityEditNote"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityNoteInformations"
+            android:exported="false" />
         <activity
             android:name=".ActivityForgotPassword"
             android:exported="false"
@@ -24,13 +39,7 @@
             android:exported="false" />
         <activity
             android:name=".ActivityStartScreen"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".ActivityOverview"
             android:exported="true" />
@@ -45,12 +54,27 @@
             android:exported="true" />
         <activity
             android:name=".ActivityLogin"
+
+
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" />
+
+            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen">
+        <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".ActivitySignup"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" />
+        <activity
+            android:name=".ActivityNoteSpace"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

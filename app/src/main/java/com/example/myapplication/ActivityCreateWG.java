@@ -19,6 +19,8 @@ public class ActivityCreateWG extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //try to setup and test my stuff
         setContentView(R.layout.activity_createwg);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         //ActionBar actionBar = getSupportActionBar();
         //actionBar.hide();

@@ -13,4 +13,14 @@
     <string name="label_signup">Create Account</string>
     <string name="reset_your_password">Reset your Password</string>
     <string name="payments">Payments</string>
+    <string name="my_notes">my Notes</string>
+    <string name="search_nodes">Search nodes</string>
+    <string name="search_notes">search_notes</string>
+    <string name="note_title">Note Title</string>
+    <string name="note_subtitle">Note Subtitle</string>
+    <string name="type_your_note_here">Type your note here...</string>
+    <string name="title_for_layout">Title</string>
+    <string name="subtitle_for_layout">Subtitle</string>
+    <string name="text_for_layout">Text</string>
+    <string name="note_options">note_options</string>
 </resources>

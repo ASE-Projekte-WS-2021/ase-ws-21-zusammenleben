@@ -3,30 +3,37 @@ package com.example.myapplication;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AlertDialog;
+
+import androidx.appcompat.app.ActionBar;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.Query;
+
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -78,6 +85,8 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
         databaseReferenceFlat = database.getReference("Flats");
         databaseReferenceUser = database.getReference("Users");
         firebaseAuth = FirebaseAuth.getInstance();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         Log.d(LOG_TAG, "Opening Datasource.");
 
@@ -95,6 +104,7 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
     }
 
     private void utilSpinner(){
+
         //assign variable
         selectMate = findViewById(R.id.select_mates);
 
@@ -334,6 +344,13 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_members);
+
+        spinner.setOnItemSelectedListener(this);
+        // TODO lesender Zugriff auf DB um Mitglieder der WG herauszufinden und dann in die jeweilige spinner position zu bringen
+
+
             }
         });
 
@@ -468,7 +485,7 @@ private void savePayment() {
                             actualCosts = Integer.valueOf(costString) / 2;
                 }
 
-                // Write a message to the database
+                // Write a message to the database to get the payment branch
                 FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
                 DatabaseReference myRefPayments = database.getReference("Payments");
 

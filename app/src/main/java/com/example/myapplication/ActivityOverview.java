@@ -1,9 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +7,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,8 +20,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 public class ActivityOverview extends AppCompatActivity {
 
@@ -37,23 +34,19 @@ public class ActivityOverview extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
     DatabaseReference myRef = database.getReference("Payments");
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupUIComponents();
         addListenerOnButton();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
         userEmail = user.getEmail();
-
-        paymentPurpose = findViewById(R.id.payment_purpose);
-        //String retrieveData = ActivityOverview.this.getIntent().getStringExtra("MY Data Key");
-        //paymentPurpose.setText(retrieveData);
-        //Toast.makeText(getApplicationContext(), retrieveData,Toast.LENGTH_LONG).show();
-
-        bottomNavigationView = findViewById(R.id.bottomnavview);
-        bottomNavigationView.setSelectedItemId(R.id.payment);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -65,6 +58,10 @@ public class ActivityOverview extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),ActivityStartScreen.class));
                         overridePendingTransition(0,0);
                         return true;
+                    /*case R.id.add_note:
+                        startActivity(new Intent(getApplicationContext(),ActivityNoteSpace.class));
+                        overridePendingTransition(0,0);
+                        return true;*/
                     case R.id.user:
                         startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
                         overridePendingTransition(0,0);
@@ -119,7 +116,6 @@ public class ActivityOverview extends AppCompatActivity {
             }
 
         });
-
     }
 
 
@@ -130,6 +126,9 @@ public class ActivityOverview extends AppCompatActivity {
         button_managePayments = (ImageButton) findViewById(R.id.btn_managePayments);
         paymentPurpose = findViewById(R.id.payment_purpose);
         costs = findViewById(R.id.costs_overview);
+        paymentPurpose = findViewById(R.id.payment_purpose);
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.payment);
     }
 
 }
