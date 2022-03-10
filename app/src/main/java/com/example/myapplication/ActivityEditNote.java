@@ -54,7 +54,6 @@ public class ActivityEditNote extends AppCompatActivity {
         imagesave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Test Button Clicked", Toast.LENGTH_SHORT).show();
 
                 String change_title = edit_title.getText().toString();
                 String change_subtitle = edit_subtitle.getText().toString();
@@ -73,6 +72,7 @@ public class ActivityEditNote extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void unused) {
                             Toast.makeText(getApplicationContext(), "Succesfully updated", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(ActivityEditNote.this,ActivityStartScreen.class));
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
