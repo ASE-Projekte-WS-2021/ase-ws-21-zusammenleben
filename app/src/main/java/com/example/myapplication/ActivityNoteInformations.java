@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivityNoteInformations extends AppCompatActivity {
@@ -17,6 +18,9 @@ public class ActivityNoteInformations extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_informations);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         ni_title = findViewById(R.id.inputNoteTitle_noteinformation);
         ni_subtitle = findViewById(R.id.noteSubtitle_noteinformation);
         ni_notice = findViewById(R.id.inputNote_noteinformation);

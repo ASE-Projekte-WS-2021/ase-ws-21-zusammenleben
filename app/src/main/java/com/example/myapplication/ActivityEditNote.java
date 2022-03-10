@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -43,6 +44,8 @@ public class ActivityEditNote extends AppCompatActivity {
         data=getIntent();
         firebaseFirestore=FirebaseFirestore.getInstance();
         firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         imageback.setOnClickListener(new View.OnClickListener() {
             @Override

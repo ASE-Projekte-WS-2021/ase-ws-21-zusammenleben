@@ -2,29 +2,6 @@ package com.example.myapplication;
 
 //package com.google.firebase.referencecode.database;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.ServerValue;
-import com.google.firebase.database.Transaction;
-import com.google.firebase.database.ValueEventListener;
-//import com.google.firebase.referencecode.database.models.Post;
-//import com.google.firebase.referencecode.database.models.User;
-
-import java.util.HashMap;
-import java.util.Map;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +9,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+//import com.google.firebase.referencecode.database.models.Post;
+//import com.google.firebase.referencecode.database.models.User;
 
 public class ActivityAddWg extends AppCompatActivity {
 
@@ -48,6 +40,8 @@ public class ActivityAddWg extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupUIComponents();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
         databaseReference = database.getReference("Flats");
         mAuth = FirebaseAuth.getInstance();

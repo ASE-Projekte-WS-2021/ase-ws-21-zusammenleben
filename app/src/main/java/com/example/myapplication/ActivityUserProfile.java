@@ -49,7 +49,7 @@ public class ActivityUserProfile extends AppCompatActivity {
         setContentView(R.layout.activity_userprofile);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Userprofile");
+        actionBar.hide();
 
         firebaseAuth = FirebaseAuth.getInstance();
         button_signout = (Button) findViewById(R.id.btn_logout);

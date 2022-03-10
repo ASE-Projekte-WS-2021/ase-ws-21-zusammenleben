@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -56,6 +57,8 @@ public class ActivityStartScreen extends AppCompatActivity {
         setContentView(R.layout.activity_startscreen);
         firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
         firebaseFirestore=FirebaseFirestore.getInstance();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
 
         imageView = findViewById(R.id.imageAddMain);
