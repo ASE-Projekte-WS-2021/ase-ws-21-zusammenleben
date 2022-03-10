@@ -6,11 +6,13 @@ public class PaymentMemo {
     private String purpose;
     private double cost;
     private String email;
+    private String receiverName;
 
-    public PaymentMemo (double cost, String purpose, String email) {
+    public PaymentMemo (double cost, String purpose, String email, String receiverName) {
         this.cost = cost;
         this.purpose = purpose;
         this.email = email;
+        this.receiverName = receiverName;
     }
 
     public String getPurpose() {
@@ -32,6 +34,13 @@ public class PaymentMemo {
     }
 
     public void setEmail(String email) {this.email = email;}
+
+    public String getReceiverName() {
+        return receiverName;
+    }
+    public void setReceiverName(String receiverName){
+        this.receiverName = receiverName;
+    }
 
 }
 

@@ -45,7 +45,6 @@ public class ActivityJoinWG extends AppCompatActivity {
 
     int flatSize;
     HashMap <String, String> userMap;
-    ArrayList<String> userList;
 
 
     @Override
@@ -88,8 +87,8 @@ public class ActivityJoinWG extends AppCompatActivity {
             } else {
                 Toast.makeText(ActivityJoinWG.this, "Can't enter Flat. Try another!", Toast.LENGTH_LONG).show();
             }
-            }
         }
+    }
 
 
 
