@@ -127,7 +127,7 @@ public class ActivityStartScreen extends AppCompatActivity {
                         popupMenu.getMenu().add("Edit choosen Note").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem menuItem) {
-                                // TODO Feature Edit Note
+
                                 Intent intent = new Intent(view.getContext(),ActivityEditNote.class);
                                 intent.putExtra("title", notes.getTitle());
                                 intent.putExtra("subtitle", notes.getSubtitle());
