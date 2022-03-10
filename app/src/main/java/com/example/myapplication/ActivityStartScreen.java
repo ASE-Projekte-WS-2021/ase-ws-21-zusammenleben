@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -56,6 +57,8 @@ public class ActivityStartScreen extends AppCompatActivity {
         setContentView(R.layout.activity_startscreen);
         firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
         firebaseFirestore=FirebaseFirestore.getInstance();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
 
         imageView = findViewById(R.id.imageAddMain);
@@ -127,10 +130,13 @@ public class ActivityStartScreen extends AppCompatActivity {
                         popupMenu.getMenu().add("Edit choosen Note").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem menuItem) {
-                                // TODO Feature Edit Note
-                                //Intent intent = new Intent(view.getContext(),ActivityUserProfile.class);
-                                //view.getContext().startActivity(intent);
-                                Toast.makeText(view.getContext(), "TODO", Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(view.getContext(),ActivityEditNote.class);
+                                intent.putExtra("title", notes.getTitle());
+                                intent.putExtra("subtitle", notes.getSubtitle());
+                                intent.putExtra("notice", notes.getNotice());
+                                intent.putExtra("noteID", noteid);
+                                view.getContext().startActivity(intent);
                                 return false;
                             }
                         });
@@ -231,7 +237,7 @@ public class ActivityStartScreen extends AppCompatActivity {
 
         @Override
         protected void onStop() {
-            //checkUserStatus();
+            checkUserStatus();
             super.onStop();
             if (noteAdapter != null) {
                 noteAdapter.stopListening();

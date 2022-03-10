@@ -6,17 +6,23 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -45,8 +51,12 @@ public class ActivityNoteSpace extends AppCompatActivity{
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
-    private ImageView imageNote;
+    private LinearLayout imageNote;
+    private ImageView imageInput;
     private ImageView imageAddImage;
+    private ImageView imageAddUrl;
+    private TextView textWebUrl;
+    private LinearLayout layoutWebUrl;
 
     private String selectedImagePath;
 
@@ -54,6 +64,8 @@ public class ActivityNoteSpace extends AppCompatActivity{
     private static final int REQUEST_CODE_STORAGE_PERMISSION =1;
     private static final int REQUEST_CODE_SELECT_IMAGE = 2;
     int TAKE_IMAGE_CODE = 10001;
+
+    private AlertDialog dialogAddUrl;
 
 
     @Override
@@ -72,17 +84,16 @@ public class ActivityNoteSpace extends AppCompatActivity{
         dateandtime = findViewById(R.id.textDateTime);
 
         imageNote= findViewById(R.id.imageNote);
+        imageInput = findViewById(R.id.imageNoteInput);
         imageAddImage = findViewById(R.id.imageAddImage);
-        initMenu();
+
+
+        textWebUrl = findViewById(R.id.textWebURL);
+        layoutWebUrl = findViewById(R.id.layoutWebUrl);
+        imageAddUrl = findViewById(R.id.imageAddWebLink);
+
 
         selectedImagePath = "";
-
-        /*imageAddImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onImageClicked();
-            }
-        });*/
 
         dateandtime.setText(
                 new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm a", Locale.getDefault())
@@ -145,6 +156,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
                     // add your code here
                 }
             });*/
+        initMenu();
     }
 
     private void initMenu(){
@@ -163,6 +175,12 @@ public class ActivityNoteSpace extends AppCompatActivity{
                 selectImage();
             }
         });
+        imageAddUrl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddURLDialog();
+            }
+        });
     }
         /*private void onImageClicked() {
                 if (ContextCompat.checkSelfPermission(
@@ -178,9 +196,9 @@ public class ActivityNoteSpace extends AppCompatActivity{
 
     @SuppressWarnings("deprecation")
     private void selectImage(){
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        if(intent.resolveActivity(getPackageManager()) != null){
-            startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE);
+        Intent intent2 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        if(intent2.resolveActivity(getPackageManager()) != null){
+            startActivityForResult(intent2, REQUEST_CODE_SELECT_IMAGE);
         }
         /*Intent intents = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
@@ -205,7 +223,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_SELECT_IMAGE && requestCode == RESULT_OK) {
+        if (requestCode == REQUEST_CODE_SELECT_IMAGE && resultCode == RESULT_OK) {
             if (data != null) {
                 Uri selectImageUri = data.getData();
                 if (selectImageUri != null) {
@@ -213,10 +231,10 @@ public class ActivityNoteSpace extends AppCompatActivity{
 
                         InputStream inputStream = getContentResolver().openInputStream(selectImageUri);
                         Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                        imageNote.setImageBitmap(bitmap);
+                        imageInput.setImageBitmap(bitmap);
                         imageNote.setVisibility(View.VISIBLE);
 
-                        //selectedImagePath = getPathFromURI(selectImageUri);
+                        selectedImagePath = getPathFromURI(selectImageUri);
 
                     } catch (Exception exception) {
                         Toast.makeText(this, exception.getMessage(), Toast.LENGTH_SHORT).show();
@@ -241,11 +259,14 @@ public class ActivityNoteSpace extends AppCompatActivity{
         return filePath;
     }
 
+
+
     private void fillandsaveNote(){
 
-        String title = setTitle.getText().toString();
-        String subtitle = setSubtitle.getText().toString();
-        String notice= setNotice.getText().toString();
+        String title = setTitle.getText().toString().trim();
+        String subtitle = setSubtitle.getText().toString().trim();
+        String notice= setNotice.getText().toString().trim();
+        String webLink = textWebUrl.getText().toString().trim();
 
         if (title.isEmpty()){
             Toast.makeText(this, "Please enter a note title!", Toast.LENGTH_SHORT).show();
@@ -263,6 +284,11 @@ public class ActivityNoteSpace extends AppCompatActivity{
             note.put("subtitle", subtitle);
             note.put("notice", notice);
             note.put("imagePath", selectedImagePath);
+            note.put("webLink", webLink);
+
+            if(layoutWebUrl.getVisibility() == View.VISIBLE){
+                note.put("webLink", webLink);
+            }
 
             documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -278,5 +304,47 @@ public class ActivityNoteSpace extends AppCompatActivity{
             });
         }
 
+    }
+
+    private void showAddURLDialog(){
+        if(dialogAddUrl == null){
+            AlertDialog.Builder builder = new AlertDialog.Builder(ActivityNoteSpace.this);
+            View view = LayoutInflater.from(this).inflate(
+                    R.layout.layout_add_url, (ViewGroup) findViewById(R.id.layoutAddUrlContainer)
+            );
+            builder.setView(view);
+
+            dialogAddUrl = builder.create();
+            if(dialogAddUrl.getWindow() != null){
+                dialogAddUrl.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+            }
+
+            final EditText inputUrl= view.findViewById(R.id.inputURL);
+            inputUrl.requestFocus();
+
+            view.findViewById(R.id.textAdd).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(inputUrl.getText().toString().trim().isEmpty()){
+                        Toast.makeText(ActivityNoteSpace.this, "Enter URL", Toast.LENGTH_SHORT).show();
+                    } else if (!Patterns.WEB_URL.matcher(inputUrl.getText().toString()).matches()){
+                        Toast.makeText(ActivityNoteSpace.this, "Enter correct URL", Toast.LENGTH_SHORT).show();
+                    } else {
+                        textWebUrl.setText(inputUrl.getText().toString());
+                        layoutWebUrl.setVisibility(View.VISIBLE);
+                        dialogAddUrl.dismiss();
+                    }
+                }
+            });
+
+            view.findViewById(R.id.textCancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialogAddUrl.dismiss();
+                }
+            });
+
+        }
+        dialogAddUrl.show();
     }
 }

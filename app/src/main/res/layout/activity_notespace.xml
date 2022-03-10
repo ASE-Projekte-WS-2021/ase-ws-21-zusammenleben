@@ -22,7 +22,7 @@
                         <EditText
                             android:id="@+id/inputNoteTitle"
                             android:layout_width="328dp"
-                            android:layout_height="31dp"
+                            android:layout_height="48dp"
                             android:background="@null"
                             android:hint="@string/note_title"
                             android:imeOptions="actionDone"
@@ -47,6 +47,7 @@
                             android:importantForAutofill="no"
                             android:includeFontPadding="false"
                             android:inputType="text"
+                            android:minHeight="48dp"
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
                             android:textColor="@color/black"
@@ -54,8 +55,6 @@
                             app:layout_constraintEnd_toEndOf="@id/inputNoteTitle"
                             app:layout_constraintStart_toStartOf="@+id/viewSubtitleIdicator"
                             app:layout_constraintTop_toBottomOf="@+id/textDateTime" />
-
-
 
                         <ImageView
                             android:id="@+id/imageSave"
@@ -72,8 +71,22 @@
                             app:layout_constraintTop_toTopOf="@+id/imageBack"
                             tools:ignore="UseAppTint" />
 
-                        <ImageView
+                        <LinearLayout
                             android:id="@+id/imageNote"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="12dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@string/app_name"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@+id/noteSubtitle">
+
+                        <ImageView
+                            android:id="@+id/imageNoteInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="18dp"
@@ -81,8 +94,32 @@
                             android:layout_marginEnd="12dp"
                             android:adjustViewBounds="true"
                             android:contentDescription="@string/app_name"
-                            android:visibility="gone"
                             app:layout_constraintTop_toBottomOf="@+id/noteSubtitle" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutWebUrl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="12dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@+id/imageNote">
+
+                                <TextView
+                                    android:id="@+id/textWebURL"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:autoLink="web"
+                                    android:textSize="13sp"
+                                    tools:ignore="Suspicious0dp" />
+
+                        </LinearLayout>
 
                         <EditText
                             android:id="@+id/inputNote"
@@ -101,7 +138,7 @@
                             android:textColor="@color/black"
                             android:textSize="13sp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/imageNote" />
+                            app:layout_constraintTop_toBottomOf="@+id/layoutWebUrl" />
 
                         <ImageView
                             android:id="@+id/imageBack"
