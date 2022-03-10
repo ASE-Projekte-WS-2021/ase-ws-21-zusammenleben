@@ -60,7 +60,7 @@
         <activity
             android:name=".ActivityLogin"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" />
+            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen"/>
         <activity
             android:name=".ActivitySignup"
             android:exported="true"

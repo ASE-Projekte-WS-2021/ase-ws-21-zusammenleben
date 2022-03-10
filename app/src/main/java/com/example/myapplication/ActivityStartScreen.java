@@ -128,9 +128,12 @@ public class ActivityStartScreen extends AppCompatActivity {
                             @Override
                             public boolean onMenuItemClick(MenuItem menuItem) {
                                 // TODO Feature Edit Note
-                                //Intent intent = new Intent(view.getContext(),ActivityUserProfile.class);
-                                //view.getContext().startActivity(intent);
-                                Toast.makeText(view.getContext(), "TODO", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(view.getContext(),ActivityEditNote.class);
+                                intent.putExtra("title", notes.getTitle());
+                                intent.putExtra("subtitle", notes.getSubtitle());
+                                intent.putExtra("notice", notes.getNotice());
+                                intent.putExtra("noteID", noteid);
+                                view.getContext().startActivity(intent);
                                 return false;
                             }
                         });
@@ -231,7 +234,7 @@ public class ActivityStartScreen extends AppCompatActivity {
 
         @Override
         protected void onStop() {
-            //checkUserStatus();
+            checkUserStatus();
             super.onStop();
             if (noteAdapter != null) {
                 noteAdapter.stopListening();
