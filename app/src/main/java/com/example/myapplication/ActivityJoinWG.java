@@ -130,10 +130,9 @@ public class ActivityJoinWG extends AppCompatActivity {
                                     userMap.put("fourthUser", snap.getValue(Flats.class).getFourthUser());
                                     userMap.put("fifthUser", snap.getValue(Flats.class).getFifthUser());
                                     break;
-
                             }
                         }
-                }
+                        }
             }
 
             @Override
