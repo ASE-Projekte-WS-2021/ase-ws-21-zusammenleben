@@ -288,6 +288,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
 
             if(layoutWebUrl.getVisibility() == View.VISIBLE){
                 note.put("webLink", webLink);
+                System.out.println("weburl is visible");
             }
 
             documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {

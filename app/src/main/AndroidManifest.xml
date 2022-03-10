@@ -39,13 +39,7 @@
             android:exported="false" />
         <activity
             android:name=".ActivityStartScreen"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".ActivityOverview"
             android:exported="true" />
@@ -60,8 +54,18 @@
             android:exported="true" />
         <activity
             android:name=".ActivityLogin"
+
+
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen"/>
+
+            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen">
+        <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".ActivitySignup"
             android:exported="true"
