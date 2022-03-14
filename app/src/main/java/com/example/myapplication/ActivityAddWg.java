@@ -43,9 +43,7 @@ public class ActivityAddWg extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupUIComponents();
-        flatIDs = new ArrayList<>();
-        FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
-        databaseReference = database.getReference("Flats");
+        initFirebase();
         getFlatIDinFirebase();
         mAuth = FirebaseAuth.getInstance();
 
@@ -67,6 +65,12 @@ public class ActivityAddWg extends AppCompatActivity {
         flatIDText = findViewById(R.id.wg_profile_name);
         size = findViewById(R.id.size_of_flat);
         flat_name = findViewById(R.id.flat_share_name);
+    }
+
+    private void initFirebase(){
+        flatIDs = new ArrayList<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
+        databaseReference = database.getReference("Flats");
     }
 
     private void getFlatIDinFirebase(){

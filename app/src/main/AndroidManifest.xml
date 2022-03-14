@@ -34,9 +34,31 @@
         <activity
             android:name=".ActivityAddWg"
             android:exported="false" />
+
+
+
         <activity
             android:name=".ActivityJoinWG"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https"
+                    android:host="www.uni-regensburg.de"/>
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https"
+                    android:host="www.uni-regensburg.de"/>
+            </intent-filter>
+
+        </activity>
+
+
         <activity
             android:name=".ActivityStartScreen"
             android:exported="true"/>
@@ -54,18 +76,17 @@
             android:exported="true" />
         <activity
             android:name=".ActivityLogin"
-
-
             android:exported="true"
-
             android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen">
         <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".Pop"
+            android:theme="@style/AppTheme.CustomTheme"
+            ></activity>
         <activity
             android:name=".ActivitySignup"
             android:exported="true"
