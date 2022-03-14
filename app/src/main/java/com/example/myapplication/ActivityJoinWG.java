@@ -2,10 +2,6 @@ package com.example.myapplication;
 
 //package com.google.firebase.referencecode.database;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,23 +11,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.google.firebase.FirebaseError;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 //import com.google.firebase.referencecode.database.models.Post;
 //import com.google.firebase.referencecode.database.models.User;
@@ -106,15 +100,14 @@ public class ActivityJoinWG extends AppCompatActivity {
     private void retrieveData() {
         Log.d("debug2", userFlatNameInput);
         userMap = new HashMap<>();
-        Query checkFlatName = databaseReference.orderByChild("profileName").equalTo(userFlatNameInput);
+        Query checkFlatName = databaseReference.orderByChild("flatID").equalTo(userFlatNameInput);
 
         checkFlatName.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot snap : snapshot.getChildren()) {
-                        if(snap.getValue(Flats.class).getProfileName().equals(userFlatNameInput)){
+                        if(snap.getValue(Flats.class).getFlatID().equals(userFlatNameInput)){
                             Toast.makeText(ActivityJoinWG.this, "WG existiert!", Toast.LENGTH_LONG).show();
-                            foundFlatAddress.setText("Adresse: " + snap.getValue(Flats.class).getAddress());
                             foundFlatOwner.setText("Gründer: " + snap.getValue(Flats.class).getFirstUser());
                             foundFlatPeople.setText("Mitbewohner: " + snap.getValue(Flats.class).getFlatSize());
                             flatSize = snap.getValue(Flats.class).getFlatSize();
