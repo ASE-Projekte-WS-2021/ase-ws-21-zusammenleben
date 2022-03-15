@@ -10,11 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,61 +23,64 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class ActivityPaymentOverview extends AppCompatActivity /*implements OnItemSelectedListener*/ {
 
-    public static final String LOG_TAG = ActivityStartScreen.class.getSimpleName();
+public class ActivityPaymentOverview extends AppCompatActivity {
+
     Button button_savepayment;
     EditText editTextCost, editTextPurpose;
-    String userNameInput;
+    TextView useremail;
+    TextView selectMate;
+
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReferenceFlat;
     DatabaseReference databaseReferenceUser;
     FirebaseDatabase database;
-    TextView useremail;
+
     int flatSize;
-
-    String currentUser;
-
-    List<String> categories = new ArrayList<String>();
-
-    String[] categorieField = {"","","","",""};
-
-    String flatName;
-
+    int actualCosts;
     long maxId;
 
-    int actualCosts;
+    String currentUser;
+    String flatID;
 
+    List<String> categories = new ArrayList<String>();
+    String[] categorieField = {"","","","",""};
     //checkable Spinner Items
-    TextView selectMate;
     boolean[] selectedMates;
     ArrayList<Integer> matesList = new ArrayList<>();
-
-
-
+    ArrayList<ArrayList<String>> flatContents = new ArrayList<>();
+    String[] content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupUIComponents();
+        initFirebase();
+        getFlatIDinFirebase();
+        utilSpinner();
+        savePayment();
+    }
 
+    private void setupUIComponents() {
         setContentView(R.layout.activity_paymentoverview);
         useremail = findViewById(R.id.show_email);
+        button_savepayment = (Button) findViewById(R.id.btn_save_payment);
+        editTextCost = (EditText) findViewById(R.id.insert_costs);
+        editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+    }
+
+    private void initFirebase(){
         database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
         databaseReferenceFlat = database.getReference("Flats");
         databaseReferenceUser = database.getReference("Users");
         firebaseAuth = FirebaseAuth.getInstance();
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-
-        Log.d(LOG_TAG, "Opening Datasource.");
-
-        button_savepayment = (Button) findViewById(R.id.btn_save_payment);
-        editTextCost = (EditText) findViewById(R.id.insert_costs);
-        editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
-
-        utilSpinner();
-        savePayment();
     }
 
     @Override
@@ -91,14 +89,8 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
     }
 
     private void utilSpinner(){
-
         //assign variable
         selectMate = findViewById(R.id.select_mates);
-
-        //Spinner spinner = (Spinner) findViewById(R.id.spinner_members);
-
-        //spinner.setOnItemSelectedListener(this);
-
         //TODO: refine code!
         //TODO: show names in spinner instead of email
         currentUser = firebaseAuth.getCurrentUser().getEmail();
@@ -112,9 +104,6 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap : snapshot.getChildren()) {
                         flatSize = snap.getValue(Flats.class).getFlatSize();
-                        System.out.println(flatSize);
-                        System.out.println(snap.getValue(Flats.class).getFlatID());
-
 
                         switch(flatSize) {
                             case 2:
@@ -164,11 +153,7 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap : snapshot.getChildren()) {
-                    //if(snap.getValue(Flats.class).getFirstUser().equals(firebaseAuth.getCurrentUser().getEmail())){
                     flatSize = snap.getValue(Flats.class).getFlatSize();
-                    System.out.println(flatSize);
-                    System.out.println(snap.getValue(Flats.class).getFlatID());
-
 
                     switch(flatSize) {
                         case 2:
@@ -203,7 +188,6 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
                             break;
 
                     }
-                    //}
                 }
             }
 
@@ -219,11 +203,7 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap : snapshot.getChildren()) {
-                    //if(snap.getValue(Flats.class).getFirstUser().equals(firebaseAuth.getCurrentUser().getEmail())){
                     flatSize = snap.getValue(Flats.class).getFlatSize();
-                    System.out.println(flatSize);
-                    System.out.println(snap.getValue(Flats.class).getFlatID());
-
 
                     switch(flatSize) {
                         case 3:
@@ -252,7 +232,6 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
                             break;
 
                     }
-                    //}
                 }
             }
 
@@ -268,11 +247,7 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap : snapshot.getChildren()) {
-                    //if(snap.getValue(Flats.class).getFirstUser().equals(firebaseAuth.getCurrentUser().getEmail())){
                     flatSize = snap.getValue(Flats.class).getFlatSize();
-                    System.out.println(flatSize);
-                    System.out.println(snap.getValue(Flats.class).getFlatID());
-
 
                     switch(flatSize) {
                         case 4:
@@ -294,7 +269,6 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
                             break;
 
                     }
-                    //}
                 }
             }
 
@@ -310,10 +284,7 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap : snapshot.getChildren()) {
-                    //if(snap.getValue(Flats.class).getFirstUser().equals(firebaseAuth.getCurrentUser().getEmail())){
                     flatSize = snap.getValue(Flats.class).getFlatSize();
-                    System.out.println(flatSize);
-                    System.out.println(snap.getValue(Flats.class).getFlatID());
 
                             categories.add(snap.getValue(Flats.class).getName());
                             categories.add(snap.getValue(Flats.class).getSecondUser());
@@ -323,22 +294,11 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
                     for(int i = 0; i < categories.size(); i++){
                         categorieField[i] = categories.get(i);
                     }
-
-                    //}
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
-
-                // TODO Zeile 336 und 338 schmeißen einen Fehler
-        //Spinner spinner = (Spinner) findViewById(R.id.spinner_members);
-
-        //spinner.setOnItemSelectedListener(this);
-        // TODO lesender Zugriff auf DB um Mitglieder der WG herauszufinden und dann in die jeweilige spinner position zu bringen
-
-
             }
         });
 
@@ -383,13 +343,13 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
                         for (int j = 0; j < matesList.size(); j++) {
                             //concat array value
                                 stringBuilder.append(categorieField[matesList.get(j)]);
-                            //Check codition
+                            //Check condition
                             if (j != matesList.size() -1){
                                 //When j value not equal to day list size -1, add comma
                                 stringBuilder.append(", ");
                             }
                         }
-                        //Set text on text vies
+                        //Set text on text views
                         selectMate.setText(stringBuilder.toString());
                     }
                 });
@@ -421,36 +381,9 @@ public class ActivityPaymentOverview extends AppCompatActivity /*implements OnIt
                 builder.show();
             }
         });
-
-        //ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-
-        //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        //spinner.setAdapter(dataAdapter);
-        //System.out.println("spinner läuft");
     }
 
-    /*@Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
-
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-    }
-
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
-    }*/
-
-    private void retrieveData() {
-    }
-
-    private void getHousemateNames(){
-
-    }
-
-private void savePayment() {
+    private void savePayment() {
         button_savepayment = (Button) findViewById(R.id.btn_save_payment);
         final EditText editTextCost = (EditText) findViewById(R.id.insert_costs);
         final EditText editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
@@ -465,8 +398,10 @@ private void savePayment() {
                 String useremail = editTextMail.getText().toString();
                 TextView shareBill = (TextView)findViewById(R.id.share_your_bill);
                 shareBill.setText(costString +" "+ purpose);
-                String receiverName = shareBill.getText().toString();
-                String flat = getFlat();
+                String receiverName = selectMate.getText().toString();
+                getFlatID();
+                String flat = flatID;
+
 
                 if (costString.isEmpty()){Toast.makeText(getApplicationContext(), "EmptyField!",Toast.LENGTH_LONG).show();}
                 if (!costString.isEmpty()){
@@ -491,18 +426,14 @@ private void savePayment() {
                     }
                 });
 
+                //TODO: maxId is "frozen" in the onDataChange function. Callback implementation to properly count Payments
                 String paymentCounter = "P" + String.valueOf(maxId+1);
                 myRefPayments.child(paymentCounter).setValue(payment);
                 myRefPayments.push().setValue(payment);
 
-
-                System.out.println("Successful!");
-                System.out.println(actualCosts);
-
                 Toast.makeText(getApplicationContext(), "Successful!",Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
-                //intent.putExtra("MY Data Key", (Parcelable) payment);
                 startActivity(intent);
                 }
 
@@ -510,90 +441,58 @@ private void savePayment() {
         });
     }
 
-    private String getFlat() {
-        currentUser = firebaseAuth.getCurrentUser().getEmail();
+    private void getFlatIDinFirebase(){
+        readData(new FirebaseCallback() {
+            @Override
+            public void onCallback(ArrayList<ArrayList<String>> list) {
+            }
+        });
+    }
 
-        Query checkFlat = databaseReferenceFlat.orderByChild("firstUser").equalTo(currentUser);
+    private interface FirebaseCallback {
+        void onCallback(ArrayList<ArrayList<String>> list);
+    }
 
-        checkFlat.addListenerForSingleValueEvent(new ValueEventListener() {
+    // Get the data from Firebase Server online
+    private void readData(FirebaseCallback firebaseCallback){
+        ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    flatName = snap.getValue(Flats.class).getFlatID();
-                    System.out.println(flatName);
+                for (DataSnapshot snap : snapshot.getChildren()){
+                    int flatSize = snap.getValue(Flats.class).getFlatSize();
+                    ArrayList<String> flatContent = snap.getValue(Flats.class).getData(flatSize);
+                    flatContents.add(flatContent);
                 }
+                // Wait for the server to retrieve the data
+                firebaseCallback.onCallback(flatContents);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
-        });
+        };
+        databaseReferenceFlat.addListenerForSingleValueEvent(valueEventListener);
+    }
 
-        Query checkFlat2 = databaseReferenceFlat.orderByChild("secondUser").equalTo(currentUser);
-
-        checkFlat2.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    flatName = snap.getValue(Flats.class).getFlatID();
-                    System.out.println(flatName);
-                }
+    private void getFlatID() {
+        String currentUserEmail = firebaseAuth.getCurrentUser().getEmail().toString();
+        for(int i = 0; i < flatContents.size(); i++){
+            if(flatContents.get(i).contains(currentUserEmail)) {
+                String currentUserFlat = flatContents.get(i).toString();
+                content = currentUserFlat.split(",");
             }
+        }
+        flatID = extractFlatID();
+        System.out.println(flatID);
+    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-
-        Query checkFlat3 = databaseReferenceFlat.orderByChild("thirdUser").equalTo(currentUser);
-
-        checkFlat3.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    flatName = snap.getValue(Flats.class).getFlatID();
-                    System.out.println(flatName);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-
-        Query checkFlat4 = databaseReferenceFlat.orderByChild("fourthUser").equalTo(currentUser);
-
-        checkFlat4.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    flatName = snap.getValue(Flats.class).getFlatID();
-                    System.out.println(flatName);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-
-        Query checkFlat5 = databaseReferenceFlat.orderByChild("fifthUser").equalTo(currentUser);
-
-        checkFlat5.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    flatName = snap.getValue(Flats.class).getFlatID();
-                    System.out.println(flatName);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-
-        return flatName;
+    private String extractFlatID(){
+        for(int i = 0 ; i < content.length ; i++){
+            String s = content[i];
+            s = s.trim();
+            Log.d("debug", s);
+        }
+        return content[0].substring(1);
     }
 
 
