@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.example.myapplication.entities.notes;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -81,7 +82,9 @@ public class ActivityStartScreen extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
                     overridePendingTransition(0,0);
                     return true;
-
+                case R.id.shopping:
+                    startActivity(new Intent(getApplicationContext(),ActivityShoppingList.class));
+                    overridePendingTransition(0,0);
             }
             return false;
         });

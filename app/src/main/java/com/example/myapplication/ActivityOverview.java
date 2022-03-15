@@ -48,6 +48,8 @@ public class ActivityOverview extends AppCompatActivity {
         assert user != null;
         userEmail = user.getEmail();
 
+
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -58,10 +60,10 @@ public class ActivityOverview extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),ActivityStartScreen.class));
                         overridePendingTransition(0,0);
                         return true;
-                    /*case R.id.add_note:
-                        startActivity(new Intent(getApplicationContext(),ActivityNoteSpace.class));
+                    case R.id.shopping:
+                        startActivity(new Intent(getApplicationContext(),ActivityShoppingList.class));
                         overridePendingTransition(0,0);
-                        return true;*/
+                        return true;
                     case R.id.user:
                         startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
                         overridePendingTransition(0,0);
@@ -127,8 +129,6 @@ public class ActivityOverview extends AppCompatActivity {
         paymentPurpose = findViewById(R.id.payment_purpose);
         costs = findViewById(R.id.costs_overview);
         paymentPurpose = findViewById(R.id.payment_purpose);
-        bottomNavigationView = findViewById(R.id.bottomnavview);
-        bottomNavigationView.setSelectedItemId(R.id.payment);
     }
 
 }

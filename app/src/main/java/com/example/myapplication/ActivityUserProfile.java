@@ -87,10 +87,10 @@ public class ActivityUserProfile extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), ActivityStartScreen.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    /*case R.id.add_note:
-                        startActivity(new Intent(getApplicationContext(),ActivityNoteSpace.class));
+                    case R.id.shopping:
+                        startActivity(new Intent(getApplicationContext(),ActivityShoppingList.class));
                         overridePendingTransition(0,0);
-                        return true;*/
+                        return true;
                     case R.id.user:
                         return true;
                 }

@@ -60,8 +60,9 @@ public class ActivityNoteSpace extends AppCompatActivity{
 
     private String selectedImagePath;
 
+    private ImageView addLocation;
 
-    private static final int REQUEST_CODE_STORAGE_PERMISSION =1;
+    private static final int REQUEST_CODE_STORAGE_PERMISSION = 1;
     private static final int REQUEST_CODE_SELECT_IMAGE = 2;
     int TAKE_IMAGE_CODE = 10001;
 
@@ -92,6 +93,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
         layoutWebUrl = findViewById(R.id.layoutWebUrl);
         imageAddUrl = findViewById(R.id.imageAddWebLink);
 
+        addLocation = findViewById(R.id.imageAddNote);
 
         selectedImagePath = "";
 
@@ -160,25 +162,36 @@ public class ActivityNoteSpace extends AppCompatActivity{
     }
 
     private void initMenu(){
-        imageAddImage.setOnClickListener(view -> {
-            //onImageClicked();
-            System.out.println("image was clicked");
-            if (ContextCompat.checkSelfPermission(
-                    getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                System.out.println("Permission was questioned");
-                ActivityCompat.requestPermissions(
-                        ActivityNoteSpace.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
-                        REQUEST_CODE_STORAGE_PERMISSION
-                );
-            } else {
-                System.out.println("Permission was not questioned");
-                selectImage();
+        imageAddImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //onImageClicked();
+                System.out.println("image was clicked");
+                if (ContextCompat.checkSelfPermission(
+                        getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    System.out.println("Permission was questioned");
+                    ActivityCompat.requestPermissions(
+                            ActivityNoteSpace.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                            REQUEST_CODE_STORAGE_PERMISSION
+                    );
+                } else {
+                    System.out.println("Permission was not questioned");
+                    selectImage();
+                }
             }
-        });
+         });
+
         imageAddUrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAddURLDialog();
+            }
+        });
+        addLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ActivityNoteSpace.this, ActivityShowLocation.class);
+                startActivity(intent);
             }
         });
     }
@@ -194,11 +207,10 @@ public class ActivityNoteSpace extends AppCompatActivity{
         Toast.makeText(this, "KClicked on Image", Toast.LENGTH_LONG).show();
     }*/
 
-    @SuppressWarnings("deprecation")
     private void selectImage(){
-        Intent intent2 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        if(intent2.resolveActivity(getPackageManager()) != null){
-            startActivityForResult(intent2, REQUEST_CODE_SELECT_IMAGE);
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        if(intent.resolveActivity(getPackageManager()) != null){
+            startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE);
         }
         /*Intent intents = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
@@ -211,10 +223,12 @@ public class ActivityNoteSpace extends AppCompatActivity{
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == REQUEST_CODE_STORAGE_PERMISSION && grantResults.length > 0){
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        System.out.println("onRequestPermissionResult was called");
+        if (requestCode == REQUEST_CODE_STORAGE_PERMISSION && grantResults.length > 0){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 selectImage();
-            } else {
+        }
+        else {
                 Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
             }
         }
@@ -223,18 +237,20 @@ public class ActivityNoteSpace extends AppCompatActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("onActivityResult was called");
         if (requestCode == REQUEST_CODE_SELECT_IMAGE && resultCode == RESULT_OK) {
             if (data != null) {
-                Uri selectImageUri = data.getData();
-                if (selectImageUri != null) {
+                Uri selectedImageUri = data.getData();
+                if (selectedImageUri != null) {
                     try {
+                        System.out.println("bitmapping was called");
 
-                        InputStream inputStream = getContentResolver().openInputStream(selectImageUri);
+                        InputStream inputStream = getContentResolver().openInputStream(selectedImageUri);
                         Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                         imageInput.setImageBitmap(bitmap);
                         imageNote.setVisibility(View.VISIBLE);
 
-                        selectedImagePath = getPathFromURI(selectImageUri);
+                        selectedImagePath = getPathFromURI(selectedImageUri);
 
                     } catch (Exception exception) {
                         Toast.makeText(this, exception.getMessage(), Toast.LENGTH_SHORT).show();
