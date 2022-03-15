@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 
 public class Pop extends Activity {
 
-    EditText text;
+    EditText text, recipient, subject;
     Button btnSend;
     String userMessage;
     DatabaseReference databaseReference;
@@ -29,6 +30,7 @@ public class Pop extends Activity {
     private FirebaseAuth mAuth;
     ArrayList<ArrayList<String>> flatContents;
     String[] content;
+    String lines;
     final String FIREBASEPATH = "https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/";
 
     @Override
@@ -42,15 +44,31 @@ public class Pop extends Activity {
             @Override
             public void onClick(View view) {
                 createDeepLink();
+                sendMail();
             }
         });
+    }
+
+    private void sendMail(){
+        String recipientList = recipient.getText().toString();
+        String[] recipients = recipientList.split(",");
+        String subjectText = subject.getText().toString();
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_EMAIL, recipients);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subjectText);
+        intent.putExtra(Intent.EXTRA_TEXT, lines);
+
+        intent.setType("message/rfc822");
+        startActivity(Intent.createChooser(intent, "Choose an email client"));
     }
 
     private void setupUIComponents() {
         setContentView(R.layout.popupwindow);
         text = findViewById(R.id.popupwindow_edit_text_message);
         btnSend = findViewById(R.id.popupwindow_btn_send);
-        text.setText("hi");
+        recipient = findViewById(R.id.popupwindow_edit_text_to);
+        subject = findViewById(R.id.popupwindow_edit_text_subject);
     }
 
     private void setupWindow() {
@@ -109,8 +127,14 @@ public class Pop extends Activity {
                 content = currentUserFlat.split(",");
             }
         }
-        String flatID = extractFlatID();
-        // TODO : nutze die flatID als Attachement für den Deep Link (URL)
+
+        String firstLine = "Hi,";
+        String secondLine = "please join my Flat. Inside the app, enter this flat ID:";
+        String thirdLine = extractFlatID();
+        String fourthLine = "Click on this link to directly sign in!";
+        String fifthLine = "https://wgfinance.page.link/join";
+        lines = firstLine + "\n" + secondLine + "\n" + thirdLine + "\n" + fourthLine + "\n" + fifthLine;
+        text.setText(lines);
     }
 
     private String extractFlatID(){

@@ -75,57 +75,6 @@
 
         <!--Registerinformation E-Mail and Password-->
 
-        <TextView
-            android:id="@+id/found_flat_ID"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
-            android:drawableLeft="@drawable/ic_baseline_location_city_24"
-            android:drawablePadding="20dp"
-            android:ems="10"
-            android:inputType="textPostalAddress"
-            android:minHeight="48dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_joinwg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.242"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/found_flat_owner"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
-            android:drawableLeft="@drawable/ic_baseline_person_24"
-            android:drawablePadding="20dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_joinwg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/found_flat_people"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
-            android:drawableLeft="@drawable/ic_baseline_home_work_24"
-            android:drawablePadding="20dp"
-            android:ems="10"
-            android:inputType="textShortMessage"
-            android:minHeight="48dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_joinwg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.242"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.6"
-            tools:ignore="SpeakableTextPresentCheck" />
-
         <Button
             android:id="@+id/btn_joinwg"
             android:layout_width="322dp"
@@ -142,6 +91,89 @@
             app:layout_constraintVertical_bias="0.89" />
 
 
+        <Button
+            android:id="@+id/btn_findwg"
+            android:layout_width="322dp"
+            android:layout_height="51dp"
+            android:background="@drawable/roundetcorners"
+            android:text="Find Flat"
+            android:textColor="#121111"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.20" />
+
+
+
+        <EditText
+            android:id="@+id/flat_name"
+            android:layout_width="345dp"
+            android:layout_height="48dp"
+            android:drawablePadding="20dp"
+            android:ems="10"
+            android:hint="Search for your flat"
+            android:inputType="textPersonName"
+            android:drawableLeft="@drawable/ic_baseline_home_work_24"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@+id/current_size_of_flat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.15" />
+
+        <TextView
+            android:id="@+id/found_flat_address"
+            android:layout_width="345dp"
+            android:layout_height="48dp"
+            android:drawableLeft="@drawable/ic_baseline_location_city_24"
+            android:drawablePadding="20dp"
+            android:ems="10"
+            android:inputType="textPostalAddress"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_joinwg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.242"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.509"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/found_flat_owner"
+            android:layout_width="345dp"
+            android:layout_height="48dp"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:drawablePadding="20dp"
+            android:ems="10"
+            android:inputType="textPostalAddress"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_joinwg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.242"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.709"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/found_flat_people"
+            android:layout_width="345dp"
+            android:layout_height="48dp"
+            android:drawableLeft="@drawable/ic_baseline_home_work_24"
+            android:drawablePadding="20dp"
+            android:ems="10"
+            android:inputType="textPostalAddress"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_joinwg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.242"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.909"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
