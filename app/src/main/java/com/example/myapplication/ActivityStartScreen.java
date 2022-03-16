@@ -129,6 +129,7 @@ public class ActivityStartScreen extends AppCompatActivity {
                 noteViewHolder.title.setText(notes.getTitle());
                 noteViewHolder.subtitle.setText(notes.getSubtitle());
                 noteViewHolder.notice.setText(notes.getNotice());
+                noteViewHolder.url.setText(notes.getUrl());
 
                 String noteid = noteAdapter.getSnapshots().getSnapshot(i).getId();
 
@@ -140,6 +141,7 @@ public class ActivityStartScreen extends AppCompatActivity {
                         intent.putExtra("title", notes.getTitle());
                         intent.putExtra("subtitle", notes.getSubtitle());
                         intent.putExtra("notice", notes.getNotice());
+                        intent.putExtra("url", notes.getUrl());
                         intent.putExtra("noteID", noteid);
                         view.getContext().startActivity(intent);
                     }
@@ -158,6 +160,7 @@ public class ActivityStartScreen extends AppCompatActivity {
                                 intent.putExtra("title", notes.getTitle());
                                 intent.putExtra("subtitle", notes.getSubtitle());
                                 intent.putExtra("notice", notes.getNotice());
+                                intent.putExtra("url", notes.getUrl());
                                 intent.putExtra("noteID", noteid);
                                 view.getContext().startActivity(intent);
                                 return false;
@@ -212,6 +215,7 @@ public class ActivityStartScreen extends AppCompatActivity {
         TextView title;
         TextView subtitle;
         TextView notice;
+        TextView url;
         LinearLayout note;
 
         public NoteViewHolder(@NonNull View itemView) {
@@ -219,6 +223,7 @@ public class ActivityStartScreen extends AppCompatActivity {
             title = itemView.findViewById(R.id.notetitl);
             subtitle = itemView.findViewById(R.id.noteSubtitleactivity);
             notice = itemView.findViewById(R.id.notetextactivity);
+            url = itemView.findViewById(R.id.noteURL);
             note = itemView.findViewById(R.id.note);
         }
 

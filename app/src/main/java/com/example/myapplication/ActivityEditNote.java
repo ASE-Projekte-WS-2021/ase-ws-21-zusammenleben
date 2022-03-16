@@ -24,7 +24,7 @@ import java.util.Map;
 public class ActivityEditNote extends AppCompatActivity {
 
     Intent data;
-    EditText edit_title,edit_subtitle, edit_note;
+    EditText edit_title,edit_subtitle, edit_note, edit_url;
     ImageView imagesave;
     ImageView imageback;
     FirebaseAuth firebaseAuth;
@@ -39,6 +39,7 @@ public class ActivityEditNote extends AppCompatActivity {
         edit_title = findViewById(R.id.Title_EditNote);
         edit_subtitle = findViewById(R.id.Subtitle_EditNote);
         edit_note = findViewById(R.id.Note_EditNote);
+        edit_url = findViewById(R.id.noteurl_edit);
         imagesave = findViewById(R.id.imageSave_EditNote);
         imageback = findViewById(R.id.imageBack_EditNote);
         data=getIntent();
@@ -61,6 +62,7 @@ public class ActivityEditNote extends AppCompatActivity {
                 String change_title = edit_title.getText().toString();
                 String change_subtitle = edit_subtitle.getText().toString();
                 String change_note = edit_note.getText().toString();
+                String change_url = edit_url.getText().toString();
 
                 if (change_title.isEmpty()||change_subtitle.isEmpty()||change_note.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Please enter all required informations", Toast.LENGTH_SHORT).show();
@@ -71,6 +73,7 @@ public class ActivityEditNote extends AppCompatActivity {
                     note.put("title", change_title);
                     note.put("subtitle", change_subtitle);
                     note.put("notice", change_note);
+                    note.put("url", change_url);
                     documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
@@ -90,8 +93,10 @@ public class ActivityEditNote extends AppCompatActivity {
         String note_title = data.getStringExtra("title");
         String note_subtitle = data.getStringExtra("subtitle");
         String note_notice = data.getStringExtra("notice");
+        String note_url = data.getStringExtra("url");
         edit_title.setText(note_title);
         edit_subtitle.setText(note_subtitle);
         edit_note.setText(note_notice);
+        edit_url.setText(note_url);
     }
 }

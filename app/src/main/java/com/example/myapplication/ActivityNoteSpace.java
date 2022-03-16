@@ -282,7 +282,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
         String title = setTitle.getText().toString().trim();
         String subtitle = setSubtitle.getText().toString().trim();
         String notice= setNotice.getText().toString().trim();
-        String webLink = textWebUrl.getText().toString().trim();
+        String url = textWebUrl.getText().toString().trim();
 
         if (title.isEmpty()){
             Toast.makeText(this, "Please enter a note title!", Toast.LENGTH_SHORT).show();
@@ -300,10 +300,10 @@ public class ActivityNoteSpace extends AppCompatActivity{
             note.put("subtitle", subtitle);
             note.put("notice", notice);
             note.put("imagePath", selectedImagePath);
-            note.put("webLink", webLink);
+            note.put("url", url);
 
             if(layoutWebUrl.getVisibility() == View.VISIBLE){
-                note.put("webLink", webLink);
+                note.put("url", url);
                 System.out.println("weburl is visible");
             }
 
