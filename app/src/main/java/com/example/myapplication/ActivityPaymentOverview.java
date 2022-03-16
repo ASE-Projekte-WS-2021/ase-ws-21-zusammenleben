@@ -39,6 +39,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReferenceFlat;
     DatabaseReference databaseReferenceUser;
+    DatabaseReference databaseReferencePayment;
     FirebaseDatabase database;
 
     int flatSize;
@@ -50,6 +51,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
 
     List<String> categories = new ArrayList<String>();
     String[] categorieField = {"","","","",""};
+
     //checkable Spinner Items
     boolean[] selectedMates;
     ArrayList<Integer> matesList = new ArrayList<>();
@@ -80,7 +82,9 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
         databaseReferenceFlat = database.getReference("Flats");
         databaseReferenceUser = database.getReference("Users");
+        databaseReferencePayment = database.getReference("Payments");
         firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser().getEmail();
     }
 
     @Override
@@ -93,25 +97,21 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         selectMate = findViewById(R.id.select_mates);
         //TODO: refine code!
         //TODO: show names in spinner instead of email
-        currentUser = firebaseAuth.getCurrentUser().getEmail();
-
         categories.add(currentUser);
-
         Query checkFlatName = databaseReferenceFlat.orderByChild("firstUser").equalTo(currentUser);
-
         checkFlatName.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap : snapshot.getChildren()) {
-                        flatSize = snap.getValue(Flats.class).getFlatSize();
+                    flatSize = snap.getValue(Flats.class).getFlatSize();
 
-                        switch(flatSize) {
-                            case 2:
-                                categories.add(snap.getValue(Flats.class).getSecondUser());
-                                for(int i = 0; i < categories.size(); i++){
-                                    categorieField[i] = categories.get(i);
-                                }
-                                break;
+                    switch(flatSize) {
+                        case 2:
+                            categories.add(snap.getValue(Flats.class).getSecondUser());
+                            for(int i = 0; i < categories.size(); i++){
+                                categorieField[i] = categories.get(i);
+                            }
+                            break;
                             case 3:
                                 categories.add(snap.getValue(Flats.class).getSecondUser());
                                 categories.add(snap.getValue(Flats.class).getThirdUser());
@@ -136,8 +136,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                                     categorieField[i] = categories.get(i);
                                 }
                                 break;
-
-                        }
+                    }
                 }
             }
 
@@ -384,37 +383,35 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     }
 
     private void savePayment() {
-        button_savepayment = (Button) findViewById(R.id.btn_save_payment);
-        final EditText editTextCost = (EditText) findViewById(R.id.insert_costs);
-        final EditText editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
-        final TextView editTextMail = (TextView) findViewById(R.id.show_email);
+        button_savepayment = findViewById(R.id.btn_save_payment);
+        final EditText editTextCost = findViewById(R.id.insert_costs);
+        final EditText editTextPurpose = findViewById(R.id.insert_purpose);
+        final TextView editTextMail = findViewById(R.id.show_email);
 
         button_savepayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                getFlatID();
+
                 String costString = editTextCost.getText().toString();
                 double cost = Double.valueOf(costString);
                 String purpose = editTextPurpose.getText().toString();
                 String useremail = editTextMail.getText().toString();
-                TextView shareBill = (TextView)findViewById(R.id.share_your_bill);
+                TextView shareBill = findViewById(R.id.share_your_bill);
                 shareBill.setText(costString +" "+ purpose);
                 String receiverName = selectMate.getText().toString();
-                getFlatID();
                 String flat = flatID;
 
 
                 if (costString.isEmpty()){Toast.makeText(getApplicationContext(), "EmptyField!",Toast.LENGTH_LONG).show();}
                 if (!costString.isEmpty()){
-                            actualCosts = Integer.valueOf(costString) / 2;
+                            actualCosts = (int) (Double.valueOf(costString) / 2);
                 }
-
-                // Write a message to the database to get the payment branch
-                FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
-                DatabaseReference myRefPayments = database.getReference("Payments");
 
                 PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, flat);
 
-                myRefPayments.addValueEventListener(new ValueEventListener() {
+                databaseReferencePayment.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists())
@@ -428,8 +425,8 @@ public class ActivityPaymentOverview extends AppCompatActivity {
 
                 //TODO: maxId is "frozen" in the onDataChange function. Callback implementation to properly count Payments
                 String paymentCounter = "P" + String.valueOf(maxId+1);
-                myRefPayments.child(paymentCounter).setValue(payment);
-                myRefPayments.push().setValue(payment);
+                databaseReferencePayment.child(paymentCounter).setValue(payment);
+                databaseReferencePayment.push().setValue(payment);
 
                 Toast.makeText(getApplicationContext(), "Successful!",Toast.LENGTH_LONG).show();
 
@@ -475,9 +472,8 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     }
 
     private void getFlatID() {
-        String currentUserEmail = firebaseAuth.getCurrentUser().getEmail().toString();
         for(int i = 0; i < flatContents.size(); i++){
-            if(flatContents.get(i).contains(currentUserEmail)) {
+            if(flatContents.get(i).contains(currentUser)) {
                 String currentUserFlat = flatContents.get(i).toString();
                 content = currentUserFlat.split(",");
             }
