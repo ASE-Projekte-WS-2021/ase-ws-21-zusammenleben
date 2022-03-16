@@ -483,7 +483,6 @@ public class ActivityPaymentOverview extends AppCompatActivity {
             }
         }
         flatID = extractFlatID();
-        System.out.println(flatID);
     }
 
     private String extractFlatID(){
@@ -494,7 +493,6 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         }
         return content[0].substring(1);
     }
-
 
     private void checkUserStatus (){
         FirebaseUser user = firebaseAuth.getCurrentUser();
