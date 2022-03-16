@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.entities.notes;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -35,6 +36,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ActivityStartScreen extends AppCompatActivity {
 
     TextView useremail;
@@ -44,6 +47,7 @@ public class ActivityStartScreen extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore;
     ImageView imageView, imageNote;
     ImageView imageAddImage;
+    private CircleImageView circleImageView;
 
     RecyclerView recyclerView;
     StaggeredGridLayoutManager staggeredGridLayoutManager;
@@ -63,10 +67,26 @@ public class ActivityStartScreen extends AppCompatActivity {
 
 
         imageView = findViewById(R.id.imageAddMain);
+        circleImageView =findViewById(R.id.show_picture);
 
 
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.home);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user.getPhotoUrl() != null ){
+            Glide.with(this)
+                    .load(user.getPhotoUrl())
+                    .into(circleImageView);
+        }
+
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ActivityUserProfile.class));
+            }
+        });
 
         imageView.setOnClickListener(view -> startActivity(new Intent(ActivityStartScreen.this, ActivityNoteSpace.class)));
 

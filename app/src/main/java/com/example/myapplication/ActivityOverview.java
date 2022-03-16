@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,12 +22,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ActivityOverview extends AppCompatActivity {
 
     ImageButton button_managePayments;
     BottomNavigationView bottomNavigationView;
     private FirebaseAuth mAuth;
     String userEmail;
+    private CircleImageView circleImageView;
 
     TextView paymentPurpose, costs;
     Object cost, purpose;
@@ -42,11 +46,26 @@ public class ActivityOverview extends AppCompatActivity {
         addListenerOnButton();
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        circleImageView =findViewById(R.id.show_picture_overwiew);
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         assert user != null;
         userEmail = user.getEmail();
+
+
+        if (user.getPhotoUrl() != null ){
+            Glide.with(this)
+                    .load(user.getPhotoUrl())
+                    .into(circleImageView);
+        }
+
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ActivityUserProfile.class));
+            }
+        });
 
 
 
