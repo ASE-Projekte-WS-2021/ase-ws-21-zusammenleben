@@ -64,8 +64,13 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         setupUIComponents();
         initFirebase();
         getFlatIDinFirebase();
-        utilSpinner();
         savePayment();
+    }
+
+    @Override
+    protected void onStart() {
+        checkUserStatus();
+        super.onStart();
     }
 
     private void setupUIComponents() {
@@ -74,8 +79,10 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         button_savepayment = (Button) findViewById(R.id.btn_save_payment);
         editTextCost = (EditText) findViewById(R.id.insert_costs);
         editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
+        selectMate = findViewById(R.id.select_mates);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        utilSpinner();
     }
 
     private void initFirebase(){
@@ -87,19 +94,9 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser().getEmail();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //getUsers();
-    }
-
     private void utilSpinner(){
-        //assign variable
-        selectMate = findViewById(R.id.select_mates);
-
         //initialize selected day array
         selectedMates = new boolean[categorieField.length];
-
         selectMate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -194,8 +191,6 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 double cost = Double.valueOf(costString);
                 String purpose = editTextPurpose.getText().toString();
                 String useremail = editTextMail.getText().toString();
-                TextView shareBill = findViewById(R.id.share_your_bill);
-                shareBill.setText(costString +" "+ purpose);
                 String receiverName = selectMate.getText().toString();
                 String flat = flatID;
 
@@ -350,19 +345,6 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         } else {
             finish();
         }
-    }
-
-    @Override
-    protected void onStart() {
-        checkUserStatus();
-        super.onStart();
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-
-        onBackPressed(); //return to previous screen/activity
-        return super.onSupportNavigateUp();
     }
 }
 

@@ -50,41 +50,12 @@ public class ActivityOverview extends AppCompatActivity {
         setupUIComponents();
         initFirebase();
         addListenerOnButton();
-        assert user != null;
         getFlatIDinFirebase();
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.getItemId()){
-                    case R.id.payment:
-                        return true;
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),ActivityStartScreen.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    /*case R.id.add_note:
-                        startActivity(new Intent(getApplicationContext(),ActivityNoteSpace.class));
-                        overridePendingTransition(0,0);
-                        return true;*/
-                    case R.id.user:
-                        startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        /*try {
-            updateTextView();
-        } catch (android.database.CursorIndexOutOfBoundsException e){
-            Log.d("catch", "Database still empty");
-        }*/
     }
 
     private void updateTextView() {
@@ -176,6 +147,27 @@ public class ActivityOverview extends AppCompatActivity {
         });
     }
 
+    private void setupNavBar(){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.payment:
+                        return true;
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(),ActivityStartScreen.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.user:
+                        startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
+
     private void setupUIComponents(){
         setContentView(R.layout.activity_overview);
         bottomNavigationView = findViewById(R.id.bottomnavview);
@@ -186,6 +178,7 @@ public class ActivityOverview extends AppCompatActivity {
         paymentPurpose = findViewById(R.id.payment_purpose);
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.payment);
+        setupNavBar();
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     }
@@ -197,6 +190,7 @@ public class ActivityOverview extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         userEmail = user.getEmail();
+        assert user != null;
     }
 
 }
