@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,7 +22,6 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -157,20 +157,21 @@ public class ActivityUserProfile extends AppCompatActivity {
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setTitle("Upload");
+        pd.show();
+
         StorageReference reference = FirebaseStorage.getInstance().getReference()
                 .child("images")
                 .child(uid + ".jpeg");
         reference.putBytes(byteArrayOutputStream.toByteArray())
-
-                //final ProgressDialog pd = new ProgressDialog(this);
-                //pd.setTitle("Upload");
-                //pd.show();
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         //pd.dismiss();
                         getDownloadUrl(reference);
-                        Snackbar.make(findViewById(android.R.id.content), "Picture successfully changed", Snackbar.LENGTH_SHORT).show();
+                        pd.dismiss();
+                        //Snackbar.make(findViewById(android.R.id.content), "Picture successfully changed", Snackbar.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -189,7 +190,7 @@ public class ActivityUserProfile extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         //Log.d(TAG, "onSuccess:" + uri);
-                        Toast.makeText(ActivityUserProfile.this, "Succesfully", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(ActivityUserProfile.this, "Picture succesfully changed!", Toast.LENGTH_SHORT).show();
                         setUserProfileUrl(uri);
                     }
                 });
@@ -207,14 +208,14 @@ public class ActivityUserProfile extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(ActivityUserProfile.this, "Succesfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivityUserProfile.this, "Picture succesfully changed!", Toast.LENGTH_SHORT).show();
 
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ActivityUserProfile.this, "Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivityUserProfile.this, "Failed, please try again!", Toast.LENGTH_SHORT).show();
                     }
                 });
 

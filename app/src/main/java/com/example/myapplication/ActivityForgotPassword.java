@@ -48,13 +48,13 @@ public class ActivityForgotPassword extends AppCompatActivity {
         String email = emailforpassword.getText().toString().trim();
 
         if(email.isEmpty()){
-            emailforpassword.setError("Please, enter a email");
+            emailforpassword.setError("Please, enter your email!");
             emailforpassword.setFocusable(true);
             return;
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailforpassword.setError("Please, enter a correct email");
+            emailforpassword.setError("Please, enter a correct email!");
             emailforpassword.setFocusable(true);
             return;
         }
@@ -66,7 +66,7 @@ public class ActivityForgotPassword extends AppCompatActivity {
 
                 if (task.isSuccessful()){
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(ActivityForgotPassword.this, "Please, check your emails", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityForgotPassword.this, "Please, check your emails!", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(ActivityForgotPassword.this, ActivityLogin.class));
                 }else{
                     Toast.makeText(ActivityForgotPassword.this, "Sending email failed! Try again!", Toast.LENGTH_LONG).show();

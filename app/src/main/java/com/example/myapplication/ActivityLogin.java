@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -58,7 +57,7 @@ public class ActivityLogin extends AppCompatActivity {
                 String password = loginpassword.getText().toString().trim();
 
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    loginemail.setError("Invalid");
+                    loginemail.setError("Please, enter your email!");
                     loginemail.setFocusable(true);
                 } else {
                     loginUser (email, password);
@@ -95,7 +94,7 @@ public class ActivityLogin extends AppCompatActivity {
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(ActivityLogin.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ActivityLogin.this, "Authentication failed.Please, check your password!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }) .addOnFailureListener(new OnFailureListener() {

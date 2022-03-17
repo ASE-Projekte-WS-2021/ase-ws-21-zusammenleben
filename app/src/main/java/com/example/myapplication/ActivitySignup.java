@@ -64,7 +64,7 @@ public class ActivitySignup extends AppCompatActivity {
                 String name = signupname.getText().toString().trim();
                 // check email validation
                 if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    signupemail.setError("Wrong E-Mail");
+                    signupemail.setError("Please, enter a correct email!");
                     signupemail.setFocusable(true);
                 }
                 else if (password.length()<6){
