@@ -59,7 +59,5 @@ jobs:
             Changes in this Release
             - First Change
             - Second Change
-          asset_name: WGFinance.apk
-          asset_content_type: application/zip
           draft: false
           prerelease: false
