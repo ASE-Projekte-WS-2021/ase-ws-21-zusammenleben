@@ -1,8 +1,6 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -10,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -64,7 +65,9 @@ public class ActivityForgotPassword extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
 
                 if (task.isSuccessful()){
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(ActivityForgotPassword.this, "Please, check your emails", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(ActivityForgotPassword.this, ActivityLogin.class));
                 }else{
                     Toast.makeText(ActivityForgotPassword.this, "Sending email failed! Try again!", Toast.LENGTH_LONG).show();
                 }
