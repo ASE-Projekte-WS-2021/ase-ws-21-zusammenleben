@@ -80,11 +80,11 @@ public class ActivityOverview extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        try {
+        /*try {
             updateTextView();
         } catch (android.database.CursorIndexOutOfBoundsException e){
             Log.d("catch", "Database still empty");
-        }
+        }*/
     }
 
     private void updateTextView() {
@@ -135,6 +135,7 @@ public class ActivityOverview extends AppCompatActivity {
                 // Wait for the server to retrieve the data
                 firebaseCallback.onCallback(flatContents);
                 getCurrentUserFlat();
+                updateTextView();
             }
 
             @Override
