@@ -3,10 +3,10 @@ name: Build process for Debug APK
 on:
   push:
     branches:
-      - interfacedesign
+      - main
   pull_request:
     branches:
-      - interfacedesign
+      - main
 # test
 jobs:
   build:
