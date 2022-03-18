@@ -64,8 +64,13 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         setupUIComponents();
         initFirebase();
         getFlatIDinFirebase();
-        utilSpinner();
         savePayment();
+    }
+
+    @Override
+    protected void onStart() {
+        checkUserStatus();
+        super.onStart();
     }
 
     private void setupUIComponents() {
@@ -74,8 +79,10 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         button_savepayment = (Button) findViewById(R.id.btn_save_payment);
         editTextCost = (EditText) findViewById(R.id.insert_costs);
         editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
+        selectMate = findViewById(R.id.select_mates);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        utilSpinner();
     }
 
     private void initFirebase(){
@@ -87,223 +94,9 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser().getEmail();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
     private void utilSpinner(){
-        //assign variable
-        selectMate = findViewById(R.id.select_mates);
-        //TODO: refine code!
-        //TODO: show names in spinner instead of email
-        categories.add(currentUser);
-        Query checkFlatName = databaseReferenceFlat.orderByChild("firstUser").equalTo(currentUser);
-        checkFlatName.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    flatSize = snap.getValue(Flats.class).getFlatSize();
-
-                    switch(flatSize) {
-                        case 2:
-                            categories.add(snap.getValue(Flats.class).getSecondUser());
-                            for(int i = 0; i < categories.size(); i++){
-                                categorieField[i] = categories.get(i);
-                            }
-                            break;
-                            case 3:
-                                categories.add(snap.getValue(Flats.class).getSecondUser());
-                                categories.add(snap.getValue(Flats.class).getThirdUser());
-                                for(int i = 0; i < categories.size(); i++){
-                                    categorieField[i] = categories.get(i);
-                                }
-                                break;
-                            case 4:
-                                categories.add(snap.getValue(Flats.class).getSecondUser());
-                                categories.add(snap.getValue(Flats.class).getThirdUser());
-                                categories.add(snap.getValue(Flats.class).getFourthUser());
-                                for(int i = 0; i < categories.size(); i++){
-                                    categorieField[i] = categories.get(i);
-                                }
-                                break;
-                            case 5:
-                                categories.add(snap.getValue(Flats.class).getSecondUser());
-                                categories.add(snap.getValue(Flats.class).getThirdUser());
-                                categories.add(snap.getValue(Flats.class).getFourthUser());
-                                categories.add(snap.getValue(Flats.class).getFifthUser());
-                                for(int i = 0; i < categories.size(); i++){
-                                    categorieField[i] = categories.get(i);
-                                }
-                                break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        Query checkFlatName2 = databaseReferenceFlat.orderByChild("secondUser").equalTo(currentUser);
-
-        checkFlatName2.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    flatSize = snap.getValue(Flats.class).getFlatSize();
-
-                    switch(flatSize) {
-                        case 2:
-                            categories.add(snap.getValue(Flats.class).getName());
-                            for(int i = 0; i < categories.size(); i++){
-                                categorieField[i] = categories.get(i);
-                            }
-                            break;
-                        case 3:
-                            categories.add(snap.getValue(Flats.class).getName());
-                            categories.add(snap.getValue(Flats.class).getThirdUser());
-                            for(int i = 0; i < categories.size(); i++){
-                                categorieField[i] = categories.get(i);
-                            }
-                            break;
-                        case 4:
-                            categories.add(snap.getValue(Flats.class).getName());
-                            categories.add(snap.getValue(Flats.class).getThirdUser());
-                            categories.add(snap.getValue(Flats.class).getFourthUser());
-                            for(int i = 0; i < categories.size(); i++){
-                                categorieField[i] = categories.get(i);
-                            }
-                            break;
-                        case 5:
-                            categories.add(snap.getValue(Flats.class).getName());
-                            categories.add(snap.getValue(Flats.class).getThirdUser());
-                            categories.add(snap.getValue(Flats.class).getFourthUser());
-                            categories.add(snap.getValue(Flats.class).getFifthUser());
-                            for(int i = 0; i < categories.size(); i++){
-                                categorieField[i] = categories.get(i);
-                            }
-                            break;
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        Query checkFlatName3 = databaseReferenceFlat.orderByChild("thirdUser").equalTo(currentUser);
-
-        checkFlatName3.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    flatSize = snap.getValue(Flats.class).getFlatSize();
-
-                    switch(flatSize) {
-                        case 3:
-                            categories.add(snap.getValue(Flats.class).getName());
-                            categories.add(snap.getValue(Flats.class).getSecondUser());
-                            for(int i = 0; i < categories.size(); i++){
-                                categorieField[i] = categories.get(i);
-                            }
-                            break;
-                        case 4:
-                            categories.add(snap.getValue(Flats.class).getName());
-                            categories.add(snap.getValue(Flats.class).getSecondUser());
-                            categories.add(snap.getValue(Flats.class).getFourthUser());
-                            for(int i = 0; i < categories.size(); i++){
-                                categorieField[i] = categories.get(i);
-                            }
-                            break;
-                        case 5:
-                            categories.add(snap.getValue(Flats.class).getName());
-                            categories.add(snap.getValue(Flats.class).getSecondUser());
-                            categories.add(snap.getValue(Flats.class).getFourthUser());
-                            categories.add(snap.getValue(Flats.class).getFifthUser());
-                            for(int i = 0; i < categories.size(); i++){
-                                categorieField[i] = categories.get(i);
-                            }
-                            break;
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        Query checkFlatName4 = databaseReferenceFlat.orderByChild("fourthUser").equalTo(currentUser);
-
-        checkFlatName4.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    flatSize = snap.getValue(Flats.class).getFlatSize();
-
-                    switch(flatSize) {
-                        case 4:
-                            categories.add(snap.getValue(Flats.class).getName());
-                            categories.add(snap.getValue(Flats.class).getSecondUser());
-                            categories.add(snap.getValue(Flats.class).getThirdUser());
-                            for(int i = 0; i < categories.size(); i++){
-                                categorieField[i] = categories.get(i);
-                            }
-                            break;
-                        case 5:
-                            categories.add(snap.getValue(Flats.class).getName());
-                            categories.add(snap.getValue(Flats.class).getSecondUser());
-                            categories.add(snap.getValue(Flats.class).getThirdUser());
-                            categories.add(snap.getValue(Flats.class).getFifthUser());
-                            for(int i = 0; i < categories.size(); i++){
-                                categorieField[i] = categories.get(i);
-                            }
-                            break;
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        Query checkFlatName5 = databaseReferenceFlat.orderByChild("fifthUser").equalTo(currentUser);
-
-        checkFlatName5.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    flatSize = snap.getValue(Flats.class).getFlatSize();
-
-                            categories.add(snap.getValue(Flats.class).getName());
-                            categories.add(snap.getValue(Flats.class).getSecondUser());
-                            categories.add(snap.getValue(Flats.class).getThirdUser());
-                            categories.add(snap.getValue(Flats.class).getFourthUser());
-
-                    for(int i = 0; i < categories.size(); i++){
-                        categorieField[i] = categories.get(i);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-
         //initialize selected day array
         selectedMates = new boolean[categorieField.length];
-
         selectMate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -398,8 +191,6 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 double cost = Double.valueOf(costString);
                 String purpose = editTextPurpose.getText().toString();
                 String useremail = editTextMail.getText().toString();
-                TextView shareBill = findViewById(R.id.share_your_bill);
-                shareBill.setText(costString +" "+ purpose);
                 String receiverName = selectMate.getText().toString();
                 String flat = flatID;
 
@@ -472,6 +263,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 }
                 // Wait for the server to retrieve the data
                 firebaseCallback.onCallback(flatContents);
+                getUsers();
             }
 
             @Override
@@ -479,6 +271,62 @@ public class ActivityPaymentOverview extends AppCompatActivity {
             }
         };
         databaseReferenceFlat.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    private void getUsers(){
+        getFlatID();
+
+        Query checkFlatName = databaseReferenceFlat.orderByChild("flatID").equalTo(flatID);
+        checkFlatName.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    flatSize = snap.getValue(Flats.class).getFlatSize();
+
+                    switch(flatSize) {
+                        case 2:
+                            categories.add(snap.getValue(Flats.class).getFirstUser());
+                            categories.add(snap.getValue(Flats.class).getSecondUser());
+                            for(int i = 0; i < categories.size(); i++){
+                                categorieField[i] = categories.get(i);
+                            }
+                            break;
+                        case 3:
+                            categories.add(snap.getValue(Flats.class).getFirstUser());
+                            categories.add(snap.getValue(Flats.class).getSecondUser());
+                            categories.add(snap.getValue(Flats.class).getThirdUser());
+                            for(int i = 0; i < categories.size(); i++){
+                                categorieField[i] = categories.get(i);
+                            }
+                            break;
+                        case 4:
+                            categories.add(snap.getValue(Flats.class).getFirstUser());
+                            categories.add(snap.getValue(Flats.class).getSecondUser());
+                            categories.add(snap.getValue(Flats.class).getThirdUser());
+                            categories.add(snap.getValue(Flats.class).getFourthUser());
+                            for(int i = 0; i < categories.size(); i++){
+                                categorieField[i] = categories.get(i);
+                            }
+                            break;
+                        case 5:
+                            categories.add(snap.getValue(Flats.class).getFirstUser());
+                            categories.add(snap.getValue(Flats.class).getSecondUser());
+                            categories.add(snap.getValue(Flats.class).getThirdUser());
+                            categories.add(snap.getValue(Flats.class).getFourthUser());
+                            categories.add(snap.getValue(Flats.class).getFifthUser());
+                            for(int i = 0; i < categories.size(); i++){
+                                categorieField[i] = categories.get(i);
+                            }
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void getFlatID() {
@@ -507,19 +355,6 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         } else {
             finish();
         }
-    }
-
-    @Override
-    protected void onStart() {
-        checkUserStatus();
-        super.onStart();
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-
-        onBackPressed(); //return to previous screen/activity
-        return super.onSupportNavigateUp();
     }
 }
 
