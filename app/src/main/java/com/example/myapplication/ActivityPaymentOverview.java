@@ -44,7 +44,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
 
     int flatSize;
     int actualCosts;
-    long maxId;
+    long paymentCounter;
 
     String currentUser;
     String flatID;
@@ -57,6 +57,8 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     ArrayList<Integer> matesList = new ArrayList<>();
     ArrayList<ArrayList<String>> flatContents = new ArrayList<>();
     String[] content;
+
+    ArrayList<ArrayList<String>> paymentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,9 +186,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         button_savepayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 getFlatID();
-
                 String costString = editTextCost.getText().toString();
                 double cost = Double.valueOf(costString);
                 String purpose = editTextPurpose.getText().toString();
@@ -201,34 +201,46 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 }
 
                 PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, flat);
-
-                databaseReferencePayment.addValueEventListener(new ValueEventListener() {
+                Log.d("paymentcounter", String.valueOf(paymentCounter));
+                readDataFromPayments(new FirebaseCallback() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists())
-                            maxId = (snapshot.getChildrenCount());
-                            Log.d("1234", String.valueOf(maxId));
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
+                    public void onCallback(ArrayList<ArrayList<String>> list) {
+                        Log.d("Hi", list.toString());
+                        Log.d("Hi", String.valueOf(paymentCounter));
+                        String paymentTitle = flatID + String.valueOf(paymentCounter++);
+                        databaseReferencePayment.child(paymentTitle).setValue(payment);
                     }
                 });
 
-
-
-                //TODO: maxId is "frozen" in the onDataChange function. Callback implementation to properly count Payments
-
-                //TODO: maxId is "frozen" in the onDataChange function. Callback implementation to properly count Payments
-                String paymentCounter = "P" + String.valueOf(maxId+1);
-                Log.d("123", paymentCounter);
-                databaseReferencePayment.child(flatID+paymentCounter).setValue(payment);
                 Toast.makeText(getApplicationContext(), "Successful!",Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 startActivity(intent);
-                startActivity
                 }
         });
+    }
+
+    private void readDataFromPayments(FirebaseCallback firebaseCallback){
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    paymentCounter = snapshot.getChildrenCount();
+                    ArrayList<String> payment = ds.getValue(PaymentMemo.class).getData();
+                    paymentList.add(payment);
+                }
+
+                firebaseCallback.onCallback(paymentList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        };
+        databaseReferencePayment.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    private interface FirebasePaymentCallback {
+        void onCallback(List<String> list);
     }
 
     private void getFlatIDinFirebase(){
