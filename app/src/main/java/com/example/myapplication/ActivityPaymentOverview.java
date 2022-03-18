@@ -226,7 +226,9 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     paymentCounter = snapshot.getChildrenCount();
                     ArrayList<String> payment = ds.getValue(PaymentMemo.class).getData();
-                    paymentList.add(payment);
+                    if(payment.contains(flatID)){
+                        paymentList.add(payment);
+                    }
                 }
 
                 firebaseCallback.onCallback(paymentList);
