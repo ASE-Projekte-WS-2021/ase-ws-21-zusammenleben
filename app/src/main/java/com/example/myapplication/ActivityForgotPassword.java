@@ -1,12 +1,12 @@
 package com.example.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,29 +18,17 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ActivityForgotPassword extends AppCompatActivity {
 
-    private EditText emailforpassword;
-    private Button resetpassword;
-    private ProgressBar progressBar;
+    EditText emailforpassword;
+    Button resetpassword;
 
-    FirebaseAuth auth;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgotpassword);
-
-        emailforpassword = findViewById(R.id.forgot_password_email);
-        resetpassword = findViewById(R.id.btn_resetPassword);
-        progressBar = findViewById(R.id.progressBar);
-
-        auth = FirebaseAuth.getInstance();
-
-        resetpassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                passwordreset();
-            }
-        });
+        setupUIComponents();
+        resetpassword();
+        initFirebase();
     }
 
     private void passwordreset() {
@@ -54,24 +42,47 @@ public class ActivityForgotPassword extends AppCompatActivity {
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailforpassword.setError("Please, enter a correct email!");
+            emailforpassword.setError("Please, enter your email!");
             emailforpassword.setFocusable(true);
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
-        auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setTitle("Sending email");
+        pd.show();
+
+        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
                 if (task.isSuccessful()){
-                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(ActivityForgotPassword.this, "Please, check your emails!", Toast.LENGTH_LONG).show();
+                    pd.dismiss();
                     startActivity(new Intent(ActivityForgotPassword.this, ActivityLogin.class));
                 }else{
-                    Toast.makeText(ActivityForgotPassword.this, "Sending email failed! Try again!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityForgotPassword.this, "The email does not exist. Please try again.", Toast.LENGTH_LONG).show();
+                    pd.dismiss();
                 }
             }
         });
+    }
+
+    public void resetpassword() {
+        resetpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                passwordreset();
+            }
+        });
+    }
+
+    private void setupUIComponents(){
+        setContentView(R.layout.activity_forgotpassword);
+        emailforpassword = findViewById(R.id.forgot_password_email);
+        resetpassword = findViewById(R.id.btn_resetPassword);
+    }
+
+    private void initFirebase(){
+        mAuth = FirebaseAuth.getInstance();
     }
 }
