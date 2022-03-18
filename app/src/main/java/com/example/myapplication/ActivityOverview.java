@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,10 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivityOverview extends AppCompatActivity {
 
@@ -99,6 +99,7 @@ public class ActivityOverview extends AppCompatActivity {
                             purpose = dataSnapshot.child("purpose").getValue();
                             paymentPurpose.setText(purpose.toString());
                             costs.setText(cost.toString());
+                            Log.d("debug", cost.toString() + "--" + purpose.toString());
                         }
                     }
                 }

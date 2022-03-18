@@ -10,6 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,11 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 
 public class ActivityPaymentOverview extends AppCompatActivity {
@@ -416,6 +416,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists())
                             maxId = (snapshot.getChildrenCount());
+                            Log.d("1234", String.valueOf(maxId));
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
@@ -423,18 +424,19 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                     }
                 });
 
+
+
+                //TODO: maxId is "frozen" in the onDataChange function. Callback implementation to properly count Payments
+
                 //TODO: maxId is "frozen" in the onDataChange function. Callback implementation to properly count Payments
                 String paymentCounter = "P" + String.valueOf(maxId+1);
-                databaseReferencePayment.child(paymentCounter).setValue(payment);
-                databaseReferencePayment.push().setValue(payment);
-
+                Log.d("123", paymentCounter);
+                databaseReferencePayment.child(flatID+paymentCounter).setValue(payment);
                 Toast.makeText(getApplicationContext(), "Successful!",Toast.LENGTH_LONG).show();
-
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 startActivity(intent);
+                startActivity
                 }
-
-
         });
     }
 
@@ -445,6 +447,14 @@ public class ActivityPaymentOverview extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        Log.d("xxxxx", "onRestart() active!");
+    }
+
+
 
     private interface FirebaseCallback {
         void onCallback(ArrayList<ArrayList<String>> list);

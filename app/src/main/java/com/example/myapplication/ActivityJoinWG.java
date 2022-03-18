@@ -83,17 +83,11 @@ public class ActivityJoinWG extends AppCompatActivity {
             String key = map.getKey();
             String value = map.getValue();
             if (value.contains("Placeholder") && check){
-                Log.d("debug", value);
                 FirebaseUser user = mAuth.getCurrentUser();
                 databaseReference.child(userFlatNameInput).child(key).setValue(user.getEmail());
-                Toast.makeText(ActivityJoinWG.this, "Successfully joined flat!", Toast.LENGTH_SHORT).show();
-                check = false;
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 startActivity(intent);
-            } else if (value.contains("Placeholder") && check == false) {
-                Toast.makeText(ActivityJoinWG.this, "Can't enter Flat. Try another!", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(ActivityJoinWG.this, "Can't enter Flat. Try another!", Toast.LENGTH_LONG).show();
+                check = false;
             }
         }
     }
