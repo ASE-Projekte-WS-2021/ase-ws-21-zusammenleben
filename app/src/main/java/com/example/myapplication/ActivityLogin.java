@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,69 +28,24 @@ import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 
 public class ActivityLogin extends AppCompatActivity {
 
-    //our views
-    EditText loginemail, loginpassword;
+    EditText loginemail;
+    EditText loginpassword;
     Button login;
-    TextView signup, forgotpassword;
+    TextView signup;
+    TextView forgotpassword;
 
-    private FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        //ActionBar actionBar = getSupportActionBar();
-        // actionBar.setTitle("Login");
-        //implement BackButton
-        //actionBar.setDisplayHomeAsUpEnabled(true);
-        //actionBar.setDisplayShowHomeEnabled(true);
-
-        mAuth = FirebaseAuth.getInstance();
-
-        //init
-        forgotpassword = findViewById(R.id.forgot_password);
-        loginemail = findViewById(R.id.login_email);
-        loginpassword = findViewById(R.id.login_password);
-        login = findViewById(R.id.btn_login);
-        signup = findViewById(R.id.login_signup);
-
-        /////////Marco
-
+        setupUIComponents();
         checkForDynamicLinks();
+        signup();
+        forgotpassword();
+        login();
+        initFirebase();
 
-        //////////
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String email = loginemail.getText().toString().trim();
-                String password = loginpassword.getText().toString().trim();
-
-                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    loginemail.setError("Invalid");
-                    loginemail.setFocusable(true);
-                } else {
-                    loginUser (email, password);
-                }
-
-            }
-        });
-
-        forgotpassword.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ActivityLogin.this, ActivityForgotPassword.class));
-            }
-        });
-
-        signup.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ActivityLogin.this, ActivitySignup.class));
-            }
-        });
     }
 
     private void checkForDynamicLinks() {
@@ -115,7 +71,51 @@ public class ActivityLogin extends AppCompatActivity {
         });
     }
 
+    public void login() {
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String email = loginemail.getText().toString().trim();
+                String password = loginpassword.getText().toString().trim();
+
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.isEmpty()){
+                    loginemail.setError("Please, enter your email!");
+                    loginemail.setFocusable(true);
+                } else if (password.isEmpty()){
+                    loginpassword.setError("Please, enter your password!");
+                    loginpassword.setFocusable(true);
+                } else {
+                    loginUser (email, password);
+                }
+
+            }
+        });
+    }
+
+    public void forgotpassword() {
+        forgotpassword.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityLogin.this, ActivityForgotPassword.class));
+            }
+        });
+    }
+
+    public void signup() {
+        signup.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityLogin.this, ActivitySignup.class));
+            }
+        });
+    }
+
     private void loginUser(String email, String password) {
+
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setTitle("Login");
+        pd.show();
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -125,15 +125,14 @@ public class ActivityLogin extends AppCompatActivity {
                             // Sign in success, and start register activity
                             FirebaseUser user = mAuth.getCurrentUser();
                             startActivity(new Intent(ActivityLogin.this, ActivityStartScreen.class));
+                            pd.dismiss();
                             finish();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(ActivityLogin.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }) .addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
                 Toast.makeText(ActivityLogin.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }) ;
@@ -143,5 +142,18 @@ public class ActivityLogin extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         checkForDynamicLinks();
+    }
+
+    private void setupUIComponents(){
+        setContentView(R.layout.activity_login);
+        forgotpassword = findViewById(R.id.forgot_password);
+        loginemail = findViewById(R.id.login_email);
+        loginpassword = findViewById(R.id.login_password);
+        login = findViewById(R.id.btn_login);
+        signup = findViewById(R.id.login_signup);
+    }
+
+    private void initFirebase(){
+        mAuth = FirebaseAuth.getInstance();
     }
 }
