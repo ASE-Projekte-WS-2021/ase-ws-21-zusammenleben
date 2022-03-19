@@ -3,14 +3,13 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,9 +22,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class ActivityOverview extends AppCompatActivity {
 
     ImageButton button_managePayments;
+    ImageView optionButton;
     BottomNavigationView bottomNavigationView;
     String userEmail;
     String flatID;
@@ -59,18 +63,43 @@ public class ActivityOverview extends AppCompatActivity {
     }
 
     private void updateTextView() {
-        databaseReferencePayment.addValueEventListener(new ValueEventListener() {
+        databaseReferencePayment.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         if(flatID.equals(dataSnapshot.child("flat").getValue())) {
-                            System.out.println(dataSnapshot.child("flat").getValue());
                             cost = dataSnapshot.child("cost").getValue();
                             purpose = dataSnapshot.child("purpose").getValue();
                             paymentPurpose.setText(purpose.toString());
                             costs.setText(cost.toString());
                             Log.d("debug", cost.toString() + "--" + purpose.toString());
+                        return;
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("catch", "Database still empty.....");
+            }
+        });
+    }
+
+    private void deletePayment() {
+        databaseReferencePayment.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        if(flatID.equals(dataSnapshot.child("flat").getValue())) {
+                            dataSnapshot.getRef().removeValue();
+                            Intent i = new Intent(ActivityOverview.this, ActivityOverview.class);
+                            finish();
+                            overridePendingTransition(0, 0);
+                            startActivity(i);
+                            overridePendingTransition(0, 0);
+                            return;
                         }
                     }
                 }
@@ -115,6 +144,7 @@ public class ActivityOverview extends AppCompatActivity {
             }
         };
         databaseReferenceFlat.addListenerForSingleValueEvent(valueEventListener);
+
     }
 
     private void getCurrentUserFlat(){
@@ -144,7 +174,40 @@ public class ActivityOverview extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ActivityPaymentOverview.class);
                 startActivity(intent);
             }
+        });
 
+        optionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu=new PopupMenu(view.getContext(),view);
+                popupMenu.setGravity(Gravity.END);
+                popupMenu.getMenu().add("Edit Payment").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        return false;
+                    }
+                });
+
+                popupMenu.getMenu().add("Delete Payment").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+
+                        deletePayment();
+                            /*@Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(view.getContext(), "Deleted!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(view.getContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });*/
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
         });
     }
 
@@ -173,10 +236,10 @@ public class ActivityOverview extends AppCompatActivity {
         setContentView(R.layout.activity_overview);
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.payment);
-        button_managePayments = (ImageButton) findViewById(R.id.btn_managePayments);
-        paymentPurpose = findViewById(R.id.payment_purpose);
+        button_managePayments = findViewById(R.id.btn_managePayments);
         costs = findViewById(R.id.costs_overview);
         paymentPurpose = findViewById(R.id.payment_purpose);
+        optionButton = findViewById(R.id.optionbutton);
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.payment);
         setupNavBar();
@@ -193,5 +256,4 @@ public class ActivityOverview extends AppCompatActivity {
         userEmail = user.getEmail();
         assert user != null;
     }
-
 }
