@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large">
+    </TextView>
+
+    <EditText
+        android:id="@+id/popupwindow_edit_text_to"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress">
+    </EditText>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Subject:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large">
+    </TextView>
+
+    <EditText
+        android:id="@+id/popupwindow_edit_text_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Join my Flat!"
+        android:inputType="textEmailSubject">
+    </EditText>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Message:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large">
+    </TextView>
+
+    <EditText
+        android:id="@+id/popupwindow_edit_text_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="10"
+        android:gravity="start|top">
+    </EditText>
+
+    <Button
+        android:id="@+id/popupwindow_btn_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        android:backgroundTint="#DEDEDE"
+        android:textColor="#5c5c5c"
+        >
+    </Button>
+
+
+
+
+</LinearLayout>
