@@ -10,9 +10,34 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomnavview"
+        android:layout_marginBottom="75dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="120dp"
+        app:layout_constraintEnd_toStartOf="@+id/list_view_cost"/>
+
+    <ListView
+        android:id="@+id/list_view_cost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="75dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="295dp"
+        app:layout_constraintStart_toEndOf="@+id/list_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/sumcosts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+
+        android:hint="Sum Costs"
+
+        app:layout_constraintBottom_toTopOf="@+id/bottomnavview"
+        app:layout_constraintEnd_toEndOf="parent"></TextView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnavview"
@@ -21,7 +46,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_view"
         app:menu="@menu/bottom_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
