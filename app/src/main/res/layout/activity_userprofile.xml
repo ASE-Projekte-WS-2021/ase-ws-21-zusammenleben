@@ -56,7 +56,7 @@
         android:layout_width="272dp"
         android:layout_height="48dp"
         android:background="@drawable/roundetcorners"
-        android:text="Invite your Roomates"
+        android:text="Invite friends"
         android:textAlignment="center"
         android:textColor="#B6B2B2"
         android:textSize="20sp"

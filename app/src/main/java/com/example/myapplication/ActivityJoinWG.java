@@ -39,6 +39,7 @@ public class ActivityJoinWG extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseDatabase database;
     private FirebaseAuth mAuth;
+    boolean check = true;
 
     int flatSize;
     HashMap <String, String> userMap;
@@ -81,14 +82,12 @@ public class ActivityJoinWG extends AppCompatActivity {
         for (Map.Entry<String, String> map : userMap.entrySet()){
             String key = map.getKey();
             String value = map.getValue();
-            if (value.contains("Placeholder")){
+            if (value.contains("Placeholder") && check){
                 FirebaseUser user = mAuth.getCurrentUser();
                 databaseReference.child(userFlatNameInput).child(key).setValue(user.getEmail());
-                Toast.makeText(ActivityJoinWG.this, "Successfully joined flat!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 startActivity(intent);
-            } else {
-                Toast.makeText(ActivityJoinWG.this, "Can't enter Flat. Try another!", Toast.LENGTH_LONG).show();
+                check = false;
             }
         }
     }
@@ -105,35 +104,35 @@ public class ActivityJoinWG extends AppCompatActivity {
         checkFlatName.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot snap : snapshot.getChildren()) {
-                        if(snap.getValue(Flats.class).getFlatID().equals(userFlatNameInput)){
-                            Toast.makeText(ActivityJoinWG.this, "WG existiert!", Toast.LENGTH_LONG).show();
-                            foundFlatOwner.setText("Gründer: " + snap.getValue(Flats.class).getFirstUser());
-                            foundFlatPeople.setText("Mitbewohner: " + snap.getValue(Flats.class).getFlatSize());
-                            flatSize = snap.getValue(Flats.class).getFlatSize();
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    if(snap.getValue(Flats.class).getFlatID().equals(userFlatNameInput)){
+                        Toast.makeText(ActivityJoinWG.this, "WG existiert!", Toast.LENGTH_LONG).show();
+                        foundFlatOwner.setText("Gründer: " + snap.getValue(Flats.class).getFirstUser());
+                        foundFlatPeople.setText("Mitbewohner: " + snap.getValue(Flats.class).getFlatSize());
+                        flatSize = snap.getValue(Flats.class).getFlatSize();
 
-                            switch(flatSize) {
-                                case 2:
-                                    userMap.put("secondUser", snap.getValue(Flats.class).getSecondUser());
-                                    break;
-                                case 3:
-                                    userMap.put("secondUser", snap.getValue(Flats.class).getSecondUser());
-                                    userMap.put("thirdUser", snap.getValue(Flats.class).getThirdUser());
-                                    break;
-                                case 4:
-                                    userMap.put("secondUser", snap.getValue(Flats.class).getSecondUser());
-                                    userMap.put("thirdUser", snap.getValue(Flats.class).getThirdUser());
-                                    userMap.put("fourthUser", snap.getValue(Flats.class).getFourthUser());
-                                    break;
-                                case 5:
-                                    userMap.put("secondUser", snap.getValue(Flats.class).getSecondUser());
-                                    userMap.put("thirdUser", snap.getValue(Flats.class).getThirdUser());
-                                    userMap.put("fourthUser", snap.getValue(Flats.class).getFourthUser());
-                                    userMap.put("fifthUser", snap.getValue(Flats.class).getFifthUser());
-                                    break;
-                            }
+                        switch(flatSize) {
+                            case 2:
+                                userMap.put("secondUser", snap.getValue(Flats.class).getSecondUser());
+                                break;
+                            case 3:
+                                userMap.put("secondUser", snap.getValue(Flats.class).getSecondUser());
+                                userMap.put("thirdUser", snap.getValue(Flats.class).getThirdUser());
+                                break;
+                            case 4:
+                                userMap.put("secondUser", snap.getValue(Flats.class).getSecondUser());
+                                userMap.put("thirdUser", snap.getValue(Flats.class).getThirdUser());
+                                userMap.put("fourthUser", snap.getValue(Flats.class).getFourthUser());
+                                break;
+                            case 5:
+                                userMap.put("secondUser", snap.getValue(Flats.class).getSecondUser());
+                                userMap.put("thirdUser", snap.getValue(Flats.class).getThirdUser());
+                                userMap.put("fourthUser", snap.getValue(Flats.class).getFourthUser());
+                                userMap.put("fifthUser", snap.getValue(Flats.class).getFifthUser());
+                                break;
                         }
-                        }
+                    }
+                }
             }
 
             @Override

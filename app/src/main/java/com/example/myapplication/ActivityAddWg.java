@@ -8,10 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +18,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivityAddWg extends AppCompatActivity {
 
@@ -43,9 +43,7 @@ public class ActivityAddWg extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupUIComponents();
-        flatIDs = new ArrayList<>();
-        FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
-        databaseReference = database.getReference("Flats");
+        initFirebase();
         getFlatIDinFirebase();
         mAuth = FirebaseAuth.getInstance();
 
@@ -67,6 +65,12 @@ public class ActivityAddWg extends AppCompatActivity {
         flatIDText = findViewById(R.id.wg_profile_name);
         size = findViewById(R.id.size_of_flat);
         flat_name = findViewById(R.id.flat_share_name);
+    }
+
+    private void initFirebase(){
+        flatIDs = new ArrayList<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
+        databaseReference = database.getReference("Flats");
     }
 
     private void getFlatIDinFirebase(){
@@ -171,6 +175,4 @@ public class ActivityAddWg extends AppCompatActivity {
                 break;
         }
     }
-
-
 }

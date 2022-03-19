@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import java.util.ArrayList;
+
 public class PaymentMemo {
 
     // All Data of the dataset. Pls add what ya need. this is probably not the complete list
@@ -10,8 +12,9 @@ public class PaymentMemo {
     private String receiverName;
     private String flat;
 
-    //private String flatsize;
+    public PaymentMemo (){
 
+    }
 
     public PaymentMemo (double cost, String purpose, String email, String receiverName, String flat) {
         this.cost = cost;
@@ -20,8 +23,6 @@ public class PaymentMemo {
 
         this.receiverName = receiverName;
         this.flat = flat;
-
-        //this.flatsize = flatsize
 
     }
 
@@ -62,11 +63,16 @@ public class PaymentMemo {
         this.flat = flat;
     }
 
-    //public String getFlatSize () {return flatsize;}
+    public ArrayList<String> getData() {
+        ArrayList<String> data = new ArrayList<String>();
+        data.add(purpose);
+        data.add(String.valueOf(cost));
+        data.add(email);
+        data.add(receiverName);
+        data.add(flat);
 
-    //public void setFlatSize (String flatsize) {this.flatsize = flatsize;}
-
-
+        return data;
+    }
 }
 
 
