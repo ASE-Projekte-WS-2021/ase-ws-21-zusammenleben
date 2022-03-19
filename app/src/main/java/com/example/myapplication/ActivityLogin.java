@@ -1,8 +1,9 @@
 package com.example.myapplication;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,37 +17,105 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 
 public class ActivityLogin extends AppCompatActivity {
 
     //our views
-    EditText loginemail;
-    EditText loginpassword;
+    EditText loginemail, loginpassword;
     Button login;
-    TextView signup;
-    TextView forgotpassword;
+    TextView signup, forgotpassword;
 
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupUIComponents();
-        login();
-        forgotpassword();
-        signup();
-        initFirebase();
+        setContentView(R.layout.activity_login);
+
+        //ActionBar actionBar = getSupportActionBar();
+        // actionBar.setTitle("Login");
+        //implement BackButton
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setDisplayShowHomeEnabled(true);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        //init
+        forgotpassword = findViewById(R.id.forgot_password);
+        loginemail = findViewById(R.id.login_email);
+        loginpassword = findViewById(R.id.login_password);
+        login = findViewById(R.id.btn_login);
+        signup = findViewById(R.id.login_signup);
+
+        /////////Marco
+
+        checkForDynamicLinks();
+
+        //////////
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String email = loginemail.getText().toString().trim();
+                String password = loginpassword.getText().toString().trim();
+
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    loginemail.setError("Invalid");
+                    loginemail.setFocusable(true);
+                } else {
+                    loginUser (email, password);
+                }
+
+            }
+        });
+
+        forgotpassword.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityLogin.this, ActivityForgotPassword.class));
+            }
+        });
+
+        signup.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityLogin.this, ActivitySignup.class));
+            }
+        });
+    }
+
+    private void checkForDynamicLinks() {
+        FirebaseDynamicLinks.getInstance().getDynamicLink(getIntent()).addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
+            @Override
+            public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
+                Log.i("ActivityLogin.java", "Link successful!");
+
+                Uri deepLink = null;
+                if(pendingDynamicLinkData != null){
+                    deepLink = pendingDynamicLinkData.getLink();
+                }
+
+                if(deepLink != null){
+                    Log.i("ActivityLogin.java", "this is the link" + deepLink.toString());
+                }
+            }
+        }).addOnFailureListener(this, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e("ActivityLogin.java", "could not find link!");
+            }
+        });
     }
 
     private void loginUser(String email, String password) {
-
-        final ProgressDialog pd = new ProgressDialog(this);
-        pd.setTitle("Login");
-        pd.show();
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -56,69 +125,23 @@ public class ActivityLogin extends AppCompatActivity {
                             // Sign in success, and start register activity
                             FirebaseUser user = mAuth.getCurrentUser();
                             startActivity(new Intent(ActivityLogin.this, ActivityStartScreen.class));
-                            pd.dismiss();
                             finish();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(ActivityLogin.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }) .addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                pd.dismiss();
                 Toast.makeText(ActivityLogin.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }) ;
     }
 
-    public void login() {
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String email = loginemail.getText().toString().trim();
-                String password = loginpassword.getText().toString().trim();
-
-                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.isEmpty()){
-                    loginemail.setError("Please, enter your email!");
-                    loginemail.setFocusable(true);
-                } else if (password.isEmpty()){
-                    loginpassword.setError("Please, enter your password!");
-                    loginpassword.setFocusable(true);
-                } else {
-                    loginUser (email, password);
-                }
-
-            }
-        });
-    }
-
-    public void forgotpassword() {
-        forgotpassword.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ActivityLogin.this, ActivityForgotPassword.class));
-            }
-        });
-    }
-
-    public void signup() {
-        signup.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ActivityLogin.this, ActivitySignup.class));
-            }
-        });
-    }
-
-    private void setupUIComponents(){
-        setContentView(R.layout.activity_login);
-        forgotpassword = findViewById(R.id.forgot_password);
-        loginemail = findViewById(R.id.login_email);
-        loginpassword = findViewById(R.id.login_password);
-        login = findViewById(R.id.btn_login);
-        signup = findViewById(R.id.login_signup);
-    }
-
-    private void initFirebase(){
-        mAuth = FirebaseAuth.getInstance();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        checkForDynamicLinks();
     }
 }

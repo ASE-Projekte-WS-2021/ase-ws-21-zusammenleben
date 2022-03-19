@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -37,6 +37,7 @@ public class ActivityUserProfile extends AppCompatActivity {
 
     Button button_signout;
     Button button_leaving;
+    Button btn_inviteFriends;
     BottomNavigationView bottomNavigationView;
     FirebaseAuth firebaseAuth;
     TextView useremail;
@@ -46,17 +47,11 @@ public class ActivityUserProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_userprofile);
-
+        setupUIComponents();
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
         firebaseAuth = FirebaseAuth.getInstance();
-        button_signout = (Button) findViewById(R.id.btn_logout);
-        button_leaving = (Button) findViewById(R.id.btn_leaving);
-        useremail = findViewById(R.id.show_email);
-        circleImageView =findViewById(R.id.user_picture);
-
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.user);
 
@@ -87,10 +82,10 @@ public class ActivityUserProfile extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), ActivityStartScreen.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.shopping:
-                        startActivity(new Intent(getApplicationContext(),ActivityShoppingList.class));
+                    /*case R.id.add_note:
+                        startActivity(new Intent(getApplicationContext(),ActivityNoteSpace.class));
                         overridePendingTransition(0,0);
-                        return true;
+                        return true;*/
                     case R.id.user:
                         return true;
                 }
@@ -114,6 +109,18 @@ public class ActivityUserProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    private void setupUIComponents() {
+        setContentView(R.layout.activity_userprofile);
+        button_signout = (Button) findViewById(R.id.btn_logout);
+        button_leaving = (Button) findViewById(R.id.btn_leaving);
+        useremail = findViewById(R.id.show_email);
+        circleImageView =findViewById(R.id.user_picture);
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.user);
+        btn_inviteFriends = findViewById(R.id.btn_invite);
     }
 
     private void checkUserStatus (){
@@ -157,21 +164,20 @@ public class ActivityUserProfile extends AppCompatActivity {
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        final ProgressDialog pd = new ProgressDialog(this);
-        pd.setTitle("Upload");
-        pd.show();
-
         StorageReference reference = FirebaseStorage.getInstance().getReference()
                 .child("images")
                 .child(uid + ".jpeg");
         reference.putBytes(byteArrayOutputStream.toByteArray())
+
+                //final ProgressDialog pd = new ProgressDialog(this);
+                //pd.setTitle("Upload");
+                //pd.show();
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         //pd.dismiss();
                         getDownloadUrl(reference);
-                        pd.dismiss();
-                        //Snackbar.make(findViewById(android.R.id.content), "Picture successfully changed", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(android.R.id.content), "Picture successfully changed", Snackbar.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -190,7 +196,7 @@ public class ActivityUserProfile extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         //Log.d(TAG, "onSuccess:" + uri);
-                        //Toast.makeText(ActivityUserProfile.this, "Picture succesfully changed!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivityUserProfile.this, "Succesfully", Toast.LENGTH_SHORT).show();
                         setUserProfileUrl(uri);
                     }
                 });
@@ -208,14 +214,14 @@ public class ActivityUserProfile extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(ActivityUserProfile.this, "Picture succesfully changed!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivityUserProfile.this, "Succesfully", Toast.LENGTH_SHORT).show();
 
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ActivityUserProfile.this, "Failed, please try again!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivityUserProfile.this, "Failed", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -226,4 +232,17 @@ public class ActivityUserProfile extends AppCompatActivity {
         checkUserStatus();
         super.onStart();
     }
+
+    ///Marco
+    @Override
+    protected void onResume() {
+        super.onResume();
+        btn_inviteFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityUserProfile.this, Pop.class));
+            }
+        });
+    }
+    ///
 }

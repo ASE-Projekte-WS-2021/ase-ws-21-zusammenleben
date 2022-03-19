@@ -74,23 +74,6 @@
         <!--Registerinformation E-Mail and Password-->
 
         <EditText
-            android:id="@+id/address"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
-            android:drawableLeft="@drawable/ic_baseline_home_work_24"
-            android:drawablePadding="20dp"
-            android:ems="10"
-            android:hint="Enter your Address"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.498"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <EditText
             android:id="@+id/size_of_flat"
             android:layout_width="345dp"
             android:layout_height="48dp"
@@ -104,17 +87,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.675"
+            app:layout_constraintVertical_bias="0.475"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/person_name"
+            android:id="@+id/wg_profile_name"
             android:layout_width="345dp"
             android:layout_height="48dp"
             android:drawableLeft="@drawable/ic_baseline_person_24"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:hint="Enter your name"
+            android:hint="Enter your unique Flat ID"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -130,7 +113,7 @@
             android:drawableLeft="@drawable/ic_baseline_person_24"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:hint="Enter your Flat share name"
+            android:hint="Enter your personal Flat Name"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -144,7 +127,7 @@
             android:layout_width="322dp"
             android:layout_height="51dp"
             android:background="@drawable/roundetcorners"
-            android:text="Create Flat share"
+            android:text="Create new flat"
             android:textColor="#121111"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"

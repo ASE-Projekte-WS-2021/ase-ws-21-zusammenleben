@@ -48,5 +48,4 @@ public class ActivityCreateWG extends AppCompatActivity {
     }
 
 
-    }
-
+}

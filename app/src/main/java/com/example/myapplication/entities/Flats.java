@@ -1,48 +1,57 @@
 package com.example.myapplication.entities;
 
+import java.util.ArrayList;
+
 public class Flats {
 
-    String firstUser, secondUser, thirdUser, fourthUser, fifthUser, address, name;
+    String firstUser, secondUser, thirdUser, fourthUser, fifthUser, name, flatID;
     int flatSize;
 
     public Flats(){
-
     }
-    public Flats(String firstUser, String secondUser, String address, int flatSize, String name){
+
+    // If the Flat has two members
+    public Flats(String firstUser, String secondUser, int flatSize, String name, String flatID){
         this.firstUser = firstUser;
         this.secondUser = secondUser;
-        this.address = address;
         this.flatSize = flatSize;
         this.name = name;
+        this.flatID = flatID;
     }
-    public Flats(String firstUser, String secondUser, String thirdUser, String address, int flatSize, String name){
+
+    // If the Flat has three members
+    public Flats(String firstUser, String secondUser, String thirdUser, int flatSize, String name, String flatID){
         this.firstUser = firstUser;
         this.secondUser = secondUser;
         this.thirdUser = thirdUser;
-        this.address = address;
         this.flatSize = flatSize;
         this.name = name;
+        this.flatID = flatID;
     }
-    public Flats(String firstUser, String secondUser, String thirdUser, String fourthUser, String address, int flatSize, String name){
+
+    // If the flat has four members
+    public Flats(String firstUser, String secondUser, String thirdUser, String fourthUser, int flatSize, String name, String flatID){
         this.firstUser = firstUser;
         this.secondUser = secondUser;
         this.thirdUser = thirdUser;
         this.fourthUser = fourthUser;
-        this.address = address;
         this.flatSize = flatSize;
         this.name = name;
+        this.flatID = flatID;
     }
-    public Flats(String firstUser, String secondUser, String thirdUser, String fourthUser, String fifthUser, String address, int flatSize, String name) {
+
+    // If the flat has five members
+    public Flats(String firstUser, String secondUser, String thirdUser, String fourthUser, String fifthUser, int flatSize, String name, String flatID) {
         this.firstUser = firstUser;
         this.secondUser = secondUser;
         this.thirdUser = thirdUser;
         this.fourthUser = fourthUser;
         this.fifthUser = fifthUser;
-        this.address = address;
         this.flatSize = flatSize;
         this.name = name;
-    }
+        this.flatID = flatID;
 
+    }
 
     public String getFirstUser() {
         return firstUser;
@@ -64,16 +73,50 @@ public class Flats {
         return fifthUser;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
     public int getFlatSize() {
         return flatSize;
+    }
+
+    public String getFlatID() {
+        return flatID;
     }
 
     public String getName(){
         return name;
     }
 
+    public ArrayList<String> getData(int size){
+        ArrayList<String> data = new ArrayList<String>();
+
+        if(size == 2){
+            data.add(flatID);
+            data.add(firstUser);
+            data.add(secondUser);
+        }
+
+        if(size == 3){
+            data.add(flatID);
+            data.add(firstUser);
+            data.add(secondUser);
+            data.add(thirdUser);
+        }
+
+        if(size == 4){
+            data.add(flatID);
+            data.add(firstUser);
+            data.add(secondUser);
+            data.add(thirdUser);
+            data.add(fourthUser);
+        }
+
+        if(size == 5){
+            data.add(flatID);
+            data.add(firstUser);
+            data.add(secondUser);
+            data.add(thirdUser);
+            data.add(fourthUser);
+            data.add(fifthUser);
+        }
+        return data;
+    }
 }

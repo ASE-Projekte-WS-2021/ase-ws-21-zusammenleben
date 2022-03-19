@@ -81,6 +81,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
+        <activity android:name=".Pop"
+            android:theme="@style/AppTheme.CustomTheme"
+            ></activity>
+
         <activity
             android:name=".ActivityShowLocation"
             android:exported="true"/>

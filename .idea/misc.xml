@@ -19,8 +19,10 @@
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.28489583333333335" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_baseline_monetization_on_24.xml" value="0.28489583333333335" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addpayment.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addwg.xml" value="0.11548913043478261" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_createwg.xml" value="0.30625" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_editnote.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_joinwg.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_login.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_note_informations.xml" value="0.1585144927536232" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_notespace.xml" value="0.17028985507246377" />
@@ -31,16 +33,19 @@
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_userprofile.xml" value="0.25" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_add_url.xml" value="0.22010869565217392" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/notes_layout.xml" value="0.17028985507246377" />
+        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/popupwindow.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_add_payment.xml" value="0.2233912746547052" />
         <entry key="app/src/main/res/layout/activity_addpayment.xml" value="0.7301587301587301" />
         <entry key="app/src/main/res/layout/activity_addwg.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_groups.xml" value="0.3265170674866233" />
+        <entry key="app/src/main/res/layout/activity_joinwg.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20729283325570755" />
         <entry key="app/src/main/res/layout/activity_overview.xml" value="0.1982250104314144" />
         <entry key="app/src/main/res/layout/activity_paymentoverview.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_startscreen.xml" value="0.1203125" />
         <entry key="app/src/main/res/layout/activity_userprofile.xml" value="0.1766304347826087" />
+        <entry key="app/src/main/res/layout/popupwindow.xml" value="0.22" />
       </map>
     </option>
   </component>

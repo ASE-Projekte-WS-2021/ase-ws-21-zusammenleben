@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
+import com.example.myapplication.entities.Flats;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,53 +22,134 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import java.util.ArrayList;
 
 public class ActivityOverview extends AppCompatActivity {
 
     ImageButton button_managePayments;
     BottomNavigationView bottomNavigationView;
-    private FirebaseAuth mAuth;
     String userEmail;
-    private CircleImageView circleImageView;
+    String flatID;
 
     TextView paymentPurpose, costs;
     Object cost, purpose;
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
-    DatabaseReference myRef = database.getReference("Payments");
+    FirebaseDatabase database;
+    DatabaseReference databaseReferenceFlat;
+    DatabaseReference databaseReferencePayment;
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+
+    ArrayList<ArrayList<String>> flatContents = new ArrayList<>();
+    String[] content;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupUIComponents();
+        initFirebase();
         addListenerOnButton();
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-        circleImageView =findViewById(R.id.show_picture_overwiew);
+        getFlatIDinFirebase();
+    }
 
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        assert user != null;
-        userEmail = user.getEmail();
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
-
-        if (user.getPhotoUrl() != null ){
-            Glide.with(this)
-                    .load(user.getPhotoUrl())
-                    .into(circleImageView);
-        }
-
-        circleImageView.setOnClickListener(new View.OnClickListener() {
+    private void updateTextView() {
+        databaseReferencePayment.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ActivityUserProfile.class));
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        if(flatID.equals(dataSnapshot.child("flat").getValue())) {
+                            System.out.println(dataSnapshot.child("flat").getValue());
+                            cost = dataSnapshot.child("cost").getValue();
+                            purpose = dataSnapshot.child("purpose").getValue();
+                            paymentPurpose.setText(purpose.toString());
+                            costs.setText(cost.toString());
+                            Log.d("debug", cost.toString() + "--" + purpose.toString());
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("catch", "Database still empty.....");
             }
         });
+    }
 
+    private void getFlatIDinFirebase(){
+        readData(new FirebaseCallback() {
+            @Override
+            public void onCallback(ArrayList<ArrayList<String>> list) {
+            }
+        });
+    }
 
+    private interface FirebaseCallback {
+        void onCallback(ArrayList<ArrayList<String>> list);
+    }
 
+    // Get the data from Firebase Server online
+    private void readData(FirebaseCallback firebaseCallback){
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap : snapshot.getChildren()){
+                    int flatSize = snap.getValue(Flats.class).getFlatSize();
+                    ArrayList<String> flatContent = snap.getValue(Flats.class).getData(flatSize);
+                    flatContents.add(flatContent);
+                }
+                // Wait for the server to retrieve the data
+                firebaseCallback.onCallback(flatContents);
+                getCurrentUserFlat();
+                updateTextView();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        };
+        databaseReferenceFlat.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    private void getCurrentUserFlat(){
+        for(int i = 0; i < flatContents.size(); i++){
+            if(flatContents.get(i).contains(userEmail)) {
+                String currentUserFlat = flatContents.get(i).toString();
+                content = currentUserFlat.split(",");
+            }
+        }
+        flatID = extractFlatID();
+    }
+
+    private String extractFlatID(){
+        for(int i = 0 ; i < content.length ; i++){
+            String s = content[i];
+            s = s.trim();
+            Log.d("debug", s);
+        }
+        return content[0].substring(1);
+    }
+
+    public void addListenerOnButton() {
+        button_managePayments.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ActivityPaymentOverview.class);
+                startActivity(intent);
+            }
+
+        });
+    }
+
+    private void setupNavBar(){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -77,10 +158,6 @@ public class ActivityOverview extends AppCompatActivity {
                         return true;
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext(),ActivityStartScreen.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.shopping:
-                        startActivity(new Intent(getApplicationContext(),ActivityShoppingList.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.user:
@@ -93,53 +170,6 @@ public class ActivityOverview extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        try {
-            updateTextView();
-        } catch (android.database.CursorIndexOutOfBoundsException e){
-            Log.d("catch", "Database still empty");
-        }
-    }
-
-
-    private void updateTextView() {
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists())
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    cost = dataSnapshot.child("cost").getValue();
-                    purpose = dataSnapshot.child("purpose").getValue();
-                    paymentPurpose.setText(purpose.toString());
-                    costs.setText(cost.toString());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("catch", "Database still empty.....");
-            }
-        });
-
-
-    }
-
-    public void addListenerOnButton() {
-        button_managePayments.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ActivityPaymentOverview.class);
-                startActivity(intent);
-
-            }
-
-        });
-    }
-
-
     private void setupUIComponents(){
         setContentView(R.layout.activity_overview);
         bottomNavigationView = findViewById(R.id.bottomnavview);
@@ -148,6 +178,21 @@ public class ActivityOverview extends AppCompatActivity {
         paymentPurpose = findViewById(R.id.payment_purpose);
         costs = findViewById(R.id.costs_overview);
         paymentPurpose = findViewById(R.id.payment_purpose);
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.payment);
+        setupNavBar();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+    }
+
+    private void initFirebase(){
+        database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
+        databaseReferencePayment = database.getReference("Payments");
+        databaseReferenceFlat = database.getReference("Flats");
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        userEmail = user.getEmail();
+        assert user != null;
     }
 
 }
