@@ -37,6 +37,7 @@ public class ActivityUserProfile extends AppCompatActivity {
 
     Button button_signout;
     Button button_leaving;
+    Button btn_inviteFriends;
     BottomNavigationView bottomNavigationView;
     FirebaseAuth firebaseAuth;
     TextView useremail;
@@ -46,17 +47,11 @@ public class ActivityUserProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_userprofile);
-
+        setupUIComponents();
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
         firebaseAuth = FirebaseAuth.getInstance();
-        button_signout = (Button) findViewById(R.id.btn_logout);
-        button_leaving = (Button) findViewById(R.id.btn_leaving);
-        useremail = findViewById(R.id.show_email);
-        circleImageView =findViewById(R.id.user_picture);
-
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.user);
 
@@ -114,6 +109,18 @@ public class ActivityUserProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    private void setupUIComponents() {
+        setContentView(R.layout.activity_userprofile);
+        button_signout = (Button) findViewById(R.id.btn_logout);
+        button_leaving = (Button) findViewById(R.id.btn_leaving);
+        useremail = findViewById(R.id.show_email);
+        circleImageView =findViewById(R.id.user_picture);
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.user);
+        btn_inviteFriends = findViewById(R.id.btn_invite);
     }
 
     private void checkUserStatus (){
@@ -225,4 +232,17 @@ public class ActivityUserProfile extends AppCompatActivity {
         checkUserStatus();
         super.onStart();
     }
+
+    ///Marco
+    @Override
+    protected void onResume() {
+        super.onResume();
+        btn_inviteFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityUserProfile.this, Pop.class));
+            }
+        });
+    }
+    ///
 }
