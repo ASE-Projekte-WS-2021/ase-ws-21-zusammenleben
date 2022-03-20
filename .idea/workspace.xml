@@ -15,11 +15,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76a6e852-5b0b-449a-aea6-35616d57700c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ActivityPaymentOverview.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ActivityPaymentOverview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Flats.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/Flats.java" afterDir="false" />
-    </list>
+    <list default="true" id="76a6e852-5b0b-449a-aea6-35616d57700c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -431,7 +427,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647699543391</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Spinner fixed (amount of checkfields is equal to FlatSize). V.1.">
+      <created>1647769342646</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1647769342646</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -454,6 +457,7 @@
     <MESSAGE value="FlatID is now part of every Payment RTDB Entry." />
     <MESSAGE value="Payments are now displayed Flat-specific" />
     <MESSAGE value="Payments can now be deleted. V.1." />
-    <option name="LAST_COMMIT_MESSAGE" value="Payments can now be deleted. V.1." />
+    <MESSAGE value="Spinner fixed (amount of checkfields is equal to FlatSize). V.1." />
+    <option name="LAST_COMMIT_MESSAGE" value="Spinner fixed (amount of checkfields is equal to FlatSize). V.1." />
   </component>
 </project>
