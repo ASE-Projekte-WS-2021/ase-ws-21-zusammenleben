@@ -10,11 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +22,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class ActivityPaymentOverview extends AppCompatActivity {
@@ -50,7 +50,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     String flatID;
 
     List<String> categories = new ArrayList<String>();
-    String[] categorieField = {"","","","",""};
+    String[] categorieField;
 
     //checkable Spinner Items
     boolean[] selectedMates;
@@ -84,7 +84,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         selectMate = findViewById(R.id.select_mates);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        utilSpinner();
+        //utilSpinner();
     }
 
     private void initFirebase(){
@@ -98,6 +98,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
 
     private void utilSpinner(){
         //initialize selected day array
+        categorieField = new String[flatSize];
         selectedMates = new boolean[categorieField.length];
         selectMate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,7 +168,6 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                            matesList.clear();
                            //clear text view value
                            selectMate.setText("");
-
                        }
                     }
                 });
@@ -278,6 +278,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 // Wait for the server to retrieve the data
                 firebaseCallback.onCallback(flatContents);
                 getUsers();
+                utilSpinner();
             }
 
             @Override
@@ -286,6 +287,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         };
         databaseReferenceFlat.addListenerForSingleValueEvent(valueEventListener);
     }
+
 
     private void getUsers(){
         getFlatID();
@@ -351,6 +353,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
             }
         }
         flatID = extractFlatID();
+        flatSize = extractFlatSize();
     }
 
     private String extractFlatID(){
@@ -360,6 +363,15 @@ public class ActivityPaymentOverview extends AppCompatActivity {
             Log.d("debug", s);
         }
         return content[0].substring(1);
+    }
+
+    private int extractFlatSize(){
+        for(int i = 0; i < content.length; i++) {
+            String s = content[i];
+            s = s.trim();
+        }
+        System.out.println(content[1].substring(1));
+        return Integer.parseInt(content[1].substring(1));
     }
 
     private void checkUserStatus (){
