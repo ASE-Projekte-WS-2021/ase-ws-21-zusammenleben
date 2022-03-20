@@ -6,12 +6,23 @@
     android:layout_height="match_parent"
     app:layout_constraintEnd_toStartOf="@+id/bottomnavview">
 
+
+    <ListView
+        android:id="@+id/list_view_num_items"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="75dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="295dp"
+        app:layout_constraintStart_toEndOf="@+id/list_view"
+        app:layout_constraintEnd_toEndOf="parent" />
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="75dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/list_view_num_items"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="120dp"
         app:layout_constraintEnd_toStartOf="@+id/list_view_cost"/>

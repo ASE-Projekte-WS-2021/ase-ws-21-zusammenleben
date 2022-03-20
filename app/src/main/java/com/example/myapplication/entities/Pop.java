@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.entities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 
-import com.example.myapplication.entities.Flats;
+import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

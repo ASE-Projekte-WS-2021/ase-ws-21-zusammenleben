@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static java.lang.String.valueOf;
+
 
 public class ActivityPaymentOverview extends AppCompatActivity {
 
@@ -65,9 +67,11 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setupUIComponents();
         initFirebase();
         getFlatIDinFirebase();
+        getIntentFromShoppingList();
         savePayment();
     }
 
@@ -96,6 +100,14 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         databaseReferencePayment = database.getReference("Payments");
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser().getEmail();
+    }
+
+    private void getIntentFromShoppingList(){
+        Intent intent = getIntent();
+        String strTextCosts = intent.getStringExtra("key");
+        //double inputCosts = Double.parseDouble(strTextCosts);
+        //editTextCost.setText(valueOf(inputCosts));
+        editTextCost.setText(strTextCosts);
     }
 
     private void utilSpinner(){
@@ -203,13 +215,13 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 }
 
                 PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, flat);
-                Log.d("paymentcounter", String.valueOf(paymentCounter));
+                Log.d("paymentcounter", valueOf(paymentCounter));
                 readDataFromPayments(new FirebaseCallback() {
                     @Override
                     public void onCallback(ArrayList<ArrayList<String>> list) {
                         Log.d("Hi", list.toString());
-                        Log.d("Hi", String.valueOf(paymentCounter));
-                        String paymentTitle = flatID + String.valueOf(paymentCounter++);
+                        Log.d("Hi", valueOf(paymentCounter));
+                        String paymentTitle = flatID + valueOf(paymentCounter++);
                         databaseReferencePayment.child(paymentTitle).setValue(payment);
                     }
                 });

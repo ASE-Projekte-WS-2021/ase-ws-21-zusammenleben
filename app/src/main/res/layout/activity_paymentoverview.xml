@@ -122,7 +122,7 @@
             android:drawablePadding="20dp"
             android:ems="10"
             android:hint="00.00"
-            android:inputType="phone"
+            android:inputType="text"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/share_your_bill"
             app:layout_constraintEnd_toEndOf="parent"

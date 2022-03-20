@@ -6,6 +6,7 @@ public class notes {
     String subtitle;
     String notice;
     String url;
+    String imagePath;
 
     public String getUrl() {
         return url;
@@ -21,5 +22,9 @@ public class notes {
 
     public String getNotice() {
         return notice;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 }

@@ -24,7 +24,6 @@ import com.example.myapplication.entities.notes;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -147,47 +146,36 @@ public class ActivityStartScreen extends AppCompatActivity {
                     }
                 });
 
-                optionbuttons.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        PopupMenu popupMenu=new PopupMenu(view.getContext(),view);
-                        popupMenu.setGravity(Gravity.END);
-                        popupMenu.getMenu().add("Edit choosen Note").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem menuItem) {
+                optionbuttons.setOnClickListener(view -> {
+                    PopupMenu popupMenu=new PopupMenu(view.getContext(),view);
+                    popupMenu.setGravity(Gravity.END);
+                    popupMenu.getMenu().add("Edit choosen Note").setOnMenuItemClickListener(menuItem -> {
 
-                                Intent intent = new Intent(view.getContext(),ActivityEditNote.class);
-                                intent.putExtra("title", notes.getTitle());
-                                intent.putExtra("subtitle", notes.getSubtitle());
-                                intent.putExtra("notice", notes.getNotice());
-                                intent.putExtra("url", notes.getUrl());
-                                intent.putExtra("noteID", noteid);
-                                view.getContext().startActivity(intent);
-                                return false;
-                            }
-                        });
+                        Intent intent = new Intent(view.getContext(),ActivityEditNote.class);
+                        intent.putExtra("title", notes.getTitle());
+                        intent.putExtra("subtitle", notes.getSubtitle());
+                        intent.putExtra("notice", notes.getNotice());
+                        intent.putExtra("url", notes.getUrl());
+                        intent.putExtra("noteID", noteid);
+                        view.getContext().startActivity(intent);
+                        return false;
+                    });
 
-                        popupMenu.getMenu().add("Delete Note").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem menuItem) {
-                                DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").document(noteid);
-                                documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        Toast.makeText(view.getContext(), "Deleted!", Toast.LENGTH_SHORT).show();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(view.getContext(), "Failed!", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                                return false;
-                            }
-                        });
+                    popupMenu.getMenu().add("Delete Note").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").document(noteid);
+                            documentReference.delete().addOnSuccessListener(unused -> Toast.makeText(view.getContext(), "Deleted!", Toast.LENGTH_SHORT).show()).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(view.getContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            return false;
+                        }
+                    });
 
-                        popupMenu.show();
-                    }
+                    popupMenu.show();
                 });
 
             }
@@ -220,7 +208,7 @@ public class ActivityStartScreen extends AppCompatActivity {
 
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.notetitl);
+            title = itemView.findViewById(R.id.notetitle);
             subtitle = itemView.findViewById(R.id.noteSubtitleactivity);
             notice = itemView.findViewById(R.id.notetextactivity);
             url = itemView.findViewById(R.id.noteURL);

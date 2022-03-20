@@ -129,11 +129,14 @@ public class ActivityOverview extends AppCompatActivity {
     }
 
     private String extractFlatID(){
+        String error = "no flat id";
+        if(flatID == null){return error;}
+        else{
         for(int i = 0 ; i < content.length ; i++){
             String s = content[i];
             s = s.trim();
             Log.d("debug", s);
-        }
+        }}
         return content[0].substring(1);
     }
 
@@ -162,6 +165,10 @@ public class ActivityOverview extends AppCompatActivity {
                         return true;
                     case R.id.user:
                         startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.shopping:
+                        startActivity(new Intent(getApplicationContext(),ActivityShoppingList.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

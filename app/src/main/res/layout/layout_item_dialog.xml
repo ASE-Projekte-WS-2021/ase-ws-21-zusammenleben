@@ -6,7 +6,7 @@
     >
 
     <LinearLayout
-        android:id="@+id/etItem23"
+        android:id="@+id/layoutAddItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/etItem"
+            android:id="@+id/inputItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="80dp"
@@ -38,6 +38,19 @@
         app:layout_constraintTop_toTopOf="@+id/layout_Item"
         android:layout_marginEnd="4dp"
         android:layout_marginStart="4dp"/>
+
+        <EditText
+            android:id="@+id/numItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="1"
+            android:inputType="number"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/layout_Item"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toTopOf="@+id/layout_Item"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"/>
 
     </LinearLayout>
 

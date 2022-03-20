@@ -27,8 +27,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -58,7 +56,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
     private TextView textWebUrl;
     private LinearLayout layoutWebUrl;
 
-    private String selectedImagePath;
+    public String selectedImagePath;
 
     private ImageView addLocation;
 
@@ -93,7 +91,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
         layoutWebUrl = findViewById(R.id.layoutWebUrl);
         imageAddUrl = findViewById(R.id.imageAddWebLink);
 
-        addLocation = findViewById(R.id.imageAddNote);
+        addLocation = findViewById(R.id.imageAddLocation);
 
         selectedImagePath = "";
 
@@ -118,46 +116,6 @@ public class ActivityNoteSpace extends AppCompatActivity{
             }
         });
 
-            /*
-
-            TextView noteText = findViewById(R.id.noteText);
-
-            // Fetch data that is passed from MainActivity
-            Intent intent = getIntent();
-
-            // Accessing the data using key and value
-            noteId = intent.getIntExtra("noteId", -1);
-            if (noteId != -1) {
-                noteText.setText(ActivityStartScreen.notes.get(noteId));
-            } else {
-
-                MainActivity.notes.add("");
-                noteId = MainActivity.notes.size() - 1;
-                MainActivity.arrayAdapter.notifyDataSetChanged();
-
-            }
-
-            noteText.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    // add your code here
-                }
-
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    MainActivity.notes.set(noteId, String.valueOf(charSequence));
-                    MainActivity.arrayAdapter.notifyDataSetChanged();
-                    // Creating Object of SharedPreferences to store data in the phone
-                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
-                    HashSet<String> set = new HashSet(MainActivity.notes);
-                    sharedPreferences.edit().putStringSet("notes", set).apply();
-                }
-
-                @Override
-                public void afterTextChanged(Editable editable) {
-                    // add your code here
-                }
-            });*/
         initMenu();
     }
 
@@ -165,7 +123,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
         imageAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //onImageClicked();
+                onImageClicked();
                 System.out.println("image was clicked");
                 if (ContextCompat.checkSelfPermission(
                         getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -195,7 +153,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
             }
         });
     }
-        /*private void onImageClicked() {
+        private void onImageClicked() {
                 if (ContextCompat.checkSelfPermission(
                         getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_DENIED) {
                     ActivityCompat.requestPermissions(
@@ -204,8 +162,8 @@ public class ActivityNoteSpace extends AppCompatActivity{
                 } else {
                     selectImage();
                 }
-        Toast.makeText(this, "KClicked on Image", Toast.LENGTH_LONG).show();
-    }*/
+        Toast.makeText(this, "Clicked on Image", Toast.LENGTH_LONG).show();
+    }
 
     private void selectImage(){
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -275,14 +233,13 @@ public class ActivityNoteSpace extends AppCompatActivity{
         return filePath;
     }
 
-
-
     private void fillandsaveNote(){
 
         String title = setTitle.getText().toString().trim();
         String subtitle = setSubtitle.getText().toString().trim();
         String notice= setNotice.getText().toString().trim();
         String url = textWebUrl.getText().toString().trim();
+        String pathToImage = selectedImagePath;
 
         if (title.isEmpty()){
             Toast.makeText(this, "Please enter a note title!", Toast.LENGTH_SHORT).show();
@@ -299,7 +256,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
             note.put("title", title);
             note.put("subtitle", subtitle);
             note.put("notice", notice);
-            note.put("imagePath", selectedImagePath);
+            note.put("imagePath", pathToImage);
             note.put("url", url);
 
             if(layoutWebUrl.getVisibility() == View.VISIBLE){
@@ -307,18 +264,10 @@ public class ActivityNoteSpace extends AppCompatActivity{
                 System.out.println("weburl is visible");
             }
 
-            documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void unused) {
-                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(ActivityNoteSpace.this,ActivityStartScreen.class));
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
-                }
-            });
+            documentReference.set(note).addOnSuccessListener(unused -> {
+                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(ActivityNoteSpace.this,ActivityStartScreen.class));
+            }).addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show());
         }
 
     }
