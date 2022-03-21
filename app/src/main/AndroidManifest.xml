@@ -85,10 +85,6 @@
             android:theme="@style/AppTheme.CustomTheme"
             ></activity>
 
-        <activity
-            android:name=".ActivityShowLocation"
-            android:exported="true"/>
-
         <activity android:name=".ActivityShoppingList"
             android:exported="true"/>
     </application>

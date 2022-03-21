@@ -44,8 +44,7 @@ public class ActivityStartScreen extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
-    ImageView imageView, imageNote;
-    ImageView imageAddImage;
+    ImageView imageView;
     private CircleImageView circleImageView;
 
     RecyclerView recyclerView;
@@ -57,144 +56,13 @@ public class ActivityStartScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //try to setup and test my stuff
-        setContentView(R.layout.activity_startscreen);
-        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
-        firebaseFirestore=FirebaseFirestore.getInstance();
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-
-
-        imageView = findViewById(R.id.imageAddMain);
-        circleImageView =findViewById(R.id.show_picture);
-
-
-        bottomNavigationView = findViewById(R.id.bottomnavview);
-        bottomNavigationView.setSelectedItemId(R.id.home);
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        if (user.getPhotoUrl() != null ){
-            Glide.with(this)
-                    .load(user.getPhotoUrl())
-                    .into(circleImageView);
-        }
-
-        circleImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ActivityUserProfile.class));
-            }
-        });
-
-        imageView.setOnClickListener(view -> startActivity(new Intent(ActivityStartScreen.this, ActivityNoteSpace.class)));
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch(item.getItemId()){
-                case R.id.payment:
-                    startActivity(new Intent(getApplicationContext(),ActivityOverview.class));
-                    overridePendingTransition(0,0);
-                    return true;
-                case R.id.home:
-                    return true;
-                case R.id.user:
-                    startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
-                    overridePendingTransition(0,0);
-                    return true;
-                case R.id.shopping:
-                    startActivity(new Intent(getApplicationContext(),ActivityShoppingList.class));
-                    overridePendingTransition(0,0);
-            }
-            return false;
-        });
-
-        firebaseAuth = FirebaseAuth.getInstance();
-        useremail = findViewById(R.id.show_email);
-
-        // TODO change Query here to current flat
-        Query query=firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").orderBy("title", Query.Direction.ASCENDING);
-
-        FirestoreRecyclerOptions<notes> allusernotes = new FirestoreRecyclerOptions.Builder<notes>().setQuery(query, notes.class).build();
-
-        noteAdapter= new FirestoreRecyclerAdapter<notes, NoteViewHolder>(allusernotes) {
-            @Override
-            protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, int i, @NonNull notes notes) {
-
-                ImageView optionbuttons=noteViewHolder.itemView.findViewById(R.id.optionbutton);
-
-                int colorchange = getColorChange();
-                noteViewHolder.note.setBackgroundColor(noteViewHolder.itemView.getResources().getColor(colorchange, null));
-
-                noteViewHolder.title.setText(notes.getTitle());
-                noteViewHolder.subtitle.setText(notes.getSubtitle());
-                noteViewHolder.notice.setText(notes.getNotice());
-                noteViewHolder.url.setText(notes.getUrl());
-
-                String noteid = noteAdapter.getSnapshots().getSnapshot(i).getId();
-
-                noteViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        Intent intent = new Intent(view.getContext(),ActivityNoteInformations.class);
-                        intent.putExtra("title", notes.getTitle());
-                        intent.putExtra("subtitle", notes.getSubtitle());
-                        intent.putExtra("notice", notes.getNotice());
-                        intent.putExtra("url", notes.getUrl());
-                        intent.putExtra("noteID", noteid);
-                        view.getContext().startActivity(intent);
-                    }
-                });
-
-                optionbuttons.setOnClickListener(view -> {
-                    PopupMenu popupMenu=new PopupMenu(view.getContext(),view);
-                    popupMenu.setGravity(Gravity.END);
-                    popupMenu.getMenu().add("Edit choosen Note").setOnMenuItemClickListener(menuItem -> {
-
-                        Intent intent = new Intent(view.getContext(),ActivityEditNote.class);
-                        intent.putExtra("title", notes.getTitle());
-                        intent.putExtra("subtitle", notes.getSubtitle());
-                        intent.putExtra("notice", notes.getNotice());
-                        intent.putExtra("url", notes.getUrl());
-                        intent.putExtra("noteID", noteid);
-                        view.getContext().startActivity(intent);
-                        return false;
-                    });
-
-                    popupMenu.getMenu().add("Delete Note").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem menuItem) {
-                            DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").document(noteid);
-                            documentReference.delete().addOnSuccessListener(unused -> Toast.makeText(view.getContext(), "Deleted!", Toast.LENGTH_SHORT).show()).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(view.getContext(), "Failed!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                            return false;
-                        }
-                    });
-
-                    popupMenu.show();
-                });
-
-            }
-
-            @NonNull
-            @Override
-            public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notes_layout,parent,false);
-                return new NoteViewHolder(view);
-            }
-        };
-
-        recyclerView =findViewById(R.id.notesRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        staggeredGridLayoutManager= new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(staggeredGridLayoutManager);
-        recyclerView.setAdapter(noteAdapter);
-
-
+        setupUIComponents();
+        initFirebase();
+        setUserPicture();
+        openUserprofile();
+        setBottomNavigationView();
+        createNote();
+        displayNote();
     }
 
 
@@ -219,7 +87,6 @@ public class ActivityStartScreen extends AppCompatActivity {
 
         private void checkUserStatus() {
             FirebaseUser user = firebaseAuth.getCurrentUser();
-
             if (user != null) {
                 useremail.setText(user.getEmail());
             } else {
@@ -259,5 +126,151 @@ public class ActivityStartScreen extends AppCompatActivity {
                 noteAdapter.stopListening();
             }
         }
+
+    private void displayNote(){
+        Query query=firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").orderBy("title", Query.Direction.ASCENDING);
+
+        FirestoreRecyclerOptions<notes> allusernotes = new FirestoreRecyclerOptions.Builder<notes>().setQuery(query, notes.class).build();
+
+        noteAdapter= new FirestoreRecyclerAdapter<notes, NoteViewHolder>(allusernotes) {
+            @Override
+            protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, int i, @NonNull notes notes) {
+
+                ImageView optionbuttons=noteViewHolder.itemView.findViewById(R.id.optionbutton);
+
+                int colorchange = getColorChange();
+                noteViewHolder.note.setBackgroundColor(noteViewHolder.itemView.getResources().getColor(colorchange, null));
+
+                noteViewHolder.title.setText(notes.getTitle());
+                noteViewHolder.subtitle.setText(notes.getSubtitle());
+                noteViewHolder.notice.setText(notes.getNotice());
+                noteViewHolder.url.setText(notes.getUrl());
+
+                String noteid = noteAdapter.getSnapshots().getSnapshot(i).getId();
+
+                noteViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent intent = new Intent(view.getContext(),ActivityNoteInformations.class);
+                        intent.putExtra("title", notes.getTitle());
+                        intent.putExtra("subtitle", notes.getSubtitle());
+                        intent.putExtra("notice", notes.getNotice());
+                        intent.putExtra("url", notes.getUrl());
+                        intent.putExtra("noteID", noteid);
+                        view.getContext().startActivity(intent);
+                    }
+                });
+
+                optionbuttons.setOnClickListener(view -> {
+                    PopupMenu popupMenu=new PopupMenu(view.getContext(),view);
+                    popupMenu.setGravity(Gravity.END);
+                    popupMenu.getMenu().add("Edit").setOnMenuItemClickListener(menuItem -> {
+
+                        Intent intent = new Intent(view.getContext(),ActivityEditNote.class);
+                        intent.putExtra("title", notes.getTitle());
+                        intent.putExtra("subtitle", notes.getSubtitle());
+                        intent.putExtra("notice", notes.getNotice());
+                        intent.putExtra("url", notes.getUrl());
+                        intent.putExtra("noteID", noteid);
+                        view.getContext().startActivity(intent);
+                        return false;
+                    });
+
+                    popupMenu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            DocumentReference documentReference = firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").document(noteid);
+                            documentReference.delete().addOnSuccessListener(unused -> Toast.makeText(view.getContext(), "Note succesfully deleted!", Toast.LENGTH_SHORT).show()).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(view.getContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            return false;
+                        }
+                    });
+
+                    popupMenu.show();
+                });
+
+            }
+
+            @NonNull
+            @Override
+            public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notes_layout,parent,false);
+                return new NoteViewHolder(view);
+            }
+        };
+
+        recyclerView =findViewById(R.id.notesRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        staggeredGridLayoutManager= new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        recyclerView.setAdapter(noteAdapter);
+
+    }
+
+    private void createNote(){
+        imageView.setOnClickListener(view -> startActivity(new Intent(ActivityStartScreen.this, ActivityNoteSpace.class)));
+    }
+
+    private void openUserprofile(){
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ActivityUserProfile.class));
+            }
+        });
+    }
+
+    private void setBottomNavigationView(){
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch(item.getItemId()){
+                case R.id.payment:
+                    startActivity(new Intent(getApplicationContext(),ActivityOverview.class));
+                    overridePendingTransition(0,0);
+                    return true;
+                case R.id.home:
+                    return true;
+                case R.id.user:
+                    startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                    overridePendingTransition(0,0);
+                    return true;
+                case R.id.shopping:
+                    startActivity(new Intent(getApplicationContext(),ActivityShoppingList.class));
+                    overridePendingTransition(0,0);
+            }
+            return false;
+        });
+    }
+
+    private void setUserPicture(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user.getPhotoUrl() != null ){
+            Glide.with(this)
+                    .load(user.getPhotoUrl())
+                    .into(circleImageView);
+        }
+    }
+
+    private void setupUIComponents(){
+        setContentView(R.layout.activity_startscreen);
+        imageView = findViewById(R.id.imageAddMain);
+        circleImageView =findViewById(R.id.show_picture);
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.home);
+        useremail = findViewById(R.id.show_email);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+    }
+
+    private void initFirebase(){
+        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+        firebaseFirestore=FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+    }
 
 }
