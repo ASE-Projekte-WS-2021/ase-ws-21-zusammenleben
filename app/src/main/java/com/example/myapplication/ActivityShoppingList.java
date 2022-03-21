@@ -243,28 +243,54 @@ public class ActivityShoppingList extends AppCompatActivity {
         builder.setView(dialogLayout);
         final EditText inputItem = dialogLayout.findViewById(R.id.inputItem);
         final EditText costItem = dialogLayout.findViewById(R.id.costItem);
-        String item = costItem.getText().toString().trim();
-        int cost = calculateItemCosts() *  Integer.getInteger(item);
-        System.out.println(cost);
+        final EditText numItem = dialogLayout.findViewById(R.id.numItem);
+        //String item = costItem.getText().toString().trim();
+        //int cost = calculateItemCosts() *  Integer.getInteger(item);
 
 
-        builder.setPositiveButton("Add", (dialog, which) -> {
-            if (!inputItem.getText().toString().isEmpty() && !costItem.getText().toString().isEmpty()) {
+
+        builder.setPositiveButton("Hinzufügen", (dialog, which) -> {
+            if (!inputItem.getText().toString().isEmpty() && !costItem.getText().toString().isEmpty() && !numItem.getText().toString().isEmpty()) {
+                if (Integer.parseInt(numItem.getText().toString()) == 1){
                 list.add(inputItem.getText().toString().trim());
-                //listcosts.add(item);
                 listcosts.add(costItem.getText().toString().trim());
                 arrayAdapter.notifyDataSetChanged();
                 arrayAdapterCosts.notifyDataSetChanged();
-                //calculateItemCosts();
-                addSums();
+
+                int newCost = Integer.parseInt(costItem.getText().toString());
+                int newNum = Integer.parseInt(numItem.getText().toString());
+
+                System.out.println(newCost);
+                System.out.println(newNum);
+                System.out.println(newCost*newNum);
+                addSums();}
+
+                else if(Integer.parseInt(numItem.getText().toString()) > 1) {
+                    int newCost = Integer.parseInt(costItem.getText().toString());
+                    int newNum = Integer.parseInt(numItem.getText().toString());
+                    int result = newCost * newNum;
+                    String resultStr = Integer.toString(result);
+                    costItem.setText(resultStr);
+
+                    list.add(inputItem.getText().toString().trim());
+                    listcosts.add(costItem.getText().toString().trim());
+                    arrayAdapter.notifyDataSetChanged();
+                    arrayAdapterCosts.notifyDataSetChanged();
+
+                    System.out.println(newCost);
+                    System.out.println(newNum);
+                    System.out.println(result);
+                    addSums();
+                }
 
             } else {
                 inputItem.setError("add item here !");
                 costItem.setError("add costs here !");
+                numItem.setError("die Anzahl darf nicht null sein");
             }
         });
 
-        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+        builder.setNegativeButton("Abbrechen", (dialog, which) -> dialog.dismiss());
 
         builder.show();
 
@@ -290,13 +316,16 @@ public class ActivityShoppingList extends AppCompatActivity {
     }
 
     private int calculateItemCosts() {
-        String item  = numItem.getText().toString().trim();
-        int multiplikator = Integer.parseInt(item);
-        if (!item.isEmpty()) {
+        if(!numItem.getText().toString().isEmpty()) {
+            String item = numItem.getText().toString();
+            int multiplikator = Integer.parseInt(item);
+            if (multiplikator > 1) {
+                return multiplikator;
+            }
+            System.out.print(item);
             System.out.print(multiplikator);
-            return multiplikator;
         }
-        System.out.print(multiplikator-10);
+
         return 1;
     }
 }
