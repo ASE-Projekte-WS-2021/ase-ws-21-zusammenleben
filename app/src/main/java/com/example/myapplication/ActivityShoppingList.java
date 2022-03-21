@@ -17,7 +17,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.entities.ShoppingList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -28,6 +32,10 @@ public class ActivityShoppingList extends AppCompatActivity {
     ArrayList<String> listcosts = new ArrayList<>();
     ListView list_view, list_view_cost;
     ArrayAdapter arrayAdapter, arrayAdapterCosts;
+    FirebaseDatabase database;
+    DatabaseReference databaseReferenceShop;
+    FirebaseAuth firebaseAuth;
+
 
     BottomNavigationView bottomNavigationView;
 
@@ -42,6 +50,7 @@ public class ActivityShoppingList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shoppinglist);
         //find view by id
+        initFirebase();
         initViews();
         initNavigationBar();
         initClickListeners();
@@ -291,10 +300,10 @@ public class ActivityShoppingList extends AppCompatActivity {
         });
 
         builder.setNegativeButton("Abbrechen", (dialog, which) -> dialog.dismiss());
-
         builder.show();
 
     }
+
 
     private void addSums(){
 
@@ -309,9 +318,13 @@ public class ActivityShoppingList extends AppCompatActivity {
     private void callOnPayment(){
         sumCosts.setOnClickListener(view -> {
             String strSumCosts = sumCosts.getText().toString();
+            ArrayList<String> items = new ArrayList<>(list);
+            ShoppingList shoppingList = new ShoppingList(items,strSumCosts);
             Intent intent = new Intent(getApplicationContext(), ActivityPaymentOverview.class);
             intent.putExtra("key", strSumCosts);
             startActivity(intent);
+            databaseReferenceShop.push().setValue(shoppingList);
+
         });
     }
 
@@ -328,4 +341,11 @@ public class ActivityShoppingList extends AppCompatActivity {
 
         return 1;
     }
+
+    private void initFirebase(){
+        database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
+        databaseReferenceShop = database.getReference("ShoppingList");
+        firebaseAuth = FirebaseAuth.getInstance();
+    }
+
 }
