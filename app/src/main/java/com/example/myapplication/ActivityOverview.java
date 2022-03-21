@@ -3,13 +3,17 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,10 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+import java.util.Iterator;
 
 public class ActivityOverview extends AppCompatActivity {
 
@@ -46,6 +47,13 @@ public class ActivityOverview extends AppCompatActivity {
     ArrayList<ArrayList<String>> flatContents = new ArrayList<>();
     String[] content;
 
+    ArrayList<PaymentMemo> paymentList = new ArrayList<>();
+    ArrayList<PaymentMemo> extractedPaymentList = new ArrayList<>();
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
 
 
     @Override
@@ -57,10 +65,6 @@ public class ActivityOverview extends AppCompatActivity {
         getFlatIDinFirebase();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
     private void updateTextView() {
         databaseReferencePayment.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -68,14 +72,7 @@ public class ActivityOverview extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        if(flatID.equals(dataSnapshot.child("flat").getValue())) {
-                            cost = dataSnapshot.child("cost").getValue();
-                            purpose = dataSnapshot.child("purpose").getValue();
-                            paymentPurpose.setText(purpose.toString());
-                            costs.setText(cost.toString());
-                            Log.d("debug", cost.toString() + "--" + purpose.toString());
-                        return;
-                        }
+                        Log.d("hi", "yo");
                     }
                 }
             }
@@ -112,19 +109,19 @@ public class ActivityOverview extends AppCompatActivity {
     }
 
     private void getFlatIDinFirebase(){
-        readData(new FirebaseCallback() {
+        readData(new FirstFirebaseCallback() {
             @Override
-            public void onCallback(ArrayList<ArrayList<String>> list) {
+            public void onFirstCallback(ArrayList<ArrayList<String>> list) {
             }
         });
     }
 
-    private interface FirebaseCallback {
-        void onCallback(ArrayList<ArrayList<String>> list);
+    private interface FirstFirebaseCallback {
+        void onFirstCallback(ArrayList<ArrayList<String>> list);
     }
 
     // Get the data from Firebase Server online
-    private void readData(FirebaseCallback firebaseCallback){
+    private void readData(FirstFirebaseCallback firebaseCallback){
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -134,9 +131,8 @@ public class ActivityOverview extends AppCompatActivity {
                     flatContents.add(flatContent);
                 }
                 // Wait for the server to retrieve the data
-                firebaseCallback.onCallback(flatContents);
+                firebaseCallback.onFirstCallback(flatContents);
                 getCurrentUserFlat();
-                updateTextView();
             }
 
             @Override
@@ -176,39 +172,7 @@ public class ActivityOverview extends AppCompatActivity {
             }
         });
 
-        optionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PopupMenu popupMenu=new PopupMenu(view.getContext(),view);
-                popupMenu.setGravity(Gravity.END);
-                popupMenu.getMenu().add("Edit Payment").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        return false;
-                    }
-                });
 
-                popupMenu.getMenu().add("Delete Payment").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-
-                        deletePayment();
-                            /*@Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(view.getContext(), "Deleted!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(view.getContext(), "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });*/
-                        return false;
-                    }
-                });
-                popupMenu.show();
-            }
-        });
     }
 
     private void setupNavBar(){
@@ -238,10 +202,12 @@ public class ActivityOverview extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.payment);
         button_managePayments = findViewById(R.id.btn_managePayments);
         costs = findViewById(R.id.costs_overview);
-        paymentPurpose = findViewById(R.id.payment_purpose);
         optionButton = findViewById(R.id.optionbutton);
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.payment);
+
+        recyclerView = findViewById(R.id.recyclerview_payments);
+
         setupNavBar();
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -256,4 +222,76 @@ public class ActivityOverview extends AppCompatActivity {
         userEmail = user.getEmail();
         assert user != null;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("before Callback", "hier!");
+        readDataFromPayments(new FirebaseCallback() {
+            @Override
+            public void onCallback(ArrayList<PaymentMemo> list) {
+                fillRecyclerView();
+            }
+        });
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        paymentList.clear();
+    }
+
+
+    private void fillRecyclerView() {
+        Iterator itr = paymentList.iterator();
+        String userEmail = mAuth.getCurrentUser().getEmail();
+        while(itr.hasNext()){
+            PaymentMemo p = (PaymentMemo) itr.next();
+            if(!p.getReceiverName().equals(userEmail)){
+                itr.remove();
+            }
+        }
+
+        Log.d("final:", String.valueOf(paymentList.size()));
+
+
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        mAdapter = new RecycleViewAdapter(paymentList, this);
+        recyclerView.setAdapter(mAdapter);
+    }
+
+
+    private void readDataFromPayments(FirebaseCallback firebaseCallback){
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    String paymentID = ds.getKey();
+                    Log.d("paymentID", paymentID);
+                    double paymentCost = ds.getValue(PaymentMemo.class).getCost();
+                    String paymentPurpose = ds.getValue(PaymentMemo.class).getPurpose();
+                    String paymentEmail = ds.getValue(PaymentMemo.class).getEmail();
+                    String paymentReceiver = ds.getValue(PaymentMemo.class).getReceiverName();
+                    String paymentFlat = ds.getValue(PaymentMemo.class).getFlat();
+                    PaymentMemo payment = new PaymentMemo(paymentCost, paymentPurpose, paymentEmail, paymentReceiver, paymentFlat);
+                    paymentList.add(payment);
+                }
+                firebaseCallback.onCallback(paymentList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        databaseReferencePayment.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    private interface FirebaseCallback {
+        void onCallback(ArrayList<PaymentMemo> myList);
+    }
+
+
 }

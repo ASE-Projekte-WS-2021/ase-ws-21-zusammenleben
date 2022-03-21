@@ -10,6 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,11 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 
 public class ActivityPaymentOverview extends AppCompatActivity {
@@ -66,13 +66,13 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         setupUIComponents();
         initFirebase();
         getFlatIDinFirebase();
-        savePayment();
     }
 
     @Override
-    protected void onStart() {
+    protected void onResume() {
         checkUserStatus();
-        super.onStart();
+        super.onResume();
+        savePayment();
     }
 
     private void setupUIComponents() {
@@ -137,7 +137,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                         //Use for Loop
                         for (int j = 0; j < matesList.size(); j++) {
                             //concat array value
-                                stringBuilder.append(categorieField[matesList.get(j)]);
+                            stringBuilder.append(categorieField[matesList.get(j)]);
                             //Check condition
                             if (j != matesList.size() -1){
                                 //When j value not equal to day list size -1, add comma
@@ -160,15 +160,15 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 builder.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                       //use for loop
-                       for(int j = 0; j < selectedMates.length; j++){
-                           //remove all selection
-                           selectedMates[j] = false;
-                           //clear list
-                           matesList.clear();
-                           //clear text view value
-                           selectMate.setText("");
-                       }
+                        //use for loop
+                        for(int j = 0; j < selectedMates.length; j++){
+                            //remove all selection
+                            selectedMates[j] = false;
+                            //clear list
+                            matesList.clear();
+                            //clear text view value
+                            selectMate.setText("");
+                        }
                     }
                 });
                 //show dialog
@@ -197,7 +197,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
 
                 if (costString.isEmpty()){Toast.makeText(getApplicationContext(), "EmptyField!",Toast.LENGTH_LONG).show();}
                 if (!costString.isEmpty()){
-                            actualCosts = (int) (Double.valueOf(costString) / 2);
+                    actualCosts = (int) (Double.valueOf(costString) / 2);
                 }
 
                 PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, flat);
@@ -215,7 +215,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Successful!",Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 startActivity(intent);
-                }
+            }
         });
     }
 
@@ -360,7 +360,6 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         for(int i = 0 ; i < content.length ; i++){
             String s = content[i];
             s = s.trim();
-            Log.d("debug", s);
         }
         return content[0].substring(1);
     }
@@ -383,4 +382,3 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         }
     }
 }
-
