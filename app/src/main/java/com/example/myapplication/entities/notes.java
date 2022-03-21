@@ -24,7 +24,4 @@ public class notes {
         return notice;
     }
 
-    public String getImagePath() {
-        return imagePath;
-    }
 }

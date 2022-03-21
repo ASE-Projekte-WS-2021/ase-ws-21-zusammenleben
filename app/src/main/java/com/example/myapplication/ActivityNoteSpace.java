@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Timer;
 
 
 public class ActivityNoteSpace extends AppCompatActivity{
@@ -42,6 +43,7 @@ public class ActivityNoteSpace extends AppCompatActivity{
     private TextView textWebUrl;
     private LinearLayout layoutWebUrl;
     private AlertDialog dialogAddUrl;
+    private Timer timer;
 
 
     @Override
@@ -145,6 +147,21 @@ public class ActivityNoteSpace extends AppCompatActivity{
                         .format(new Date())
         );
     }
+
+    /*private void searchNotes(final String searchKeyword){
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if(searchKeyword.trim().isEmpty()){
+                    System.out.println("Nothing searched for");
+                } else {
+                    ArrayList<> temp = new ArrayList();
+                    for ()
+                }
+            }
+        });
+    }*/
 
     public void saveNote(){
         imageViewsave.setOnClickListener(new View.OnClickListener() {

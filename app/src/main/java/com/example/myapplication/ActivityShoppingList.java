@@ -115,7 +115,6 @@ public class ActivityShoppingList extends AppCompatActivity {
                         View dialogOnUpdate = LayoutInflater.from(ActivityShoppingList.this).inflate(R.layout.layout_item_dialog, null, false);
                         builder.setTitle("Update Item");
                         final EditText inputItem = dialogOnUpdate.findViewById(R.id.inputItem);
-                        //noch für kosten einsetzen!!
                         inputItem.setText(list.get(position));
                         final EditText costItem= dialogOnUpdate.findViewById(R.id.costItem);
                         costItem.setText(listcosts.get(position));
@@ -253,9 +252,6 @@ public class ActivityShoppingList extends AppCompatActivity {
         final EditText inputItem = dialogLayout.findViewById(R.id.inputItem);
         final EditText costItem = dialogLayout.findViewById(R.id.costItem);
         final EditText numItem = dialogLayout.findViewById(R.id.numItem);
-        //String item = costItem.getText().toString().trim();
-        //int cost = calculateItemCosts() *  Integer.getInteger(item);
-
 
 
         builder.setPositiveButton("Hinzufügen", (dialog, which) -> {
@@ -269,9 +265,6 @@ public class ActivityShoppingList extends AppCompatActivity {
                 int newCost = Integer.parseInt(costItem.getText().toString());
                 int newNum = Integer.parseInt(numItem.getText().toString());
 
-                System.out.println(newCost);
-                System.out.println(newNum);
-                System.out.println(newCost*newNum);
                 addSums();}
 
                 else if(Integer.parseInt(numItem.getText().toString()) > 1) {
@@ -286,9 +279,6 @@ public class ActivityShoppingList extends AppCompatActivity {
                     arrayAdapter.notifyDataSetChanged();
                     arrayAdapterCosts.notifyDataSetChanged();
 
-                    System.out.println(newCost);
-                    System.out.println(newNum);
-                    System.out.println(result);
                     addSums();
                 }
 
@@ -326,20 +316,6 @@ public class ActivityShoppingList extends AppCompatActivity {
             databaseReferenceShop.push().setValue(shoppingList);
 
         });
-    }
-
-    private int calculateItemCosts() {
-        if(!numItem.getText().toString().isEmpty()) {
-            String item = numItem.getText().toString();
-            int multiplikator = Integer.parseInt(item);
-            if (multiplikator > 1) {
-                return multiplikator;
-            }
-            System.out.print(item);
-            System.out.print(multiplikator);
-        }
-
-        return 1;
     }
 
     private void initFirebase(){
