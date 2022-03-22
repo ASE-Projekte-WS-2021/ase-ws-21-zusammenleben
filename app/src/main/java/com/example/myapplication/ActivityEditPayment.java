@@ -21,17 +21,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+public class ActivityEditPayment extends AppCompatActivity {
 
-public class ActivityPaymentOverview extends AppCompatActivity {
-
-    Button button_savepayment;
+    Button buttonEditPayment;
     EditText editTextCost, editTextPurpose;
     TextView useremail;
     TextView selectMate;
@@ -63,30 +64,28 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("ActivityLifecycle: ", "onCreate() active!");
         setupUIComponents();
         initFirebase();
         getFlatIDinFirebase();
+        editPayment();
     }
 
     @Override
-    protected void onResume() {
+    protected void onStart() {
         checkUserStatus();
-        super.onResume();
-        Log.d("ActivityLifecycle: ", "onResume() active!");
-        savePayment();
+        super.onStart();
     }
 
     private void setupUIComponents() {
-        setContentView(R.layout.activity_paymentoverview);
+        setContentView(R.layout.activity_editpayment);
         useremail = findViewById(R.id.show_email);
-        button_savepayment = (Button) findViewById(R.id.btn_save_payment);
+        buttonEditPayment = (Button) findViewById(R.id.btn_edit_payment);
         editTextCost = (EditText) findViewById(R.id.insert_costs);
         editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
         selectMate = findViewById(R.id.select_mates);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        //utilSpinner();
+
     }
 
     private void initFirebase(){
@@ -107,7 +106,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
             public void onClick(View v) {
                 //initialize alert dialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(
-                        ActivityPaymentOverview.this
+                        ActivityEditPayment.this
                 );
                 //set title
                 builder.setTitle("select your mates");
@@ -179,12 +178,12 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         });
     }
 
-    private void savePayment() {
+    private void editPayment() {
         final EditText editTextCost = findViewById(R.id.insert_costs);
         final EditText editTextPurpose = findViewById(R.id.insert_purpose);
         final TextView editTextMail = findViewById(R.id.show_email);
 
-        button_savepayment.setOnClickListener(new View.OnClickListener() {
+        buttonEditPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFlatID();
@@ -194,22 +193,28 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 String useremail = editTextMail.getText().toString();
                 String receiverName = selectMate.getText().toString();
                 String flat = flatID;
+                String key = databaseReferencePayment.child("posts").push().getKey();
 
 
-                if (costString.isEmpty()){Toast.makeText(getApplicationContext(), "EmptyField!",Toast.LENGTH_LONG).show();}
+                Map<String, Object> childUpdates = new HashMap<>();
+
+
+
+                if (costString.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "EmptyField!",Toast.LENGTH_LONG).show();}
                 if (!costString.isEmpty()){
                     actualCosts = (int) (Double.valueOf(costString) / 2);
                 }
 
                 PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, flat);
                 Log.d("paymentcounter", String.valueOf(paymentCounter));
-                readDataFromPayments(new FirebaseCallback() {
+                readDataFromPayments(new ActivityPaymentOverview.FirebaseCallback() {
                     @Override
                     public void onCallback(ArrayList<ArrayList<String>> list) {
                         Log.d("Hi", list.toString());
                         Log.d("Hi", String.valueOf(paymentCounter));
                         String paymentTitle = flatID + String.valueOf(paymentCounter++);
-                        databaseReferencePayment.child(paymentTitle).setValue(payment);
+                        //databaseReferencePayment.updateChildren(payment);
                     }
                 });
 
@@ -220,34 +225,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onPause(){
-        super.onPause();
-        Log.d("ActivityLifecycle: ", "onPause() active!");
-    }
-
-    @Override
-    protected void onStop(){
-        super.onStop();
-        Log.d("ActivityLifecycle: ", "onStop() active!");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("ActivityLifecycle: ", "onDestroy() active!");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d("ActivityLifecycle: ", "onStart() active!");
-    }
-
-
-
-
-    private void readDataFromPayments(FirebaseCallback firebaseCallback){
+    private void readDataFromPayments(ActivityPaymentOverview.FirebaseCallback firebaseCallback){
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -274,7 +252,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     }
 
     private void getFlatIDinFirebase(){
-        readData(new FirebaseCallback() {
+        readData(new ActivityPaymentOverview.FirebaseCallback() {
             @Override
             public void onCallback(ArrayList<ArrayList<String>> list) {
             }
@@ -284,17 +262,17 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     @Override
     protected void onRestart(){
         super.onRestart();
-        Log.d("ActivityLifecycle: ", "onRestart() active!");
+        Log.d("xxxxx", "onRestart() active!");
     }
 
 
 
-    interface FirebaseCallback {
+    private interface FirebaseCallback {
         void onCallback(ArrayList<ArrayList<String>> list);
     }
 
     // Get the data from Firebase Server online
-    private void readData(FirebaseCallback firebaseCallback){
+    private void readData(ActivityPaymentOverview.FirebaseCallback firebaseCallback){
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -388,6 +366,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         for(int i = 0 ; i < content.length ; i++){
             String s = content[i];
             s = s.trim();
+            Log.d("debug", s);
         }
         return content[0].substring(1);
     }
@@ -410,3 +389,4 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         }
     }
 }
+
