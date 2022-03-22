@@ -39,22 +39,22 @@ public class ActivityShoppingList extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
-    TextView sumCosts;
-    EditText editTextCost, inputItem, costItem, numItem;
+    TextView sumCosts, costCheckout;
+    EditText editTextCost, inputItem, costItem, numItem, inputCheckoutName;
     double total;
     String result;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shoppinglist);
         //find view by id
+
         initFirebase();
         initViews();
         initNavigationBar();
         initClickListeners();
-        callOnPayment();
+        //callOnPayment();
     }
 
     private void initViews(){
@@ -75,6 +75,9 @@ public class ActivityShoppingList extends AppCompatActivity {
         inputItem = findViewById(R.id.inputItem);
         costItem = findViewById(R.id.costItem);
         numItem = findViewById(R.id.numItem);
+
+        costCheckout = findViewById(R.id.costCheckout);
+        inputCheckoutName = findViewById(R.id.inputNameCheckout);
     }
 
     private void initNavigationBar(){
@@ -234,8 +237,20 @@ public class ActivityShoppingList extends AppCompatActivity {
                 //function to add
                 addItem();
                 break;
+            case R.id.checkout_item:
+                checkForEmptyList();
+                break;
         }
         return true;
+    }
+
+    private void checkForEmptyList(){
+        if (list.size() != 0 && listcosts.size() != 0){
+            ActivityShoppingList.this.checkout();
+        }
+        else {
+            Toast.makeText(ActivityShoppingList.this, "Du hast noch keine Items in deiner Shopping Liste", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /*
@@ -261,9 +276,6 @@ public class ActivityShoppingList extends AppCompatActivity {
                 listcosts.add(costItem.getText().toString().trim());
                 arrayAdapter.notifyDataSetChanged();
                 arrayAdapterCosts.notifyDataSetChanged();
-
-                int newCost = Integer.parseInt(costItem.getText().toString());
-                int newNum = Integer.parseInt(numItem.getText().toString());
 
                 addSums();}
 
@@ -305,7 +317,7 @@ public class ActivityShoppingList extends AppCompatActivity {
         sumCosts.setText(result);
     }
 
-    private void callOnPayment(){
+    /*private void callOnPayment(){
         sumCosts.setOnClickListener(view -> {
             String strSumCosts = sumCosts.getText().toString();
             ArrayList<String> items = new ArrayList<>(list);
@@ -314,9 +326,46 @@ public class ActivityShoppingList extends AppCompatActivity {
             intent.putExtra("key", strSumCosts);
             startActivity(intent);
             databaseReferenceShop.push().setValue(shoppingList);
-
         });
+    }*/
+    
+    
+    private void checkout(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this);
+        builder.setTitle("Checkout");
+
+        View dialogLayoutCheckout = LayoutInflater.from(ActivityShoppingList.this).inflate(R.layout.layout_checkout, null, false);
+
+        builder.setView(dialogLayoutCheckout);
+        final EditText inputCheckoutName = dialogLayoutCheckout.findViewById(R.id.inputNameCheckout);
+        final TextView costCheckout = dialogLayoutCheckout.findViewById(R.id.costCheckout);
+        // ersetzt die Methode callOnPayment
+
+        String valueCost = sumCosts.getText().toString();
+        costCheckout.setText(valueCost);
+
+        builder.setPositiveButton("Abschließen", (dialog, which) -> {
+            if (!inputCheckoutName.getText().toString().isEmpty()) {
+
+                String strSumCosts = costCheckout.getText().toString();
+                String inputNameShoppingList = inputCheckoutName.getText().toString().trim();
+                ArrayList<String> items = new ArrayList<>(list);
+                ShoppingList shoppingList = new ShoppingList(items,strSumCosts);
+                Intent intent = new Intent(getApplicationContext(), ActivityPaymentOverview.class);
+                intent.putExtra("key", strSumCosts);
+                intent.putExtra("value", inputNameShoppingList);
+                startActivity(intent);
+                databaseReferenceShop.push().setValue(shoppingList);
+
+            } else {
+                inputCheckoutName.setError("add Name here !");
+            }
+        });
+
+        builder.setNegativeButton("Abbrechen", (dialog, which) -> dialog.dismiss());
+        builder.show();
     }
+
 
     private void initFirebase(){
         database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");

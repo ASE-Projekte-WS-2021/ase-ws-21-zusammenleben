@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.bumptech.glide.Glide;
-import com.example.myapplication.entities.notes;
+import com.example.myapplication.entities.Notes;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -49,7 +49,7 @@ public class ActivityStartScreen extends AppCompatActivity {
 
     RecyclerView recyclerView;
     StaggeredGridLayoutManager staggeredGridLayoutManager;
-    FirestoreRecyclerAdapter<notes,NoteViewHolder> noteAdapter;
+    FirestoreRecyclerAdapter<Notes,NoteViewHolder> noteAdapter;
 
 
 
@@ -130,11 +130,11 @@ public class ActivityStartScreen extends AppCompatActivity {
     private void displayNote(){
         Query query=firebaseFirestore.collection("notes").document(firebaseUser.getUid()).collection("mynotes").orderBy("title", Query.Direction.ASCENDING);
 
-        FirestoreRecyclerOptions<notes> allusernotes = new FirestoreRecyclerOptions.Builder<notes>().setQuery(query, notes.class).build();
+        FirestoreRecyclerOptions<Notes> allusernotes = new FirestoreRecyclerOptions.Builder<Notes>().setQuery(query, Notes.class).build();
 
-        noteAdapter= new FirestoreRecyclerAdapter<notes, NoteViewHolder>(allusernotes) {
+        noteAdapter= new FirestoreRecyclerAdapter<Notes, NoteViewHolder>(allusernotes) {
             @Override
-            protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, int i, @NonNull notes notes) {
+            protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, int i, @NonNull Notes notes) {
 
                 ImageView optionbuttons=noteViewHolder.itemView.findViewById(R.id.optionbutton);
 

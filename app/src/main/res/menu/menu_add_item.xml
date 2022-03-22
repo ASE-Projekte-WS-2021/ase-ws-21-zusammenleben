@@ -8,4 +8,10 @@
         android:icon="@drawable/ic_add_outline"
         app:showAsAction="always"
         />
+    <item
+        android:id="@+id/checkout_item"
+        android:title="Checkout"
+        android:icon="@drawable/ic_shopping_basket"
+        app:showAsAction="always"
+        />
 </menu>

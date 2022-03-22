@@ -147,8 +147,8 @@ public class ActivityNoteSpace extends AppCompatActivity{
                         .format(new Date())
         );
     }
-
-    /*private void searchNotes(final String searchKeyword){
+/*
+    private void searchNotes(final String searchKeyword, Map<String, Object> note){
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -156,13 +156,20 @@ public class ActivityNoteSpace extends AppCompatActivity{
                 if(searchKeyword.trim().isEmpty()){
                     System.out.println("Nothing searched for");
                 } else {
-                    ArrayList<> temp = new ArrayList();
-                    for ()
+                    ArrayList<Notes> temp = new ArrayList();
+                    for (Map.Entry<String, Object> entry: note.entrySet()) {
+                        String key = entry.getKey();
+                        Object value = entry.getValue();
+
+                        for (key : note){
+                            if(key)
+                        }
+                    }
                 }
             }
-        });
-    }*/
-
+        }, 500);
+    }
+`*/
     public void saveNote(){
         imageViewsave.setOnClickListener(new View.OnClickListener() {
             @Override

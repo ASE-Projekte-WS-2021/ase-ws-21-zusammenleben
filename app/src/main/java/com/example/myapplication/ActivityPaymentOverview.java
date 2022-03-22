@@ -105,8 +105,10 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     private void getIntentFromShoppingList(){
         Intent intent = getIntent();
         String strTextCosts = intent.getStringExtra("key");
+        String strTextName = intent.getStringExtra("value");
         //double inputCosts = Double.parseDouble(strTextCosts);
         //editTextCost.setText(valueOf(inputCosts));
+        editTextPurpose.setText(strTextName);
         editTextCost.setText(strTextCosts);
     }
 

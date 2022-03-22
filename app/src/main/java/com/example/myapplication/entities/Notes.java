@@ -1,6 +1,6 @@
 package com.example.myapplication.entities;
 
-public class notes {
+public class Notes {
 
     String title;
     String subtitle;
