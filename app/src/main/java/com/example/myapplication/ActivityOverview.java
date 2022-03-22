@@ -9,6 +9,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,12 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class ActivityOverview extends AppCompatActivity {
 
@@ -261,11 +262,9 @@ public class ActivityOverview extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         mAdapter = new RecycleViewAdapter(paymentList, this);
         recyclerView.setAdapter(mAdapter);
+
+        recyclerView.addOnItemTouchListener(new );
     }
-
-
-
-
 
 
     private void readDataFromPayments(FirebaseCallback firebaseCallback){
