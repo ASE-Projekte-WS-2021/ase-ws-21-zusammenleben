@@ -15,4 +15,7 @@ public class notes {
     public String getNotice() {
         return notice;
     }
+
+
 }
+

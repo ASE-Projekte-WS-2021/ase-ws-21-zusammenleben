@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -263,7 +262,21 @@ public class ActivityOverview extends AppCompatActivity {
         mAdapter = new RecycleViewAdapter(paymentList, this);
         recyclerView.setAdapter(mAdapter);
 
-        recyclerView.addOnItemTouchListener(new );
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        View myView = recyclerView.getChildAt(position);
+                        TextView myTextView = (TextView) myView.findViewById(R.id.payment_receiver);
+                        String s = myTextView.getText().toString();
+                        Log.d("test", s);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        Log.d("loooooong item", String.valueOf(view));
+                    }
+                })
+        );
+
     }
 
 
