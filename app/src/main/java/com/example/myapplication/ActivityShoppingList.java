@@ -3,6 +3,7 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,14 +15,19 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.entities.Flats;
 import com.example.myapplication.entities.ShoppingList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -35,6 +41,16 @@ public class ActivityShoppingList extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference databaseReferenceShop;
     FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReferenceFlat;
+    String currentUser;
+
+    ArrayList<ArrayList<String>> flatContents = new ArrayList<>();
+    String[] content;
+
+    String flatID;
+    long shoppinglistCountertwo;
+
+    //int shoppinglistCounter;
 
 
     BottomNavigationView bottomNavigationView;
@@ -43,6 +59,7 @@ public class ActivityShoppingList extends AppCompatActivity {
     EditText editTextCost, inputItem, costItem, numItem, inputCheckoutName;
     double total;
     String result;
+    ArrayList<ArrayList<String>> shoppinglistarray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +68,7 @@ public class ActivityShoppingList extends AppCompatActivity {
         //find view by id
 
         initFirebase();
+        getFlatIDinFirebase();
         initViews();
         initNavigationBar();
         initClickListeners();
@@ -68,6 +86,7 @@ public class ActivityShoppingList extends AppCompatActivity {
         arrayAdapterCosts = new ArrayAdapter(ActivityShoppingList.this, android.R.layout.simple_list_item_1, listcosts);
         list_view.setAdapter(arrayAdapter);
         list_view_cost.setAdapter(arrayAdapterCosts);
+        //shoppinglistCounter = 1;
 
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.shopping);
@@ -350,12 +369,26 @@ public class ActivityShoppingList extends AppCompatActivity {
                 String strSumCosts = costCheckout.getText().toString();
                 String inputNameShoppingList = inputCheckoutName.getText().toString().trim();
                 ArrayList<String> items = new ArrayList<>(list);
-                ShoppingList shoppingList = new ShoppingList(items,strSumCosts);
+                String flat = flatID;
+
+                ShoppingList shoppingList = new ShoppingList(items,strSumCosts,flat);
+                readDataFromShoppingList(new FirebaseCallback() {
+                    @Override
+                    public void onCallback(ArrayList<ArrayList<String>> list) {
+                        Log.d("Hi", list.toString());
+                        Log.d("Hi", String.valueOf(shoppinglistCountertwo));
+                        String shoptitle = flatID + String.valueOf(shoppinglistCountertwo++);
+                        databaseReferenceShop.child(shoptitle).setValue(shoppingList);
+                    }
+                });
+
                 Intent intent = new Intent(getApplicationContext(), ActivityPaymentOverview.class);
                 intent.putExtra("key", strSumCosts);
                 intent.putExtra("value", inputNameShoppingList);
                 startActivity(intent);
-                databaseReferenceShop.push().setValue(shoppingList);
+                //databaseReferenceShop.push().setValue(shoppingList);
+
+
 
             } else {
                 inputCheckoutName.setError("add Name here !");
@@ -366,11 +399,87 @@ public class ActivityShoppingList extends AppCompatActivity {
         builder.show();
     }
 
+    private void getFlatIDinFirebase(){
+        readData(new FirebaseCallback() {
+            @Override
+            public void onCallback(ArrayList<ArrayList<String>> list) {
+            }
+        });
+    }
+
+    private interface FirebaseCallback {
+        void onCallback(ArrayList<ArrayList<String>> list);
+    }
+
+    private void readDataFromShoppingList(FirebaseCallback firebaseCallback){
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    shoppinglistCountertwo = snapshot.getChildrenCount();
+                    ArrayList<String> shopping = ds.getValue(ShoppingList.class).getData();
+                    if(shopping.contains(flatID)){
+                        shoppinglistarray.add(shopping);
+                    }
+                }
+
+                firebaseCallback.onCallback(shoppinglistarray);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        };
+        databaseReferenceShop.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    // Get the data from Firebase Server online
+    private void readData(FirebaseCallback firebaseCallback){
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap : snapshot.getChildren()){
+                    int flatSize = snap.getValue(Flats.class).getFlatSize();
+                    ArrayList<String> flatContent = snap.getValue(Flats.class).getData(flatSize);
+                    flatContents.add(flatContent);
+                }
+                // Wait for the server to retrieve the data
+                firebaseCallback.onCallback(flatContents);
+                getCurrentUserFlat();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        };
+        databaseReferenceFlat.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    private void getCurrentUserFlat(){
+        for(int i = 0; i < flatContents.size(); i++){
+            if(flatContents.get(i).contains(currentUser)) {
+                String currentUserFlat = flatContents.get(i).toString();
+                content = currentUserFlat.split(",");
+            }
+        }
+        flatID = extractFlatID();
+    }
+
+    private String extractFlatID(){
+        for(int i = 0 ; i < content.length ; i++){
+            String s = content[i];
+            s = s.trim();
+            Log.d("debug", s);
+        }
+        return content[0].substring(1);
+    }
 
     private void initFirebase(){
         database = FirebaseDatabase.getInstance("https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/");
         databaseReferenceShop = database.getReference("ShoppingList");
         firebaseAuth = FirebaseAuth.getInstance();
+        databaseReferenceFlat = database.getReference("Flats");
+        currentUser = firebaseAuth.getCurrentUser().getEmail();
     }
 
 }

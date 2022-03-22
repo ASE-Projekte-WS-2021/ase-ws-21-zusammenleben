@@ -9,11 +9,24 @@ public class ShoppingList {
     private ArrayList<String> items;
     ArrayAdapter arrayAdapter;
     private String strSumCosts;
+    private String flat;
 
-    public ShoppingList (ArrayList<String> items, String strSumCosts) {
+    public ShoppingList () {
+    }
+
+    public ShoppingList (ArrayList<String> items, String strSumCosts, String flat) {
         this.items = items;
         this.strSumCosts = strSumCosts;
+        this.flat = flat;
 
+    }
+
+    public String getFlat() {
+        return flat;
+    }
+
+    public void setFlat(String flat) {
+        this.flat = flat;
     }
 
     public ArrayList<String> getItems() {
@@ -38,6 +51,15 @@ public class ShoppingList {
 
     public String getStrSumCosts() {
         return strSumCosts;
+    }
+
+    public ArrayList<String> getData() {
+        ArrayList<String> data = new ArrayList<String>();
+        data.add(String.valueOf(items));
+        data.add(strSumCosts);
+        data.add(flat);
+
+        return data;
     }
 
 }

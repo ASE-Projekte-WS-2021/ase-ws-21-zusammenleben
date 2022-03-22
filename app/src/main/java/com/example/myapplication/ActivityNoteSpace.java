@@ -208,4 +208,6 @@ public class ActivityNoteSpace extends AppCompatActivity{
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     }
+
+
 }

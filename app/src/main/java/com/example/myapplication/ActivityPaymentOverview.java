@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static java.lang.String.valueOf;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,8 +31,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static java.lang.String.valueOf;
 
 
 public class ActivityPaymentOverview extends AppCompatActivity {

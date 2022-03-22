@@ -8,9 +8,6 @@
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_paymentoverview.xml" value="0.335" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_startscreen.xml" value="0.165" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_userprofile.xml" value="0.296195652173913" />
-        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_checkout.xml" value="0.3671875" />
-        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_item_dialog.xml" value="0.3671875" />
-        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/menu/menu_add_item.xml" value="0.3671875" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addwg.xml" value="0.16614583333333333" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_overview.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_paymentoverview.xml" value="0.25" />
@@ -36,6 +33,7 @@
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_startscreen.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_userprofile.xml" value="0.25" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_add_url.xml" value="0.22010869565217392" />
+        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_checkout.xml" value="0.18115942028985507" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_item_dialog.xml" value="0.16875" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/notes_layout.xml" value="0.17028985507246377" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/popupwindow.xml" value="0.17708333333333334" />
@@ -54,7 +52,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
