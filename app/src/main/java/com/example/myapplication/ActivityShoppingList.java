@@ -369,9 +369,10 @@ public class ActivityShoppingList extends AppCompatActivity {
                 String strSumCosts = costCheckout.getText().toString();
                 String inputNameShoppingList = inputCheckoutName.getText().toString().trim();
                 ArrayList<String> items = new ArrayList<>(list);
+                ArrayList<String> costs = new ArrayList<>(listcosts);
                 String flat = flatID;
 
-                ShoppingList shoppingList = new ShoppingList(items,strSumCosts,flat);
+                ShoppingList shoppingList = new ShoppingList(items,costs,strSumCosts,flat,inputNameShoppingList);
                 readDataFromShoppingList(new FirebaseCallback() {
                     @Override
                     public void onCallback(ArrayList<ArrayList<String>> list) {
