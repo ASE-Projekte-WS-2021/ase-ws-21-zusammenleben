@@ -63,6 +63,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("ActivityLifecycle: ", "onCreate() active!");
         setupUIComponents();
         initFirebase();
         getFlatIDinFirebase();
@@ -72,6 +73,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     protected void onResume() {
         checkUserStatus();
         super.onResume();
+        Log.d("ActivityLifecycle: ", "onResume() active!");
         savePayment();
     }
 
@@ -219,6 +221,33 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onPause(){
+        super.onPause();
+        Log.d("ActivityLifecycle: ", "onPause() active!");
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        Log.d("ActivityLifecycle: ", "onStop() active!");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("ActivityLifecycle: ", "onDestroy() active!");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("ActivityLifecycle: ", "onStart() active!");
+    }
+
+
+
+
     private void readDataFromPayments(FirebaseCallback firebaseCallback){
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -256,7 +285,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     @Override
     protected void onRestart(){
         super.onRestart();
-        Log.d("xxxxx", "onRestart() active!");
+        Log.d("ActivityLifecycle: ", "onRestart() active!");
     }
 
 

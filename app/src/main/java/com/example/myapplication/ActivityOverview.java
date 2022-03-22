@@ -112,6 +112,7 @@ public class ActivityOverview extends AppCompatActivity {
         readData(new FirstFirebaseCallback() {
             @Override
             public void onFirstCallback(ArrayList<ArrayList<String>> list) {
+                // try something
             }
         });
     }
@@ -247,7 +248,7 @@ public class ActivityOverview extends AppCompatActivity {
         String userEmail = mAuth.getCurrentUser().getEmail();
         while(itr.hasNext()){
             PaymentMemo p = (PaymentMemo) itr.next();
-            if(!p.getReceiverName().equals(userEmail)){
+            if(!p.getReceiverName().contains(userEmail)){
                 itr.remove();
             }
         }
@@ -261,6 +262,10 @@ public class ActivityOverview extends AppCompatActivity {
         mAdapter = new RecycleViewAdapter(paymentList, this);
         recyclerView.setAdapter(mAdapter);
     }
+
+
+
+
 
 
     private void readDataFromPayments(FirebaseCallback firebaseCallback){
