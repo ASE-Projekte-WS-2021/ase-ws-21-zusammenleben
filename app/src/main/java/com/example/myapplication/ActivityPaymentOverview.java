@@ -275,8 +275,6 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         Log.d("xxxxx", "onRestart() active!");
     }
 
-
-
     private interface FirebaseCallback {
         void onCallback(ArrayList<ArrayList<String>> list);
     }

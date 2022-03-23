@@ -61,6 +61,11 @@ public class ActivityShoppingList extends AppCompatActivity {
     String result;
     ArrayList<ArrayList<String>> shoppinglistarray = new ArrayList<>();
 
+    int position;
+
+    boolean[] selectedCosts;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,13 +82,18 @@ public class ActivityShoppingList extends AppCompatActivity {
 
     private void initViews(){
         list_view = findViewById(R.id.list_view);
+       //list_view.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        //list_view.setItemChecked(position, false);
         list_view_cost = findViewById(R.id.list_view_cost);
+        list_view_cost.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        list_view_cost.setItemChecked(position, false);
         sumCosts = findViewById(R.id.sumcosts);
 
         editTextCost = findViewById(R.id.insert_costs);
 
+        //arrayAdapter = new ArrayAdapter(ActivityShoppingList.this, android.R.layout.simple_list_item_multiple_choice, list);
         arrayAdapter = new ArrayAdapter(ActivityShoppingList.this, android.R.layout.simple_list_item_1, list);
-        arrayAdapterCosts = new ArrayAdapter(ActivityShoppingList.this, android.R.layout.simple_list_item_1, listcosts);
+        arrayAdapterCosts = new ArrayAdapter(ActivityShoppingList.this, android.R.layout.simple_list_item_multiple_choice, listcosts);
         list_view.setAdapter(arrayAdapter);
         list_view_cost.setAdapter(arrayAdapterCosts);
         //shoppinglistCounter = 1;
@@ -310,6 +320,8 @@ public class ActivityShoppingList extends AppCompatActivity {
                     arrayAdapter.notifyDataSetChanged();
                     arrayAdapterCosts.notifyDataSetChanged();
 
+
+
                     addSums();
                 }
 
@@ -400,6 +412,7 @@ public class ActivityShoppingList extends AppCompatActivity {
         builder.show();
     }
 
+
     private void getFlatIDinFirebase(){
         readData(new FirebaseCallback() {
             @Override
@@ -482,5 +495,4 @@ public class ActivityShoppingList extends AppCompatActivity {
         databaseReferenceFlat = database.getReference("Flats");
         currentUser = firebaseAuth.getCurrentUser().getEmail();
     }
-
 }
