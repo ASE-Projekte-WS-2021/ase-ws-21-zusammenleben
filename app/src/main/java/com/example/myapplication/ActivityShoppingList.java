@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -189,8 +190,72 @@ public class ActivityShoppingList extends AppCompatActivity {
             });
             popupMenu.show();
         });
+        list_view_cost.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View v, int i, long l) {
+                list_view_cost.setOnItemClickListener((parent, view, position, id) -> {
 
-        list_view_cost.setOnItemClickListener((parent, view, position, id) -> {
+                    PopupMenu popupMenu = new PopupMenu(ActivityShoppingList.this, view);
+                    popupMenu.getMenuInflater().inflate(R.menu.pop_up_menu, popupMenu.getMenu());
+
+                    popupMenu.setOnMenuItemClickListener(item -> {
+
+                        switch (item.getItemId()) {
+
+                            case R.id.item_update:
+                                //function for update
+                                AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this);
+                                View layoutDialogUpdate = LayoutInflater.from(ActivityShoppingList.this).inflate(R.layout.layout_item_dialog, null, false);
+                                builder.setTitle("Update Cost");
+                                final EditText costItem= layoutDialogUpdate.findViewById(R.id.costItem);
+                                costItem.setText(listcosts.get(position));
+                                final EditText editText = layoutDialogUpdate.findViewById(R.id.inputItem);
+                                editText.setText(list.get(position));
+
+                                //set custom view to dialog
+                                builder.setView(layoutDialogUpdate);
+
+                                builder.setPositiveButton("Update", (dialog, which) -> {
+                                    if ( !costItem.getText().toString().isEmpty() && !!inputItem.getText().toString().isEmpty()) {
+                                        list.set(position, inputItem.getText().toString().trim());
+                                        listcosts.set(position, costItem.getText().toString().trim());
+                                        arrayAdapter.notifyDataSetChanged();
+                                        arrayAdapterCosts.notifyDataSetChanged();
+                                        Toast.makeText(ActivityShoppingList.this, "Item Updated!", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                    else {
+                                        costItem.setError("Füge hier den Preis ein!");
+                                    }
+                                });
+
+                                builder.setNegativeButton("Abbrechen", (dialog, which) -> dialog.dismiss());
+
+                                builder.show();
+
+                                break;
+
+                            case R.id.item_delete:
+                                //function for delete
+                                Toast.makeText(ActivityShoppingList.this, "Das Element wurde entfernt", Toast.LENGTH_SHORT).show();
+                                listcosts.remove(position);
+                                list.remove(position);
+                                arrayAdapterCosts.notifyDataSetChanged();
+                                arrayAdapter.notifyDataSetChanged();
+
+                                break;
+
+                        }
+
+                        return true;
+                    });
+                    popupMenu.show();
+                });
+                return true;
+            }
+        });
+
+        /*list_view_cost.setOnItemClickListener((parent, view, position, id) -> {
 
             PopupMenu popupMenu = new PopupMenu(ActivityShoppingList.this, view);
             popupMenu.getMenuInflater().inflate(R.menu.pop_up_menu, popupMenu.getMenu());
@@ -247,7 +312,7 @@ public class ActivityShoppingList extends AppCompatActivity {
                 return true;
             });
             popupMenu.show();
-        });
+        });*/
     }
 
     @Override
@@ -319,8 +384,6 @@ public class ActivityShoppingList extends AppCompatActivity {
                     listcosts.add(costItem.getText().toString().trim());
                     arrayAdapter.notifyDataSetChanged();
                     arrayAdapterCosts.notifyDataSetChanged();
-
-
 
                     addSums();
                 }

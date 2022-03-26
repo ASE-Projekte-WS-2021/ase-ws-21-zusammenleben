@@ -209,7 +209,6 @@ public class ActivityStartScreen extends AppCompatActivity {
         staggeredGridLayoutManager= new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         recyclerView.setAdapter(noteAdapter);
-
     }
 
     private void createNote(){
@@ -239,8 +238,9 @@ public class ActivityStartScreen extends AppCompatActivity {
                     overridePendingTransition(0,0);
                     return true;
                 case R.id.shopping:
-                    startActivity(new Intent(getApplicationContext(),ActivityShoppingList.class));
+                    startActivity(new Intent(getApplicationContext(),ActivityBasketList.class));
                     overridePendingTransition(0,0);
+                    return true;
             }
             return false;
         });

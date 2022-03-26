@@ -168,7 +168,7 @@ public class ActivityOverview extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.shopping:
-                        startActivity(new Intent(getApplicationContext(),ActivityShoppingList.class));
+                        startActivity(new Intent(getApplicationContext(),ActivityBasketList.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

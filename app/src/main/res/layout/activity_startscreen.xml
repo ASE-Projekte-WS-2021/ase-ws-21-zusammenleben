@@ -80,7 +80,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="410dp"
+        android:layout_width="match_parent"
         android:layout_height="528dp"
         android:background="@drawable/background_for_login"
         android:paddingStart="30dp"

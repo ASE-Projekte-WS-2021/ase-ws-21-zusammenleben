@@ -1,15 +1,9 @@
 package com.example.myapplication.entities;
 
-public class Notes {
-
+public class Basket {
     String title;
     String subtitle;
     String notice;
-    String url;
-
-    public String getUrl() {
-        return url;
-    }
 
     public String getTitle() {
         return title;
@@ -22,5 +16,4 @@ public class Notes {
     public String getNotice() {
         return notice;
     }
-
 }

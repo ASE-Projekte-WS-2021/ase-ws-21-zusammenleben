@@ -81,12 +81,17 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
-        <activity android:name=".entities.Pop"
-            android:theme="@style/AppTheme.CustomTheme"
-            ></activity>
+        <activity
+            android:name=".entities.Pop"
+            android:theme="@style/AppTheme.CustomTheme" />
 
         <activity android:name=".ActivityShoppingList"
             android:exported="true"/>
+
+        <activity
+            android:name=".ActivityBasketList"
+            android:exported="true" />
+
     </application>
 
 </manifest>
