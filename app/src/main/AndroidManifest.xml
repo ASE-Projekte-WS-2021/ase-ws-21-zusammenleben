@@ -36,6 +36,9 @@
             android:exported="false" />
 
 
+        <activity android:name=".ActivityEditPayment"
+            android:exported="true"
+            android:label="ActivityEditPayment"></activity>
 
         <activity
             android:name=".ActivityJoinWG"

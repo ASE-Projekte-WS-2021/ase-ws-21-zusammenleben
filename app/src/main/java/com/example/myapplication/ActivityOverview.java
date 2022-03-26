@@ -265,18 +265,30 @@ public class ActivityOverview extends AppCompatActivity {
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        View myView = recyclerView.getChildAt(position);
-                        TextView myTextView = (TextView) myView.findViewById(R.id.payment_receiver);
-                        String s = myTextView.getText().toString();
-                        Log.d("test", s);
                     }
 
                     @Override public void onLongItemClick(View view, int position) {
-                        Log.d("loooooong item", String.valueOf(view));
+                        handleDialog(position);
                     }
                 })
         );
 
+    }
+
+    private void handleDialog(int pos){
+        View v = recyclerView.getChildAt(pos);
+        TextView paymentPurpose = (TextView) v.findViewById(R.id.payment_purpose);
+        TextView paymentReceiver = (TextView) v.findViewById(R.id.payment_receiver);
+        TextView paymentCost = (TextView) v.findViewById(R.id.payment_cost);
+        String s = paymentPurpose.getText().toString()  + "/"
+                + paymentReceiver.getText().toString() + "/"
+                + paymentCost.getText().toString();
+        Log.d("clicked item", s);
+        PaymentDialog paymentDialog = new PaymentDialog();
+        Bundle bundle = new Bundle();
+        bundle.putString("PAYMENT", s);
+        paymentDialog.setArguments(bundle);
+        paymentDialog.show(getSupportFragmentManager(), "dialog");
     }
 
 

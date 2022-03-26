@@ -10,6 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,11 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 
 public class ActivityPaymentOverview extends AppCompatActivity {
@@ -86,7 +86,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         selectMate = findViewById(R.id.select_mates);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        //utilSpinner();
+        utilSpinner();
     }
 
     private void initFirebase(){
@@ -202,13 +202,16 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 }
 
                 PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, flat);
-                Log.d("paymentcounter", String.valueOf(paymentCounter));
+                Log.d("debug1231", String.valueOf(paymentCounter));
                 readDataFromPayments(new FirebaseCallback() {
                     @Override
                     public void onCallback(ArrayList<ArrayList<String>> list) {
                         Log.d("Hi", list.toString());
-                        Log.d("Hi", String.valueOf(paymentCounter));
-                        String paymentTitle = flatID + String.valueOf(paymentCounter++);
+                        Log.d("debug1232", String.valueOf(paymentCounter));
+                        paymentCounter += 1;
+                        String paymentTitle = flatID + String.valueOf(paymentCounter);
+                        Log.d("debug1233", paymentTitle);
+                        PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, paymentTitle);
                         databaseReferencePayment.child(paymentTitle).setValue(payment);
                     }
                 });
@@ -216,6 +219,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Successful!",Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 startActivity(intent);
+                paymentCounter += 1;
             }
         });
     }

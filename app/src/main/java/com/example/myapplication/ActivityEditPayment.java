@@ -10,6 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,14 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivityEditPayment extends AppCompatActivity {
 
@@ -60,6 +58,8 @@ public class ActivityEditPayment extends AppCompatActivity {
     String[] content;
 
     ArrayList<ArrayList<String>> paymentList = new ArrayList<>();
+    String arrivedPurpose, arrivedReceiver, arrivedCost;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,19 @@ public class ActivityEditPayment extends AppCompatActivity {
         setupUIComponents();
         initFirebase();
         getFlatIDinFirebase();
-        editPayment();
+
+        Bundle extras = getIntent().getExtras();
+        String s = extras.getString("PAYMENT");
+        unpackArrivedData(s);
+    }
+
+    private void unpackArrivedData(String str){
+        String[] arrivedData = str.split("/");
+        arrivedPurpose = arrivedData[0];
+        arrivedReceiver = arrivedData[1];
+        arrivedCost = arrivedData[2];
+        editTextCost.setText(arrivedCost);
+        editTextPurpose.setText(arrivedPurpose);
     }
 
     @Override
@@ -192,13 +204,6 @@ public class ActivityEditPayment extends AppCompatActivity {
                 String purpose = editTextPurpose.getText().toString();
                 String useremail = editTextMail.getText().toString();
                 String receiverName = selectMate.getText().toString();
-                String flat = flatID;
-                String key = databaseReferencePayment.child("posts").push().getKey();
-
-
-                Map<String, Object> childUpdates = new HashMap<>();
-
-
 
                 if (costString.isEmpty()){
                     Toast.makeText(getApplicationContext(), "EmptyField!",Toast.LENGTH_LONG).show();}
@@ -206,37 +211,34 @@ public class ActivityEditPayment extends AppCompatActivity {
                     actualCosts = (int) (Double.valueOf(costString) / 2);
                 }
 
-                PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, flat);
-                Log.d("paymentcounter", String.valueOf(paymentCounter));
-                readDataFromPayments(new ActivityPaymentOverview.FirebaseCallback() {
+                readDataFromPayments(new ActivityEditPayment.FirebaseCallback() {
                     @Override
                     public void onCallback(ArrayList<ArrayList<String>> list) {
-                        Log.d("Hi", list.toString());
-                        Log.d("Hi", String.valueOf(paymentCounter));
-                        String paymentTitle = flatID + String.valueOf(paymentCounter++);
-                        //databaseReferencePayment.updateChildren(payment);
+                        Log.d("12344", paymentList.toString());
+                        String paymentID = paymentList.get(0).get(4);
+                        PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, paymentID);
+                        databaseReferencePayment.child(paymentID).setValue(payment);
                     }
                 });
-
-                Toast.makeText(getApplicationContext(), "Successful!",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Payment updated!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 startActivity(intent);
             }
         });
     }
 
-    private void readDataFromPayments(ActivityPaymentOverview.FirebaseCallback firebaseCallback){
+    private void readDataFromPayments(ActivityEditPayment.FirebaseCallback firebaseCallback){
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     paymentCounter = snapshot.getChildrenCount();
                     ArrayList<String> payment = ds.getValue(PaymentMemo.class).getData();
-                    if(payment.contains(flatID)){
+                    String paymentID = ds.getKey();
+                    if(payment.contains(paymentID)){
                         paymentList.add(payment);
                     }
                 }
-
                 firebaseCallback.onCallback(paymentList);
             }
 
@@ -252,7 +254,7 @@ public class ActivityEditPayment extends AppCompatActivity {
     }
 
     private void getFlatIDinFirebase(){
-        readData(new ActivityPaymentOverview.FirebaseCallback() {
+        readData(new ActivityEditPayment.FirebaseCallback() {
             @Override
             public void onCallback(ArrayList<ArrayList<String>> list) {
             }
@@ -260,9 +262,9 @@ public class ActivityEditPayment extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestart(){
-        super.onRestart();
-        Log.d("xxxxx", "onRestart() active!");
+    protected void onResume(){
+        super.onResume();
+        editPayment();
     }
 
 
@@ -272,7 +274,7 @@ public class ActivityEditPayment extends AppCompatActivity {
     }
 
     // Get the data from Firebase Server online
-    private void readData(ActivityPaymentOverview.FirebaseCallback firebaseCallback){
+    private void readData(ActivityEditPayment.FirebaseCallback firebaseCallback){
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
