@@ -35,7 +35,7 @@ public class ActivityOverview extends AppCompatActivity {
     String userEmail;
     String flatID;
 
-    TextView paymentPurpose, costs;
+    TextView paymentPurpose, costs, debtText;
     Object cost, purpose;
 
     FirebaseDatabase database;
@@ -48,12 +48,13 @@ public class ActivityOverview extends AppCompatActivity {
     String[] content;
 
     ArrayList<PaymentMemo> paymentList = new ArrayList<>();
-    ArrayList<PaymentMemo> extractedPaymentList = new ArrayList<>();
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+
+    double debt;
 
 
     @Override
@@ -207,6 +208,8 @@ public class ActivityOverview extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.payment);
 
+        debtText = findViewById(R.id.debt);
+
         recyclerView = findViewById(R.id.recyclerview_payments);
 
         setupNavBar();
@@ -231,9 +234,40 @@ public class ActivityOverview extends AppCompatActivity {
         readDataFromPayments(new FirebaseCallback() {
             @Override
             public void onCallback(ArrayList<PaymentMemo> list) {
+                calculateSum();
                 fillRecyclerView();
             }
         });
+    }
+
+    private void calculateSum() {
+        Iterator itr = paymentList.iterator();
+
+        debt = 0.0;
+        while(itr.hasNext()){
+            int paymentReceiverCounter = 1;
+            PaymentMemo p = (PaymentMemo) itr.next();
+            String receivers = p.getReceiverName();
+            if (receivers.equals(userEmail)){
+                double currentDebt = p.getCost();
+                debt = debt + currentDebt;
+                Log.d("check debt", String.valueOf(currentDebt));
+            } else if(receivers.contains(userEmail)){
+                Log.d("check email", receivers);
+                int counter = 1;
+                for(int i = 0 ; i < receivers.length() ; i++){
+                    if(receivers.charAt(i) == ','){
+                        counter++;
+                    }
+                }
+                Log.d("counter", String.valueOf(counter));
+                double currentDebt = p.getCost();
+                currentDebt = currentDebt / counter;
+                debt = debt + currentDebt;
+            }
+        }
+        debtText.setText("Debt = " + String.valueOf(debt));
+
     }
 
     @Override
