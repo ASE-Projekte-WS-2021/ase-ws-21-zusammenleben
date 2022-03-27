@@ -5,6 +5,13 @@ public class Basket {
     String subtitle;
     String notice;
 
+    public Basket(String title, String subtitle, String notice) {
+        this.title = title;
+        this.subtitle = subtitle;
+        this.notice = notice;
+
+    }
+
     public String getTitle() {
         return title;
     }

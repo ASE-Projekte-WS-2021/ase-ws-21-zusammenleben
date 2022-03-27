@@ -28,7 +28,7 @@
             android:ellipsize="marquee"/>
 
         <ImageView
-            android:id="@+id/editButton"
+            android:id="@+id/editButton_basket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"

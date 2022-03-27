@@ -29,14 +29,14 @@
         android:layout_marginTop="12dp"
         android:contentDescription="showpicture"
         android:src="@drawable/avatar"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintEnd_toStartOf="@+id/textPageTitle"
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/basketRecyclerView"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textPageTitle"
         android:layout_width="144dp"
         android:layout_height="56dp"
         android:text="BasketList"
