@@ -17,18 +17,20 @@ import java.util.List;
 public class BasketViewAdapter extends RecyclerView.Adapter<BasketViewAdapter.ViewHolder> {
     List <Basket> basketList;
     Context context;
+    private ItemClickListener itemClickListener;
 
-    public BasketViewAdapter( List <Basket> basketList, Context context){
+    public BasketViewAdapter(List <Basket> basketList, ItemClickListener itemClickListener){
         this.basketList = basketList;
-        this.context = context;
+        this.itemClickListener = itemClickListener;
     }
 
-    public BasketViewAdapter(ArrayList<ArrayList<String>> basketList){}
+    public BasketViewAdapter(ArrayList<Basket> basketList){
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType){
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.basket_layout, parent, false);
-        ViewHolder holder = new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view, itemClickListener);
         return holder;
     }
 
@@ -39,18 +41,32 @@ public class BasketViewAdapter extends RecyclerView.Adapter<BasketViewAdapter.Vi
         holder.basketTextactivity.setText(basketList.get(position).getNotice());
     }
 
+
     @Override
     public int getItemCount(){
         return basketList.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView basketTitle, basketSubtitleactivity, basketTextactivity;
 
-        public ViewHolder(@NonNull View itemView){
+    public interface ItemClickListener{
+        void onItemClicked(int position);
+    }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        TextView basketTitle, basketSubtitleactivity, basketTextactivity;
+        ItemClickListener itemClickListener;
+        public ViewHolder(@NonNull View itemView, ItemClickListener itemClickListener){
             super(itemView);
             basketTitle = itemView.findViewById(R.id.basketTitle);
             basketSubtitleactivity = itemView.findViewById(R.id.basketSubtitleactivity);
             basketTextactivity = itemView.findViewById(R.id.basketTextactivity);
+            this.itemClickListener = itemClickListener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            itemClickListener.onItemClicked(getAdapterPosition());
         }
     }
 }

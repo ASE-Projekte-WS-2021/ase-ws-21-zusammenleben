@@ -81,6 +81,18 @@ public class ActivityShoppingList extends AppCompatActivity {
         //callOnPayment();
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Bundle receivedData = getIntent().getExtras();
+        String s = receivedData.getString("VALIDATE");
+        unpackArrivedData(s);
+    }
+
+    private void unpackArrivedData(String str){
+        Log.d("validating", str);
+    }
+
     private void initViews(){
         list_view = findViewById(R.id.list_view);
        //list_view.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);

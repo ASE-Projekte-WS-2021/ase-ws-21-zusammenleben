@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,13 +17,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ActivityBasketList extends AppCompatActivity {
+public class ActivityBasketList extends AppCompatActivity implements BasketViewAdapter.ItemClickListener{
 
     //UI layout activity_basket
     TextView showEmail, textPageTitle;
@@ -35,11 +39,6 @@ public class ActivityBasketList extends AppCompatActivity {
 
     // bottomNav
     BottomNavigationView bottomNavigationView;
-
-    //Firebase Stuff
-    FirebaseAuth firebaseAuth;
-    FirebaseFirestore firebaseFirestore;
-    FirebaseUser firebaseUser;
     //adapter
     //FirestoreRecyclerAdapter<Basket, BasketViewHolder> basketAdapter;
     LinearLayout basketLinearLayout;
@@ -58,147 +57,115 @@ public class ActivityBasketList extends AppCompatActivity {
     TextView title, basketSubtitleactivity, basketTextactivity;
     ImageView editButton;
 
+
+    Intent i;
+
+    ////////////////////////////////////
+
+
+    //Firebase Stuff
+    FirebaseAuth firebaseAuth;
+    FirebaseFirestore firebaseFirestore;
+    FirebaseUser firebaseUser;
+    FloatingActionButton b;
+
+
+    String currentUser;
+    FirebaseDatabase database;
+    final String FIREBASEPATH = "https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/";
+    DatabaseReference databaseReferenceShopping;
+
     // recyclerview in dem textviews angeziegt werden, wenn auf den plus button geclicked wird. Und auf die
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_basketlist);
         initViews();
-        //setDateandtime();
-        setBottomNavigationView();
-        displayBasket();
+        initFirebase();
+    }
+
+
+    private void initFirebase() {
+        database = FirebaseDatabase.getInstance(FIREBASEPATH);
+        databaseReferenceShopping = database.getReference("ShoppingList");
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser().getEmail();
     }
 
     private void initViews(){
-        showPicture = findViewById(R.id.show_picture);
-        showEmail = findViewById(R.id.show_email);
-        textPageTitle = findViewById(R.id.textPageTitle);
-        basketRecyclerView = findViewById(R.id.basketRecyclerView);
-        basketActionButton = findViewById(R.id.basketActionButton);
-        basketLinearLayout = findViewById(R.id.basket);
-
-        title = findViewById(R.id.basketTitle);
-        basketSubtitleactivity = findViewById(R.id.basketSubtitleactivity);
-        basketTextactivity = findViewById(R.id.basketTextactivity);
-        editButton = findViewById(R.id.editButton_basket);
-    }
-/*
-    @Override
-    protected void onStart() {
-        super.onStart();
-        basketAdapter.startListening();
+        setContentView(R.layout.activity_basketlist);
+        recyclerView = findViewById(R.id.basketRecyclerView);
+        b = findViewById(R.id.basketActionButton);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        basketAdapter.stopListening();
-    }
-    */
     @Override
     protected void onResume(){
         super.onResume();
-        createBasket();
+        initRecyclerView();
+        fillRecyclerView();
     }
-/*
-    public void setDateandtime(){
-        basketSubtitleactivity.setText(
-                new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm a", Locale.getDefault())
-                        .format(new Date())
-        );
-    }*/
 
-    private void displayBasket(){
-
-        /*
-        Calendar calender = Calendar.getInstance();
-        int day = calender.get(Calendar.DAY_OF_WEEK);
+    private String day() {
+        String s = "";
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
         switch (day){
             case Calendar.MONDAY:
-                mTitle = "Montagsliste";
-                mSubTitle = basketSubtitleactivity.getText().toString().trim();
-                mDesc = "Diese Liste wurde von dir erstellt. Editiere sie oder füge Items zu deinem Basket hinzu";
+                s += "Montagsliste";
                 break;
             case Calendar.TUESDAY:
-                mTitle = "Dienstagsliste";
-                mSubTitle = basketSubtitleactivity.getText().toString().trim();
-                mDesc = "Diese Liste wurde von dir erstellt. Editiere sie oder füge Items zu deinem Basket hinzu";
+                s += "Dienstagsliste";
                 break;
             case Calendar.WEDNESDAY:
-                mTitle = "Mittwochsliste";
-                mSubTitle = basketSubtitleactivity.getText().toString().trim();
-                mDesc = "Diese Liste wurde von dir erstellt. Editiere sie oder füge Items zu deinem Basket hinzu";
+                s += "Mittwochsliste";
                 break;
             case Calendar.THURSDAY:
-                mTitle = "Donnerstagsliste";
-                mSubTitle = basketSubtitleactivity.getText().toString().trim();
-                mDesc = "Diese Liste wurde von dir erstellt. Editiere sie oder füge Items zu deinem Basket hinzu";
+                s += "Donnerstagsliste";
                 break;
             case Calendar.FRIDAY:
-                mTitle = "Freitagsliste";
-                mSubTitle = basketSubtitleactivity.getText().toString().trim();
-                mDesc = "Diese Liste wurde von dir erstellt. Editiere sie oder füge Items zu deinem Basket hinzu";
+                s += "Freitagsliste";
                 break;
             case Calendar.SATURDAY:
-                mTitle = "Samstagsliste";
-                mSubTitle = basketSubtitleactivity.getText().toString().trim();
-                mDesc = "Diese Liste wurde von dir erstellt. Editiere sie oder füge Items zu deinem Basket hinzu";
+                s += "Samstagsliste";
                 break;
             case Calendar.SUNDAY:
-                mTitle = "Sonntagsliste";
-                mSubTitle = basketSubtitleactivity.getText().toString().trim();
-                mDesc = "Diese Liste wurde von dir erstellt. Editiere sie oder füge Items zu deinem Basket hinzu";
+                s += "Sonntagsliste";
                 break;
-        }*/
+        }
 
-
-        Basket mBasket = new Basket("a", "b", "c");
-
-        basketActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("basket was logged");
-                mBaskets.add(mBasket);
-                System.out.println(mBasket);
-            }
-        });
+        return s;
     }
 
-    private void createBasket(){
+    private void initRecyclerView() {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        //mAdapter = new BasketViewAdapter();
+        Log.d("mBaskets", mBaskets.toString());
+        mAdapter = new BasketViewAdapter(mBaskets, this);
+        recyclerView.setAdapter(mAdapter);
     }
 
-    private void setBottomNavigationView(){
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch(item.getItemId()){
-                case R.id.payment:
-                    startActivity(new Intent(getApplicationContext(),ActivityOverview.class));
-                    overridePendingTransition(0,0);
-                    return true;
-                case R.id.home:
-                    startActivity(new Intent(getApplicationContext(),ActivityStartScreen.class));
-                    overridePendingTransition(0,0);
-                    return true;
-                case R.id.user:
-                    startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
-                    overridePendingTransition(0,0);
-                    return true;
-                case R.id.shopping:
-                    return true;
+    private void fillRecyclerView(){
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("clicked", "it was !");
+                Basket basket = new Basket(day(), "hallo", "freunde");
+                mBaskets.add(basket);
+                mAdapter.notifyDataSetChanged();
+                Log.d("mbaskets", mBaskets.toString());
             }
-            return false;
         });
     }
 
-
-    private void initFirebase(){
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        firebaseFirestore = FirebaseFirestore.getInstance();
-        firebaseAuth = FirebaseAuth.getInstance();
+    @Override
+    public void onItemClicked(int position) {
+        mBaskets.get(position);
+        Log.d("check", String.valueOf(position));
+        Bundle send = new Bundle();
+        send.putString("VALIDATE", day() + "---" + String.valueOf(position));
+        Intent intent = new Intent(this, ActivityShoppingList.class);
+        intent.putExtras(send);
+        startActivity(intent);
     }
-
 }
