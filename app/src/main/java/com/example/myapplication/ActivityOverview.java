@@ -9,12 +9,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +21,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class ActivityOverview extends AppCompatActivity {
 
     ImageButton button_managePayments;
@@ -34,6 +34,7 @@ public class ActivityOverview extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     String userEmail;
     String flatID;
+    String arrivedPurpose, arrivedReceiver, arrivedCost;
 
     TextView paymentPurpose, costs, debtText;
     Object cost, purpose;
@@ -64,49 +65,6 @@ public class ActivityOverview extends AppCompatActivity {
         initFirebase();
         addListenerOnButton();
         getFlatIDinFirebase();
-    }
-
-
-    private void updateTextView() {
-        databaseReferencePayment.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        Log.d("hi", "yo");
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("catch", "Database still empty.....");
-            }
-        });
-    }
-
-    private void deletePayment() {
-        databaseReferencePayment.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        if(flatID.equals(dataSnapshot.child("flat").getValue())) {
-                            dataSnapshot.getRef().removeValue();
-                            Intent i = new Intent(ActivityOverview.this, ActivityOverview.class);
-                            finish();
-                            overridePendingTransition(0, 0);
-                            startActivity(i);
-                            overridePendingTransition(0, 0);
-                            return;
-                        }
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("catch", "Database still empty.....");
-            }
-        });
     }
 
     private void getFlatIDinFirebase(){
