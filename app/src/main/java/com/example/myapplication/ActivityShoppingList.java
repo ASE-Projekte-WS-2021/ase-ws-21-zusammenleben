@@ -16,10 +16,6 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.myapplication.entities.Flats;
 import com.example.myapplication.entities.ShoppingList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,6 +27,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivityShoppingList extends AppCompatActivity {
 
@@ -63,6 +63,7 @@ public class ActivityShoppingList extends AppCompatActivity {
     ArrayList<ArrayList<String>> shoppinglistarray = new ArrayList<>();
 
     int position;
+    String day, pos, basketID;
 
     boolean[] selectedCosts;
 
@@ -91,6 +92,9 @@ public class ActivityShoppingList extends AppCompatActivity {
 
     private void unpackArrivedData(String str){
         Log.d("validating", str);
+        String[] arrivedData = str.split("/");
+        basketID = arrivedData[2];
+        System.out.println(basketID);
     }
 
     private void initViews(){
@@ -195,9 +199,7 @@ public class ActivityShoppingList extends AppCompatActivity {
                         arrayAdapterCosts.notifyDataSetChanged();
 
                         break;
-
                 }
-
                 return true;
             });
             popupMenu.show();
@@ -465,7 +467,7 @@ public class ActivityShoppingList extends AppCompatActivity {
                     public void onCallback(ArrayList<ArrayList<String>> list) {
                         Log.d("Hi", list.toString());
                         Log.d("Hi", String.valueOf(shoppinglistCountertwo));
-                        String shoptitle = flatID + String.valueOf(shoppinglistCountertwo++);
+                        String shoptitle = basketID;
                         databaseReferenceShop.child(shoptitle).setValue(shoppingList);
                     }
                 });

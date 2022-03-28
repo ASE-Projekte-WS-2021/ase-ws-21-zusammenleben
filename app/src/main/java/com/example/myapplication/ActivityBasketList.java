@@ -9,12 +9,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.myapplication.entities.Basket;
 import com.example.myapplication.entities.Flats;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,6 +27,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ActivityBasketList extends AppCompatActivity implements BasketViewAdapter.ItemClickListener{
@@ -58,6 +57,9 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
     String mSubTitle;
     String mDesc;
     Basket mBasket;
+
+    String identifier;
+    String basketID;
 
     long basketCounter;
 
@@ -194,7 +196,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
                     String subtitle = ds.getValue(Basket.class).getSubtitle();
                     if(subtitle.equals(currentUser)) {
                         Log.d("test123", "made it inside callback func");
-                        String basketID = ds.getValue(Basket.class).getFlatID();
+                        basketID = ds.getValue(Basket.class).getFlatID();
                         String title = ds.getValue(Basket.class).getTitle();
                         String notice = ds.getValue(Basket.class).getNotice();
                         Basket basket = new Basket(basketID, title, subtitle, notice);
@@ -269,7 +271,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
             public void onClick(View view) {
                 Log.d("clicked", "it was !");
                 basketCounter += 1;
-                String identifier = currentUserFlatID + String.valueOf(basketCounter);
+                identifier = currentUserFlatID + String.valueOf(basketCounter);
                 Basket basket = new Basket(day(), currentUser, "Angelegt:" + "" + currentTime(), identifier);
                 mBaskets.add(basket);
                 databaseReferenceBaskets.child(identifier).setValue(basket);
@@ -284,7 +286,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         mBaskets.get(position);
         Log.d("check", String.valueOf(position));
         Bundle send = new Bundle();
-        send.putString("VALIDATE", day() + "---" + String.valueOf(position));
+        send.putString("VALIDATE", day() + "/" + String.valueOf(position) + "/" + mBaskets.get(position).getTitle());
         Intent intent = new Intent(this, ActivityShoppingList.class);
         intent.putExtras(send);
         startActivity(intent);
