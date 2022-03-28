@@ -15,7 +15,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.entities.Flats;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,10 +28,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+public class ActivityEditPayment extends AppCompatActivity {
 
-public class ActivityPaymentOverview extends AppCompatActivity {
-
-    Button button_savepayment;
+    Button buttonEditPayment;
     EditText editTextCost, editTextPurpose;
     TextView useremail;
     TextView selectMate;
@@ -60,44 +58,46 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     String[] content;
 
     ArrayList<ArrayList<String>> paymentList = new ArrayList<>();
+    String arrivedPurpose, arrivedReceiver, arrivedCost;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("ActivityLifecycle: ", "onCreate() active!");
         setupUIComponents();
         initFirebase();
-        getIntentFromShoppingList();
         getFlatIDinFirebase();
+
+        Bundle extras = getIntent().getExtras();
+        String s = extras.getString("PAYMENT");
+        unpackArrivedData(s);
     }
 
-
-    private void getIntentFromShoppingList(){
-        Intent intent = getIntent();
-        String strTextCosts = intent.getStringExtra("key");
-        String strTextName = intent.getStringExtra("value");
-        editTextPurpose.setText(strTextName);
-        editTextCost.setText(strTextCosts);
+    private void unpackArrivedData(String str){
+        String[] arrivedData = str.split("/");
+        arrivedPurpose = arrivedData[0];
+        arrivedReceiver = arrivedData[1];
+        arrivedCost = arrivedData[2];
+        editTextCost.setText(arrivedCost);
+        editTextPurpose.setText(arrivedPurpose);
     }
 
     @Override
-    protected void onResume() {
+    protected void onStart() {
         checkUserStatus();
-        super.onResume();
-        Log.d("ActivityLifecycle: ", "onResume() active!");
-        savePayment();
+        super.onStart();
     }
 
     private void setupUIComponents() {
-        setContentView(R.layout.activity_paymentoverview);
+        setContentView(R.layout.activity_editpayment);
         useremail = findViewById(R.id.show_email);
-        button_savepayment = (Button) findViewById(R.id.btn_save_payment);
+        buttonEditPayment = (Button) findViewById(R.id.btn_edit_payment);
         editTextCost = (EditText) findViewById(R.id.insert_costs);
         editTextPurpose = (EditText) findViewById(R.id.insert_purpose);
         selectMate = findViewById(R.id.select_mates);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        utilSpinner();
+
     }
 
     private void initFirebase(){
@@ -118,7 +118,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
             public void onClick(View v) {
                 //initialize alert dialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(
-                        ActivityPaymentOverview.this
+                        ActivityEditPayment.this
                 );
                 //set title
                 builder.setTitle("select your mates");
@@ -190,12 +190,12 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         });
     }
 
-    private void savePayment() {
+    private void editPayment() {
         final EditText editTextCost = findViewById(R.id.insert_costs);
         final EditText editTextPurpose = findViewById(R.id.insert_purpose);
         final TextView editTextMail = findViewById(R.id.show_email);
 
-        button_savepayment.setOnClickListener(new View.OnClickListener() {
+        buttonEditPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFlatID();
@@ -204,76 +204,41 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 String purpose = editTextPurpose.getText().toString();
                 String useremail = editTextMail.getText().toString();
                 String receiverName = selectMate.getText().toString();
-                String flat = flatID;
 
-
-                if (costString.isEmpty()){Toast.makeText(getApplicationContext(), "EmptyField!",Toast.LENGTH_LONG).show();}
+                if (costString.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "EmptyField!",Toast.LENGTH_LONG).show();}
                 if (!costString.isEmpty()){
                     actualCosts = (int) (Double.valueOf(costString) / 2);
                 }
 
-                PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, flat);
-                Log.d("debug1231", String.valueOf(paymentCounter));
-                readDataFromPayments(new FirebaseCallback() {
+                readDataFromPayments(new ActivityEditPayment.FirebaseCallback() {
                     @Override
                     public void onCallback(ArrayList<ArrayList<String>> list) {
-                        Log.d("Hi", list.toString());
-                        Log.d("debug1232", String.valueOf(paymentCounter));
-                        paymentCounter += 1;
-                        String paymentTitle = flatID + String.valueOf(paymentCounter);
-                        Log.d("debug1233", paymentTitle);
-                        PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, paymentTitle);
-                        databaseReferencePayment.child(paymentTitle).setValue(payment);
+                        Log.d("12344", paymentList.toString());
+                        String paymentID = paymentList.get(0).get(4);
+                        PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, paymentID);
+                        databaseReferencePayment.child(paymentID).setValue(payment);
                     }
                 });
-
-                Toast.makeText(getApplicationContext(), "Successful!",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Payment updated!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 startActivity(intent);
-                paymentCounter += 1;
             }
         });
     }
 
-    @Override
-    protected void onPause(){
-        super.onPause();
-        Log.d("ActivityLifecycle: ", "onPause() active!");
-    }
-
-    @Override
-    protected void onStop(){
-        super.onStop();
-        Log.d("ActivityLifecycle: ", "onStop() active!");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("ActivityLifecycle: ", "onDestroy() active!");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d("ActivityLifecycle: ", "onStart() active!");
-    }
-
-
-
-
-    private void readDataFromPayments(FirebaseCallback firebaseCallback){
+    private void readDataFromPayments(ActivityEditPayment.FirebaseCallback firebaseCallback){
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     paymentCounter = snapshot.getChildrenCount();
                     ArrayList<String> payment = ds.getValue(PaymentMemo.class).getData();
-                    if(payment.contains(flatID)){
+                    String paymentID = ds.getKey();
+                    if(payment.contains(paymentID)){
                         paymentList.add(payment);
                     }
                 }
-
                 firebaseCallback.onCallback(paymentList);
             }
 
@@ -289,7 +254,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     }
 
     private void getFlatIDinFirebase(){
-        readData(new FirebaseCallback() {
+        readData(new ActivityEditPayment.FirebaseCallback() {
             @Override
             public void onCallback(ArrayList<ArrayList<String>> list) {
             }
@@ -297,19 +262,19 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestart(){
-        super.onRestart();
-        Log.d("ActivityLifecycle: ", "onRestart() active!");
+    protected void onResume(){
+        super.onResume();
+        editPayment();
     }
 
 
 
-    interface FirebaseCallback {
+    private interface FirebaseCallback {
         void onCallback(ArrayList<ArrayList<String>> list);
     }
 
     // Get the data from Firebase Server online
-    private void readData(FirebaseCallback firebaseCallback){
+    private void readData(ActivityEditPayment.FirebaseCallback firebaseCallback){
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -403,6 +368,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         for(int i = 0 ; i < content.length ; i++){
             String s = content[i];
             s = s.trim();
+            Log.d("debug", s);
         }
         return content[0].substring(1);
     }
@@ -425,3 +391,4 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         }
     }
 }
+

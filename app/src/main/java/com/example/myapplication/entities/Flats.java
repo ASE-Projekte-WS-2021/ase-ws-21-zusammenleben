@@ -92,12 +92,15 @@ public class Flats {
 
         if(size == 2){
             data.add(flatID);
+            data.add(String.valueOf(flatSize));
             data.add(firstUser);
             data.add(secondUser);
+
         }
 
         if(size == 3){
             data.add(flatID);
+            data.add(String.valueOf(flatSize));
             data.add(firstUser);
             data.add(secondUser);
             data.add(thirdUser);
@@ -105,6 +108,7 @@ public class Flats {
 
         if(size == 4){
             data.add(flatID);
+            data.add(String.valueOf(flatSize));
             data.add(firstUser);
             data.add(secondUser);
             data.add(thirdUser);
@@ -113,6 +117,7 @@ public class Flats {
 
         if(size == 5){
             data.add(flatID);
+            data.add(String.valueOf(flatSize));
             data.add(firstUser);
             data.add(secondUser);
             data.add(thirdUser);

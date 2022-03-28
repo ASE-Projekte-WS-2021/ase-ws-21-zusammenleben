@@ -24,4 +24,6 @@
     <string name="text_for_layout">Text</string>
     <string name="note_options">note_options</string>
     <string name="add_new_shoppinglist">Add new Shoppinglist</string>
+    <string name="payment_options">payment_options</string>
+    <string name="edit_payment">Edit Payment</string>
 </resources>
