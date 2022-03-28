@@ -101,7 +101,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
     }
 
     private void retrieveFlatDataFromFirebase(){
-        readData(new FirebaseCallback() {
+        readFlatData(new FirebaseCallback() {
             @Override
             public void onCallback(ArrayList<ArrayList<String>> list) {
                 retrieveFlatIDfromFirebase();
@@ -120,7 +120,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         }
     }
 
-    private void readData(FirebaseCallback firebaseCallback){
+    private void readFlatData(FirebaseCallback firebaseCallback){
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -165,11 +165,51 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         bottomNavigationView.setSelectedItemId(R.id.shopping);
     }
 
+    //TODO : Firebase counter nachbessern
+
     @Override
     protected void onResume(){
         super.onResume();
-        initRecyclerView();
-        fillRecyclerView();
+        Log.d("before callback", mBaskets.toString());
+        readBasketData(new FirebaseBasketCallback() {
+            @Override
+            public void onBasketCallback(ArrayList<Basket> mBaskets) {
+                fillRecyclerView();
+            }
+        });
+
+        Log.d("after callback", mBaskets.toString());
+    }
+
+    private void readBasketData(FirebaseBasketCallback firebaseBasketCallback){
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()){
+                    String subtitle = ds.getValue(Basket.class).getSubtitle();
+                    if(subtitle.equals(currentUser)) {
+                        Log.d("test123", "made it inside callback func");
+                        String basketID = ds.getValue(Basket.class).getFlatID();
+                        String title = ds.getValue(Basket.class).getTitle();
+                        String notice = ds.getValue(Basket.class).getNotice();
+                        Basket basket = new Basket(basketID, title, subtitle, notice);
+                        mBaskets.add(basket);
+                        Log.d("test123", basket.toString());
+                    }
+                }
+                firebaseBasketCallback.onBasketCallback(mBaskets);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        databaseReferenceBaskets.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    interface FirebaseBasketCallback{
+        void onBasketCallback(ArrayList<Basket> myBaskets);
     }
 
     private String day() {
@@ -208,16 +248,16 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         return currentDataTime;
     }
 
-    private void initRecyclerView() {
+
+
+    private void fillRecyclerView(){
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         Log.d("mBaskets", mBaskets.toString());
         mAdapter = new BasketViewAdapter(mBaskets, this);
         recyclerView.setAdapter(mAdapter);
-    }
 
-    private void fillRecyclerView(){
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -230,7 +270,6 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
                 mAdapter.notifyDataSetChanged();
             }
         });
-
         basketCounter+= 1;
     }
 

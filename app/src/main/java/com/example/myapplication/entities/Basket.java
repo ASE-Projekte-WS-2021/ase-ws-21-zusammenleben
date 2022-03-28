@@ -14,6 +14,9 @@ public class Basket {
         this.flatID = flatID;
     }
 
+    public Basket(){
+    }
+
 
     public String getFlatID(){
         return flatID;
