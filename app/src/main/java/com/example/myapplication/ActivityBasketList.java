@@ -21,8 +21,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -94,8 +96,11 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
 
     private void initViews(){
         setContentView(R.layout.activity_basketlist);
+        //setBottomNavigationView();
         recyclerView = findViewById(R.id.basketRecyclerView);
         b = findViewById(R.id.basketActionButton);
+        //bottomNavigationView = findViewById(R.id.bottomnavview);
+        //bottomNavigationView.setSelectedItemId(R.id.shopping);
     }
 
     @Override
@@ -136,6 +141,11 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         return s;
     }
 
+    private String currentTime(){
+        String currentDataTime = DateFormat.getDateTimeInstance().format(new Date());
+        return currentDataTime;
+    }
+
     private void initRecyclerView() {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -150,7 +160,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
             @Override
             public void onClick(View view) {
                 Log.d("clicked", "it was !");
-                Basket basket = new Basket(day(), "hallo", "freunde");
+                Basket basket = new Basket(day(), currentUser, "Angelegt:" + "" + currentTime());
                 mBaskets.add(basket);
                 mAdapter.notifyDataSetChanged();
                 Log.d("mbaskets", mBaskets.toString());
@@ -168,4 +178,29 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         intent.putExtras(send);
         startActivity(intent);
     }
+
+    /*private void setBottomNavigationView(){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.payment:
+                        ActivityBasketList.this.startActivity(new Intent(ActivityBasketList.this.getApplicationContext(), ActivityOverview.class));
+                        ActivityBasketList.this.overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.home:
+                        ActivityBasketList.this.startActivity(new Intent(ActivityBasketList.this.getApplicationContext(), ActivityStartScreen.class));
+                        ActivityBasketList.this.overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.user:
+                        ActivityBasketList.this.startActivity(new Intent(ActivityBasketList.this.getApplicationContext(), ActivityUserProfile.class));
+                        ActivityBasketList.this.overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.shopping:
+                        return true;
+                }
+                return false;
+            }
+        });
+    }*/
 }
