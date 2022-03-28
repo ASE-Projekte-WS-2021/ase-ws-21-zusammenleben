@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -51,7 +52,7 @@ public class ActivityStartScreen extends AppCompatActivity {
     StaggeredGridLayoutManager staggeredGridLayoutManager;
     FirestoreRecyclerAdapter<Notes,NoteViewHolder> noteAdapter;
 
-
+    EditText inputSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -263,6 +264,7 @@ public class ActivityStartScreen extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.home);
         useremail = findViewById(R.id.show_email);
+        inputSearch = findViewById(R.id.inputSearch);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     }

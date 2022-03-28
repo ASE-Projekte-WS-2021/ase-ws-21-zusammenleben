@@ -477,17 +477,13 @@ public class ActivityShoppingList extends AppCompatActivity {
         builder.setPositiveButton("Abschließen", (dialog, which) -> {
             if (!inputCheckoutName.getText().toString().isEmpty()) {
 
-                String strSumCosts2 = costCheckout.getText().toString();
-                String strSumCosts = valueCostText;
-                String inputNameShoppingList2 = inputCheckoutName.getText().toString().trim();
-                String inputNameShoppingList = strTextName;
                 ArrayList<String> items = new ArrayList<>(list);
                 ArrayList<String> costs = new ArrayList<>(listcosts);
                 String flat = flatID;
 
                 Log.d("444 check items again", flatID);
 
-                ShoppingList shoppingList = new ShoppingList(items,costs,strSumCosts,flat,inputNameShoppingList);
+                ShoppingList shoppingList = new ShoppingList(items,costs, valueCostText,flat, strTextTitle);
                 readDataFromShoppingList(new FirebaseCallback() {
                     @Override
                     public void onCallback(ArrayList<ArrayList<String>> list) {
@@ -499,8 +495,8 @@ public class ActivityShoppingList extends AppCompatActivity {
                 });
 
                 Intent intent = new Intent(getApplicationContext(), ActivityPaymentOverview.class);
-                intent.putExtra("key", strSumCosts);
-                intent.putExtra("value", inputNameShoppingList);
+                intent.putExtra("key", valueCostText);
+                intent.putExtra("value", strTextTitle);
                 startActivity(intent);
                 //databaseReferenceShop.push().setValue(shoppingList);
 
