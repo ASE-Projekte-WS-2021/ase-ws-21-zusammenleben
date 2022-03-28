@@ -66,8 +66,6 @@ public class ActivityShoppingList extends AppCompatActivity {
     int position;
     String day, pos, basketID;
 
-    boolean[] selectedCosts;
-
     CheckedTextView checkBox;
 
 
@@ -82,6 +80,7 @@ public class ActivityShoppingList extends AppCompatActivity {
         initViews();
         initNavigationBar();
         initClickListeners();
+
         //callOnPayment();
     }
 
@@ -211,8 +210,13 @@ public class ActivityShoppingList extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View v, int i, long l) {
                 //hier wurde die <Kosten und das Item bereits eingetragen und angezeigt
+
+
+
                 list_view_cost.setOnItemClickListener((parent, view, position, id) -> {
-                    // hier die checkbox eintragen und dann auch erst die summe berechnen
+                    CheckedTextView checkBox = ((CheckedTextView)view);
+                    checkBox.setChecked(!checkBox.isChecked());
+
                     PopupMenu popupMenu = new PopupMenu(ActivityShoppingList.this, view);
                     popupMenu.getMenuInflater().inflate(R.menu.pop_up_menu, popupMenu.getMenu());
 
@@ -443,12 +447,6 @@ public class ActivityShoppingList extends AppCompatActivity {
     
     private void checkout(){
 
-        checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkForCheck();
-            }});
-
         AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this);
         builder.setTitle("Checkout");
 
@@ -591,11 +589,4 @@ public class ActivityShoppingList extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser().getEmail();
     }
 
-    public void checkForCheck(){
-                if (checkBox.isChecked()) {
-                    Log.d("check","was checked");
-                    //addSums();
-                }
-                // else { subtractSum();}
-    }
 }
