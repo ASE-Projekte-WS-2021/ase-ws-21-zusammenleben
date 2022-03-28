@@ -3,11 +3,13 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -84,6 +86,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         super.onCreate(savedInstanceState);
         initViews();
         initFirebase();
+        setBottomNavigationView();
     }
 
 
@@ -99,8 +102,8 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         //setBottomNavigationView();
         recyclerView = findViewById(R.id.basketRecyclerView);
         b = findViewById(R.id.basketActionButton);
-        //bottomNavigationView = findViewById(R.id.bottomnavview);
-        //bottomNavigationView.setSelectedItemId(R.id.shopping);
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.shopping);
     }
 
     @Override
@@ -179,22 +182,22 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         startActivity(intent);
     }
 
-    /*private void setBottomNavigationView(){
+    private void setBottomNavigationView(){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.payment:
-                        ActivityBasketList.this.startActivity(new Intent(ActivityBasketList.this.getApplicationContext(), ActivityOverview.class));
-                        ActivityBasketList.this.overridePendingTransition(0, 0);
+                        startActivity(new Intent(getApplicationContext(),ActivityOverview.class));
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.home:
-                        ActivityBasketList.this.startActivity(new Intent(ActivityBasketList.this.getApplicationContext(), ActivityStartScreen.class));
-                        ActivityBasketList.this.overridePendingTransition(0, 0);
+                        startActivity(new Intent(getApplicationContext(), ActivityStartScreen.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.user:
-                        ActivityBasketList.this.startActivity(new Intent(ActivityBasketList.this.getApplicationContext(), ActivityUserProfile.class));
-                        ActivityBasketList.this.overridePendingTransition(0, 0);
+                        startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.shopping:
                         return true;
@@ -202,5 +205,5 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
                 return false;
             }
         });
-    }*/
+    }
 }

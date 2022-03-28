@@ -179,8 +179,6 @@ public class ActivityOverview extends AppCompatActivity {
 
     private void setupUIComponents(){
         setContentView(R.layout.activity_overview);
-        bottomNavigationView = findViewById(R.id.bottomnavview);
-        bottomNavigationView.setSelectedItemId(R.id.payment);
         button_managePayments = (ImageButton) findViewById(R.id.btn_managePayments);
         paymentPurpose = findViewById(R.id.payment_purpose);
         costs = findViewById(R.id.costs_overview);
