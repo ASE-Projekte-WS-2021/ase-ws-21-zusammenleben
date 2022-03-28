@@ -450,17 +450,21 @@ public class ActivityShoppingList extends AppCompatActivity {
         final TextView costCheckout = dialogLayoutCheckout.findViewById(R.id.costCheckout);
         // ersetzt die Methode callOnPayment
         Intent intentBasket = getIntent();
-        String strTextName = intentBasket.getStringExtra("getTitle");
-        inputCheckoutName.setText(strTextName);
+        String strTextName = "Zweck" + ": ";
+        String strTextTitle = intentBasket.getStringExtra("getTitle");
+        inputCheckoutName.setText(strTextName + strTextTitle);
 
-        String valueCost = sumCosts.getText().toString();
-        costCheckout.setText(valueCost);
+        String valueCost = "Gesamtbetrag"+ ": ";
+        String valueCostText = sumCosts.getText().toString();
+        costCheckout.setText(valueCost + valueCostText);
 
         builder.setPositiveButton("Abschließen", (dialog, which) -> {
             if (!inputCheckoutName.getText().toString().isEmpty()) {
 
-                String strSumCosts = costCheckout.getText().toString();
-                String inputNameShoppingList = inputCheckoutName.getText().toString().trim();
+                String strSumCosts2 = costCheckout.getText().toString();
+                String strSumCosts = valueCostText;
+                String inputNameShoppingList2 = inputCheckoutName.getText().toString().trim();
+                String inputNameShoppingList = strTextName;
                 ArrayList<String> items = new ArrayList<>(list);
                 ArrayList<String> costs = new ArrayList<>(listcosts);
                 String flat = flatID;
