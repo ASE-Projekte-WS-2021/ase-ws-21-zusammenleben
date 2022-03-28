@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.entities.Flats;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -128,10 +129,14 @@ public class ActivityOverview extends AppCompatActivity {
     }
 
     private String extractFlatID(){
+        String error = "no flat id";
+        if(flatID == null){return error;}
+        else{
         for(int i = 0 ; i < content.length ; i++){
             String s = content[i];
             s = s.trim();
             Log.d("debug", s);
+        }
         }
         return content[0].substring(1);
     }
@@ -163,6 +168,10 @@ public class ActivityOverview extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
                         overridePendingTransition(0,0);
                         return true;
+                    case R.id.shopping:
+                        startActivity(new Intent(getApplicationContext(),ActivityBasketList.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }
@@ -171,8 +180,6 @@ public class ActivityOverview extends AppCompatActivity {
 
     private void setupUIComponents(){
         setContentView(R.layout.activity_overview);
-        bottomNavigationView = findViewById(R.id.bottomnavview);
-        bottomNavigationView.setSelectedItemId(R.id.payment);
         button_managePayments = (ImageButton) findViewById(R.id.btn_managePayments);
         paymentPurpose = findViewById(R.id.payment_purpose);
         costs = findViewById(R.id.costs_overview);

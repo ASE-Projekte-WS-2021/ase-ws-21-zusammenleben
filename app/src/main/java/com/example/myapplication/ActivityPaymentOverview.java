@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static java.lang.String.valueOf;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +17,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.entities.Flats;
+import com.example.myapplication.entities.PaymentMemo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -63,9 +67,11 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setupUIComponents();
         initFirebase();
         getFlatIDinFirebase();
+        getIntentFromShoppingList();
         savePayment();
     }
 
@@ -94,6 +100,16 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         databaseReferencePayment = database.getReference("Payments");
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser().getEmail();
+    }
+
+    private void getIntentFromShoppingList(){
+        Intent intent = getIntent();
+        String strTextCosts = intent.getStringExtra("key");
+        String strTextName = intent.getStringExtra("value");
+        //double inputCosts = Double.parseDouble(strTextCosts);
+        //editTextCost.setText(valueOf(inputCosts));
+        editTextPurpose.setText(strTextName);
+        editTextCost.setText(strTextCosts);
     }
 
     private void utilSpinner(){
@@ -136,7 +152,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                         //Use for Loop
                         for (int j = 0; j < matesList.size(); j++) {
                             //concat array value
-                                stringBuilder.append(categorieField[matesList.get(j)]);
+                            stringBuilder.append(categorieField[matesList.get(j)]);
                             //Check condition
                             if (j != matesList.size() -1){
                                 //When j value not equal to day list size -1, add comma
@@ -159,16 +175,16 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 builder.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                       //use for loop
-                       for(int j = 0; j < selectedMates.length; j++){
-                           //remove all selection
-                           selectedMates[j] = false;
-                           //clear list
-                           matesList.clear();
-                           //clear text view value
-                           selectMate.setText("");
+                        //use for loop
+                        for(int j = 0; j < selectedMates.length; j++){
+                            //remove all selection
+                            selectedMates[j] = false;
+                            //clear list
+                            matesList.clear();
+                            //clear text view value
+                            selectMate.setText("");
 
-                       }
+                        }
                     }
                 });
                 //show dialog
@@ -197,17 +213,17 @@ public class ActivityPaymentOverview extends AppCompatActivity {
 
                 if (costString.isEmpty()){Toast.makeText(getApplicationContext(), "EmptyField!",Toast.LENGTH_LONG).show();}
                 if (!costString.isEmpty()){
-                            actualCosts = (int) (Double.valueOf(costString) / 2);
+                    actualCosts = (int) (Double.valueOf(costString) / 2);
                 }
 
                 PaymentMemo payment = new PaymentMemo(cost, purpose, useremail, receiverName, flat);
-                Log.d("paymentcounter", String.valueOf(paymentCounter));
+                Log.d("paymentcounter", valueOf(paymentCounter));
                 readDataFromPayments(new FirebaseCallback() {
                     @Override
                     public void onCallback(ArrayList<ArrayList<String>> list) {
                         Log.d("Hi", list.toString());
-                        Log.d("Hi", String.valueOf(paymentCounter));
-                        String paymentTitle = flatID + String.valueOf(paymentCounter++);
+                        Log.d("Hi", valueOf(paymentCounter));
+                        String paymentTitle = flatID + valueOf(paymentCounter++);
                         databaseReferencePayment.child(paymentTitle).setValue(payment);
                     }
                 });
@@ -215,7 +231,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Successful!",Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 startActivity(intent);
-                }
+            }
         });
     }
 
@@ -258,8 +274,6 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         super.onRestart();
         Log.d("xxxxx", "onRestart() active!");
     }
-
-
 
     private interface FirebaseCallback {
         void onCallback(ArrayList<ArrayList<String>> list);

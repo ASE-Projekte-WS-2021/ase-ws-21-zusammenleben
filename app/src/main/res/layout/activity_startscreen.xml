@@ -50,6 +50,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.124" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/show_picture"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="showpicture"
+        android:src="@drawable/avatar"
+        app:layout_constraintEnd_toEndOf="@+id/header"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="@+id/header"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="144dp"
@@ -68,7 +80,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="410dp"
+        android:layout_width="match_parent"
         android:layout_height="528dp"
         android:background="@drawable/background_for_login"
         android:paddingStart="30dp"

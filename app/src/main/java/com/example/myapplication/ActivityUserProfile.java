@@ -18,6 +18,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.entities.Pop;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -82,10 +83,10 @@ public class ActivityUserProfile extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), ActivityStartScreen.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    /*case R.id.add_note:
-                        startActivity(new Intent(getApplicationContext(),ActivityNoteSpace.class));
+                    case R.id.shopping:
+                        startActivity(new Intent(getApplicationContext(),ActivityBasketList.class));
                         overridePendingTransition(0,0);
-                        return true;*/
+                        return true;
                     case R.id.user:
                         return true;
                 }

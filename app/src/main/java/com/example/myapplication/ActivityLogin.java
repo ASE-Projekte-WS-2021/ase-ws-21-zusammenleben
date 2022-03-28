@@ -72,6 +72,12 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     public void login() {
+        /////////Marco
+
+        checkForDynamicLinks();
+
+        //////////
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -157,3 +163,4 @@ public class ActivityLogin extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 }
+

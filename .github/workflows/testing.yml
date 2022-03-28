@@ -5,10 +5,12 @@ on:
     branches:
       - main
       - development
+      - interfacedesign
   pull_request:
     branches:
       - main
       - development
+      - interfacedesign
 
 jobs:
   Run-Unit-Test:
