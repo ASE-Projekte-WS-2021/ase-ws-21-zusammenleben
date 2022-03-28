@@ -15,12 +15,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.entities.Basket;
+import com.example.myapplication.entities.Flats;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
@@ -54,6 +58,8 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
     String mDesc;
     Basket mBasket;
 
+    long basketCounter;
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -65,6 +71,8 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
     Intent i;
 
     ////////////////////////////////////
+    ArrayList<ArrayList<String>> allFlats = new ArrayList<>();
+
 
 
     //Firebase Stuff
@@ -74,10 +82,12 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
     FloatingActionButton b;
 
 
+
+    String currentUserFlatID;
     String currentUser;
     FirebaseDatabase database;
     final String FIREBASEPATH = "https://my-application-f648a-default-rtdb.europe-west1.firebasedatabase.app/";
-    DatabaseReference databaseReferenceShopping;
+    DatabaseReference databaseReferenceShopping, databaseReferenceFlats, databaseReferenceBaskets;
 
     // recyclerview in dem textviews angeziegt werden, wenn auf den plus button geclicked wird. Und auf die
 
@@ -86,15 +96,64 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         super.onCreate(savedInstanceState);
         initViews();
         initFirebase();
+        retrieveFlatDataFromFirebase();
         setBottomNavigationView();
+    }
+
+    private void retrieveFlatDataFromFirebase(){
+        readData(new FirebaseCallback() {
+            @Override
+            public void onCallback(ArrayList<ArrayList<String>> list) {
+                retrieveFlatIDfromFirebase();
+            }
+        });
+    }
+
+    private void retrieveFlatIDfromFirebase(){
+        Log.d("anzahl aller Flats", String.valueOf(allFlats.size()));
+        for (int i = 0 ; i < allFlats.size() ; i++) {
+            ArrayList<String> currentFlat = allFlats.get(i);
+            if(currentFlat.contains(currentUser)){
+                currentUserFlatID = "";
+                currentUserFlatID += currentFlat.get(0);
+            }
+        }
+    }
+
+    private void readData(FirebaseCallback firebaseCallback){
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot snap : snapshot.getChildren()){
+                    basketCounter = snapshot.getChildrenCount();
+                    int flatSize = snap.getValue(Flats.class).getFlatSize();
+                    ArrayList<String> flatContent = snap.getValue(Flats.class).getData(flatSize);
+                    allFlats.add(flatContent);
+                }
+                // wait
+                firebaseCallback.onCallback(allFlats);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        };
+        databaseReferenceFlats.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    interface FirebaseCallback{
+        void onCallback(ArrayList<ArrayList<String>> list);
     }
 
 
     private void initFirebase() {
         database = FirebaseDatabase.getInstance(FIREBASEPATH);
         databaseReferenceShopping = database.getReference("ShoppingList");
+        databaseReferenceFlats = database.getReference("Flats");
+        databaseReferenceBaskets = database.getReference("Baskets");
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser().getEmail();
+        Log.d("currentUser", currentUser);
     }
 
     private void initViews(){
@@ -163,12 +222,16 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
             @Override
             public void onClick(View view) {
                 Log.d("clicked", "it was !");
-                Basket basket = new Basket(day(), currentUser, "Angelegt:" + "" + currentTime());
+                basketCounter += 1;
+                String identifier = currentUserFlatID + String.valueOf(basketCounter);
+                Basket basket = new Basket(day(), currentUser, "Angelegt:" + "" + currentTime(), identifier);
                 mBaskets.add(basket);
+                databaseReferenceBaskets.child(identifier).setValue(basket);
                 mAdapter.notifyDataSetChanged();
-                Log.d("mbaskets", mBaskets.toString());
             }
         });
+
+        basketCounter+= 1;
     }
 
     @Override

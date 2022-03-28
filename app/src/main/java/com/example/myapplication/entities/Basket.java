@@ -5,12 +5,20 @@ public class Basket {
     String subtitle;
     String notice;
 
-    public Basket(String title, String subtitle, String notice) {
+    String flatID;
+
+    public Basket(String title, String subtitle, String notice, String flatID) {
         this.title = title;
         this.subtitle = subtitle;
         this.notice = notice;
-
+        this.flatID = flatID;
     }
+
+
+    public String getFlatID(){
+        return flatID;
+    }
+
 
     public String getTitle() {
         return title;
