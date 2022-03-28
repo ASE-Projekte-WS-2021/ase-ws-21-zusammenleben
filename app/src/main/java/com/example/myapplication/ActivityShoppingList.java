@@ -47,7 +47,19 @@ public class ActivityShoppingList extends AppCompatActivity {
     String currentUser;
 
     ArrayList<ArrayList<String>> flatContents = new ArrayList<>();
-    String[] content;
+
+
+
+    //////////////// marco
+
+    ArrayList<String> IDs = new ArrayList<>();
+    ArrayList<String> shoppingItemDescriptions = new ArrayList<>();
+    ArrayList<String> shoppingItemCosts = new ArrayList<>();
+
+    ///////////////
+
+
+
 
     String flatID;
     long shoppinglistCountertwo;
@@ -65,6 +77,7 @@ public class ActivityShoppingList extends AppCompatActivity {
 
     int position;
     String day, pos, basketID;
+    String[] content;
 
     CheckedTextView checkBox;
 
@@ -74,13 +87,11 @@ public class ActivityShoppingList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shoppinglist);
         //find view by id
-
         initFirebase();
         getFlatIDinFirebase();
         initViews();
         initNavigationBar();
         initClickListeners();
-
         //callOnPayment();
     }
 
@@ -90,6 +101,60 @@ public class ActivityShoppingList extends AppCompatActivity {
         Bundle receivedData = getIntent().getExtras();
         String s = receivedData.getString("VALIDATE");
         unpackArrivedData(s);
+        Log.d("ernsthaft?", basketID);
+        retrieveShoppingItems();
+    }
+
+    private void retrieveShoppingItems(){
+        readIDs(new FirebaseFlatCallback() {
+            @Override
+            public void onCallback(ArrayList<String> arrayList) {
+                fillListView();
+            }
+        });
+    }
+
+    private void fillListView(){
+        for(int i = 0 ; i < shoppingItemDescriptions.size(); i++){
+            String currentDescription = shoppingItemDescriptions.get(i);
+            list.add(currentDescription);
+            arrayAdapter.notifyDataSetChanged();
+        }
+
+        for(int i = 0 ; i < shoppingItemCosts.size(); i++) {
+            String currentCost = shoppingItemCosts.get(i);
+            listcosts.add(currentCost);
+            arrayAdapterCosts.notifyDataSetChanged();
+        }
+
+        Log.d("passt das?", list.toString());
+        Log.d("passt das?", listcosts.toString());
+    }
+
+    private void readIDs(FirebaseFlatCallback firebaseFlatCallback){
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()){
+                     if(ds.getKey().equals(basketID)){
+                         ArrayList<String> myShoppingList = ds.getValue(ShoppingList.class).getData();
+                         shoppingItemDescriptions = ds.getValue(ShoppingList.class).getItems();
+                         shoppingItemCosts = ds.getValue(ShoppingList.class).getCosts();
+
+                     }
+                }
+                firebaseFlatCallback.onCallback(IDs);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        };
+        databaseReferenceShop.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    interface FirebaseFlatCallback{
+        void onCallback(ArrayList<String> arrayList);
     }
 
     private void unpackArrivedData(String str){
@@ -276,65 +341,6 @@ public class ActivityShoppingList extends AppCompatActivity {
                 return true;
             }
         });
-
-        /*list_view_cost.setOnItemClickListener((parent, view, position, id) -> {
-
-            PopupMenu popupMenu = new PopupMenu(ActivityShoppingList.this, view);
-            popupMenu.getMenuInflater().inflate(R.menu.pop_up_menu, popupMenu.getMenu());
-
-            popupMenu.setOnMenuItemClickListener(item -> {
-
-                switch (item.getItemId()) {
-
-                    case R.id.item_update:
-                        //function for update
-                        AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this);
-                        View layoutDialogUpdate = LayoutInflater.from(ActivityShoppingList.this).inflate(R.layout.layout_item_dialog, null, false);
-                        builder.setTitle("Update Cost");
-                        final EditText costItem= layoutDialogUpdate.findViewById(R.id.costItem);
-                        costItem.setText(listcosts.get(position));
-                        final EditText editText = layoutDialogUpdate.findViewById(R.id.inputItem);
-                        editText.setText(list.get(position));
-
-                        //set custom view to dialog
-                        builder.setView(layoutDialogUpdate);
-
-                        builder.setPositiveButton("Update", (dialog, which) -> {
-                            if ( !costItem.getText().toString().isEmpty() && !!inputItem.getText().toString().isEmpty()) {
-                                list.set(position, inputItem.getText().toString().trim());
-                                listcosts.set(position, costItem.getText().toString().trim());
-                                arrayAdapter.notifyDataSetChanged();
-                                arrayAdapterCosts.notifyDataSetChanged();
-                                Toast.makeText(ActivityShoppingList.this, "Item Updated!", Toast.LENGTH_SHORT).show();
-
-                            }
-                            else {
-                                costItem.setError("Füge hier den Preis ein!");
-                            }
-                        });
-
-                        builder.setNegativeButton("Abbrechen", (dialog, which) -> dialog.dismiss());
-
-                        builder.show();
-
-                        break;
-
-                    case R.id.item_delete:
-                        //function for delete
-                        Toast.makeText(ActivityShoppingList.this, "Das Element wurde entfernt", Toast.LENGTH_SHORT).show();
-                        listcosts.remove(position);
-                        list.remove(position);
-                        arrayAdapterCosts.notifyDataSetChanged();
-                        arrayAdapter.notifyDataSetChanged();
-
-                        break;
-
-                }
-
-                return true;
-            });
-            popupMenu.show();
-        });*/
     }
 
     @Override
@@ -416,6 +422,8 @@ public class ActivityShoppingList extends AppCompatActivity {
             }
         });
 
+        Log.d("444 check items", list.toString());
+
         builder.setNegativeButton("Abbrechen", (dialog, which) -> dialog.dismiss());
         builder.show();
 
@@ -443,8 +451,8 @@ public class ActivityShoppingList extends AppCompatActivity {
             databaseReferenceShop.push().setValue(shoppingList);
         });
     }*/
-    
-    
+
+
     private void checkout(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this);
@@ -476,6 +484,8 @@ public class ActivityShoppingList extends AppCompatActivity {
                 ArrayList<String> items = new ArrayList<>(list);
                 ArrayList<String> costs = new ArrayList<>(listcosts);
                 String flat = flatID;
+
+                Log.d("444 check items again", flatID);
 
                 ShoppingList shoppingList = new ShoppingList(items,costs,strSumCosts,flat,inputNameShoppingList);
                 readDataFromShoppingList(new FirebaseCallback() {
@@ -576,7 +586,6 @@ public class ActivityShoppingList extends AppCompatActivity {
         for(int i = 0 ; i < content.length ; i++){
             String s = content[i];
             s = s.trim();
-            Log.d("debug", s);
         }
         return content[0].substring(1);
     }
