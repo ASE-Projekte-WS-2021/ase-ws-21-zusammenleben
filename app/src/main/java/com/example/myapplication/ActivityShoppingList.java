@@ -373,7 +373,6 @@ public class ActivityShoppingList extends AppCompatActivity {
         final EditText inputItem = dialogLayout.findViewById(R.id.inputItem);
         final EditText costItem = dialogLayout.findViewById(R.id.costItem);
         final EditText numItem = dialogLayout.findViewById(R.id.numItem);
-        final CheckedTextView checkBox = findViewById(android.R.id.text1);
 
         builder.setPositiveButton("Hinzufügen", (dialog, which) -> {
             if (!inputItem.getText().toString().isEmpty() && !costItem.getText().toString().isEmpty() && !numItem.getText().toString().isEmpty()) {
@@ -382,7 +381,7 @@ public class ActivityShoppingList extends AppCompatActivity {
                 listcosts.add(costItem.getText().toString().trim());
                 arrayAdapter.notifyDataSetChanged();
                 arrayAdapterCosts.notifyDataSetChanged();
-
+                final CheckedTextView checkBox = findViewById(android.R.id.text1);
                 if (checkBox.isChecked()){
 
                     addSums();}
@@ -392,6 +391,8 @@ public class ActivityShoppingList extends AppCompatActivity {
                     int newCost = Integer.parseInt(costItem.getText().toString());
                     int newNum = Integer.parseInt(numItem.getText().toString());
                     int result = newCost * newNum;
+                    final CheckedTextView checkBox = findViewById(android.R.id.text1);
+
                     String resultStr = Integer.toString(result);
                     costItem.setText(resultStr);
 
