@@ -9,6 +9,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.myapplication.entities.Basket;
 import com.example.myapplication.entities.Flats;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,11 +33,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ActivityBasketList extends AppCompatActivity implements BasketViewAdapter.ItemClickListener{
@@ -200,6 +201,9 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
                         String title = ds.getValue(Basket.class).getTitle();
                         String notice = ds.getValue(Basket.class).getNotice();
                         Basket basket = new Basket(basketID, title, subtitle, notice);
+                        //datenübertragen
+
+
                         mBaskets.add(basket);
                         Log.d("test123", basket.toString());
                     }
@@ -288,6 +292,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         Bundle send = new Bundle();
         send.putString("VALIDATE", day() + "/" + String.valueOf(position) + "/" + mBaskets.get(position).getTitle());
         Intent intent = new Intent(this, ActivityShoppingList.class);
+        intent.putExtra("getTitle", mBaskets.get(position).getTitle());
         intent.putExtras(send);
         startActivity(intent);
     }

@@ -16,6 +16,10 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.myapplication.entities.Flats;
 import com.example.myapplication.entities.ShoppingList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,10 +31,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivityShoppingList extends AppCompatActivity {
 
@@ -56,8 +56,8 @@ public class ActivityShoppingList extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
-    TextView sumCosts, costCheckout;
-    EditText editTextCost, inputItem, costItem, numItem, inputCheckoutName;
+    TextView sumCosts, costCheckout, inputCheckoutName;
+    EditText editTextCost, inputItem, costItem, numItem;
     double total;
     String result;
     ArrayList<ArrayList<String>> shoppinglistarray = new ArrayList<>();
@@ -445,9 +445,13 @@ public class ActivityShoppingList extends AppCompatActivity {
         View dialogLayoutCheckout = LayoutInflater.from(ActivityShoppingList.this).inflate(R.layout.layout_checkout, null, false);
 
         builder.setView(dialogLayoutCheckout);
-        final EditText inputCheckoutName = dialogLayoutCheckout.findViewById(R.id.inputNameCheckout);
+
+        final TextView inputCheckoutName = dialogLayoutCheckout.findViewById(R.id.inputNameCheckout);
         final TextView costCheckout = dialogLayoutCheckout.findViewById(R.id.costCheckout);
         // ersetzt die Methode callOnPayment
+        Intent intentBasket = getIntent();
+        String strTextName = intentBasket.getStringExtra("getTitle");
+        inputCheckoutName.setText(strTextName);
 
         String valueCost = sumCosts.getText().toString();
         costCheckout.setText(valueCost);
