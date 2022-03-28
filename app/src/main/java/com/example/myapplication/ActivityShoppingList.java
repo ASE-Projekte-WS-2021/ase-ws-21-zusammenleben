@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupMenu;
@@ -58,7 +59,7 @@ public class ActivityShoppingList extends AppCompatActivity {
 
     TextView sumCosts, costCheckout, inputCheckoutName;
     EditText editTextCost, inputItem, costItem, numItem;
-    double total;
+    double total = 0.0;
     String result;
     ArrayList<ArrayList<String>> shoppinglistarray = new ArrayList<>();
 
@@ -99,8 +100,6 @@ public class ActivityShoppingList extends AppCompatActivity {
 
     private void initViews(){
         list_view = findViewById(R.id.list_view);
-       //list_view.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        //list_view.setItemChecked(position, false);
         list_view_cost = findViewById(R.id.list_view_cost);
         list_view_cost.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         list_view_cost.setItemChecked(position, false);
@@ -108,12 +107,11 @@ public class ActivityShoppingList extends AppCompatActivity {
 
         editTextCost = findViewById(R.id.insert_costs);
 
-        //arrayAdapter = new ArrayAdapter(ActivityShoppingList.this, android.R.layout.simple_list_item_multiple_choice, list);
         arrayAdapter = new ArrayAdapter(ActivityShoppingList.this, android.R.layout.simple_list_item_1, list);
         arrayAdapterCosts = new ArrayAdapter(ActivityShoppingList.this, android.R.layout.simple_list_item_multiple_choice, listcosts);
         list_view.setAdapter(arrayAdapter);
         list_view_cost.setAdapter(arrayAdapterCosts);
-        //shoppinglistCounter = 1;
+
 
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.shopping);
@@ -375,7 +373,7 @@ public class ActivityShoppingList extends AppCompatActivity {
         final EditText inputItem = dialogLayout.findViewById(R.id.inputItem);
         final EditText costItem = dialogLayout.findViewById(R.id.costItem);
         final EditText numItem = dialogLayout.findViewById(R.id.numItem);
-
+        final CheckedTextView checkBox = findViewById(android.R.id.text1);
 
         builder.setPositiveButton("Hinzufügen", (dialog, which) -> {
             if (!inputItem.getText().toString().isEmpty() && !costItem.getText().toString().isEmpty() && !numItem.getText().toString().isEmpty()) {
@@ -385,7 +383,10 @@ public class ActivityShoppingList extends AppCompatActivity {
                 arrayAdapter.notifyDataSetChanged();
                 arrayAdapterCosts.notifyDataSetChanged();
 
-                addSums();}
+                if (checkBox.isChecked()){
+
+                    addSums();}
+                }
 
                 else if(Integer.parseInt(numItem.getText().toString()) > 1) {
                     int newCost = Integer.parseInt(costItem.getText().toString());
@@ -398,8 +399,7 @@ public class ActivityShoppingList extends AppCompatActivity {
                     listcosts.add(costItem.getText().toString().trim());
                     arrayAdapter.notifyDataSetChanged();
                     arrayAdapterCosts.notifyDataSetChanged();
-
-                    addSums();
+                    if (checkBox.isChecked()){addSums();}
                 }
 
             } else {
