@@ -68,6 +68,8 @@ public class ActivityShoppingList extends AppCompatActivity {
 
     boolean[] selectedCosts;
 
+    CheckedTextView checkBox;= findViewById(android.R.id.text1);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +124,9 @@ public class ActivityShoppingList extends AppCompatActivity {
 
         costCheckout = findViewById(R.id.costCheckout);
         inputCheckoutName = findViewById(R.id.inputNameCheckout);
+
+
+        checkBox= findViewById(android.R.id.text1);
     }
 
     private void initNavigationBar(){
@@ -202,18 +207,6 @@ public class ActivityShoppingList extends AppCompatActivity {
             });
             popupMenu.show();
         });
-        if (!inputItem.getText().toString().isEmpty() && !costItem.getText().toString().isEmpty()) {
-            final CheckedTextView checkBox = findViewById(android.R.id.text1);
-            checkBox.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (checkBox.isChecked()) {
-                        addSums();
-                    }
-                    // else { subtractSum();}
-                }
-            });
-        }
 
         list_view_cost.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
