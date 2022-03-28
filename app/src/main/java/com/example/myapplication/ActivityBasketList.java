@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -163,6 +164,10 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         b = findViewById(R.id.basketActionButton);
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.shopping);
+        //editButton = findViewById(R.id.editButton_basket);
+        //bottomNavigationView = findViewById(R.id.bottomnavview);
+        //bottomNavigationView.setSelectedItemId(R.id.shopping);
+
     }
 
     //TODO : Firebase counter nachbessern
@@ -254,6 +259,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
         Log.d("mBaskets", mBaskets.toString());
         mAdapter = new BasketViewAdapter(mBaskets, this);
         recyclerView.setAdapter(mAdapter);
@@ -283,6 +289,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         intent.putExtras(send);
         startActivity(intent);
     }
+
 
     private void setBottomNavigationView(){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
