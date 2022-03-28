@@ -202,11 +202,25 @@ public class ActivityShoppingList extends AppCompatActivity {
             });
             popupMenu.show();
         });
+        if (!inputItem.getText().toString().isEmpty() && !costItem.getText().toString().isEmpty()) {
+            final CheckedTextView checkBox = findViewById(android.R.id.text1);
+            checkBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (checkBox.isChecked()) {
+                        addSums();
+                    }
+                    // else { subtractSum();}
+                }
+            });
+        }
+
         list_view_cost.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View v, int i, long l) {
+                //hier wurde die <Kosten und das Item bereits eingetragen und angezeigt
                 list_view_cost.setOnItemClickListener((parent, view, position, id) -> {
-
+                    // hier die checkbox eintragen und dann auch erst die summe berechnen
                     PopupMenu popupMenu = new PopupMenu(ActivityShoppingList.this, view);
                     popupMenu.getMenuInflater().inflate(R.menu.pop_up_menu, popupMenu.getMenu());
 
@@ -381,17 +395,14 @@ public class ActivityShoppingList extends AppCompatActivity {
                 listcosts.add(costItem.getText().toString().trim());
                 arrayAdapter.notifyDataSetChanged();
                 arrayAdapterCosts.notifyDataSetChanged();
-                final CheckedTextView checkBox = findViewById(android.R.id.text1);
-                if (checkBox.isChecked()){
 
-                    addSums();}
+                    //addSums();
                 }
 
                 else if(Integer.parseInt(numItem.getText().toString()) > 1) {
                     int newCost = Integer.parseInt(costItem.getText().toString());
                     int newNum = Integer.parseInt(numItem.getText().toString());
                     int result = newCost * newNum;
-                    final CheckedTextView checkBox = findViewById(android.R.id.text1);
 
                     String resultStr = Integer.toString(result);
                     costItem.setText(resultStr);
@@ -400,7 +411,7 @@ public class ActivityShoppingList extends AppCompatActivity {
                     listcosts.add(costItem.getText().toString().trim());
                     arrayAdapter.notifyDataSetChanged();
                     arrayAdapterCosts.notifyDataSetChanged();
-                    if (checkBox.isChecked()){addSums();}
+                    //addSums();
                 }
 
             } else {
