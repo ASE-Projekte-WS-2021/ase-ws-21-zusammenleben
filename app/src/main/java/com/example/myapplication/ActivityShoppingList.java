@@ -68,7 +68,7 @@ public class ActivityShoppingList extends AppCompatActivity {
 
     boolean[] selectedCosts;
 
-    CheckedTextView checkBox;= findViewById(android.R.id.text1);
+    CheckedTextView checkBox;
 
 
     @Override
@@ -125,8 +125,7 @@ public class ActivityShoppingList extends AppCompatActivity {
         costCheckout = findViewById(R.id.costCheckout);
         inputCheckoutName = findViewById(R.id.inputNameCheckout);
 
-
-        checkBox= findViewById(android.R.id.text1);
+        checkBox = findViewById(android.R.id.text1);
     }
 
     private void initNavigationBar(){
@@ -384,12 +383,11 @@ public class ActivityShoppingList extends AppCompatActivity {
         builder.setPositiveButton("Hinzufügen", (dialog, which) -> {
             if (!inputItem.getText().toString().isEmpty() && !costItem.getText().toString().isEmpty() && !numItem.getText().toString().isEmpty()) {
                 if (Integer.parseInt(numItem.getText().toString()) == 1){
-                list.add(inputItem.getText().toString().trim());
-                listcosts.add(costItem.getText().toString().trim());
-                arrayAdapter.notifyDataSetChanged();
-                arrayAdapterCosts.notifyDataSetChanged();
-
-                    //addSums();
+                    list.add(inputItem.getText().toString().trim());
+                    listcosts.add(costItem.getText().toString().trim());
+                    arrayAdapter.notifyDataSetChanged();
+                    arrayAdapterCosts.notifyDataSetChanged();
+                    addSums();
                 }
 
                 else if(Integer.parseInt(numItem.getText().toString()) > 1) {
@@ -404,7 +402,7 @@ public class ActivityShoppingList extends AppCompatActivity {
                     listcosts.add(costItem.getText().toString().trim());
                     arrayAdapter.notifyDataSetChanged();
                     arrayAdapterCosts.notifyDataSetChanged();
-                    //addSums();
+                    addSums();
                 }
 
             } else {
@@ -444,6 +442,13 @@ public class ActivityShoppingList extends AppCompatActivity {
     
     
     private void checkout(){
+
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkForCheck();
+            }});
+
         AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this);
         builder.setTitle("Checkout");
 
@@ -584,5 +589,13 @@ public class ActivityShoppingList extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReferenceFlat = database.getReference("Flats");
         currentUser = firebaseAuth.getCurrentUser().getEmail();
+    }
+
+    public void checkForCheck(){
+                if (checkBox.isChecked()) {
+                    Log.d("check","was checked");
+                    //addSums();
+                }
+                // else { subtractSum();}
     }
 }
