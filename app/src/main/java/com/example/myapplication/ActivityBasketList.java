@@ -54,6 +54,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
     LinearLayoutManager basketLayoutManager;
 
 
+    long count;
     String mTitle;
     String mSubTitle;
     String mDesc;
@@ -99,8 +100,6 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         initViews();
-        initFirebase();
-        retrieveFlatDataFromFirebase();
         setBottomNavigationView();
     }
 
@@ -124,12 +123,17 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         }
     }
 
+    @Override
+    protected void onPause(){
+        super.onPause();
+        mBaskets.clear();
+    }
+
     private void readFlatData(FirebaseCallback firebaseCallback){
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot snap : snapshot.getChildren()){
-                    basketCounter = snapshot.getChildrenCount();
                     int flatSize = snap.getValue(Flats.class).getFlatSize();
                     ArrayList<String> flatContent = snap.getValue(Flats.class).getData(flatSize);
                     allFlats.add(flatContent);
@@ -178,6 +182,8 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
     @Override
     protected void onResume(){
         super.onResume();
+        initFirebase();
+        retrieveFlatDataFromFirebase();
         Log.d("before callback", mBaskets.toString());
         readBasketData(new FirebaseBasketCallback() {
             @Override
@@ -194,6 +200,8 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()){
+                    basketCounter = snapshot.getChildrenCount();
+                    Log.d("count", String.valueOf(basketCounter));
                     String subtitle = ds.getValue(Basket.class).getSubtitle();
                     if(subtitle.equals(currentUser)) {
                         Log.d("test123", "made it inside callback func");
@@ -273,16 +281,19 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("clicked", "it was !");
+                Log.d("before increasing", String.valueOf(basketCounter));
                 basketCounter += 1;
+                Log.d("after 1 increasing", String.valueOf(basketCounter));
                 identifier = currentUserFlatID + String.valueOf(basketCounter);
                 Basket basket = new Basket(day(), currentUser, "Angelegt:" + "" + currentTime(), identifier);
                 mBaskets.add(basket);
+                Log.d("check", identifier);
                 databaseReferenceBaskets.child(identifier).setValue(basket);
                 mAdapter.notifyDataSetChanged();
             }
         });
         basketCounter+= 1;
+        Log.d("after 2 increasing", String.valueOf(basketCounter));
     }
 
     @Override
