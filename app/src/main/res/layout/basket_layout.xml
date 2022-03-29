@@ -5,9 +5,11 @@
     android:id="@+id/basket"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="12dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
     android:layout_marginTop="12dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/layout_bg">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,11 +21,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="25dp"
+            android:layout_marginEnd="35dp"
             android:layout_marginTop="8dp"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:layout_marginRight="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/basketSubtitleactivity"
+            app:layout_constraintTop_toTopOf="@+id/basket"
+            app:layout_constraintStart_toStartOf="@+id/basket"
             tools:ignore="NotSibling"
             android:ellipsize="marquee"/>
 
@@ -32,12 +37,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:contentDescription="@string/note_options"
+            android:contentDescription="@string/edit_basket"
             android:src="@drawable/ic_edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/basketTitle"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -46,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="35dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:textColor="@color/black"
@@ -58,10 +65,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="35dp"
         android:layout_marginBottom="8dp"
         android:textColor="@color/black"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:ellipsize="marquee"/>
 
 
