@@ -3,6 +3,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/PrimaryDark</item>
         <item name="colorAccent">@color/Accent</item>
+        <item name="android:fontFamily">@font/brlnrs_regular</item>
     </style>
 
     <style name="Theme.AppCompat.Light.NoActioBar.FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
@@ -10,11 +11,13 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:fontFamily">@font/brlnrs_regular</item>
     </style>
 
     <style name="AppTheme.CustomTheme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:fontFamily">@font/brlnrs_regular</item>
     </style>
 
 </resources>

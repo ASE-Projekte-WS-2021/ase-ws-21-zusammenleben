@@ -7,11 +7,11 @@
     <string name="save_as_template">Save as template?</string>
     <string name="done">Done</string>
     <string name="editText_errorMessage">Error, please enter value!</string>
-    <string name="tag_line">Better together</string>
-    <string name="label_login">Login</string>
+    <string name="tag_line">Better together!</string>
+    <string name="label_login">LOGIN</string>
     <string name="hint_e_mail">E-Mail</string>
-    <string name="label_signup">Create Account</string>
-    <string name="reset_your_password">Reset your Password</string>
+    <string name="label_signup">CREATE ACCOUNT</string>
+    <string name="reset_your_password">RESET YOUR PASSWORD</string>
     <string name="payments">Payments</string>
     <string name="my_notes">my Notes</string>
     <string name="search_nodes">Search nodes</string>
@@ -23,8 +23,7 @@
     <string name="subtitle_for_layout">Subtitle</string>
     <string name="text_for_layout">Text</string>
     <string name="note_options">note_options</string>
-    <string name="add_new_shoppinglist">Add new Shoppinglist</string>
     <string name="payment_options">payment_options</string>
     <string name="edit_payment">Edit Payment</string>
-    <string name="edit_basket">edit_basket</string>
+    <string name="create_a_new_flat">CREATE A NEW FLAT</string>
 </resources>

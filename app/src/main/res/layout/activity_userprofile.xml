@@ -5,21 +5,110 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <Button
+        android:id="@+id/btn_invite"
+        android:layout_width="272dp"
+        android:layout_height="48dp"
+        android:background="@drawable/roundedcorners"
+        android:text="Invite friends"
+        android:textAlignment="center"
+        android:textColor="@color/ButtonTextColor"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomnavview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.568" />
+
+    <Button
+        android:id="@+id/btn_leaving"
+        android:layout_width="272dp"
+        android:layout_height="48dp"
+        android:background="@drawable/roundedcorners"
+        android:text="Leaving flat share"
+        android:textAlignment="center"
+        android:textColor="@color/ButtonTextColor"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomnavview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.684" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="162dp"
+        android:layout_height="48dp"
+        android:background="@drawable/roundedcorner_trans_red"
+        android:text="Log out"
+        android:textAlignment="center"
+        android:textColor="@color/WarningRed"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="122dp"
+        tools:layout_editor_absoluteY="440dp" />
+
     <ImageView
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
         android:background="@drawable/startscreenheader"
         android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
+    <TextView
+        android:id="@+id/currentflatshare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your current flat"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomnavview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/header"
+        app:layout_constraintVertical_bias="0.408" />
+
+    <TextView
+        android:id="@+id/flatsharename"
+        android:layout_width="203dp"
+        android:layout_height="28dp"
+        android:text="Home Apartment"
+        android:textAlignment="center"
+        android:textSize="20dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.459" />
+
+    <TextView
+        android:id="@+id/show_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="Email"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="208dp"
+        tools:ignore="MissingConstraints" />
 
     <View
+        android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/startscreenheader"
-        app:layout_constraintBottom_toBottomOf="@id/header"
+        app:layout_constraintBottom_toTopOf="@+id/header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,122 +123,6 @@
         app:layout_constraintBottom_toBottomOf="@id/header"
         app:layout_constraintStart_toStartOf="parent" />
 
-
-    <Button
-        android:id="@+id/btn_leaving"
-        android:layout_width="272dp"
-        android:layout_height="48dp"
-        android:background="@drawable/roundetcorners"
-        android:text="Leaving flat share"
-        android:textAlignment="center"
-        android:textColor="#B6B2B2"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomnavview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.794" />
-
-    <Button
-        android:id="@+id/btn_invite"
-        android:layout_width="272dp"
-        android:layout_height="48dp"
-        android:background="@drawable/roundetcorners"
-        android:text="Invite friends"
-        android:textAlignment="center"
-        android:textColor="#B6B2B2"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomnavview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678" />
-
-    <TextView
-        android:id="@+id/show_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:text="Email"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomnavview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_logout"
-        app:layout_constraintVertical_bias="0" />
-
-    <TextView
-        android:id="@+id/currentflatshare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your current flat share"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomnavview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.074"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/header"
-        app:layout_constraintVertical_bias="0.44" />
-
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="162dp"
-        android:layout_height="48dp"
-        android:background="@drawable/roundetcorners"
-        android:text="Log out"
-        android:textAlignment="center"
-        android:textColor="#F60808"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.306" />
-
-    <!--<TextView
-        android:id="@+id/get_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="320dp"
-        android:gravity="center"
-        android:text="Username"
-        android:textColor="@color/black"
-        android:textSize="20sp" />-->
-
-    <TextView
-        android:id="@+id/flatsharename"
-        android:layout_width="203dp"
-        android:layout_height="28dp"
-        android:text="Home Apartment"
-        android:textAlignment="center"
-        android:textSize="20dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.525" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/user_picture"
-        android:layout_width="126dp"
-        android:layout_height="121dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="picture"
-        android:onClick="editprofilepicture"
-        android:src="@drawable/avatar"
-        app:layout_constraintEnd_toEndOf="@+id/header"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/header"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnavview"
         android:layout_width="match_parent"
@@ -158,7 +131,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_bar" />
+        app:menu="@menu/bottom_bar">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:contentDescription="picture"
+        android:onClick="editprofilepicture"
+        android:src="@drawable/avatar"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
