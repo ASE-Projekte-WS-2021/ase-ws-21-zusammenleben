@@ -26,4 +26,5 @@
     <string name="add_new_shoppinglist">Add new Shoppinglist</string>
     <string name="payment_options">payment_options</string>
     <string name="edit_payment">Edit Payment</string>
+    <string name="edit_basket">edit_basket</string>
 </resources>
