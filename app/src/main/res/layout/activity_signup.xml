@@ -87,8 +87,8 @@
 
         <EditText
             android:id="@+id/signup_name"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_person_24"
             android:drawablePadding="20dp"
             android:ems="10"
@@ -105,8 +105,8 @@
 
         <EditText
             android:id="@+id/signup_password"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_lock_24"
             android:drawablePadding="20dp"
             android:ems="10"
@@ -123,8 +123,8 @@
 
         <EditText
             android:id="@+id/signup_e_mail"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_local_post_office_24"
             android:drawablePadding="20dp"
             android:ems="10"
@@ -140,8 +140,8 @@
 
         <Button
             android:id="@+id/btn_createAccount"
-            android:layout_width="322dp"
-            android:layout_height="51dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:text="Create Account"
             android:textColor="@color/ButtonTextColor"

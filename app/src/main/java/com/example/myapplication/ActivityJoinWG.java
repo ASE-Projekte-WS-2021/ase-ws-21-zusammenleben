@@ -150,17 +150,10 @@ public class ActivityJoinWG extends AppCompatActivity {
         findWG = findViewById(R.id.btn_findwg);
 
 
-        foundFlatAddress = findViewById(R.id.found_flat_address);
+        //foundFlatAddress = findViewById(R.id.found_flat_address);
         foundFlatOwner = findViewById(R.id.found_flat_owner);
         foundFlatPeople = findViewById(R.id.found_flat_people);
 
     }
 
 }
-
-//#TODO update eingegebene Flat Name in User Profil anstatt Home Appartment
-//#TODO User Profil Buttons sind nicht richtig beschriftet Invite your Friends
-//#TODO User Namen anstatt Email einblenden, Name wird doppelt hinterlegt einaml beim Sign up einmal bei der erstellung der WG
-//#TODO Daten werden noc nicht von der Erstellung der Zahlung zu der Zahlungsübersicht übertragen
-//#TODO was kommt in das Overview display?
-//#TODO WGs anzeigen die in der Datenbank gespeichert sind damit man einer beitreten kann und ein Limit für die Beitritte setzen

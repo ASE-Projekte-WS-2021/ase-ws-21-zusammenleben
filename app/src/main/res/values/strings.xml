@@ -26,4 +26,6 @@
     <string name="payment_options">payment_options</string>
     <string name="edit_payment">Edit Payment</string>
     <string name="create_a_new_flat">CREATE A NEW FLAT</string>
+    <string name="add_new_shoppinglist">add_shoppinglist</string>
+    <string name="edit_basket">edit_basket</string>
 </resources>
