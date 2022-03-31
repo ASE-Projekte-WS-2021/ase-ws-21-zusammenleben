@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,8 +33,6 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class ActivityUserProfile extends AppCompatActivity {
 
     Button button_signout;
@@ -43,7 +42,8 @@ public class ActivityUserProfile extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     TextView useremail;
     int TAKE_IMAGE_CODE = 10001;
-    private CircleImageView circleImageView;
+    //private CircleImageView circleImageView;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +61,10 @@ public class ActivityUserProfile extends AppCompatActivity {
         if (user.getPhotoUrl() != null ){
             Glide.with(this)
                     .load(user.getPhotoUrl())
-                    .into(circleImageView);
+                    .into(imageView);
         }
 
-        circleImageView.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setpicture();
@@ -118,7 +118,8 @@ public class ActivityUserProfile extends AppCompatActivity {
         button_signout = (Button) findViewById(R.id.btn_logout);
         button_leaving = (Button) findViewById(R.id.btn_leaving);
         useremail = findViewById(R.id.show_email);
-        circleImageView =findViewById(R.id.user_picture);
+        //circleImageView =findViewById(R.id.user_picture);
+        imageView = findViewById(R.id.headeruser);
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.user);
         btn_inviteFriends = findViewById(R.id.btn_invite);
@@ -152,7 +153,7 @@ public class ActivityUserProfile extends AppCompatActivity {
             switch (resultCode){
                 case RESULT_OK:
                     Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                    circleImageView.setImageBitmap(bitmap);
+                    imageView.setImageBitmap(bitmap);
                     uploadimage(bitmap);
             }
         }

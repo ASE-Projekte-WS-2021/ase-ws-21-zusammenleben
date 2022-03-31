@@ -38,17 +38,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WGFinance"
+            android:fontFamily="@font/brlnrs_regular"
             android:includeFontPadding="false"
+            android:text="WGFinance"
             android:textColor="@color/ButtonTextColor"
             android:textSize="30dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/brlnrs_regular"
             android:text="@string/tag_line"
-            android:textSize="30dp"
-            android:textColor="@color/ButtonTextColor"/>
+            android:textColor="@color/ButtonTextColor"
+            android:textSize="30dp" />
 
     </LinearLayout>
 
@@ -84,6 +86,7 @@
             android:text="Join Flat"
             android:textColor="@color/ButtonTextColor"
             android:textSize="25dp"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.37"
@@ -94,44 +97,47 @@
 
         <Button
             android:id="@+id/btn_findwg"
-            android:layout_width="322dp"
-            android:layout_height="51dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="21dp"
             android:background="@drawable/roundedcorners"
             android:text="Find Flat"
+            android:textAllCaps="false"
             android:textColor="@color/ButtonTextColor"
             android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/flat_name"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.006" />
 
         <EditText
             android:id="@+id/flat_name"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:drawableLeft="@drawable/ic_baseline_home_work_24"
             android:drawablePadding="20dp"
             android:ems="10"
+            android:fontFamily="@font/brlnrs_regular"
             android:hint="Enter your unique FlatID"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:textColorHint="@color/HintColor"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.683"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/found_flat_owner"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:drawableLeft="@drawable/ic_baseline_home_work_24"
             android:drawablePadding="20dp"
             android:ems="10"
+            android:fontFamily="@font/brlnrs_regular"
             android:hint="Flat Name"
             android:inputType="textPostalAddress"
             android:minHeight="48dp"
@@ -140,16 +146,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_findwg"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintVertical_bias="0.121"
+            tools:ignore="SpeakableTextPresentCheck"/>
 
         <TextView
             android:id="@+id/found_flat_people"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_group_add_24"
             android:drawablePadding="20dp"
             android:ems="10"
+            android:fontFamily="@font/brlnrs_regular"
             android:hint="Flat Size"
             android:inputType="textPostalAddress"
             android:minHeight="48dp"

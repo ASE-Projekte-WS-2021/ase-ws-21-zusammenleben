@@ -130,7 +130,7 @@
         <TextView
             android:id="@+id/login_signup"
             android:layout_width="214dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:background="@drawable/roundedcorner_trans"
             android:gravity="center"
             android:text="Sign up"

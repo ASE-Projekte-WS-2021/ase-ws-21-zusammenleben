@@ -19,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.bumptech.glide.Glide;
 import com.example.myapplication.entities.Notes;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -58,8 +57,8 @@ public class ActivityStartScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setupUIComponents();
         initFirebase();
-        setUserPicture();
-        openUserprofile();
+        //setUserPicture();
+        //openUserprofile();
         setBottomNavigationView();
         createNote();
         displayNote();
@@ -215,14 +214,14 @@ public class ActivityStartScreen extends AppCompatActivity {
         imageView.setOnClickListener(view -> startActivity(new Intent(ActivityStartScreen.this, ActivityNoteSpace.class)));
     }
 
-    private void openUserprofile(){
+    /*private void openUserprofile(){
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), ActivityUserProfile.class));
             }
         });
-    }
+    }*/
 
     private void setBottomNavigationView(){
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -246,7 +245,7 @@ public class ActivityStartScreen extends AppCompatActivity {
         });
     }
 
-    private void setUserPicture(){
+    /*private void setUserPicture(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user.getPhotoUrl() != null ){
@@ -254,12 +253,12 @@ public class ActivityStartScreen extends AppCompatActivity {
                     .load(user.getPhotoUrl())
                     .into(circleImageView);
         }
-    }
+    }*/
 
     private void setupUIComponents(){
         setContentView(R.layout.activity_startscreen);
         imageView = findViewById(R.id.imageAddMain);
-        circleImageView =findViewById(R.id.show_picture);
+        //circleImageView =findViewById(R.id.show_picture);
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.home);
         useremail = findViewById(R.id.show_email);
