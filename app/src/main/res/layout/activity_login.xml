@@ -12,7 +12,7 @@
     <ImageView
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="225dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintTop_toTopOf="parent"
         android:scaleType="centerCrop"
@@ -40,17 +40,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WGFinance"
+            android:fontFamily="@font/brlnrs_regular"
             android:includeFontPadding="false"
-            android:textColor="@color/white"
+            android:text="WGFinance"
+            android:textColor="@color/ButtonTextColor"
             android:textSize="30dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/brlnrs_regular"
             android:text="@string/tag_line"
-            android:textSize="25dp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/ButtonTextColor"
+            android:textSize="25dp" />
 
     </LinearLayout>
 
@@ -79,16 +81,15 @@
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:padding="5dip"
-            android:text="LOGIN"
+            android:text="Login"
             android:textAllCaps="false"
             android:textColor="@color/ButtonTextColor"
             android:textSize="25dp"
             app:layout_constraintBottom_toTopOf="@+id/login_signup"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.957" />
+            app:layout_constraintVertical_bias="0.908" />
 
         <EditText
             android:id="@+id/login_email"
@@ -106,7 +107,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.26" />
+            app:layout_constraintVertical_bias="0.186" />
 
         <EditText
             android:id="@+id/login_password"
@@ -124,7 +125,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.394" />
+            app:layout_constraintVertical_bias="0.341" />
 
         <TextView
             android:id="@+id/login_signup"
@@ -149,15 +150,14 @@
             android:layout_height="wrap_content"
             android:text="Forgot Password?"
             android:textColor="@color/TextFontColor"
-            android:textSize="20sp"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.499" />
+            app:layout_constraintVertical_bias="0.446" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/label_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

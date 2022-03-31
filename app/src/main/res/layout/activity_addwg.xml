@@ -40,17 +40,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WGFinance"
+            android:fontFamily="@font/brlnrs_regular"
             android:includeFontPadding="false"
+            android:text="WGFinance"
             android:textColor="@color/ButtonTextColor"
             android:textSize="30dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/brlnrs_regular"
             android:text="@string/tag_line"
-            android:textSize="30dp"
-            android:textColor="@color/ButtonTextColor"/>
+            android:textColor="@color/ButtonTextColor"
+            android:textSize="30dp" />
 
     </LinearLayout>
 
@@ -74,7 +76,7 @@
 
         <!--Registerinformation E-Mail and Password-->
 
-        <TextView
+        <!--<TextView
             android:id="@+id/label_createFlat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,71 +92,72 @@
             app:layout_constraintHorizontal_bias="0.566"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0" />-->
 
         <EditText
             android:id="@+id/size_of_flat"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_group_add_24"
             android:drawablePadding="20dp"
             android:ems="10"
+            android:fontFamily="@font/brlnrs_regular"
             android:hint="Enter the amount of housemates"
-            android:textColorHint="@color/HintColor"
             android:inputType="phone"
             android:minHeight="48dp"
+            android:textColorHint="@color/HintColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.681"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.659"
+            app:layout_constraintVertical_bias="0.498"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/flat_share_name"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_person_24"
             android:drawablePadding="20dp"
             android:ems="10"
+            android:fontFamily="@font/brlnrs_regular"
             android:hint="Enter your personal name"
-            android:textColorHint="@color/HintColor"
             android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:textColorHint="@color/HintColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.681"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.484" />
+            app:layout_constraintVertical_bias="0.298" />
 
         <EditText
             android:id="@+id/wg_profile_name"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_location_city_24"
             android:drawablePadding="20dp"
             android:ems="10"
+            android:fontFamily="@font/brlnrs_regular"
             android:hint="Enter your unique FlatID"
-            android:textColorHint="@color/HintColor"
             android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:textColorHint="@color/HintColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.681"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.299" />
+            app:layout_constraintVertical_bias="0.114" />
 
         <Button
             android:id="@+id/btn_addwg"
-            android:layout_width="322dp"
-            android:layout_height="51dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:text="Create new flat"
             android:textColor="@color/ButtonTextColor"
             android:textSize="25dp"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"

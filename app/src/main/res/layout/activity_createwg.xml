@@ -36,17 +36,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WGFinance"
+            android:fontFamily="@font/brlnrs_regular"
             android:includeFontPadding="false"
+            android:text="WGFinance"
             android:textColor="@color/ButtonTextColor"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/brlnrs_regular"
             android:text="@string/tag_line"
-            android:textSize="30dp"
-            android:textColor="@color/ButtonTextColor"/>
+            android:textColor="@color/ButtonTextColor"
+            android:textSize="25dp" />
 
     </LinearLayout>
 
@@ -69,33 +71,33 @@
 
         <Button
             android:id="@+id/btn_createNewGroup"
-            android:layout_width="322dp"
-            android:layout_height="51dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:text="Create new flat"
+            android:textAllCaps="false"
             android:textColor="@color/ButtonTextColor"
             android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.334" />
+            app:layout_constraintVertical_bias="0.376" />
 
         <Button
             android:id="@+id/btn_inviteYourFriends"
-            android:layout_width="322dp"
-            android:layout_height="51dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:text="Join a flat"
+            android:textAllCaps="false"
             android:textColor="@color/ButtonTextColor"
             android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.533" />
+            app:layout_constraintVertical_bias="0.646" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

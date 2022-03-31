@@ -38,17 +38,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WGFinance"
+            android:fontFamily="@font/brlnrs_regular"
             android:includeFontPadding="false"
+            android:text="WGFinance"
             android:textColor="@color/ButtonTextColor"
             android:textSize="30dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/brlnrs_regular"
             android:text="@string/tag_line"
-            android:textSize="30dp"
-            android:textColor="@color/ButtonTextColor"/>
+            android:textColor="@color/ButtonTextColor"
+            android:textSize="25dp" />
 
     </LinearLayout>
 
@@ -69,7 +71,7 @@
         android:paddingStart="30dp"
         android:paddingEnd="30dp">
 
-        <TextView
+        <!--<TextView
             android:id="@+id/label_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,7 +82,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:textColor="@color/HeaderFontColor"
-            android:textSize="30dp" />
+            android:textSize="30dp" />-->
 
 
         <!--Registerinformation E-Mail and Password-->
@@ -93,14 +95,14 @@
             android:drawablePadding="20dp"
             android:ems="10"
             android:hint="Name"
-            android:textColorHint="@color/HintColor"
             android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:textColorHint="@color/HintColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.468"
+            app:layout_constraintVertical_bias="0.337"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
@@ -111,14 +113,14 @@
             android:drawablePadding="20dp"
             android:ems="10"
             android:hint="Password"
-            android:textColorHint="@color/HintColor"
             android:inputType="textPassword"
             android:minHeight="48dp"
+            android:textColorHint="@color/HintColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.626"
+            app:layout_constraintVertical_bias="0.54"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
@@ -129,14 +131,14 @@
             android:drawablePadding="20dp"
             android:ems="10"
             android:hint="E-Mail"
-            android:textColorHint="@color/HintColor"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
+            android:textColorHint="@color/HintColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.32" />
+            app:layout_constraintVertical_bias="0.144" />
 
         <Button
             android:id="@+id/btn_createAccount"
@@ -146,6 +148,7 @@
             android:text="Create Account"
             android:textColor="@color/ButtonTextColor"
             android:textSize="25dp"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"

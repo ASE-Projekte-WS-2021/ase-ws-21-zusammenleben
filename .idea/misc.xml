@@ -4,17 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Basti Schwarz/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_multiple_choice.xml" value="0.3671875" />
-        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/divider.xml" value="0.254" />
-        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/layout_bg.xml" value="0.254" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addpayment.xml" value="0.18885869565217392" />
-        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_notespace.xml" value="0.20923913043478262" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_overview.xml" value="0.296195652173913" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_paymentoverview.xml" value="0.335" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_shoppinglist.xml" value="0.20923913043478262" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_startscreen.xml" value="0.165" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_userprofile.xml" value="0.296195652173913" />
-        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/basket_layout.xml" value="0.625" />
-        <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_add_basket.xml" value="0.20923913043478262" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_checkout.xml" value="0.20923913043478262" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_item_dialog.xml" value="0.20923913043478262" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/notes_layout.xml" value="0.20923913043478262" />
@@ -24,17 +19,10 @@
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/menu/pop_up_menu.xml" value="0.3671875" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/background_for_header.xml" value="0.174" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/background_for_login.xml" value="0.174" />
-        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/corneredbox_trans.xml" value="0.253" />
-        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/corneredbox_trnas.xml" value="0.1" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/header.xml" value="0.174" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_add_outline.xml" value="0.174" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.174" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_back.xml" value="0.174" />
-        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_baseline_group_add_24.xml" value="0.1" />
-        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/roundedcorner_trans.xml" value="0.1" />
-        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/roundedcorner_trans_red.xml" value="0.253" />
-        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/roundedcorners.xml" value="0.253" />
-        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/drawable/startscreenheader.xml" value="0.1" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addwg.xml" value="0.25" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_createwg.xml" value="0.2609375" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_editnote.xml" value="0.1308876811594203" />
@@ -49,9 +37,7 @@
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_signup.xml" value="0.2609375" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_startscreen.xml" value="0.25" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_userprofile.xml" value="0.22509057971014493" />
-        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/basket_layout.xml" value="0.16510416666666666" />
-        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_add_basket.xml" value="0.16510416666666666" />
-        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_add_url.xml" value="0.1" />
+        <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_add_url.xml" value="0.2609375" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/notes_layout.xml" value="0.2609375" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/one_line_payment.xml" value="0.2609375" />
         <entry key="..\:/Users/Laute/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/popupwindow.xml" value="0.2609375" />
@@ -62,10 +48,11 @@
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.28489583333333335" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/drawable/ic_baseline_monetization_on_24.xml" value="0.28489583333333335" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addpayment.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addwg.xml" value="0.11548913043478261" />
+        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addwg.xml" value="0.22" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_basketlist.xml" value="0.1644021739130435" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_createwg.xml" value="0.30625" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_editnote.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_forgotpassword.xml" value="0.17" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_joinwg.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_login.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_note_informations.xml" value="0.1585144927536232" />
@@ -77,6 +64,7 @@
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_startscreen.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_userprofile.xml" value="0.25" />
+        <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/basket_layout.xml" value="0.30158730158730157" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_add_url.xml" value="0.22010869565217392" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_checkout.xml" value="0.18115942028985507" />
         <entry key="..\:/Users/jonas/AndroidStudioProjects/ase-ws-21-zusammenleben/app/src/main/res/layout/layout_item_dialog.xml" value="0.16875" />
