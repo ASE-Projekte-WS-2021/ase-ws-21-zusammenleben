@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-fil/values-fil.xml",
+            "map": [
+                {
+                    "source": "/Users/marcobeetz/.gradle/caches/transforms-3/8168760e6d07ee72b1c1922b935f519c/transformed/jetified-play-services-wallet-19.1.0/res/values-fil/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "203",
+                        "endColumns": "78",
+                        "endOffsets": "281"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "82",
+                        "endOffsets": "133"
+                    }
+                }
+            ]
+        }
+    ]
+}
