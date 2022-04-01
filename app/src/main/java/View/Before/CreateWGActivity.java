@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import com.example.wgfinance.R;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.R;
 
 public class CreateWGActivity extends AppCompatActivity{
 

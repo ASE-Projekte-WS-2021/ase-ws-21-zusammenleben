@@ -1,7 +1,5 @@
 package View.Before;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,11 +10,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.wgfinance.R;
+import androidx.appcompat.app.AppCompatActivity;
 
-import View.After.ActivityOverview;
+import com.example.myapplication.R;
+
 import Presenter.Login.LoginContract;
 import Presenter.Login.LoginPresenter;
+import View.After.ActivityOverview;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginContract.View {
 

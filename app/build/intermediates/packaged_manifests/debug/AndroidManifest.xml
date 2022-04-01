@@ -1,128 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication"
+    package="com.example.wgfinance"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="28"
-        android:targetSdkVersion="31" />
-    <!-- Permission -->
-    <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
+        android:minSdkVersion="21"
+        android:targetSdkVersion="32" />
+
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true" />
-
-    <queries>
-
-        <!-- Needs to be explicitly declared on Android R+ -->
-        <package android:name="com.google.android.apps.maps" />
-    </queries>
-
-    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" /> <!-- Include required permissions for Advertising Id -->
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <application
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
-        android:extractNativeLibs="false"
-        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/Theme.MyApplication"
-        android:usesCleartextTraffic="true" >
-        <meta-data
-            android:name="com.google.android.gms.wallet.api.enabled"
-            android:value="true" />
-
+        android:theme="@style/Theme.WGFinance" >
         <activity
-            android:name="com.example.myapplication.View.ActivityForgotPassword"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" />
-        <activity
-            android:name="com.example.myapplication.View.Before.ActivityAddWg"
-            android:exported="false" />
-        <activity
-            android:name="com.example.myapplication.View.ActivityEditPayment"
-            android:exported="true"
-            android:label="ActivityEditPayment" />
-        <activity
-            android:name="com.example.myapplication.View.Before.ActivityJoinWG"
-            android:exported="true"
-            android:label="ActivityJoinWG" >
-        </activity>
-        <activity
-            android:name="com.example.myapplication.View.ActivityStartScreen"
+            android:name="View.Before.JoinWGActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.myapplication.View.ActivityOverview"
+            android:name="View.Before.CreateWGActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.myapplication.View.ActivityPaymentOverview"
+            android:name="View.Before.AddWGActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.myapplication.View.Before.ActivityCreateWG"
+            android:name="View.After.ActivityOverview"
             android:exported="true" />
         <activity
-            android:name="com.example.myapplication.View.ActivityUserProfile"
+            android:name="View.Before.RegistrationActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.myapplication.View.Before.ActivityLogin"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" >
+            android:name="View.Before.LoginActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="example.com"
-                    android:scheme="http" />
-                <data
-                    android:host="example.com"
-                    android:scheme="https" />
-            </intent-filter>
         </activity>
-        <activity
-            android:name="com.example.myapplication.Utils.Pop"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="com.example.myapplication.View.Before.ActivitySignup"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" />
-        <activity
-            android:name="com.example.myapplication.entities.Pop"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="com.example.myapplication.View.ActivityShoppingList"
-            android:exported="true" />
-        <activity
-            android:name="com.example.myapplication.View.ActivityBasketList"
-            android:exported="true" />
         <activity
             android:name="com.google.firebase.auth.internal.GenericIdpActivity"
             android:excludeFromRecents="true"
@@ -181,60 +103,21 @@
                 android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.dynamiclinks.internal.FirebaseDynamicLinkRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
         </service>
-        <service
-            android:name="androidx.room.MultiInstanceInvalidationService"
-            android:directBootAware="true"
-            android:exported="false" />
-
-        <provider
-            android:name="com.squareup.picasso.PicassoProvider"
-            android:authorities="com.example.myapplication.com.squareup.picasso"
-            android:exported="false" />
-        <provider
-            android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.example.myapplication.firebaseinitprovider"
-            android:directBootAware="true"
-            android:exported="false"
-            android:initOrder="100" /> <!-- Needs to be explicitly declared on P+ -->
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
 
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <receiver
-            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-            android:enabled="true"
-            android:exported="false" >
-        </receiver>
-
-        <service
-            android:name="com.google.android.gms.measurement.AppMeasurementService"
-            android:enabled="true"
-            android:exported="false" />
-        <service
-            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-            android:enabled="true"
+        <provider
+            android:name="com.google.firebase.provider.FirebaseInitProvider"
+            android:authorities="com.example.wgfinance.firebaseinitprovider"
+            android:directBootAware="true"
             android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+            android:initOrder="100" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -242,7 +125,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.example.myapplication.androidx-startup"
+            android:authorities="com.example.wgfinance.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"
@@ -251,13 +134,6 @@
                 android:name="androidx.lifecycle.ProcessLifecycleInitializer"
                 android:value="androidx.startup" />
         </provider>
-
-        <uses-library
-            android:name="androidx.window.extensions"
-            android:required="false" />
-        <uses-library
-            android:name="androidx.window.sidecar"
-            android:required="false" />
     </application>
 
 </manifest>

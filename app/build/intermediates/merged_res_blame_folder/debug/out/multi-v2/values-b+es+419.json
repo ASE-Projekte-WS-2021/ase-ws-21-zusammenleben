@@ -4,23 +4,6 @@
             "outputFile": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-b+es+419/values-b+es+419.xml",
             "map": [
                 {
-                    "source": "/Users/marcobeetz/.gradle/caches/transforms-3/8168760e6d07ee72b1c1922b935f519c/transformed/jetified-play-services-wallet-19.1.0/res/values-b+es+419/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "208",
-                        "endColumns": "73",
-                        "endOffsets": "281"
-                    },
-                    "to": {
-                        "startLines": "60",
-                        "startColumns": "4",
-                        "startOffsets": "4659",
-                        "endColumns": "77",
-                        "endOffsets": "4732"
-                    }
-                },
-                {
                     "source": "/Users/marcobeetz/.gradle/caches/transforms-3/87b82a3db8253a433553dad60431ddcd/transformed/material-1.5.0/res/values-b+es+419/values-b+es+419.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59",

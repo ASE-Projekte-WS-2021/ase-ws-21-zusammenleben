@@ -4,8 +4,6 @@ import android.app.Activity;
 
 import java.util.List;
 
-import javax.security.auth.callback.Callback;
-
 import Entities.WG;
 
 public interface AddWGContract {
@@ -16,7 +14,7 @@ public interface AddWGContract {
     }
 
     interface Presenter{
-        void addWG(Activity activity, String id, int size, List<String> members, String address);
+        void addWG(Activity activity, String address, String id, List<String> members, int size);
     }
 
     interface Model{

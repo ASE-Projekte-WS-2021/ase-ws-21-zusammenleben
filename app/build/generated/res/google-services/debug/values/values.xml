@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="default_web_client_id" translatable="false">781459321114-cjiki9djf1jf8aqfpm9r8cjv9dfseo8c.apps.googleusercontent.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">781459321114</string>
-    <string name="google_api_key" translatable="false">AIzaSyCwYMf-Wo3rS9KUer47HHgwT4atZBUClTg</string>
-    <string name="google_app_id" translatable="false">1:781459321114:android:a1393d1af95c41b71abca3</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCwYMf-Wo3rS9KUer47HHgwT4atZBUClTg</string>
-    <string name="google_storage_bucket" translatable="false">my-application-f648a.appspot.com</string>
-    <string name="project_id" translatable="false">my-application-f648a</string>
+    <string name="default_web_client_id" translatable="false">150480175034-ut4jknpqaqeb2roctlipfvkirlt6oojh.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">150480175034</string>
+    <string name="google_api_key" translatable="false">AIzaSyCLQiZqdLM8obuuvRDWPai0A2hB1F8A9ow</string>
+    <string name="google_app_id" translatable="false">1:150480175034:android:281948184d2fce1e9f6783</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCLQiZqdLM8obuuvRDWPai0A2hB1F8A9ow</string>
+    <string name="google_storage_bucket" translatable="false">wgfinance-b594f.appspot.com</string>
+    <string name="project_id" translatable="false">wgfinance-b594f</string>
 </resources>

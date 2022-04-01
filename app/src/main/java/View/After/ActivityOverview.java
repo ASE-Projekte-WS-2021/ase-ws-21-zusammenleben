@@ -1,10 +1,10 @@
 package View.After;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.example.wgfinance.R;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.R;
 
 import Presenter.Overview.OverviewContract;
 

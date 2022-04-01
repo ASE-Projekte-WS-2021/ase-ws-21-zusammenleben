@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.3046623794212219" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_addpayment.xml" value="0.18885869565217392" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_overview.xml" value="0.296195652173913" />
         <entry key="..\:/Users/Basti Schwarz/Documents/GitHub/ase-ws-21-zusammenleben/app/src/main/res/layout/activity_paymentoverview.xml" value="0.335" />
@@ -35,7 +36,9 @@
         <entry key="app/src/main/res/layout/activity_add_payment.xml" value="0.2233912746547052" />
         <entry key="app/src/main/res/layout/activity_addpayment.xml" value="0.7301587301587301" />
         <entry key="app/src/main/res/layout/activity_addwg.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_forgotpassword 2.xml" value="0.32916666666666666" />
         <entry key="app/src/main/res/layout/activity_groups.xml" value="0.3265170674866233" />
+        <entry key="app/src/main/res/layout/activity_join_flat.xml" value="0.22083333333333333" />
         <entry key="app/src/main/res/layout/activity_joinwg.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20729283325570755" />
         <entry key="app/src/main/res/layout/activity_overview.xml" value="0.1982250104314144" />

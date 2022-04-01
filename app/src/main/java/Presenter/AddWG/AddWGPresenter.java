@@ -1,10 +1,6 @@
 package Presenter.AddWG;
 
 import android.app.Activity;
-import android.util.Log;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -22,8 +18,8 @@ public class AddWGPresenter implements AddWGContract.Presenter, AddWGContract.on
     }
 
     @Override
-    public void addWG(Activity activity, String id, int size, List<String> members, String address) {
-        WG createdWG = new WG(id, size, members, address);
+    public void addWG(Activity activity, String address, String id, List<String> members, int size) {
+        WG createdWG = new WG(address, id, members, size);
         mAddWGModel.addWGtoFirebase(createdWG);
     }
 

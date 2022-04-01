@@ -8,7 +8,7 @@ public class WG {
     private List<String> members;
     private int size;
 
-    public WG(String id, int size, List<String> members, String address){
+    public WG(String address, String id, List<String> members, int size){
         this.id = id;
         this.size = size;
         this.members = members;
@@ -35,3 +35,5 @@ public class WG {
     }
 
 }
+
+// TODO : Modellieren - größe der wg vs größe der liste

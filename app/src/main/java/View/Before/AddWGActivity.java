@@ -1,18 +1,18 @@
 package View.Before;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import com.example.wgfinance.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -66,7 +66,7 @@ public class AddWGActivity extends AppCompatActivity implements AddWGContract.Vi
         members.add(currentUser);
 
         if(!TextUtils.isEmpty(id) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(size.getText().toString())){
-            mAddWGPresenter.addWG(this, id, flatSize, members, address);
+            mAddWGPresenter.addWG(this, address, id, members, flatSize);
         } else {
             Toast.makeText(getApplicationContext(), "Your input was invalid", Toast.LENGTH_SHORT).show();
         }
