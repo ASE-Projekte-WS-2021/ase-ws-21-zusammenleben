@@ -76,7 +76,7 @@
         <!--Registerinformation E-Mail and Password-->
 
         <Button
-            android:id="@+id/btn_joinwg"
+            android:id="@+id/btn_joinFlat"
             android:layout_width="322dp"
             android:layout_height="51dp"
             android:background="@drawable/roundetcorners"
@@ -92,7 +92,7 @@
 
 
         <Button
-            android:id="@+id/btn_findwg"
+            android:id="@+id/btn_findFlat"
             android:layout_width="322dp"
             android:layout_height="51dp"
             android:background="@drawable/roundetcorners"

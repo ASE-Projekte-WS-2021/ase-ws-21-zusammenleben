@@ -22,13 +22,13 @@
         android:testOnly="true"
         android:theme="@style/Theme.WGFinance" >
         <activity
-            android:name="View.Before.JoinWGActivity"
+            android:name="View.Before.JoinFlatActivity"
             android:exported="true" />
         <activity
-            android:name="View.Before.CreateWGActivity"
+            android:name="View.Before.CreateFlatActivity"
             android:exported="true" />
         <activity
-            android:name="View.Before.AddWGActivity"
+            android:name="View.Before.AddFlatActivity"
             android:exported="true" />
         <activity
             android:name="View.After.ActivityOverview"

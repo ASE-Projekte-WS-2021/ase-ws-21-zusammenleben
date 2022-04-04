@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w600dp-land-v13/values-w600dp-land-v13.xml",
+            "outputFile": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
             "map": [
                 {
-                    "source": "/Users/marcobeetz/.gradle/caches/transforms-3/87b82a3db8253a433553dad60431ddcd/transformed/material-1.5.0/res/values-w600dp-land-v13/values-w600dp-land-v13.xml",
+                    "source": "C:\\Users\\jonas\\.gradle\\caches\\transforms-3\\87b82a3db8253a433553dad60431ddcd\\transformed\\material-1.5.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

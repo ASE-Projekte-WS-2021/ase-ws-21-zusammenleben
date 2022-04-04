@@ -62,7 +62,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     private void initLogin(String email, String password, String name){
         mRegistrationPresenter.register(this, email, password, name);
-        Intent i = new Intent(RegistrationActivity.this, CreateWGActivity.class);
+        Intent i = new Intent(RegistrationActivity.this, CreateFlatActivity.class);
         startActivity(i);
     }
 

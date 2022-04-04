@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v26/values-v26.xml",
+            "outputFile": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v26\\values-v26.xml",
             "map": [
                 {
-                    "source": "/Users/marcobeetz/.gradle/caches/transforms-3/cb8e430002ce25b73d1bc88b81d48c8b/transformed/appcompat-1.4.1/res/values-v26/values-v26.xml",
+                    "source": "C:\\Users\\jonas\\.gradle\\caches\\transforms-3\\cb8e430002ce25b73d1bc88b81d48c8b\\transformed\\appcompat-1.4.1\\res\\values-v26\\values-v26.xml",
                     "from": {
                         "startLines": "2,3,4,8,12,16",
                         "startColumns": "4,4,4,4,4,4",

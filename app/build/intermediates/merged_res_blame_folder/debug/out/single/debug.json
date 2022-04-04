@@ -1,146 +1,146 @@
 [
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_ic_baseline_person_24.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/ic_baseline_person_24.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_startscreenheader.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\startscreenheader.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_layout_header.jpg.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/layout_header.jpg"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/layout_activity_join_flat.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/layout/activity_join_flat.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable_ic_launcher_background.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable/ic_launcher_background.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/menu_bottom_bar.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/menu/bottom_bar.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_addflat.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\layout\\activity_addflat.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_startscreenheader.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/startscreenheader.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_baseline_person_24.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\ic_baseline_person_24.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_baseline_home_work_24.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\ic_baseline_home_work_24.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/mipmap-hdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/color_bar_red.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/color/bar_red.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\color_bar_red.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\color\\bar_red.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_ic_baseline_local_post_office_24.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/ic_baseline_local_post_office_24.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_layout_header.jpg.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\layout_header.jpg"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/layout_activity_overview.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/layout/activity_overview.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_roundetcorners.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/roundetcorners.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_header.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/header.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_registration.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\layout\\activity_registration.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_ic_baseline_add_24.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/ic_baseline_add_24.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_baseline_attach_money_24.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\ic_baseline_attach_money_24.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_roundetcorners.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\roundetcorners.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/layout_activity_registration.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/layout/activity_registration.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_join_flat.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\layout\\activity_join_flat.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_ic_baseline_location_city_24.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/ic_baseline_location_city_24.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_background_for_login.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\background_for_login.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_ic_baseline_lock_24.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/ic_baseline_lock_24.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_header.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\header.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/layout_activity_createwg.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/layout/activity_createwg.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_baseline_local_post_office_24.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\ic_baseline_local_post_office_24.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_ic_baseline_attach_money_24.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/ic_baseline_attach_money_24.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_overview.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\layout\\activity_overview.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_createflat.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\layout\\activity_createflat.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/mipmap-mdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\menu_bottom_bar.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\menu\\bottom_bar.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_ic_shopping_cart.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/ic_shopping_cart.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_shopping_cart.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\ic_shopping_cart.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_ic_baseline_home_work_24.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/ic_baseline_home_work_24.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\layout\\activity_login.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/build/generated/res/pngs/debug/drawable-anydpi-v24/ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_avatar.png.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\avatar.png"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_avatar.png.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/avatar.png"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_baseline_location_city_24.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\ic_baseline_location_city_24.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/layout_activity_login.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/layout/activity_login.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/layout_activity_addwg.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/layout/activity_addwg.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_baseline_add_24.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\ic_baseline_add_24.xml"
     },
     {
-        "merged": "/Users/marcobeetz/Documents/GitHub/abc/app/build/intermediates/merged_res/debug/drawable-v24_background_for_login.xml.flat",
-        "source": "/Users/marcobeetz/Documents/GitHub/abc/app/src/main/res/drawable-v24/background_for_login.xml"
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_baseline_lock_24.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\ic_baseline_lock_24.xml"
     }
 ]

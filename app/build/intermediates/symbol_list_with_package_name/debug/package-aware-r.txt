@@ -2675,11 +2675,12 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
-id btn_addwg
+id btn_addFlat
 id btn_createAccount
 id btn_createNewGroup
-id btn_findwg
+id btn_findFlat
 id btn_inviteYourFriends
+id btn_joinFlat
 id btn_joinwg
 id btn_login
 id btn_managePayments
@@ -2776,6 +2777,7 @@ id filled
 id fitToContents
 id fixed
 id flat_name
+id flat_profile_name
 id flat_share_name
 id flip
 id floating
@@ -3085,7 +3087,6 @@ id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
 id west
-id wg_profile_name
 id wide
 id withText
 id withinBounds
@@ -3181,8 +3182,8 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_addwg
-layout activity_createwg
+layout activity_addflat
+layout activity_createflat
 layout activity_join_flat
 layout activity_login
 layout activity_overview
