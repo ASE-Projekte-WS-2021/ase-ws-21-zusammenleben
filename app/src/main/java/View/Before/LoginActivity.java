@@ -71,8 +71,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(!TextUtils.isEmpty(loginEmail.getText().toString()) && !TextUtils.isEmpty(loginPassword.getText().toString())){
             initLogin(loginEmail.getText().toString(), loginPassword.getText().toString());
         } else {
-            loginEmail.setError("Please enter valid data");
-            loginPassword.setError("Please enter valid data");
+            loginEmail.setError("Bitte geben Sie eine gültige E-Mail an.");
+            loginEmail.setFocusable(true);
+            loginPassword.setError("Bitte geben Sie ihr Passwort korrekt an.");
+            loginPassword.setFocusable(true);
         }
     }
 
@@ -85,12 +87,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Log.d("login", "succesful!");
         Intent i = new Intent(LoginActivity.this, ActivityOverview.class);
         startActivity(i);
-        Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onLoginFailure(String message) {
         Log.d("login", message);
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Ungültige Anmeldeinformation.Bitte versuchen Sie es erneut!", Toast.LENGTH_SHORT).show();
     }
 }

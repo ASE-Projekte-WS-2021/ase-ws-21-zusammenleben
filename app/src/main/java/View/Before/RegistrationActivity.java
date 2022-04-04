@@ -55,8 +55,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         if(!TextUtils.isEmpty(signUpEmail.getText().toString()) && !TextUtils.isEmpty(signUpPassword.getText().toString())){
             initLogin(signUpEmail.getText().toString(), signUpPassword.getText().toString(), signUpName.getText().toString());
         } else {
-            signUpEmail.setError("Please enter valid data");
-            signUpPassword.setError("Please enter valid data");
+            signUpEmail.setError("Bitte geben Sie ihre E-Mail an.");
+            signUpEmail.setFocusable(true);
+            signUpPassword.setError("Bitte geben Sie ihr Passwort an.");
+            signUpPassword.setFocusable(true);
         }
     }
 
@@ -68,7 +70,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onRegistrationSuccess(FirebaseUser firebaseUser) {
-        Toast.makeText(getApplicationContext(), "Successfully registered", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Ihr Konto wurde erfolgreich erstellt", Toast.LENGTH_SHORT).show();
     }
 
     @Override
