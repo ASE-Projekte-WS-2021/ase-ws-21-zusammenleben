@@ -4,16 +4,20 @@
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\startscreenheader.xml"
     },
     {
-        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
-    },
-    {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\font_brlnrs_regular.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\font\\brlnrs_regular.xml"
     },
     {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
@@ -68,16 +72,20 @@
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\font_brlnrs.TTF.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\font\\brlnrs.TTF"
+    },
+    {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_registration.xml.flat",
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\layout\\activity_registration.xml"
     },
     {
-        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_baseline_attach_money_24.xml.flat",
-        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\ic_baseline_attach_money_24.xml"
-    },
-    {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_roundetcorners.xml.flat",
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\roundetcorners.xml"
+    },
+    {
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_baseline_attach_money_24.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\ic_baseline_attach_money_24.xml"
     },
     {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_join_flat.xml.flat",
@@ -92,12 +100,20 @@
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\header.xml"
     },
     {
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable_roundedcorners.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable\\roundedcorners.xml"
+    },
+    {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_baseline_local_post_office_24.xml.flat",
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\ic_baseline_local_post_office_24.xml"
     },
     {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_overview.xml.flat",
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\layout\\activity_overview.xml"
+    },
+    {
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable_roundedcorner_trans.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable\\roundedcorner_trans.xml"
     },
     {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_createflat.xml.flat",
