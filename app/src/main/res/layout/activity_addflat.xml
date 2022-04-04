@@ -19,11 +19,13 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/header"
+        app:layout_constraintBottom_toBottomOf="@id/headersignup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/header"
-        app:layout_constraintBottom_toBottomOf="@id/headersignup"/>
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -38,18 +40,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WGFinance"
+            android:fontFamily="@font/brlnrs_regular"
             android:includeFontPadding="false"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold"/>
+            android:text="WGFinance"
+            android:textColor="@color/ButtonTextColor"
+            android:textSize="30dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/brlnrs_regular"
             android:text="@string/tag_line"
-            android:textSize="20sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/ButtonTextColor"
+            android:textSize="30dp" />
 
     </LinearLayout>
 
@@ -75,31 +78,35 @@
 
         <EditText
             android:id="@+id/size_of_flat"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
-            android:drawableLeft="@drawable/ic_baseline_location_city_24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_group_add_24"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:hint="Enter how many people live together"
+            android:fontFamily="@font/brlnrs_regular"
+            android:hint="Wie viele Mitbewohner hat die WG?"
             android:inputType="phone"
             android:minHeight="48dp"
+            android:textColorHint="@color/HintColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.475"
+            app:layout_constraintVertical_bias="0.498"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/flat_profile_name"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
-            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_location_city_24"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:hint="Enter your unique Flat ID"
+            android:fontFamily="@font/brlnrs_regular"
+            android:hint="WG-Name"
             android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:textColorHint="@color/HintColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -108,29 +115,31 @@
 
         <EditText
             android:id="@+id/flat_share_name"
-            android:layout_width="345dp"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_person_24"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:hint="Enter your personal Flat Name"
+            android:fontFamily="@font/brlnrs_regular"
+            android:hint="Dein Name"
             android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:textColorHint="@color/HintColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.301" />
+            app:layout_constraintVertical_bias="0.298" />
 
         <Button
             android:id="@+id/btn_addFlat"
-            android:layout_width="322dp"
-            android:layout_height="51dp"
-            android:background="@drawable/roundetcorners"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedcorners"
             android:text="WG erstellen"
+            android:textColor="@color/ButtonTextColor"
+            android:textSize="25dp"
             android:textAllCaps="false"
-            android:textColor="#121111"
-            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"

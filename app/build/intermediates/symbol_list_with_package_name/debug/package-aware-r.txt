@@ -2524,6 +2524,7 @@ drawable googleg_standard_color_18
 drawable header
 drawable ic_baseline_add_24
 drawable ic_baseline_attach_money_24
+drawable ic_baseline_group_add_24
 drawable ic_baseline_home_work_24
 drawable ic_baseline_local_post_office_24
 drawable ic_baseline_location_city_24
@@ -2849,7 +2850,6 @@ id item4
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
-id label_signup
 id labeled
 id last_Payments
 id layout

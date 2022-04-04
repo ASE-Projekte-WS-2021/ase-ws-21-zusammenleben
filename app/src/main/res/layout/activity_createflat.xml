@@ -36,18 +36,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WGFinance"
+            android:fontFamily="@font/brlnrs_regular"
             android:includeFontPadding="false"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold"/>
+            android:text="WGFinance"
+            android:textColor="@color/ButtonTextColor"
+            android:textSize="30sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/brlnrs_regular"
             android:text="@string/tag_line"
-            android:textSize="20sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/ButtonTextColor"
+            android:textSize="25dp" />
 
     </LinearLayout>
 
@@ -70,33 +71,33 @@
 
         <Button
             android:id="@+id/btn_createNewGroup"
-            android:layout_width="322dp"
-            android:layout_height="51dp"
-            android:background="@drawable/roundetcorners"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedcorners"
             android:text="WG erstellen"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/ButtonTextColor"
+            android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.327" />
+            app:layout_constraintVertical_bias="0.376" />
 
         <Button
             android:id="@+id/btn_inviteYourFriends"
-            android:layout_width="322dp"
-            android:layout_height="51dp"
-            android:background="@drawable/roundetcorners"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedcorners"
             android:text="WG beitreten"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/ButtonTextColor"
+            android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.516"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.501" />
+            app:layout_constraintVertical_bias="0.646" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

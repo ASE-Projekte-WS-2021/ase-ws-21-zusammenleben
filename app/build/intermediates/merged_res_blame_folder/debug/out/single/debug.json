@@ -132,6 +132,10 @@
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_group_add_24.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable\\ic_baseline_group_add_24.xml"
+    },
+    {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_shopping_cart.xml.flat",
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable-v24\\ic_shopping_cart.xml"
     },
