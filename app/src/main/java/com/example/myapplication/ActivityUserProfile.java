@@ -4,10 +4,13 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -51,6 +54,12 @@ public class ActivityUserProfile extends AppCompatActivity {
         setupUIComponents();
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.ButtonColor));
+        }
 
         firebaseAuth = FirebaseAuth.getInstance();
         bottomNavigationView = findViewById(R.id.bottomnavview);
@@ -94,14 +103,14 @@ public class ActivityUserProfile extends AppCompatActivity {
             }
         });
 
-        button_signout.setOnClickListener(new View.OnClickListener() {
+        /*button_signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 firebaseAuth.signOut();
                 checkUserStatus();
 
             }
-        });
+        })*/
 
         button_leaving.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +124,7 @@ public class ActivityUserProfile extends AppCompatActivity {
 
     private void setupUIComponents() {
         setContentView(R.layout.activity_userprofile);
-        button_signout = (Button) findViewById(R.id.btn_logout);
+        //button_signout = (Button) findViewById(R.id.btn_logout);
         button_leaving = (Button) findViewById(R.id.btn_leaving);
         useremail = findViewById(R.id.show_email);
         //circleImageView =findViewById(R.id.user_picture);

@@ -1,16 +1,21 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.entities.Basket;
 import com.example.myapplication.entities.Flats;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,6 +56,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
 
     // bottomNav
     BottomNavigationView bottomNavigationView;
+    MaterialToolbar toolbar;
     //adapter
     //FirestoreRecyclerAdapter<Basket, BasketViewHolder> basketAdapter;
     LinearLayout basketLinearLayout;
@@ -103,6 +110,12 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         super.onCreate(savedInstanceState);
         initViews();
         setBottomNavigationView();
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.ButtonColor));
+        }
     }
 
     private void retrieveFlatDataFromFirebase(){
@@ -176,6 +189,28 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
         //editButton = findViewById(R.id.editButton_basket);
         //bottomNavigationView = findViewById(R.id.bottomnavview);
         //bottomNavigationView.setSelectedItemId(R.id.shopping);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.search:
+                        startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.logout:
+                        firebaseAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(),ActivityLogin.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+
 
     }
 

@@ -165,11 +165,11 @@ public class ActivityShoppingList extends AppCompatActivity {
     }
 
     private void initViews(){
-        list_view = findViewById(R.id.list_view);
-        list_view_cost = findViewById(R.id.list_view_cost);
+        //list_view = findViewById(R.id.list_view);
+        //list_view_cost = findViewById(R.id.list_view_cost);
         list_view_cost.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         list_view_cost.setItemChecked(position, false);
-        sumCosts = findViewById(R.id.sumcosts);
+        //sumCosts = findViewById(R.id.sumcosts);
 
         editTextCost = findViewById(R.id.insert_costs);
 

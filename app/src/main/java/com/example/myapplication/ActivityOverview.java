@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,9 +15,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.entities.Flats;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,12 +31,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class ActivityOverview extends AppCompatActivity {
 
@@ -49,6 +49,7 @@ public class ActivityOverview extends AppCompatActivity {
     DatabaseReference databaseReferencePayment;
     FirebaseAuth mAuth;
     FirebaseUser user;
+    FloatingActionButton fab;
 
     ArrayList<ArrayList<String>> flatContents = new ArrayList<>();
     String[] content;
@@ -70,6 +71,13 @@ public class ActivityOverview extends AppCompatActivity {
         initFirebase();
         addListenerOnButton();
         getFlatIDinFirebase();
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.ButtonColor));
+        }
     }
 
     private void getFlatIDinFirebase(){
@@ -132,7 +140,7 @@ public class ActivityOverview extends AppCompatActivity {
     }
 
     public void addListenerOnButton() {
-        button_managePayments.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -171,11 +179,10 @@ public class ActivityOverview extends AppCompatActivity {
 
     private void setupUIComponents(){
         setContentView(R.layout.activity_overview);
-        button_managePayments = (ImageButton) findViewById(R.id.btn_managePayments);
+        fab = findViewById(R.id.fab);
         paymentPurpose = findViewById(R.id.payment_purpose);
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.payment);
-        button_managePayments = findViewById(R.id.btn_managePayments);
         costs = findViewById(R.id.costs_overview);
         optionButton = findViewById(R.id.optionbutton);
         bottomNavigationView = findViewById(R.id.bottomnavview);

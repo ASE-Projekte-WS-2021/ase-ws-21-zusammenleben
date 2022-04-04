@@ -5,125 +5,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/header"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/startscreenheader"
-        android:contentDescription="@string/app_name"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/startscreenheader"
-        app:layout_constraintBottom_toBottomOf="@id/header"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <View
-        android:id="@+id/viewSupporter"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toBottomOf="@id/header"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/top_app_bar"
+            app:title="Zahlungen" />
 
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <TextView
         android:id="@+id/last_Payments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Payments"
+        android:text="Deine Zahlungen"
         android:textColor="#050505"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.141" />
 
     <TextView
         android:id="@+id/debt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Debt = "
+        android:text="Offene Beträge = "
         android:textColor="#050505"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.786" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_payments"
+        android:layout_width="373dp"
+        android:layout_height="432dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.387" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_managePayments"
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:foregroundTint="@color/white"
-        android:clickable="true"
-        android:contentDescription="AddPayment"
-        android:focusable="true"
-        android:tint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:contentDescription="Test"
+        app:backgroundTint="@color/colorNote3"
+        android:src="@drawable/ic_baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomnavview"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintHorizontal_bias="0.902"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.809"
-        app:srcCompat="@drawable/ic_baseline_add_24"/>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_payments"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="50dp"
-            tools:layout_editor_absoluteY="200dp" />
-
-
-
-    <TextView
-        android:id="@+id/payment_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Payments"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/show_picture_overwiew"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="12dp"
-        android:contentDescription="showpicture"
-        android:src="@drawable/avatar"
-        app:layout_constraintEnd_toEndOf="@+id/header"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="@+id/header"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.779" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnavview"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

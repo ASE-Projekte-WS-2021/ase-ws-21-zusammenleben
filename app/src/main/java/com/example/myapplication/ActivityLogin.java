@@ -130,7 +130,7 @@ public class ActivityLogin extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, and start register activity
                             FirebaseUser user = mAuth.getCurrentUser();
-                            startActivity(new Intent(ActivityLogin.this, ActivityStartScreen.class));
+                            startActivity(new Intent(ActivityLogin.this, ActivityOverview.class));
                             pd.dismiss();
                             finish();
                         }
