@@ -1,4 +1,4 @@
-package com.example.myapplication;
+/*package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -223,6 +223,8 @@ public class ActivityStartScreen extends AppCompatActivity {
         });
     }*/
 
+/*
+
     private void setBottomNavigationView(){
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch(item.getItemId()){
@@ -255,6 +257,7 @@ public class ActivityStartScreen extends AppCompatActivity {
         }
     }*/
 
+/*
     private void setupUIComponents(){
         setContentView(R.layout.activity_startscreen);
         imageView = findViewById(R.id.imageAddMain);
@@ -274,3 +277,5 @@ public class ActivityStartScreen extends AppCompatActivity {
     }
 
 }
+
+*/

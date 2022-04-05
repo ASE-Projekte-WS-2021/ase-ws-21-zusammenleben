@@ -159,10 +159,6 @@ public class ActivityOverview extends AppCompatActivity {
                 switch(item.getItemId()){
                     case R.id.payment:
                         return true;
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),ActivityStartScreen.class));
-                        overridePendingTransition(0,0);
-                        return true;
                     case R.id.user:
                         startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
                         overridePendingTransition(0,0);

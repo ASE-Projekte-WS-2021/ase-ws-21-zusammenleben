@@ -46,6 +46,7 @@ public class ActivityLogin extends AppCompatActivity {
         login();
         initFirebase();
 
+
     }
 
     private void checkForDynamicLinks() {

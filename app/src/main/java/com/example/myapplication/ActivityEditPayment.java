@@ -392,4 +392,3 @@ public class ActivityEditPayment extends AppCompatActivity {
         }
     }
 }
-

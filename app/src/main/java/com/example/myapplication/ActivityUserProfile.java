@@ -88,10 +88,6 @@ public class ActivityUserProfile extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), ActivityOverview.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), ActivityStartScreen.class));
-                        overridePendingTransition(0, 0);
-                        return true;
                     case R.id.shopping:
                         startActivity(new Intent(getApplicationContext(),ActivityBasketList.class));
                         overridePendingTransition(0,0);

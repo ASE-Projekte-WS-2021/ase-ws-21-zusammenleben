@@ -362,10 +362,6 @@ public class ActivityBasketList extends AppCompatActivity implements BasketViewA
                         startActivity(new Intent(getApplicationContext(),ActivityOverview.class));
                         overridePendingTransition(0,0);
                         return true;
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), ActivityStartScreen.class));
-                        overridePendingTransition(0, 0);
-                        return true;
                     case R.id.user:
                         startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
                         overridePendingTransition(0,0);

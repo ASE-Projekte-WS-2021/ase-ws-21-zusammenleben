@@ -199,10 +199,6 @@ public class ActivityShoppingList extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(),ActivityOverview.class));
                     overridePendingTransition(0,0);
                     return true;
-                case R.id.home:
-                    startActivity(new Intent(getApplicationContext(),ActivityStartScreen.class));
-                    overridePendingTransition(0,0);
-                    return true;
                 case R.id.shopping:
                     return true;
                 case R.id.user:

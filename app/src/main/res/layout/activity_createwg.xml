@@ -74,30 +74,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
-            android:text="Create new flat"
+            android:text="WG erstellen"
             android:textAllCaps="false"
             android:textColor="@color/ButtonTextColor"
             android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.376" />
+            app:layout_constraintVertical_bias="0.422" />
 
         <Button
             android:id="@+id/btn_inviteYourFriends"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
-            android:text="Join a flat"
+            android:text="WG beitreten"
             android:textAllCaps="false"
             android:textColor="@color/ButtonTextColor"
             android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.646" />
+            app:layout_constraintVertical_bias="0.606" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

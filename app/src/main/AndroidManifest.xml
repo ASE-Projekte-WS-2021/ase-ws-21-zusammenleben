@@ -29,12 +29,6 @@
         android:value="true" />
 
         <activity
-            android:name=".ActivityEditNote"
-            android:exported="false" />
-        <activity
-            android:name=".ActivityNoteInformations"
-            android:exported="false" />
-        <activity
             android:name=".ActivityForgotPassword"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" />
@@ -42,10 +36,6 @@
             android:name=".ActivityAddWg"
             android:exported="false" />
 
-
-        <activity android:name=".ActivityEditPayment"
-            android:exported="true"
-            android:label="ActivityEditPayment"></activity>
 
         <activity
             android:name=".ActivityJoinWG"
@@ -55,9 +45,9 @@
         </activity>
 
 
-        <activity
+        <!--<activity
             android:name=".ActivityStartScreen"
-            android:exported="true"/>
+            android:exported="true"/>-->
         <activity
             android:name=".ActivityOverview"
             android:exported="true" />
@@ -95,11 +85,6 @@
             android:name=".ActivitySignup"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" />
-        <activity
-            android:name=".ActivityNoteSpace"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".entities.Pop"
