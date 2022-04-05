@@ -44,7 +44,7 @@ public class JoinFlatModel implements JoinFlatContract.Model, JoinFlatContract.o
                     String address = snap.getValue(Flat.class).getAddress();
                     Flat flat = new Flat(address, id, members, size);
                     flats.add(flat);
-                    // test
+                    // abc
                 }
                 onJoinFlatListener.onSuccess(flats);
             }
