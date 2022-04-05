@@ -13,7 +13,6 @@ public interface JoinFlatContract {
 
     interface Presenter{
         void retrieveFlat(String flatPassword);
-        Flat sendFlat();
         void addUserToFlat(String email, String flatID);
     }
 

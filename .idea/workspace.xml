@@ -15,7 +15,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5466acb4-0a8d-44d3-9aed-16ddf343a907" name="Default Changelist" comment="Payments are now displayed Flat-specific">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Model/JoinFlatModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Model/JoinFlatModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Entities/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Model/OverviewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Model/OverviewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Model/PaymentOverviewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Model/PaymentOverviewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/JoinFlat/JoinFlatContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/JoinFlat/JoinFlatContract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/JoinFlat/JoinFlatPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/JoinFlat/JoinFlatPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/Overview/OverviewContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/Overview/OverviewContract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/Overview/OverviewPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/Overview/OverviewPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/PaymentOverview/PaymentOverviewContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/PaymentOverview/PaymentOverviewContract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/PaymentOverview/PaymentOverviewPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/PaymentOverview/PaymentOverviewPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityOverview.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityOverview.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityPaymentOverview.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityPaymentOverview.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +36,7 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/marcobeetz/.android/avd/Pixel_5_API_28.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[16f144f30205]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />

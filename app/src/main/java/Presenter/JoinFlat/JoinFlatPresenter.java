@@ -26,10 +26,6 @@ public class JoinFlatPresenter implements JoinFlatContract.Presenter, JoinFlatCo
         mJoinFlatModel.retrieveFlatFromFirebase(flatPassword);
     }
 
-    @Override
-    public Flat sendFlat() {
-        return foundFlat;
-    }
 
     @Override
     public void addUserToFlat(String email, String flatID) {
