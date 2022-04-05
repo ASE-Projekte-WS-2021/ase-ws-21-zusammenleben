@@ -21,16 +21,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="35dp"
             android:layout_marginTop="8dp"
+            android:ellipsize="marquee"
+            android:fontFamily="@font/latoregular"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:layout_marginRight="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/basketSubtitleactivity"
-            app:layout_constraintTop_toTopOf="@+id/basket"
             app:layout_constraintStart_toStartOf="@+id/basket"
-            tools:ignore="NotSibling"
-            android:ellipsize="marquee"/>
+            app:layout_constraintTop_toTopOf="@+id/basket"
+            tools:ignore="NotSibling" />
 
         <ImageView
             android:id="@+id/editButton_basket"

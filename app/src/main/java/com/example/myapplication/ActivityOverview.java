@@ -184,7 +184,7 @@ public class ActivityOverview extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.payment);
         costs = findViewById(R.id.costs_overview);
-        optionButton = findViewById(R.id.optionbutton);
+        //optionButton = findViewById(R.id.optionbutton);
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.payment);
         toolbar = findViewById(R.id.topAppBar);
