@@ -1,8 +1,7 @@
 package Presenter.PaymentOverview;
 
-import android.util.Log;
-
 import java.util.ArrayList;
+import java.util.List;
 
 import Entities.Flat;
 import Entities.Payment;
@@ -27,16 +26,41 @@ public class PaymentOverviewPresenter implements PaymentOverviewContract.Present
     }
 
     @Override
-    public void retrievePaymentFromFlat(String flatID) {
+    public void savePayment(double cost, String purpose, List<String> receivers) {
+        // Objekt erstellen ...
+        mPaymentOverviewModel.addPaymentToFirebase(...);
 
+    }
+
+    @Override
+    public int retrieveFlatSize(Flat flat) {
+        return flat.getMembers().size();
+    }
+
+    @Override
+    public boolean[] retrieveSelectedMembers(Flat flat) {
+        boolean[] arr = new boolean[flat.getMembers().size()];
+        return arr;
+    }
+
+    @Override
+    public String[] retrieveMemberNames(Flat flat) {
+        String[] arr = new String[flat.getMembers().size()];
+        for(int i = 0 ; i < arr.length ; i++){
+            arr[i] = flat.getMembers().get(i);
+        }
+        return arr;
     }
 
     @Override
     public void onFlatFoundSuccess(Flat flat) {
         currentUserFlat = flat;
-        String id = currentUserFlat.getId();
-        Log.d("retrieved flat name = ", id);
+        unpackFlatData();
         mPaymentOverviewView.onFlatFound(currentUserFlat);
+    }
+
+    public void unpackFlatData(){
+
     }
 
     @Override

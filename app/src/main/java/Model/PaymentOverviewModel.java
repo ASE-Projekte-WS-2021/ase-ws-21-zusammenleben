@@ -24,6 +24,7 @@ public class PaymentOverviewModel implements PaymentOverviewContract.Model, Paym
     private DatabaseReference refFlat = database.getReference(FLATPATH);
     Flat retrievedFlat;
 
+
     public PaymentOverviewModel(PaymentOverviewContract.onPaymentSuccessListener onPaymentSuccessListener){
         this.onPaymentSuccessListener = onPaymentSuccessListener;
     }

@@ -14,12 +14,21 @@ public interface PaymentOverviewContract {
 
     interface Presenter{
         void retrieveFlat(String email);
-        void retrievePaymentFromFlat(String flatID);
+        void savePayment(Payment payment);
+
+        int retrieveFlatSize(Flat flat);
+        boolean[] retrieveSelectedMembers(Flat flat);
+        // TODO : userEmail -> userName
+        String[] retrieveMemberNames(Flat flat);
     }
+
+    // 1. int - Größe der WG = members.size()
+    // 2. Boolean Array mit der Größe 1. - false initialisieren
+    // 3. Namen der WG Mitglieder
 
     interface Model{
         Flat retrieveFlatFromFirebase(String email);
-        void addPaymentToFirebase(Payment p);
+        void addPaymentToFirebase(Payment payment);
         }
 
     interface onPaymentSuccessListener{

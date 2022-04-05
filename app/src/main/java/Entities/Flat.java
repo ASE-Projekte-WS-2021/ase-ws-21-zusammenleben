@@ -37,3 +37,5 @@ public class Flat {
 }
 
 // TODO : Modellieren - größe der wg vs größe der liste
+
+// TODO : ist die size nicht komplett obsolete ?
