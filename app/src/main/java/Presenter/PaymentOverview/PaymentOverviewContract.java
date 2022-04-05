@@ -2,6 +2,7 @@ package Presenter.PaymentOverview;
 
 import java.util.ArrayList;
 
+import Entities.Flat;
 import Entities.Payment;
 
 public interface PaymentOverviewContract {
@@ -16,11 +17,12 @@ public interface PaymentOverviewContract {
     }
 
     interface Model{
-        String retrieveFlatFromFirebase(String email);
+        Flat retrieveFlatFromFirebase(String email);
         void addPaymentToFirebase(Payment p);
         }
 
     interface onPaymentSuccessListener{
+        void onFlatFoundSuccess(Flat flat);
         void onSuccess(ArrayList<Payment> payments);
     }
 }

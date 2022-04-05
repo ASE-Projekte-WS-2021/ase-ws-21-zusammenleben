@@ -2,6 +2,7 @@ package View.After;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
@@ -32,8 +33,13 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         super.onCreate(savedInstanceState);
         setupUIComponents();
         mOverviewPresenter = new OverviewPresenter(this);
-        getCurrentUser();
         onNewPaymentButtonClicked();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        getCurrentUser();
     }
 
     private void getCurrentUser(){
@@ -53,6 +59,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         createNewPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("triggered ", "now");
                 Intent i = new Intent(ActivityOverview.this, ActivityPaymentOverview.class);
                 startActivity(i);
             }
