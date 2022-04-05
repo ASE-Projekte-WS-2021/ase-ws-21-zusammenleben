@@ -12,13 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WGFinance">
         <activity
+            android:name="View.After.ActivityPaymentOverview"
+            android:exported="false" />
+        <activity
             android:name="View.Before.JoinFlatActivity"
             android:exported="true" />
-
         <activity
             android:name="View.Before.CreateFlatActivity"
             android:exported="true" />
-
         <activity
             android:name="View.Before.AddFlatActivity"
             android:exported="true" />
