@@ -13,7 +13,6 @@ public class PaymentOverviewPresenter implements PaymentOverviewContract.Present
     private PaymentOverviewContract.View mPaymentOverviewView;
     private PaymentOverviewModel mPaymentOverviewModel;
     String currentUserEmail;
-    String currentUserFlatID;
     Flat currentUserFlat;
 
     public PaymentOverviewPresenter(PaymentOverviewContract.View paymentOverviewView){
@@ -37,6 +36,7 @@ public class PaymentOverviewPresenter implements PaymentOverviewContract.Present
         currentUserFlat = flat;
         String id = currentUserFlat.getId();
         Log.d("retrieved flat name = ", id);
+        mPaymentOverviewView.onFlatFound(currentUserFlat);
     }
 
     @Override

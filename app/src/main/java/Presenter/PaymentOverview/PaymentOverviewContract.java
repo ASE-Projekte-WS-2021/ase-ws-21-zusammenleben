@@ -8,6 +8,7 @@ import Entities.Payment;
 public interface PaymentOverviewContract {
 
     interface View{
+        void onFlatFound(Flat flat);
         void onPaymentFound(Payment payment);
     }
 
