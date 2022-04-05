@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,16 +25,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/basketRecyclerView"
-        android:layout_width="322dp"
-        android:layout_height="260dp"
-        android:layout_marginBottom="152dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomnavview"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -42,14 +41,15 @@
         android:id="@+id/basketActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="420dp"
+        android:layout_marginTop="560dp"
         android:clickable="true"
         android:contentDescription="@string/add_new_shoppinglist"
+        app:backgroundTint="@color/Primary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.785"
+        app:layout_constraintHorizontal_bias="0.863"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_add_outline" />
+        app:srcCompat="@drawable/ic_baseline_add_24" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnavview"

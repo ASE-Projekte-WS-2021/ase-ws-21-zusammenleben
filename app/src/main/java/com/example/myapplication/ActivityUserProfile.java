@@ -20,11 +20,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.entities.Pop;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,6 +49,7 @@ public class ActivityUserProfile extends AppCompatActivity {
     int TAKE_IMAGE_CODE = 10001;
     //private CircleImageView circleImageView;
     ImageView imageView;
+    MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,25 @@ public class ActivityUserProfile extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.user);
+
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    //case R.id.search:
+                        //startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        //overridePendingTransition(0,0);
+                        //return true;
+                    case R.id.logout:
+                        firebaseAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(),ActivityLogin.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 

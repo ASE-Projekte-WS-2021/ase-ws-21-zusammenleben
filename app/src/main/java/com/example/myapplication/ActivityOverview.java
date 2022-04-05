@@ -15,10 +15,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.entities.Flats;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +39,7 @@ public class ActivityOverview extends AppCompatActivity {
     ImageButton button_managePayments;
     ImageView optionButton;
     BottomNavigationView bottomNavigationView;
+    MaterialToolbar toolbar;
     String userEmail;
     String flatID;
     String arrivedPurpose, arrivedReceiver, arrivedCost;
@@ -59,6 +62,7 @@ public class ActivityOverview extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    FirebaseAuth firebaseAuth;
 
 
     double debt;
@@ -183,6 +187,24 @@ public class ActivityOverview extends AppCompatActivity {
         optionButton = findViewById(R.id.optionbutton);
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.payment);
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.search:
+                        startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.logout:
+                        firebaseAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(),ActivityLogin.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
         debtText = findViewById(R.id.debt);
 
@@ -201,6 +223,7 @@ public class ActivityOverview extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         userEmail = user.getEmail();
         assert user != null;
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     @Override
