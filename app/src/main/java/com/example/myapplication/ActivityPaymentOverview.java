@@ -1,32 +1,23 @@
 package com.example.myapplication;
 
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.entities.Flats;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -68,7 +59,13 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         setupUIComponents();
         initFirebase();
         getIntentFromShoppingList();
-        getFlatIDinFirebase();
+        //getFlatIDinFirebase();
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.ButtonColor));
+        }
     }
 
 
@@ -82,10 +79,10 @@ public class ActivityPaymentOverview extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        checkUserStatus();
+        //checkUserStatus();
         super.onResume();
         Log.d("ActivityLifecycle: ", "onResume() active!");
-        savePayment();
+        //savePayment();
     }
 
     private void setupUIComponents() {
@@ -97,7 +94,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         selectMate = findViewById(R.id.select_mates);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        utilSpinner();
+        //utilSpinner();
     }
 
     private void initFirebase(){
@@ -109,7 +106,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser().getEmail();
     }
 
-    private void utilSpinner(){
+    /*private void utilSpinner(){
         //initialize selected day array
         categorieField = new String[flatSize];
         selectedMates = new boolean[categorieField.length];
@@ -423,5 +420,5 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         } else {
             finish();
         }
-    }
+    }*/
 }
