@@ -29,5 +29,6 @@
     <color name="IconColor">#707070</color>
     <color name="GradientEndColor">#7E7FB5</color>
     <color name="WarningRed">#FF0000</color>
+    <color name="grey">#eeeeee</color>
 
 </resources>
