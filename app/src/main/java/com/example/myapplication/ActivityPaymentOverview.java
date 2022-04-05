@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -12,7 +14,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,6 +37,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
     DatabaseReference databaseReferenceUser;
     DatabaseReference databaseReferencePayment;
     FirebaseDatabase database;
+    MaterialToolbar toolbar;
 
     int flatSize;
     int actualCosts;
@@ -95,6 +100,31 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         //utilSpinner();
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.search:
+                        startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.logout:
+                        firebaseAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(),ActivityLogin.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void initFirebase(){
