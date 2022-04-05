@@ -100,7 +100,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.13" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/costs_overview"
         android:layout_width="123dp"
         android:layout_height="64dp"
@@ -115,7 +115,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />-->
 
     <EditText
         android:id="@+id/insert_costs"
@@ -129,7 +129,7 @@
         android:inputType="text"
         android:minHeight="48dp"
         android:textSize="24sp"
-        android:textColorHint="#1565c0"
+        android:textColorHint="@color/TextFontColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.141"
@@ -141,33 +141,37 @@
         android:id="@+id/insert_purpose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded"
         android:drawableLeft="@drawable/ic_baseline_article_24"
         android:drawablePadding="20dp"
         android:ems="10"
-        android:hint="Add a description"
+        android:hint="Nachricht"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         android:textSize="24sp"
+        android:textColorHint="@color/TextFontColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.638" />
+        app:layout_constraintVertical_bias="0.303" />
 
     <TextView
         android:id="@+id/share_your_bill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Share your Bills with"
+        android:text="Du teilst deine Kosten mit"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#000000"
+        android:textColor="@color/TextFontColor"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.446" />
 
     <TextView
         android:id="@+id/select_mates"
@@ -175,28 +179,14 @@
         android:layout_height="wrap_content"
         android:background="@android:drawable/editbox_background"
         android:drawableEnd="@android:drawable/arrow_down_float"
-        android:hint="Select your mates"
+        android:hint="Mitbewohner auswählen"
+        android:textColorHint="@color/TextFontColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.576" />
+        app:layout_constraintVertical_bias="0.525"
+        android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/purpose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Purpose"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.311" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
