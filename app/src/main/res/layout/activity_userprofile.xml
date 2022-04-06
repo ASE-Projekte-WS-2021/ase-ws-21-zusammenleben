@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/top_app_bar"
-            app:title="Informationen" />
+            app:titleTextColor="@color/white"
+            app:title="WG" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
