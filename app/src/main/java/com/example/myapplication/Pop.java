@@ -2,10 +2,12 @@ package com.example.myapplication;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -38,7 +40,7 @@ public class Pop extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupUIComponents();
-        setupWindow();
+        //setupWindow();
         initFirebase();
         getFlatIDinFirebase();
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +50,12 @@ public class Pop extends Activity {
                 sendMail();
             }
         });
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.ButtonColor));
+        }
     }
 
     private void sendMail(){
@@ -65,20 +73,20 @@ public class Pop extends Activity {
     }
 
     private void setupUIComponents() {
-        setContentView(R.layout.popupwindow);
-        text = findViewById(R.id.popupwindow_edit_text_message);
-        btnSend = findViewById(R.id.popupwindow_btn_send);
-        recipient = findViewById(R.id.popupwindow_edit_text_to);
-        subject = findViewById(R.id.popupwindow_edit_text_subject);
+        setContentView(R.layout.newpopup);
+        //text = findViewById(R.id.popupwindow_edit_text_message);
+        //btnSend = findViewById(R.id.popupwindow_btn_send);
+        //recipient = findViewById(R.id.popupwindow_edit_text_to);
+        //subject = findViewById(R.id.popupwindow_edit_text_subject);
     }
 
-    private void setupWindow() {
+    /*private void setupWindow() {
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
         int height = dm.heightPixels;
         getWindow().setLayout(width,(int)(height*.8));
-    }
+    }*/
 
     private void initFirebase(){
         flatContents = new ArrayList<>();

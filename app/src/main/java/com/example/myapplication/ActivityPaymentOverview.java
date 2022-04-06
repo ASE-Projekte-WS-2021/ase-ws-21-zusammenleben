@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,17 +12,27 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.myapplication.entities.Flats;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -64,7 +75,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         setupUIComponents();
         initFirebase();
         getIntentFromShoppingList();
-        //getFlatIDinFirebase();
+        getFlatIDinFirebase();
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -87,7 +98,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         //checkUserStatus();
         super.onResume();
         Log.d("ActivityLifecycle: ", "onResume() active!");
-        //savePayment();
+        savePayment();
     }
 
     private void setupUIComponents() {
@@ -99,7 +110,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         selectMate = findViewById(R.id.select_mates);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        //utilSpinner();
+        utilSpinner();
         toolbar = findViewById(R.id.topAppBar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +147,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser().getEmail();
     }
 
-    /*private void utilSpinner(){
+    private void utilSpinner(){
         //initialize selected day array
         categorieField = new String[flatSize];
         selectedMates = new boolean[categorieField.length];
@@ -148,7 +159,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                         ActivityPaymentOverview.this
                 );
                 //set title
-                builder.setTitle("select your mates");
+                builder.setTitle("Mitbewohner auswählen");
                 //set dialog non cancelable
                 builder.setCancelable(false);
 
@@ -169,7 +180,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                         }
                     }
                 });
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Auswählen", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         //initialize string builder
@@ -189,7 +200,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                     }
                 });
 
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         //dismiss dialog
@@ -197,7 +208,7 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                     }
                 });
 
-                builder.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
+                builder.setNeutralButton("Auswahl aufheben", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         //use for loop
@@ -234,7 +245,8 @@ public class ActivityPaymentOverview extends AppCompatActivity {
                 String flat = flatID;
 
 
-                if (costString.isEmpty()){Toast.makeText(getApplicationContext(), "EmptyField!",Toast.LENGTH_LONG).show();}
+                if (costString.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "EmptyField!",Toast.LENGTH_LONG).show();}
                 if (!costString.isEmpty()){
                     actualCosts = (int) (Double.valueOf(costString) / 2);
                 }
@@ -450,5 +462,5 @@ public class ActivityPaymentOverview extends AppCompatActivity {
         } else {
             finish();
         }
-    }*/
+    }
 }

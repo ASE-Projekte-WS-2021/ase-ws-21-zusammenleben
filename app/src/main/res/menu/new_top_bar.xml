@@ -1,19 +1,4 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <item
-        android:id="@+id/search"
-        android:icon="@drawable/ic_baseline_person_24"
-        android:title="Suche"
-        android:contentDescription="ba"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/logout"
-        android:title="Ausloggen"
-        android:contentDescription="te"
-        android:icon="@drawable/ic_baseline_login_24"
-        app:showAsAction="ifRoom"/>
-
 </menu>
