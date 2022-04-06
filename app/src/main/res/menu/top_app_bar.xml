@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/search"
-        android:icon="@drawable/ic_baseline_person_24"
+        android:icon="@drawable/ic_baseline_home_work_24"
         android:title="Suche"
         android:contentDescription="ba"
         app:showAsAction="ifRoom" />

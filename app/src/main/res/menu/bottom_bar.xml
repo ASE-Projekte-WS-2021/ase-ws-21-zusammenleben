@@ -13,7 +13,7 @@
         android:id="@+id/payment"
         android:title="Zahlungen"/>
 
-    <item android:icon="@drawable/ic_baseline_person_24"
+    <item android:icon="@drawable/ic_baseline_home_work_24"
         android:id="@+id/user"
-        android:title="User"/>
+        android:title="WG"/>
 </menu>

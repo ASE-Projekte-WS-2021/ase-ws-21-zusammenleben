@@ -39,7 +39,7 @@
             android:fontFamily="@font/latoregular"
             android:includeFontPadding="false"
             android:text="WGFinance"
-            android:textColor="@color/ButtonTextColor"
+            android:textColor="@color/white"
             android:textSize="30sp" />
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/latoregular"
             android:text="@string/tag_line"
-            android:textColor="@color/ButtonTextColor"
+            android:textColor="@color/white"
             android:textSize="25dp" />
 
     </LinearLayout>
