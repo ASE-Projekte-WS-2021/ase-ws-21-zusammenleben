@@ -14,6 +14,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 
 import com.example.myapplication.R;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +29,7 @@ public class Pop extends Activity {
     EditText text, recipient, subject;
     Button btnSend;
     String userMessage;
+    MaterialToolbar toolbar;
     DatabaseReference databaseReference;
     FirebaseDatabase database;
     private FirebaseAuth mAuth;
@@ -78,6 +80,13 @@ public class Pop extends Activity {
         btnSend = findViewById(R.id.popupwindow_btn_send);
         recipient = findViewById(R.id.popupwindow_edit_text_to);
         subject = findViewById(R.id.popupwindow_edit_text_subject);
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     /*private void setupWindow() {
