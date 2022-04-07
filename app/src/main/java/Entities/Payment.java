@@ -16,6 +16,8 @@ public class Payment {
         this.flatID = flatID;
     }
 
+    public Payment() {}
+
     public double getCost(){
         return cost;
     }
@@ -35,4 +37,5 @@ public class Payment {
     public String getFlatID(){
         return flatID;
     }
+
 }

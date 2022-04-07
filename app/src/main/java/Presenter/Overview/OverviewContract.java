@@ -7,7 +7,7 @@ import Entities.Payment;
 public interface OverviewContract {
 
     interface View{
-        void onPaymentFound(Payment payment);
+        void onPaymentFound(ArrayList<ArrayList <String>> paymentsList);
         void onPaymentNotFound();
     }
 

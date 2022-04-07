@@ -1,5 +1,7 @@
 package Presenter.Overview;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import Entities.Payment;
@@ -9,6 +11,7 @@ public class OverviewPresenter implements OverviewContract.Presenter, OverviewCo
 
     private OverviewContract.View mOverviewView;
     private OverviewModel mOverviewModel;
+    ArrayList<ArrayList <String>> paymentsList = new ArrayList<>();
 
     public OverviewPresenter(OverviewContract.View overviewView){
         this.mOverviewView = overviewView;
@@ -17,11 +20,21 @@ public class OverviewPresenter implements OverviewContract.Presenter, OverviewCo
 
     @Override
     public void retrievePayment(String email) {
-
+        mOverviewModel.retrievePaymentFromFirebase(email);
     }
 
     @Override
     public void onSuccess(ArrayList<Payment> payments) {
-
+        for(int i = 0 ; i < payments.size() ; i++){
+            String purpose = payments.get(i).getPurpose();
+            String receivers = payments.get(i).getReceiver().toString();
+            String cost = String.valueOf(payments.get(i).getCost());
+            ArrayList<String> arrList = new ArrayList<>();
+            arrList.add(purpose);
+            arrList.add(receivers);
+            arrList.add(cost);
+            paymentsList.add(arrList);
+        }
+        mOverviewView.onPaymentFound(paymentsList);
     }
 }

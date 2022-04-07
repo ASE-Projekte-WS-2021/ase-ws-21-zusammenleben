@@ -1,5 +1,4 @@
 package View.After;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,13 +6,17 @@ import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import Entities.Payment;
+import java.util.ArrayList;
+
+import Adapter.PaymentAdapter;
 import Presenter.Overview.OverviewContract;
 import Presenter.Overview.OverviewPresenter;
 
@@ -24,8 +27,12 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
     FirebaseAuth mAuth;
     FirebaseUser user;
     String currentUserEmail;
-
     OverviewPresenter mOverviewPresenter;
+
+    RecyclerView recyclerView;
+    LinearLayoutManager linearLayoutManager;
+    PaymentAdapter mAdapter;
+    ArrayList<ArrayList <String>> payments;
 
 
     @Override
@@ -40,6 +47,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
     protected void onResume(){
         super.onResume();
         getCurrentUser();
+        mOverviewPresenter.retrievePayment(currentUserEmail);
     }
 
     private void getCurrentUser(){
@@ -51,6 +59,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
     private void setupUIComponents(){
         setContentView(R.layout.activity_overview);
         createNewPayment = findViewById(R.id.btn_managePayments);
+        recyclerView = findViewById(R.id.recyclerview_payments);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     }
@@ -66,9 +75,21 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         });
     }
 
-    @Override
-    public void onPaymentFound(Payment payment) {
 
+    @Override
+    public void onPaymentFound(ArrayList<ArrayList <String>> paymentsList) {
+        payments = paymentsList;
+        recyclerView.setHasFixedSize(true);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        mAdapter = new PaymentAdapter(this, payments);
+        recyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        payments.clear();
     }
 
     @Override

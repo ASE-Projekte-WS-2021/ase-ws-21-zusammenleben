@@ -1,6 +1,10 @@
 package Presenter.PaymentOverview;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import Entities.Flat;
 import Entities.Payment;
@@ -26,9 +30,15 @@ public class PaymentOverviewPresenter implements PaymentOverviewContract.Present
 
     @Override
     public void savePayment(double cost, String purpose, ArrayList<String> receivers) {
-        Payment payment = new Payment(cost,purpose, currentUserEmail, receivers, currentUserFlat.getId());
+        ArrayList<String> myList = splitArrayList(receivers);
+        Payment payment = new Payment(cost,purpose, currentUserEmail, myList, currentUserFlat.getId());
         mPaymentOverviewModel.addPaymentToFirebase(payment);
+    }
 
+    private ArrayList<String> splitArrayList(ArrayList<String> arrayList){
+        String str = arrayList.get(0);
+        List<String> myList = new ArrayList<String>(Arrays.asList(str.split(",")));
+        return (ArrayList<String>) myList;
     }
 
     @Override

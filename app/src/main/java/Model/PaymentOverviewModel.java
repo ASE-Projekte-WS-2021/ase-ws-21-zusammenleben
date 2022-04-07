@@ -2,6 +2,8 @@ package Model;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,18 +16,18 @@ import java.util.List;
 import Entities.Flat;
 import Entities.Payment;
 import Presenter.PaymentOverview.PaymentOverviewContract;
-import androidx.annotation.NonNull;
 
 public class PaymentOverviewModel implements PaymentOverviewContract.Model, PaymentOverviewContract.onPaymentSuccessListener {
 
     private PaymentOverviewContract.onPaymentSuccessListener onPaymentSuccessListener;
     private static final String FIREBASEPATH = "https://wgfinance-b594f-default-rtdb.europe-west1.firebasedatabase.app/";
     private static final String FLATPATH = "WG";
-    private static final String PAYMENT = "Payment";
+    private static final String PAYMENTPATH = "Payment";
     private FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
     private DatabaseReference refFlat = database.getReference(FLATPATH);
-    private DatabaseReference refPayment = database.getReference(PAYMENT);
+    private DatabaseReference refPayment = database.getReference(PAYMENTPATH);
     Flat retrievedFlat;
+    long maxId;
 
     ArrayList<Flat> payments = new ArrayList<>();
 
@@ -61,14 +63,16 @@ public class PaymentOverviewModel implements PaymentOverviewContract.Model, Paym
 
     @Override
     public void addPaymentToFirebase(Payment p) {
-        System.out.println("it Worked");
+        maxId = 1;
+        String currentFlatID = p.getFlatID();
         refPayment.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //add Data to RTDB
-                //Intent to ActivityOverview
+                long count = snapshot.getChildrenCount();
+                String identifier = currentFlatID + String.valueOf(count+maxId);
+                refPayment.child(identifier).setValue(p);
+                maxId+=1;
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d("error occured", error.toString());
