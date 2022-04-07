@@ -41,6 +41,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
     String[] retrievedMemberNames;
     AlertDialog.Builder builder;
     ArrayList<Integer> memberPositions = new ArrayList<>();
+    boolean cameFromDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,21 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
     protected void onResume(){
         super.onResume();
         getCurrentUser();
+        try{
+            Bundle extras = getIntent().getExtras();
+            cameFromDialog = extras.getBoolean("STATE");
+        } catch (NullPointerException e){
+            cameFromDialog = false;
+        }
+
+        if(cameFromDialog){
+            String transmittedPurpose = getIntent().getExtras().getString("PAYMENTPURPOSE");
+            String transmittedCost = getIntent().getExtras().getString("PAYMENTCOST");
+            insertCosts.setText(transmittedCost);
+            insertPurpose.setText(transmittedPurpose);
+        }
     }
+
 
     private void getCurrentUser(){
         mAuth = FirebaseAuth.getInstance();
@@ -86,7 +101,11 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
                 ArrayList<String> insertedReceivers = new ArrayList<>();
                 insertedReceivers.add(selectMembers.getText().toString());
                 // error handling hier einbauen
-                mPaymentOverviewPresenter.savePayment(insertedCost, insertedPurpose, insertedReceivers);
+                if(cameFromDialog){
+                    mPaymentOverviewPresenter.updatePayment(insertedCost, insertedPurpose, insertedReceivers);
+                } else {
+                    mPaymentOverviewPresenter.savePayment(insertedCost, insertedPurpose, insertedReceivers);
+                }
                 Intent i = new Intent(ActivityPaymentOverview.this, ActivityOverview.class);
                 startActivity(i);
             }

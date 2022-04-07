@@ -15,16 +15,18 @@ public interface PaymentOverviewContract {
     interface Presenter{
         void retrieveFlat(String email);
         void savePayment(double cost, String purpose, ArrayList<String> receivers);
-
         int retrieveFlatSize(Flat flat);
         boolean[] retrieveSelectedMembers(Flat flat);
         // TODO : userEmail -> userName
         String[] retrieveMemberNames(Flat flat);
+
+        void updatePayment(double cost, String purpose, ArrayList<String> receivers);
     }
 
     interface Model{
         Flat retrieveFlatFromFirebase(String email);
         void addPaymentToFirebase(Payment payment);
+        void updatePaymentInFirebase(Payment payment);
         }
 
     interface onPaymentSuccessListener{

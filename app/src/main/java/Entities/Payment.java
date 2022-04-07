@@ -38,4 +38,7 @@ public class Payment {
         return flatID;
     }
 
+    public void setFlatID(String id){
+        this.flatID = id;
+    }
 }

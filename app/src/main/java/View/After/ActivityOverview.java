@@ -1,8 +1,10 @@
 package View.After;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 import Adapter.PaymentAdapter;
 import Presenter.Overview.OverviewContract;
 import Presenter.Overview.OverviewPresenter;
+import Utils.PaymentDialog;
+import Utils.RecyclerItemClickListener;
 
 public class ActivityOverview extends AppCompatActivity implements OverviewContract.View {
 
@@ -75,7 +79,6 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         });
     }
 
-
     @Override
     public void onPaymentFound(ArrayList<ArrayList <String>> paymentsList) {
         payments = paymentsList;
@@ -84,7 +87,34 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         recyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new PaymentAdapter(this, payments);
         recyclerView.setAdapter(mAdapter);
+
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+                handleDialog(position);
+            }
+        }));
     }
+
+    private void handleDialog(int pos){
+        View v = recyclerView.getChildAt(pos);
+        TextView paymentPurpose = v.findViewById(R.id.payment_purpose);
+        TextView paymentCost = v.findViewById(R.id.payment_cost);
+        String purpose = paymentPurpose.getText().toString();
+        String cost = paymentCost.getText().toString();
+        PaymentDialog paymentDialog = new PaymentDialog();
+        Bundle bundle = new Bundle();
+        bundle.putString("PAYMENTPURPOSE", purpose);
+        bundle.putString("PAYMENTCOST", cost);
+        paymentDialog.setArguments(bundle);
+        paymentDialog.show(getSupportFragmentManager(), "dialog");
+    }
+
+    // delete button löst 2x screen aus
 
     @Override
     public void onPause(){
@@ -94,6 +124,5 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
 
     @Override
     public void onPaymentNotFound() {
-
     }
 }

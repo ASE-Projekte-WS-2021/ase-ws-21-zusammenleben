@@ -1,7 +1,5 @@
 package Presenter.PaymentOverview;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -59,6 +57,13 @@ public class PaymentOverviewPresenter implements PaymentOverviewContract.Present
             arr[i] = flat.getMembers().get(i);
         }
         return arr;
+    }
+
+    @Override
+    public void updatePayment(double cost, String purpose, ArrayList<String> receivers) {
+        ArrayList<String> myList = splitArrayList(receivers);
+        Payment payment = new Payment(cost,purpose, currentUserEmail, myList, currentUserFlat.getId());
+        mPaymentOverviewModel.updatePaymentInFirebase(payment);
     }
 
     @Override

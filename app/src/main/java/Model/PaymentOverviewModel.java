@@ -70,6 +70,7 @@ public class PaymentOverviewModel implements PaymentOverviewContract.Model, Paym
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 long count = snapshot.getChildrenCount();
                 String identifier = currentFlatID + String.valueOf(count+maxId);
+                p.setFlatID(identifier);
                 refPayment.child(identifier).setValue(p);
                 maxId+=1;
             }
@@ -78,6 +79,10 @@ public class PaymentOverviewModel implements PaymentOverviewContract.Model, Paym
                 Log.d("error occured", error.toString());
             }
         });
+    }
+
+    @Override
+    public void updatePaymentInFirebase(Payment payment) {
     }
 
     @Override
