@@ -60,6 +60,11 @@ public class OverviewModel implements OverviewContract.Model, OverviewContract.o
     }
 
     @Override
+    public void deletePaymentFromFirebase(String id) {
+        refPayment.child(id).removeValue();
+    }
+
+    @Override
     public void onSuccess(ArrayList<Payment> payments) {
 
     }

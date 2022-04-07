@@ -20,7 +20,9 @@ public interface PaymentOverviewContract {
         // TODO : userEmail -> userName
         String[] retrieveMemberNames(Flat flat);
 
-        void updatePayment(double cost, String purpose, ArrayList<String> receivers);
+        void deletePayment(String paymentID);
+
+        void updatePayment(double cost, String purpose, ArrayList<String> receivers, String paymentID);
     }
 
     interface Model{

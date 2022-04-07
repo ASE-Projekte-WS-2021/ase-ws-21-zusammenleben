@@ -36,6 +36,7 @@ public class PaymentOverviewModel implements PaymentOverviewContract.Model, Paym
         this.onPaymentSuccessListener = onPaymentSuccessListener;
     }
 
+
     @Override
     public Flat retrieveFlatFromFirebase(String email) {
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -63,17 +64,13 @@ public class PaymentOverviewModel implements PaymentOverviewContract.Model, Paym
 
     @Override
     public void addPaymentToFirebase(Payment p) {
-        maxId = 1;
         String currentFlatID = p.getFlatID();
         refPayment.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long count = snapshot.getChildrenCount();
-                String identifier = currentFlatID + String.valueOf(count+maxId);
-                p.setFlatID(identifier);
-                refPayment.child(identifier).setValue(p);
-                maxId+=1;
+                refPayment.child(currentFlatID).push().setValue(p);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d("error occured", error.toString());
@@ -83,6 +80,7 @@ public class PaymentOverviewModel implements PaymentOverviewContract.Model, Paym
 
     @Override
     public void updatePaymentInFirebase(Payment payment) {
+        refPayment.child(payment.getFlatID()).setValue(payment);
     }
 
     @Override

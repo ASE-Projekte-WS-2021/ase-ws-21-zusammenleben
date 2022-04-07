@@ -13,10 +13,12 @@ public interface OverviewContract {
 
     interface Presenter{
         void retrievePayment(String email);
+        void deletePayment(String id);
     }
 
     interface Model{
         ArrayList<Payment> retrievePaymentFromFirebase(String email);
+        void deletePaymentFromFirebase(String id);
     }
 
     interface onPaymentListener{

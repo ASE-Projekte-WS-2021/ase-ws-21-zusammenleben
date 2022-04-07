@@ -21,10 +21,11 @@ import java.util.ArrayList;
 import Adapter.PaymentAdapter;
 import Presenter.Overview.OverviewContract;
 import Presenter.Overview.OverviewPresenter;
+import Utils.DialogListener;
 import Utils.PaymentDialog;
 import Utils.RecyclerItemClickListener;
 
-public class ActivityOverview extends AppCompatActivity implements OverviewContract.View {
+public class ActivityOverview extends AppCompatActivity implements OverviewContract.View, DialogListener {
 
 
     FloatingActionButton createNewPayment;
@@ -106,10 +107,12 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         TextView paymentCost = v.findViewById(R.id.payment_cost);
         String purpose = paymentPurpose.getText().toString();
         String cost = paymentCost.getText().toString();
+        String flatID = payments.get(pos).get(3);
         PaymentDialog paymentDialog = new PaymentDialog();
         Bundle bundle = new Bundle();
         bundle.putString("PAYMENTPURPOSE", purpose);
         bundle.putString("PAYMENTCOST", cost);
+        bundle.putString("PAYMENTID", flatID);
         paymentDialog.setArguments(bundle);
         paymentDialog.show(getSupportFragmentManager(), "dialog");
     }
@@ -124,5 +127,11 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
 
     @Override
     public void onPaymentNotFound() {
+    }
+
+    @Override
+    public void onReturnValue(String id) {
+        Log.d("angekommen in activity", id);
+        mOverviewPresenter.deletePayment(id);
     }
 }

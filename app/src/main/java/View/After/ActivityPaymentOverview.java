@@ -42,6 +42,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
     AlertDialog.Builder builder;
     ArrayList<Integer> memberPositions = new ArrayList<>();
     boolean cameFromDialog;
+    String transmittedPaymentID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         if(cameFromDialog){
             String transmittedPurpose = getIntent().getExtras().getString("PAYMENTPURPOSE");
             String transmittedCost = getIntent().getExtras().getString("PAYMENTCOST");
+            transmittedPaymentID = getIntent().getExtras().getString("PAYMENTID");
             insertCosts.setText(transmittedCost);
             insertPurpose.setText(transmittedPurpose);
         }
@@ -102,7 +104,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
                 insertedReceivers.add(selectMembers.getText().toString());
                 // error handling hier einbauen
                 if(cameFromDialog){
-                    mPaymentOverviewPresenter.updatePayment(insertedCost, insertedPurpose, insertedReceivers);
+                    mPaymentOverviewPresenter.updatePayment(insertedCost, insertedPurpose, insertedReceivers, transmittedPaymentID);
                 } else {
                     mPaymentOverviewPresenter.savePayment(insertedCost, insertedPurpose, insertedReceivers);
                 }

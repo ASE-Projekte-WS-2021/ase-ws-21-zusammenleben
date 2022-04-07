@@ -47,12 +47,12 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView purpose, receiver, cost;
-
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
             purpose = itemView.findViewById(R.id.payment_purpose);
             receiver = itemView.findViewById(R.id.payment_receiver);
             cost = itemView.findViewById(R.id.payment_cost);
         }
+
     }
 }
