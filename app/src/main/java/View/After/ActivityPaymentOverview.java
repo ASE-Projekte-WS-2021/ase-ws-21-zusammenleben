@@ -7,10 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,6 +18,9 @@ import Entities.Flat;
 import Entities.Payment;
 import Presenter.PaymentOverview.PaymentOverviewContract;
 import Presenter.PaymentOverview.PaymentOverviewPresenter;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivityPaymentOverview extends AppCompatActivity implements PaymentOverviewContract.View {
 
@@ -79,11 +78,12 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         btnSavePayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String insertedCost = insertCosts.getText().toString();
+                double insertedCost = Double.parseDouble(insertCosts.getText().toString());
                 String insertedPurpose = insertPurpose.getText().toString();
-                // Userinput übergeben...
-                // ...
-                mPaymentOverviewPresenter.savePayment(...);
+                //Split String for solo Strings in arrayList (But where?)
+                ArrayList<String> insertedReceivers = new ArrayList<>();
+                insertedReceivers.add(selectMembers.getText().toString());
+                mPaymentOverviewPresenter.savePayment(insertedCost, insertedPurpose, insertedReceivers);
             }
         });
     }

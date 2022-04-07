@@ -6,6 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="System.out" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
@@ -15,17 +16,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5466acb4-0a8d-44d3-9aed-16ddf343a907" name="Default Changelist" comment="Payments are now displayed Flat-specific">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Entities/Payment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Entities/Basket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Entities/ShoppingList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Model/BasketListModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Model/ForgotPasswordModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Model/ShoppingListModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Model/UserProfileModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/BasketList/BasketListContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/BasketList/BasketListPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/ForgotPassword/ForgotPasswordContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/ForgotPassword/ForgotPasswordPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/ShoppingList/ShoppingListContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/ShoppingList/ShoppingListPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/UserProfile/UserProfileContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/UserProfile/UserProfilePresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityBasketList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityShoppingList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityUserProfile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/View/Before/ForgotPasswordActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Model/OverviewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Model/OverviewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Model/PaymentOverviewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Model/PaymentOverviewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/JoinFlat/JoinFlatContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/JoinFlat/JoinFlatContract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/JoinFlat/JoinFlatPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/JoinFlat/JoinFlatPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/Overview/OverviewContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/Overview/OverviewContract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/Overview/OverviewPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/Overview/OverviewPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/PaymentOverview/PaymentOverviewContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/PaymentOverview/PaymentOverviewContract.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/PaymentOverview/PaymentOverviewPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/PaymentOverview/PaymentOverviewPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityOverview.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityOverview.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityPaymentOverview.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityPaymentOverview.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +49,7 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[16f144f30205]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Laute\.android\avd\Pixel_3_API_28.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -76,9 +89,9 @@
         <option value="valueResourceFile" />
         <option value="navigationResourceFile" />
         <option value="layoutResourceFile" />
-        <option value="Interface" />
-        <option value="Class" />
         <option value="resourceFile" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>

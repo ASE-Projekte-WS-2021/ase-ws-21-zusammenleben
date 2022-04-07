@@ -1,7 +1,6 @@
 package Presenter.PaymentOverview;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import Entities.Flat;
 import Entities.Payment;
@@ -26,9 +25,9 @@ public class PaymentOverviewPresenter implements PaymentOverviewContract.Present
     }
 
     @Override
-    public void savePayment(double cost, String purpose, List<String> receivers) {
-        // Objekt erstellen ...
-        mPaymentOverviewModel.addPaymentToFirebase(...);
+    public void savePayment(double cost, String purpose, ArrayList<String> receivers) {
+        Payment payment = new Payment(cost,purpose, currentUserEmail, receivers, currentUserFlat.getId());
+        mPaymentOverviewModel.addPaymentToFirebase(payment);
 
     }
 

@@ -14,17 +14,13 @@ public interface PaymentOverviewContract {
 
     interface Presenter{
         void retrieveFlat(String email);
-        void savePayment(Payment payment);
+        void savePayment(double cost, String purpose, ArrayList<String> receivers);
 
         int retrieveFlatSize(Flat flat);
         boolean[] retrieveSelectedMembers(Flat flat);
         // TODO : userEmail -> userName
         String[] retrieveMemberNames(Flat flat);
     }
-
-    // 1. int - Größe der WG = members.size()
-    // 2. Boolean Array mit der Größe 1. - false initialisieren
-    // 3. Namen der WG Mitglieder
 
     interface Model{
         Flat retrieveFlatFromFirebase(String email);
