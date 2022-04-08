@@ -38,8 +38,8 @@ public class ActivityShoppingList extends AppCompatActivity {
     //array list for data
     ArrayList<String> list = new ArrayList<>();
     ArrayList<String> listcosts = new ArrayList<>();
-    ListView list_view, list_view_cost;
-    ArrayAdapter arrayAdapter, arrayAdapterCosts;
+    ListView list_view, list_view_cost, list_view_checkbox;
+    ArrayAdapter arrayAdapter, arrayAdapterCosts,arrayAdapterCheckbox;
     FirebaseDatabase database;
     DatabaseReference databaseReferenceShop;
     FirebaseAuth firebaseAuth;
@@ -165,8 +165,9 @@ public class ActivityShoppingList extends AppCompatActivity {
     }
 
     private void initViews(){
-        //list_view = findViewById(R.id.list_view);
-        //list_view_cost = findViewById(R.id.list_view_cost);
+        list_view = findViewById(R.id.list_view);
+        list_view_cost = findViewById(R.id.list_view_cost);
+        //list_view_checkbox = findViewById(R.id.list_view_checkbox);
         //list_view_cost.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         //list_view_cost.setItemChecked(position, false);
         //sumCosts = findViewById(R.id.sumcosts);
@@ -174,9 +175,11 @@ public class ActivityShoppingList extends AppCompatActivity {
         editTextCost = findViewById(R.id.insert_costs);
 
         arrayAdapter = new ArrayAdapter(ActivityShoppingList.this, android.R.layout.simple_list_item_1, list);
-        arrayAdapterCosts = new ArrayAdapter(ActivityShoppingList.this, android.R.layout.simple_list_item_multiple_choice, listcosts);
+        arrayAdapterCosts = new ArrayAdapter(ActivityShoppingList.this, android.R.layout.simple_list_item_1, listcosts);
+        //arrayAdapterCheckbox = new ArrayAdapter(ActivityShoppingList.this, android.R.layout.simple_list_item_1);
         list_view.setAdapter(arrayAdapter);
         list_view_cost.setAdapter(arrayAdapterCosts);
+        //list_view_checkbox.setAdapter(arrayAdapterCheckbox);
 
 
         bottomNavigationView = findViewById(R.id.bottomnavview);
