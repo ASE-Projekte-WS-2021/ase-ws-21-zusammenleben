@@ -31,12 +31,14 @@ public class PaymentDialog extends AppCompatDialogFragment implements DialogList
                         Bundle receiverBundle = getArguments();
                         String transmittedPurpose = receiverBundle.getString("PAYMENTPURPOSE", "");
                         String transmittedCost = receiverBundle.getString("PAYMENTCOST", "");
+                        String transmittedFlatID = receiverBundle.getString("FLATID", "");
                         String transmittedPaymentID = receiverBundle.getString("PAYMENTID", "");
                         Intent intent = new Intent(getContext(), ActivityPaymentOverview.class);
                         Bundle sendBundle = new Bundle();
                         sendBundle.putBoolean("STATE", true);
                         sendBundle.putString("PAYMENTPURPOSE", transmittedPurpose);
                         sendBundle.putString("PAYMENTCOST", transmittedCost);
+                        sendBundle.putString("FLATID", transmittedFlatID);
                         sendBundle.putString("PAYMENTID", transmittedPaymentID);
                         intent.putExtras(sendBundle);
                         startActivity(intent);

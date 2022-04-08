@@ -42,7 +42,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
     AlertDialog.Builder builder;
     ArrayList<Integer> memberPositions = new ArrayList<>();
     boolean cameFromDialog;
-    String transmittedPaymentID;
+    String transmittedPaymentID, transmittedFlatID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         if(cameFromDialog){
             String transmittedPurpose = getIntent().getExtras().getString("PAYMENTPURPOSE");
             String transmittedCost = getIntent().getExtras().getString("PAYMENTCOST");
+            transmittedFlatID = getIntent().getExtras().getString("FLATID");
             transmittedPaymentID = getIntent().getExtras().getString("PAYMENTID");
             insertCosts.setText(transmittedCost);
             insertPurpose.setText(transmittedPurpose);
@@ -104,12 +105,10 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
                 insertedReceivers.add(selectMembers.getText().toString());
                 // error handling hier einbauen
                 if(cameFromDialog){
-                    mPaymentOverviewPresenter.updatePayment(insertedCost, insertedPurpose, insertedReceivers, transmittedPaymentID);
+                    mPaymentOverviewPresenter.updatePayment(insertedCost, insertedPurpose, insertedReceivers, transmittedFlatID, transmittedPaymentID);
                 } else {
                     mPaymentOverviewPresenter.savePayment(insertedCost, insertedPurpose, insertedReceivers);
                 }
-                Intent i = new Intent(ActivityPaymentOverview.this, ActivityOverview.class);
-                startActivity(i);
             }
         });
     }
@@ -186,5 +185,11 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
 
     @Override
     public void onPaymentFound(Payment payment) {
+    }
+
+    @Override
+    public void startIntent() {
+        Intent i = new Intent(ActivityPaymentOverview.this, ActivityOverview.class);
+        startActivity(i);
     }
 }

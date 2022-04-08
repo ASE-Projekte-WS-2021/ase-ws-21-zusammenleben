@@ -34,21 +34,21 @@ public class OverviewModel implements OverviewContract.Model, OverviewContract.o
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot snap : snapshot.getChildren()){
-                    ArrayList<String> receivers = snap.getValue(Payment.class).getReceiver();
-                    String creator = snap.getValue(Payment.class).getCreator();
-                    if(receivers.contains(email) || creator.equals(email)){
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    if(snap.getValue(Payment.class).getCreator().equals(email) || snap.getValue(Payment.class).getReceiver().contains(email)){
+                        ArrayList<String> receivers = snap.getValue(Payment.class).getReceiver();
+                        String creator = snap.getValue(Payment.class).getCreator();
                         double cost = snap.getValue(Payment.class).getCost();
                         String purpose = snap.getValue(Payment.class).getPurpose();
                         String flatID = snap.getValue(Payment.class).getFlatID();
-                        Payment p = new Payment(cost, purpose, creator, receivers, flatID);
+                        String paymentID = snap.getValue(Payment.class).getPaymentID();
+                        Payment p = new Payment(cost, purpose, creator, receivers, flatID, paymentID);
                         payments.add(p);
+                        Log.d("model1", String.valueOf(payments.size()));
                     }
                 }
-                Log.d("123beforedeletion", String.valueOf(payments.size()));
                 mOnPaymentListener.onSuccess(payments);
                 payments.clear();
-                Log.d("123afterclear", String.valueOf(payments.size()));
             }
 
             @Override
@@ -66,6 +66,5 @@ public class OverviewModel implements OverviewContract.Model, OverviewContract.o
 
     @Override
     public void onSuccess(ArrayList<Payment> payments) {
-
     }
 }

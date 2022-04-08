@@ -2,6 +2,7 @@ package View.After;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -52,7 +53,13 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
     protected void onResume(){
         super.onResume();
         getCurrentUser();
-        mOverviewPresenter.retrievePayment(currentUserEmail);
+        new android.os.Handler(Looper.getMainLooper()).postDelayed(
+                new Runnable() {
+                    public void run() {
+                        mOverviewPresenter.retrievePayment(currentUserEmail);
+                    }
+                },
+                1000);
     }
 
     private void getCurrentUser(){
@@ -83,12 +90,12 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
     @Override
     public void onPaymentFound(ArrayList<ArrayList <String>> paymentsList) {
         payments = paymentsList;
+        Log.d("counter da = ", String.valueOf(payments.size()));
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new PaymentAdapter(this, payments);
         recyclerView.setAdapter(mAdapter);
-
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -108,16 +115,24 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         String purpose = paymentPurpose.getText().toString();
         String cost = paymentCost.getText().toString();
         String flatID = payments.get(pos).get(3);
+        String paymentID = payments.get(pos).get(4);
+
+        for(int i = 0 ; i < payments.get(pos).size() ; i++){
+            Log.d("elemente", String.valueOf(i) + " = " + payments.get(pos).get(i));
+        }
+
+
+
+        Log.d("gegentest", flatID + "--" + paymentID);
         PaymentDialog paymentDialog = new PaymentDialog();
         Bundle bundle = new Bundle();
         bundle.putString("PAYMENTPURPOSE", purpose);
         bundle.putString("PAYMENTCOST", cost);
-        bundle.putString("PAYMENTID", flatID);
+        bundle.putString("FLATID", flatID);
+        bundle.putString("PAYMENTID", paymentID);
         paymentDialog.setArguments(bundle);
         paymentDialog.show(getSupportFragmentManager(), "dialog");
     }
-
-    // delete button löst 2x screen aus
 
     @Override
     public void onPause(){
@@ -131,7 +146,10 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
 
     @Override
     public void onReturnValue(String id) {
-        Log.d("angekommen in activity", id);
         mOverviewPresenter.deletePayment(id);
+        finish();
+        overridePendingTransition(0,0);
+        startActivity(getIntent());
+        overridePendingTransition(0,0);
     }
 }

@@ -10,6 +10,7 @@ public interface PaymentOverviewContract {
     interface View{
         void onFlatFound(Flat flat);
         void onPaymentFound(Payment payment);
+        void startIntent();
     }
 
     interface Presenter{
@@ -22,7 +23,7 @@ public interface PaymentOverviewContract {
 
         void deletePayment(String paymentID);
 
-        void updatePayment(double cost, String purpose, ArrayList<String> receivers, String paymentID);
+        void updatePayment(double cost, String purpose, ArrayList<String> receivers, String flatID, String paymentID);
     }
 
     interface Model{
@@ -33,6 +34,6 @@ public interface PaymentOverviewContract {
 
     interface onPaymentSuccessListener{
         void onFlatFoundSuccess(Flat flat);
-        void onSuccess(ArrayList<Payment> payments);
+        void onSuccess();
     }
 }

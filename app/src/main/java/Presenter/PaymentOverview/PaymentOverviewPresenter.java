@@ -31,7 +31,7 @@ public class PaymentOverviewPresenter implements PaymentOverviewContract.Present
     @Override
     public void savePayment(double cost, String purpose, ArrayList<String> receivers) {
         ArrayList<String> myList = splitArrayList(receivers);
-        Payment payment = new Payment(cost,purpose, currentUserEmail, myList, currentUserFlat.getId());
+        Payment payment = new Payment(cost,purpose, currentUserEmail, myList, currentUserFlat.getId(), "");
         Log.d("123", payment.getFlatID());
         mPaymentOverviewModel.addPaymentToFirebase(payment);
     }
@@ -68,9 +68,9 @@ public class PaymentOverviewPresenter implements PaymentOverviewContract.Present
     }
 
     @Override
-    public void updatePayment(double cost, String purpose, ArrayList<String> receivers, String paymentID) {
+    public void updatePayment(double cost, String purpose, ArrayList<String> receivers, String flatID, String paymentID) {
         ArrayList<String> myList = splitArrayList(receivers);
-        Payment payment = new Payment(cost,purpose, currentUserEmail, myList, paymentID);
+        Payment payment = new Payment(cost,purpose, currentUserEmail, myList, flatID, paymentID);
         mPaymentOverviewModel.updatePaymentInFirebase(payment);
     }
 
@@ -86,7 +86,7 @@ public class PaymentOverviewPresenter implements PaymentOverviewContract.Present
     }
 
     @Override
-    public void onSuccess(ArrayList<Payment> payments) {
-
+    public void onSuccess() {
+        mPaymentOverviewView.startIntent();
     }
 }

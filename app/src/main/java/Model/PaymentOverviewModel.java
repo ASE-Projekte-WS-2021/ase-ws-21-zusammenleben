@@ -1,7 +1,5 @@
 package Model;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -64,23 +62,29 @@ public class PaymentOverviewModel implements PaymentOverviewContract.Model, Paym
 
     @Override
     public void addPaymentToFirebase(Payment p) {
-        String currentFlatID = p.getFlatID();
         refPayment.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                refPayment.child(currentFlatID).push().setValue(p);
+                DatabaseReference reference = refPayment.push();
+                String uniqueFirebaseID = reference.getKey();
+                p.setPaymentID(uniqueFirebaseID);
+                reference.setValue(p);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("error occured", error.toString());
             }
         });
+
+        onPaymentSuccessListener.onSuccess();
+
+
     }
+
 
     @Override
     public void updatePaymentInFirebase(Payment payment) {
-        refPayment.child(payment.getFlatID()).setValue(payment);
+        refPayment.child(payment.getPaymentID()).setValue(payment);
     }
 
     @Override
@@ -88,7 +92,7 @@ public class PaymentOverviewModel implements PaymentOverviewContract.Model, Paym
     }
 
     @Override
-    public void onSuccess(ArrayList<Payment> payments) {
+    public void onSuccess() {
 
     }
 }
