@@ -23,6 +23,10 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:padding="10dp"
+            android:background="@drawable/rounded"
+            android:textColor="@color/TextFontColor"
+            android:textColorHint="@color/TextFontColor"
+            android:textSize="24sp"
             android:hint="Name der Einkaufsliste"
             />
 
@@ -30,13 +34,18 @@
             android:id="@+id/costCheckout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/layout_Item"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            app:layout_constraintTop_toTopOf="@+id/layout_Item"
             android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"/>
+            android:background="@drawable/rounded"
+            android:inputType="numberDecimal"
+            android:minWidth="48dp"
+            android:padding="10dp"
+            android:textColor="@color/TextFontColor"
+            android:textColorHint="@color/TextFontColor"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="@+id/layout_Item"
+            app:layout_constraintTop_toTopOf="@+id/layout_Item" />
 
     </LinearLayout>
 
