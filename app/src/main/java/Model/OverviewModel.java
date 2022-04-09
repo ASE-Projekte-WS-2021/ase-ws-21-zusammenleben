@@ -47,7 +47,6 @@ public class OverviewModel implements OverviewContract.Model, OverviewContract.o
                         payments.add(p);
                     }
                 }
-                Log.d("123", "elemente gefunden" + String.valueOf(payments.size()));
                 mOnPaymentListener.onSuccess(payments);
                 payments.clear();
             }

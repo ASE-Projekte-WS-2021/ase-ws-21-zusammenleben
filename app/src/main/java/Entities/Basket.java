@@ -2,18 +2,27 @@ package Entities;
 
 public class Basket {
     String title;
-    String subtitle;
-    String notice;
+    String currentUser;
+    String timestamp;
     String flatID;
+    String basketID;
 
-    public Basket(String title, String subtitle, String notice, String flatID) {
+    public Basket(String title, String currentUser, String flatID, String basketID) {
         this.title = title;
-        this.subtitle = subtitle;
-        this.notice = notice;
+        this.currentUser = currentUser;
         this.flatID = flatID;
+        this.basketID = basketID;
     }
 
     public Basket(){
+    }
+
+    public String getBasketID(){
+        return basketID;
+    }
+
+    public void setBasketID(String id){
+        this.basketID = id;
     }
 
     public String getFlatID(){
@@ -24,11 +33,8 @@ public class Basket {
         return title;
     }
 
-    public String getSubtitle() {
-        return subtitle;
+    public String getCurrentUser() {
+        return currentUser;
     }
 
-    public String getNotice() {
-        return notice;
-    }
 }

@@ -78,7 +78,13 @@ public class PaymentOverviewModel implements PaymentOverviewContract.Model, Paym
 
     @Override
     public void updatePaymentInFirebase(Payment payment) {
-        refPayment.child(payment.getPaymentID()).setValue(payment);
+        refPayment.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
+                refPayment.child(payment.getPaymentID()).setValue(payment);
+                onPaymentSuccessListener.onSuccess();
+            }
+        });
     }
 
     @Override

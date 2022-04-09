@@ -16,7 +16,7 @@ import com.example.myapplication.R;
 
 import Presenter.Login.LoginContract;
 import Presenter.Login.LoginPresenter;
-import View.After.ActivityOverview;
+import View.After.ActivityBasketList;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginContract.View {
 
@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onStart();
         initViews();
     }
-
 
     private void setupUIComponents(){
         setContentView(R.layout.activity_login);
@@ -85,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onLoginSuccess(String message) {
         Log.d("login", "succesful!");
-        Intent i = new Intent(LoginActivity.this, ActivityOverview.class);
+        Intent i = new Intent(LoginActivity.this, ActivityBasketList.class);
         startActivity(i);
         //Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
     }
