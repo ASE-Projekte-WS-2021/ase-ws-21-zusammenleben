@@ -4,11 +4,10 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -31,10 +30,12 @@ public class OverviewModel implements OverviewContract.Model, OverviewContract.o
 
     @Override
     public ArrayList<Payment> retrievePaymentFromFirebase(String email) {
-        ValueEventListener valueEventListener = new ValueEventListener() {
+        Log.d("123", "triggered in model");
+        refPayment.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
+            public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("123", "inside snapshot count" + String.valueOf(dataSnapshot.getChildrenCount()));
+                for(DataSnapshot snap : dataSnapshot.getChildren()){
                     if(snap.getValue(Payment.class).getCreator().equals(email) || snap.getValue(Payment.class).getReceiver().contains(email)){
                         ArrayList<String> receivers = snap.getValue(Payment.class).getReceiver();
                         String creator = snap.getValue(Payment.class).getCreator();
@@ -44,18 +45,13 @@ public class OverviewModel implements OverviewContract.Model, OverviewContract.o
                         String paymentID = snap.getValue(Payment.class).getPaymentID();
                         Payment p = new Payment(cost, purpose, creator, receivers, flatID, paymentID);
                         payments.add(p);
-                        Log.d("model1", String.valueOf(payments.size()));
                     }
                 }
+                Log.d("123", "elemente gefunden" + String.valueOf(payments.size()));
                 mOnPaymentListener.onSuccess(payments);
                 payments.clear();
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        };
-        refPayment.addListenerForSingleValueEvent(valueEventListener);
+        });
         return payments;
     }
 
@@ -66,5 +62,6 @@ public class OverviewModel implements OverviewContract.Model, OverviewContract.o
 
     @Override
     public void onSuccess(ArrayList<Payment> payments) {
+
     }
 }

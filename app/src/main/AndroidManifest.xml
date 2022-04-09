@@ -29,6 +29,15 @@
         <activity
             android:name="View.Before.RegistrationActivity"
             android:exported="true" />
+
+        <activity
+            android:name="View.After.ActivityBasketList"
+            android:exported="true" />
+
+        <activity
+            android:name="View.After.ActivityShoppingList"
+            android:exported="true" />
+
         <activity
             android:name="View.Before.LoginActivity"
             android:exported="true">

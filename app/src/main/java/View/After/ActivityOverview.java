@@ -2,8 +2,6 @@ package View.After;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -53,13 +51,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
     protected void onResume(){
         super.onResume();
         getCurrentUser();
-        new android.os.Handler(Looper.getMainLooper()).postDelayed(
-                new Runnable() {
-                    public void run() {
-                        mOverviewPresenter.retrievePayment(currentUserEmail);
-                    }
-                },
-                1000);
+        mOverviewPresenter.retrievePayment(currentUserEmail);
     }
 
     private void getCurrentUser(){
@@ -80,7 +72,6 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         createNewPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("triggered ", "now");
                 Intent i = new Intent(ActivityOverview.this, ActivityPaymentOverview.class);
                 startActivity(i);
             }
@@ -90,7 +81,6 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
     @Override
     public void onPaymentFound(ArrayList<ArrayList <String>> paymentsList) {
         payments = paymentsList;
-        Log.d("counter da = ", String.valueOf(payments.size()));
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -117,13 +107,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         String flatID = payments.get(pos).get(3);
         String paymentID = payments.get(pos).get(4);
 
-        for(int i = 0 ; i < payments.get(pos).size() ; i++){
-            Log.d("elemente", String.valueOf(i) + " = " + payments.get(pos).get(i));
-        }
 
-
-
-        Log.d("gegentest", flatID + "--" + paymentID);
         PaymentDialog paymentDialog = new PaymentDialog();
         Bundle bundle = new Bundle();
         bundle.putString("PAYMENTPURPOSE", purpose);

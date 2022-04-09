@@ -12,6 +12,7 @@ public class OverviewPresenter implements OverviewContract.Presenter, OverviewCo
     private OverviewContract.View mOverviewView;
     private OverviewModel mOverviewModel;
     ArrayList<ArrayList <String>> paymentsList = new ArrayList<>();
+    OverviewContract.onPaymentListener mOnPaymentListener;
 
     public OverviewPresenter(OverviewContract.View overviewView){
         this.mOverviewView = overviewView;
@@ -20,6 +21,7 @@ public class OverviewPresenter implements OverviewContract.Presenter, OverviewCo
 
     @Override
     public void retrievePayment(String email) {
+        Log.d("123", "triggered in Presenter!");
         mOverviewModel.retrievePaymentFromFirebase(email);
     }
 
@@ -30,7 +32,7 @@ public class OverviewPresenter implements OverviewContract.Presenter, OverviewCo
 
     @Override
     public void onSuccess(ArrayList<Payment> payments) {
-        Log.d("vorher", String.valueOf(payments.size()));
+        Log.d("123 wieder in presenter", String.valueOf(payments.size()));
         for(int i = 0 ; i < payments.size() ; i++){
             String purpose = payments.get(i).getPurpose();
             String receivers = payments.get(i).getReceiver().toString();
@@ -45,7 +47,7 @@ public class OverviewPresenter implements OverviewContract.Presenter, OverviewCo
             arrList.add(paymentID);
             paymentsList.add(arrList);
         }
-        Log.d("counter = ", String.valueOf(paymentsList.size()));
+        Log.d("123 view size ", String.valueOf(paymentsList.size()));
         mOverviewView.onPaymentFound(paymentsList);
     }
 }
