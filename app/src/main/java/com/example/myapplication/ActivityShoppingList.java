@@ -2,12 +2,14 @@ package com.example.myapplication;
 
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
@@ -18,11 +20,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.myapplication.entities.Flats;
 import com.example.myapplication.entities.ShoppingList;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +50,7 @@ public class ActivityShoppingList extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReferenceFlat;
     String currentUser;
+    MaterialToolbar toolbar;
 
     ArrayList<ArrayList<String>> flatContents = new ArrayList<>();
 
@@ -93,6 +99,37 @@ public class ActivityShoppingList extends AppCompatActivity {
         initNavigationBar();
         initClickListeners();
         //callOnPayment();
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.ButtonColor));
+        }
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.add_item:
+                        addItem();
+                        return true;
+                    case R.id.checkout_item:
+                        checkForEmptyList();
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -342,7 +379,7 @@ public class ActivityShoppingList extends AppCompatActivity {
         });
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_add_item, menu);
@@ -363,7 +400,7 @@ public class ActivityShoppingList extends AppCompatActivity {
                 break;
         }
         return true;
-    }
+    }*/
 
     private void checkForEmptyList(){
         if (list.size() != 0 && listcosts.size() != 0){
