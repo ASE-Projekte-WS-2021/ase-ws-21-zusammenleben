@@ -3,62 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/constraint_layout">
+
 
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="75dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="180dp"
-        app:layout_constraintEnd_toStartOf="@+id/list_view_cost"/>
+        app:layout_constraintEnd_toStartOf="@+id/list_view_cost"
+        app:layout_constraintBottom_toTopOf="@+id/bottomnavview"
+        android:layout_marginEnd="200dp"/>
 
     <ListView
         android:id="@+id/list_view_cost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="75dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="215dp"
-        android:layout_marginEnd="65dp"
         app:layout_constraintStart_toEndOf="@+id/list_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <ListView
-        android:id="@+id/list_view_checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="75dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="328dp"
-        android:layout_marginEnd="0dp"
-        app:layout_constraintStart_toEndOf="@+id/list_view_cost"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
-
-        <CheckBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </ListView>
+        app:layout_constraintBottom_toTopOf="@+id/bottomnavview"
+        android:layout_marginStart="200dp"/>
 
     <TextView
         android:id="@+id/sumcosts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
         android:hint="Sum Costs"
-        app:layout_constraintStart_toStartOf="@+id/list_view_cost"
+        app:layout_constraintTop_toBottomOf="@+id/list_view_cost"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/list_view_cost"/>
+        app:layout_constraintBottom_toTopOf="@+id/bottomnavview"/>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnavview"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,7 +47,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_bar" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
