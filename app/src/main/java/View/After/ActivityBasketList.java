@@ -2,6 +2,8 @@ package View.After;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +12,8 @@ import com.example.myapplication.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 
 import Entities.Basket;
 import Entities.Flat;
@@ -48,7 +52,12 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void onButtonClicked(){
-        mBasketListPresenter.createBasket(currentUserEmail);
+        basketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mBasketListPresenter.createBasket(currentUserEmail, currentFlat.getId());
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -59,8 +68,8 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
     }
 
     @Override
-    public void onBasketItemFound(Basket basket) {
-
+    public void onBasketItemFound(ArrayList<Basket> baskets) {
+        Log.d("angekommen", baskets.toString());
     }
 
     @Override
@@ -74,7 +83,13 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
     }
 
     @Override
-    public void onBasketSucces() {
+    public void onBasketAddedSuccess() {
 
     }
+
+    @Override
+    public void onBasketsRetrieved(ArrayList<Basket> baskets) {
+
+    }
+
 }
