@@ -21,8 +21,8 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
     Flat currentUserFlat;
     String day, currentUser;
     ArrayList<Basket> baskets;
-    ArrayList<ArrayList<String>> basketList = new ArrayList<>();
-
+    ArrayList<ArrayList<String>> basketElements = new ArrayList<>();
+    ArrayList<String> basketIDs = new ArrayList<>();
 
     public BasketListPresenter(BasketListContract.View basketListView){
         this.basketListView = basketListView;
@@ -53,8 +53,10 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
         currentUser = mail;
         String flat = flatID;
         String basketID = "";
-        ArrayList<ShoppingItem> ShoppingItem = new ArrayList();
-        Basket basket = new Basket(day, currentUser, flat, basketID, ShoppingItem);
+        ArrayList<ShoppingItem> shoppingItems = new ArrayList();
+        ShoppingItem item = new ShoppingItem("name", 0);
+        shoppingItems.add(item);
+        Basket basket = new Basket(day, currentUser, flat, basketID, shoppingItems);
         basketListModel.addBasketToFirebase(basket);
     }
 
@@ -96,13 +98,15 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
         for(int i = 0 ; i < baskets.size() ; i++){
             String title = baskets.get(i).getTitle();
             String creator = baskets.get(i).getCurrentUser();
-            ArrayList<String> arrList = new ArrayList<>();
-            arrList.add(title);
-            arrList.add(creator);
-            basketList.add(arrList);
+            String basketID = baskets.get(i).getBasketID();
+            ArrayList<String> basketElement = new ArrayList<>();
+            basketElement.add(title);
+            basketElement.add(creator);
+            basketIDs.add(basketID);
+            basketElements.add(basketElement);
         }
         Log.d("debug8", "jetzt gehts an den view zurück");
-        basketListView.onBasketItemFound(basketList);
+        basketListView.onBasketItemFound(basketElements, basketIDs);
     }
 
     @Override

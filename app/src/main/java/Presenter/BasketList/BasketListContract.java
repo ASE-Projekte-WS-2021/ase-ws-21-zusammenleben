@@ -10,7 +10,7 @@ public interface BasketListContract {
     interface View {
         void onFlatFound(Flat flat);
 
-        void onBasketItemFound(ArrayList<ArrayList<String>> basketList);
+        void onBasketItemFound(ArrayList<ArrayList<String>> basketList, ArrayList<String> basketIDs);
 
         void startIntent();
     }

@@ -1,5 +1,6 @@
 package View.After;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ import Entities.Basket;
 import Entities.Flat;
 import Presenter.BasketList.BasketListContract;
 import Presenter.BasketList.BasketListPresenter;
+import Utils.RecyclerItemClickListener;
 
 public class ActivityBasketList extends AppCompatActivity implements BasketListContract.View, BasketListContract.onBasketSuccessListener {
 
@@ -34,10 +36,10 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
     Flat currentFlat;
 
     ArrayList<ArrayList<String>> baskets;
+    ArrayList<String> ids;
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
     BasketAdapter mAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -93,15 +95,35 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
 
     /////
     @Override
-    public void onBasketItemFound(ArrayList<ArrayList<String>> basketList) {
-        Log.d("debug9", "jetzt in der richtigen methode - recyclerview wird befüllt");
-        baskets = basketList;
-        Log.d("debugx", String.valueOf(baskets.size()));
+    public void onBasketItemFound(ArrayList<ArrayList<String>> basketElements, ArrayList<String> basketIDs) {
+        baskets = basketElements;
+        ids = basketIDs;
+
+        Log.d("ids", ids.toString());
+
+
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new BasketAdapter(this, baskets);
         recyclerView.setAdapter(mAdapter);
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+                Intent i = new Intent(ActivityBasketList.this, ActivityShoppingList.class);
+                Bundle send = new Bundle();
+                String sendData = baskets.get(position).toString();
+                String sendId = basketIDs.get(position).toString();
+                send.putString("BASKETDATA", sendData);
+                send.putString("BASKETID", sendId);
+                i.putExtras(send);
+                startActivity(i);
+            }
+        }));
     }
 
     ////
