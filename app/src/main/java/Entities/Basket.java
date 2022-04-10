@@ -8,9 +8,9 @@ public class Basket {
     String timestamp;
     String flatID;
     String basketID;
-    ArrayList<ShoppingList> list;
+    ArrayList<ShoppingItem> list;
 
-    public Basket(String title, String currentUser, String flatID, String basketID, ArrayList<ShoppingList> list) {
+    public Basket(String title, String currentUser, String flatID, String basketID, ArrayList<ShoppingItem> list) {
         this.title = title;
         this.currentUser = currentUser;
         this.flatID = flatID;
@@ -21,11 +21,11 @@ public class Basket {
     public Basket(){
     }
 
-    public ArrayList<ShoppingList> getList(){
+    public ArrayList<ShoppingItem> getList(){
         return list;
     }
 
-    public void setList(ArrayList<ShoppingList> newList){
+    public void setList(ArrayList<ShoppingItem> newList){
         this.list = newList;
     }
 

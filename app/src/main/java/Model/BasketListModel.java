@@ -1,5 +1,7 @@
 package Model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -14,7 +16,7 @@ import java.util.List;
 
 import Entities.Basket;
 import Entities.Flat;
-import Entities.ShoppingList;
+import Entities.ShoppingItem;
 import Presenter.BasketList.BasketListContract;
 
 public class BasketListModel implements BasketListContract.Model, BasketListContract.onBasketSuccessListener {
@@ -75,6 +77,7 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
 
     @Override
     public ArrayList<Basket> retrieveBasketsFromFirebase(String flatID) {
+        Log.d("debug5", "model fängt an zu werkeln...");
         refBasket.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
@@ -83,12 +86,13 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
                         String title = snap.getValue(Basket.class).getTitle();
                         String currentUser = snap.getValue(Basket.class).getCurrentUser();
                         String basketID = snap.getValue(Basket.class).getBasketID();
-                        ArrayList<ShoppingList> shoppingList = snap.getValue(Basket.class).getList();
+                        ArrayList<ShoppingItem> shoppingList = snap.getValue(Basket.class).getList();
                         Basket basket = new Basket(title, currentUser, flatID, basketID, shoppingList);
                         baskets.add(basket);
                     }
                 }
                 mOnBasketSuccessListener.onBasketsRetrieved(baskets);
+                Log.d("debug6", "model ist fertig, ab zurück");
                 baskets.clear();
             }
         });

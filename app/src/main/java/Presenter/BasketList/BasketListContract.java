@@ -10,7 +10,7 @@ public interface BasketListContract {
     interface View {
         void onFlatFound(Flat flat);
 
-        void onBasketItemFound(ArrayList<Basket> baskets);
+        void onBasketItemFound(ArrayList<ArrayList<String>> basketList);
 
         void startIntent();
     }
@@ -18,6 +18,7 @@ public interface BasketListContract {
     interface Presenter {
         void retrieveFlat(String email);
         void createBasket(String mail, String flatID);
+        void retrieveBaskets(String id);
         void saveBasket(Basket basket);
     }
 
