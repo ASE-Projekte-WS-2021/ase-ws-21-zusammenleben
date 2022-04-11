@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "781459321114",
-    "project_id": "my-application-f648a",
-    "storage_bucket": "my-application-f648a.appspot.com"
+    "project_number": "150480175034",
+    "project_id": "wgfinance-b594f",
+    "storage_bucket": "wgfinance-b594f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:781459321114:android:a1393d1af95c41b71abca3",
+        "mobilesdk_app_id": "1:150480175034:android:281948184d2fce1e9f6783",
         "android_client_info": {
-          "package_name": "com.example.myapplication"
+          "package_name": "com.example.wgfinance"
         }
       },
       "oauth_client": [
         {
-          "client_id": "781459321114-cjiki9djf1jf8aqfpm9r8cjv9dfseo8c.apps.googleusercontent.com",
+          "client_id": "150480175034-ut4jknpqaqeb2roctlipfvkirlt6oojh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCwYMf-Wo3rS9KUer47HHgwT4atZBUClTg"
+          "current_key": "AIzaSyCLQiZqdLM8obuuvRDWPai0A2hB1F8A9ow"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "781459321114-cjiki9djf1jf8aqfpm9r8cjv9dfseo8c.apps.googleusercontent.com",
+              "client_id": "150480175034-ut4jknpqaqeb2roctlipfvkirlt6oojh.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

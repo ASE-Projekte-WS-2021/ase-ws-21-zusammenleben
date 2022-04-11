@@ -4,58 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintEnd_toStartOf="@+id/bottomnavview">
+    android:id="@+id/constraint_layout">
 
-
-    <ListView
-        android:id="@+id/list_view_num_items"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="75dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="295dp"
-        app:layout_constraintStart_toEndOf="@+id/list_view"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/menu_add_item"
+            app:navigationIcon="@drawable/ic_back"
+            app:titleTextColor="@color/white"
+            app:title="Einkaufsliste" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="75dp"
-        app:layout_constraintStart_toEndOf="@+id/list_view_num_items"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="120dp"
-        app:layout_constraintEnd_toStartOf="@+id/list_view_cost"/>
+        app:layout_constraintEnd_toStartOf="@+id/list_view_cost"
+        app:layout_constraintBottom_toTopOf="@+id/bottomnavview"
+        android:layout_marginEnd="200dp"/>
 
     <ListView
         android:id="@+id/list_view_cost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="75dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="295dp"
-        app:layout_constraintStart_toEndOf="@+id/list_view"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/list_view"
+        app:layout_constraintBottom_toTopOf="@+id/bottomnavview"
+        android:layout_marginStart="200dp"/>
 
     <TextView
         android:id="@+id/sumcosts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/latoregular"
         android:hint="Sum Costs"
-
         app:layout_constraintBottom_toTopOf="@+id/bottomnavview"
-        app:layout_constraintEnd_toEndOf="parent"></TextView>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_view_cost" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnavview"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_bar" />
 

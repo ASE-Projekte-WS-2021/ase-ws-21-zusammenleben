@@ -37,7 +37,7 @@
         android:id="@+id/last_Payments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Payments"
+        android:text="Deine Zahlungen"
         android:textColor="#050505"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +51,7 @@
         android:id="@+id/debt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Debt = "
+        android:text="Schulden = "
         android:textColor="#050505"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,16 +80,16 @@
         app:srcCompat="@drawable/ic_baseline_add_24"/>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_payments"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="50dp"
-            tools:layout_editor_absoluteY="200dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_payments"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="200dp" />
 
 
 
@@ -97,7 +97,7 @@
         android:id="@+id/payment_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Payments"
+        android:text="Zahlungen"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="34sp"

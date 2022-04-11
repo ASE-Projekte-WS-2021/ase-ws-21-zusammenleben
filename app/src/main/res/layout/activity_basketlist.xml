@@ -54,7 +54,7 @@
         android:id="@+id/basketRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/wallet_highlighted_text_holo_dark"
+        android:background="#dedede"
         android:clipToPadding="false"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
