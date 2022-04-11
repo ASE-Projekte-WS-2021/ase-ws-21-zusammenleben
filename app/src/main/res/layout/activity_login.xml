@@ -42,9 +42,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/latoregular"
             android:includeFontPadding="false"
-            android:text="WGFinance"
+            android:text="@string/app_name"
             android:textColor="@color/white"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
             android:fontFamily="@font/latoregular"
             android:text="@string/tag_line"
             android:textColor="@color/white"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
 
     </LinearLayout>
 
@@ -82,7 +82,7 @@
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/latoregular"
             android:padding="5dip"
-            android:text="Anmelden"
+            android:text="@string/btn_login"
             android:textAllCaps="false"
             android:textColor="@color/TextFontColor"
             android:textSize="25sp"
@@ -96,10 +96,10 @@
             android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_baseline_local_post_office_24"
+            android:drawableStart="@drawable/ic_baseline_local_post_office_24"
             android:drawablePadding="20dp"
             android:fontFamily="@font/latoregular"
-            android:hint="E-Mail"
+            android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:padding="5dip"
@@ -115,10 +115,10 @@
             android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_baseline_lock_24"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
             android:drawablePadding="20dp"
             android:fontFamily="@font/latoregular"
-            android:hint="Passwort"
+            android:hint="@string/hint_passwort"
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:padding="5dip"
@@ -137,10 +137,10 @@
             android:background="@drawable/roundedcorner_trans"
             android:fontFamily="@font/latoregular"
             android:gravity="center"
-            android:text="Registrieren"
+            android:text="@string/txtview_registration"
             android:textAlignment="center"
             android:textColor="@color/TextFontColor"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -153,7 +153,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/latoregular"
-            android:text="Passwort vergessen?"
+            android:text="@string/txtview_password"
             android:textColor="@color/TextFontColor"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"

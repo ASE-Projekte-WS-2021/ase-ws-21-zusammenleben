@@ -26,4 +26,16 @@
     <string name="add_new_shoppinglist">Add new Shoppinglist</string>
     <string name="payment_options">payment_options</string>
     <string name="edit_payment">Edit Payment</string>
+    <string name="btn_login">Anmelden</string>
+    <string name="hint_email">E-Mail</string>
+    <string name="hint_passwort">Passwort</string>
+    <string name="txtview_registration">Registrieren</string>
+    <string name="txtview_password">Passwort vergessen?</string>
+    <string name="hint_name">Name</string>
+    <string name="btn_createAccount">Konto erstellen</string>
+    <string name="btn_resetPassword">Passwort zurücksetzen</string>
+    <string name="hint_roommate">Anzahl Personen</string>
+    <string name="hint_wgName">WG-Name</string>
+    <string name="hint_Name">Dein Name</string>
+    <string name="btn_createWG">WG erstellen</string>
 </resources>

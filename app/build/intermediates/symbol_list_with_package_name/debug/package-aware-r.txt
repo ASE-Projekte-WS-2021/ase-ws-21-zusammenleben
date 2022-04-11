@@ -3415,6 +3415,7 @@ string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
 string bottomsheet_action_expand_halfway
+string btn_login
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
@@ -3454,6 +3455,8 @@ string google_crash_reporting_api_key
 string google_storage_bucket
 string hide_bottom_view_on_scroll_behavior
 string hint_e_mail
+string hint_email
+string hint_passwort
 string icon_content_description
 string item_view_role_description
 string label_login
@@ -3562,6 +3565,8 @@ string subtitle_for_layout
 string tag_line
 string text_for_layout
 string title_for_layout
+string txtview_password
+string txtview_registration
 string type_your_note_here
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
