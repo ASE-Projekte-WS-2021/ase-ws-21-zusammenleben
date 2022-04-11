@@ -86,7 +86,7 @@
         android:inputType="textEmailSubject"
         android:minHeight="48dp"
         android:paddingStart="40sp"
-        android:text="Join my Flat!"
+        android:text="Einladung in unsere WG!"
         android:textColor="@color/TextFontColor"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

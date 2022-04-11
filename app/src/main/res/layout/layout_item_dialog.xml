@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
     <LinearLayout
         android:id="@+id/layoutAddItem"
         android:layout_width="match_parent"
@@ -15,42 +15,73 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@color/ButtonColor"
+            android:fontFamily="@font/latoregular"
+            android:minHeight="48dp"
+            android:text="Item hinzufügen"
+            android:textColor="@color/TextFontColor"
+            android:textSize="24sp" />
+
         <EditText
             android:id="@+id/inputItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="80dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/rounded"
+            android:fontFamily="@font/latoregular"
+            android:hint="Artikel"
+            android:minHeight="48dp"
             android:padding="10dp"
-            android:hint="Füge hier ein, was du einkaufen willst"
-             />
+            android:textColorHint="@color/TextFontColor"
+            android:textSize="17sp" />
 
         <EditText
-        android:id="@+id/costItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Gib hier den Betrag in Euro an"
-        android:inputType="numberDecimal"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/layout_Item"
-        android:layout_marginTop="4dp"
-        app:layout_constraintTop_toTopOf="@+id/layout_Item"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="4dp"/>
+            android:id="@+id/costItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/rounded"
+            android:drawableLeft="@drawable/ic_baseline_euro_24"
+            android:fontFamily="@font/latoregular"
+            android:hint="0.00"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:textColorHint="@color/TextFontColor"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="@+id/layout_Item"
+            app:layout_constraintTop_toTopOf="@+id/layout_Item" />
 
         <EditText
             android:id="@+id/numItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/rounded"
+            android:fontFamily="@font/latoregular"
             android:hint="Anzahl"
             android:inputType="number"
+            android:minHeight="48dp"
             android:padding="10dp"
+            android:textColorHint="@color/TextFontColor"
+            android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="@+id/layout_Item"
-            android:layout_marginTop="4dp"
-            app:layout_constraintTop_toTopOf="@+id/layout_Item"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"/>
+            app:layout_constraintTop_toTopOf="@+id/layout_Item" />
+
+
 
     </LinearLayout>
 

@@ -63,7 +63,8 @@
         <activity
             android:name=".ActivityLogin"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen">
+            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
