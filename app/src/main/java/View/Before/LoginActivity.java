@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void initViews(){
         btnLogin.setOnClickListener(this);
         signUp.setOnClickListener(this);
+        forgotPassword.setOnClickListener(this);
         mLoginPresenter = new LoginPresenter(this);
     }
 
@@ -61,8 +62,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 checkLoginDetails();
                 break;
             case R.id.login_signup:
-                Intent i = new Intent(LoginActivity.this, RegistrationActivity.class);
-                startActivity(i);
+                Intent registration = new Intent(LoginActivity.this, RegistrationActivity.class);
+                startActivity(registration);
+                break;
+            case R.id.forgot_password:
+                Intent password = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                startActivity(password);
         }
     }
 
