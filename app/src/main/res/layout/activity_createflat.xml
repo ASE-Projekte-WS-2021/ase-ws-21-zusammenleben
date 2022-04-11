@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -38,7 +37,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/latoregular"
             android:includeFontPadding="false"
-            android:text="WGFinance"
+            android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="30sp" />
 
@@ -48,7 +47,7 @@
             android:fontFamily="@font/latoregular"
             android:text="@string/tag_line"
             android:textColor="@color/white"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
 
     </LinearLayout>
 
@@ -75,7 +74,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/latoregular"
-            android:text="WG erstellen"
+            android:text="@string/btn_createWG"
             android:textAllCaps="false"
             android:textColor="@color/TextFontColor"
             android:textSize="25sp"
@@ -92,7 +91,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/latoregular"
-            android:text="WG beitreten"
+            android:text="@string/btn_joinWG"
             android:textAllCaps="false"
             android:textColor="@color/TextFontColor"
             android:textSize="25sp"

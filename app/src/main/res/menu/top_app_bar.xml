@@ -5,14 +5,14 @@
     <item
         android:id="@+id/wg_screen"
         android:icon="@drawable/ic_baseline_home_work_24"
-        android:title="WG"
-        android:contentDescription="ba"
+        android:title="@string/title_wg"
+        android:contentDescription="navigation_for_wg"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/logout"
-        android:title="Ausloggen"
-        android:contentDescription="te"
+        android:title="@string/title_logout"
+        android:contentDescription="navigation_for_logout"
         android:icon="@drawable/ic_baseline_login_24"
         app:showAsAction="ifRoom"/>
 

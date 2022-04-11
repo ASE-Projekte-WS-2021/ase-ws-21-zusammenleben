@@ -7,13 +7,13 @@
 
     <item android:icon="@drawable/ic_shopping_cart"
         android:id="@+id/shopping"
-        android:title="Einkaufsliste"/>
+        android:title="@string/title_shoppinglist"/>
 
     <item android:icon="@drawable/ic_baseline_attach_money_24"
         android:id="@+id/payment"
-        android:title="Zahlungen"/>
+        android:title="@string/title_payments"/>
 
     <item android:icon="@drawable/ic_baseline_home_work_24"
         android:id="@+id/wg"
-        android:title="WG"/>
+        android:title="@string/title_wg"/>
 </menu>
