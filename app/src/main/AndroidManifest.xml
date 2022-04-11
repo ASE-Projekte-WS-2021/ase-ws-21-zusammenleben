@@ -50,6 +50,10 @@
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
+            android:name="View.After.ActivityUserProfile"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name="View.Before.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen"

@@ -2725,7 +2725,6 @@ id btn_inviteYourFriends
 id btn_joinFlat
 id btn_leaving
 id btn_login
-id btn_logout
 id btn_managePayments
 id btn_resetPassword
 id btn_save_payment
@@ -2773,7 +2772,6 @@ id costItem
 id costs_overview
 id counterclockwise
 id currentState
-id currentflatshare
 id custom
 id customPanel
 id cut
@@ -2857,6 +2855,7 @@ id header
 id header_title
 id headercreatewg
 id headersignup
+id headeruser
 id hideable
 id home
 id homeAsUp
@@ -3155,12 +3154,12 @@ id uniform
 id unlabeled
 id up
 id useLogo
-id user_picture
 id vertical_only
 id view
 id viewSupporter
 id viewSupportercreatewg
 id viewSupportersignup
+id viewSupporteruser
 id view_offset_helper
 id view_transition
 id view_tree_lifecycle_owner

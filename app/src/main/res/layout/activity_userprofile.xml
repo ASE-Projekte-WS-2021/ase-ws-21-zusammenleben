@@ -5,160 +5,180 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/header"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@drawable/startscreenheader"
-        android:contentDescription="@string/app_name"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/top_app_bar"
+            app:titleTextColor="@color/white"
+            app:title="WG" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/headeruser"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/layout_header"/>
 
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/startscreenheader"
-        app:layout_constraintBottom_toBottomOf="@id/header"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/headeruser"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="18dp"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="@id/headeruser"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </LinearLayout>
 
     <View
-        android:id="@+id/viewSupporter"
         android:layout_width="1dp"
         android:layout_height="1dp"
+        android:id="@+id/viewSupporteruser"
         android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toBottomOf="@id/header"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <Button
-        android:id="@+id/btn_leaving"
-        android:layout_width="272dp"
-        android:layout_height="48dp"
-        android:background="@drawable/roundetcorners"
-        android:text="Leaving flat share"
-        android:textAlignment="center"
-        android:textColor="#B6B2B2"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomnavview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.794" />
+        app:layout_constraintBottom_toBottomOf="@id/headeruser"/>
 
-    <Button
-        android:id="@+id/btn_invite"
-        android:layout_width="272dp"
-        android:layout_height="48dp"
-        android:background="@drawable/roundetcorners"
-        android:text="Invite friends"
-        android:textAlignment="center"
-        android:textColor="#B6B2B2"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomnavview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678" />
 
-    <TextView
-        android:id="@+id/show_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:text="Email"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomnavview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_logout"
-        app:layout_constraintVertical_bias="0" />
-
-    <TextView
-        android:id="@+id/currentflatshare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your current flat share"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomnavview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.074"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/header"
-        app:layout_constraintVertical_bias="0.44" />
-
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="162dp"
-        android:layout_height="48dp"
-        android:background="@drawable/roundetcorners"
-        android:text="Log out"
-        android:textAlignment="center"
-        android:textColor="#F60808"
-        android:textSize="20sp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/background_for_login"
+        android:paddingEnd="30dp"
+        android:paddingStart="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.306" />
+        app:layout_constraintTop_toBottomOf="@id/viewSupporteruser"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp">
 
-    <!--<TextView
-        android:id="@+id/get_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="320dp"
-        android:gravity="center"
-        android:text="Username"
-        android:textColor="@color/black"
-        android:textSize="20sp" />-->
 
-    <TextView
-        android:id="@+id/flatsharename"
-        android:layout_width="203dp"
-        android:layout_height="28dp"
-        android:text="Home Apartment"
-        android:textAlignment="center"
-        android:textSize="20dp"
+        <!--<TextView
+            android:id="@+id/currentflatshare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your current flat"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.168"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="1dp" />-->
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.525" />
+        <Button
+            android:id="@+id/btn_invite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedcorners"
+            android:fontFamily="@font/latoregular"
+            android:text="Freunde einladen"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/TextFontColor"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.703" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/user_picture"
-        android:layout_width="126dp"
-        android:layout_height="121dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="picture"
-        android:onClick="editprofilepicture"
-        android:src="@drawable/avatar"
-        app:layout_constraintEnd_toEndOf="@+id/header"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/header"
-        app:layout_constraintTop_toTopOf="parent" />
+        <!--<Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedcorner_trans_red"
+            android:text="Log out"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/WarningRed"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.701" />-->
+
+        <Button
+            android:id="@+id/btn_leaving"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedcorners"
+            android:fontFamily="@font/latoregular"
+            android:text="WG verlassen"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/TextFontColor"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/flatsharename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/latoregular"
+            android:text="WG"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.203" />
+
+        <TextView
+            android:id="@+id/show_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/latoregular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="Email"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnavview"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_bar" />
+        app:menu="@menu/bottom_bar"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

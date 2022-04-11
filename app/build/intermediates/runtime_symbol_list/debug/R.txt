@@ -2724,7 +2724,6 @@ int id btn_inviteYourFriends 0x7f090077
 int id btn_joinFlat 0x7f090078
 int id btn_leaving 0x7f090079
 int id btn_login 0x7f09007a
-int id btn_logout 0x7f09007b
 int id btn_managePayments 0x7f09007c
 int id btn_resetPassword 0x7f090242
 int id btn_save_payment 0x7f09007d
@@ -2772,7 +2771,6 @@ int id costItem 0x7f0900a6
 int id costs_overview 0x7f0900a7
 int id counterclockwise 0x7f0900a8
 int id currentState 0x7f0900a9
-int id currentflatshare 0x7f0900aa
 int id custom 0x7f0900ab
 int id customPanel 0x7f0900ac
 int id cut 0x7f0900ad
@@ -2856,6 +2854,7 @@ int id header 0x7f0900f9
 int id header_title 0x7f0900fa
 int id headercreatewg 0x7f0900fb
 int id headersignup 0x7f0900fc
+int id headeruser 0x7f090247
 int id hideable 0x7f0900fd
 int id home 0x7f0900fe
 int id homeAsUp 0x7f0900ff
@@ -3154,12 +3153,12 @@ int id uniform 0x7f090226
 int id unlabeled 0x7f090227
 int id up 0x7f090228
 int id useLogo 0x7f090229
-int id user_picture 0x7f09022b
 int id vertical_only 0x7f09022c
 int id view 0x7f09022d
 int id viewSupporter 0x7f09022e
 int id viewSupportercreatewg 0x7f09022f
 int id viewSupportersignup 0x7f090230
+int id viewSupporteruser 0x7f090248
 int id view_offset_helper 0x7f090231
 int id view_transition 0x7f090232
 int id view_tree_lifecycle_owner 0x7f090233
