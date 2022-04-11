@@ -13,7 +13,7 @@ public class ShoppingItem {
         this.shoppingItemId = shoppingItemId;
     }
 
-    public ShoppingItem(String name, int i){}
+    public ShoppingItem(){}
 
     public String getItemName(){
         return itemName;

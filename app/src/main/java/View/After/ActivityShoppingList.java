@@ -1,6 +1,5 @@
 package View.After;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -8,24 +7,22 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.myapplication.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 
-import Adapter.BasketAdapter;
 import Adapter.ShoppingItemAdapter;
 import Entities.Basket;
 import Entities.ShoppingItem;
 import Presenter.ShoppingList.ShoppingListContract;
 import Presenter.ShoppingList.ShoppingListPresenter;
-import Utils.RecyclerItemClickListener;
+import Utils.ShoppingListDialog;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ActivityShoppingList extends AppCompatActivity implements ShoppingListContract.View, ShoppingListContract.onShoppingSuccessListener {
 
@@ -75,6 +72,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 onBackPressed();
             }
         });
@@ -83,15 +81,25 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
             @Override
             public boolean onMenuItemClick(MenuItem item) {
 
-                addItem();
+                handleAddItemDialog();
                 return false;
             }
         });
 
     }
 
+    private void handleAddItemDialog() {
+        ShoppingListDialog shoppingListDialog = new ShoppingListDialog();
+        Log.d("BUG1", "got here!");
+        Bundle bundle = new Bundle();
+        bundle.putString("ITEMID", "1");
+        shoppingListDialog.setArguments(bundle);
+        shoppingListDialog.show(getSupportFragmentManager(), "dialog");
+        Log.d("BUG1", "got here!");
+    }
+
     private void addItem(){
-        shoppingListPresenter.addShoppingItem();
+        //shoppingListPresenter.addShoppingItem();
     }
 
     private void checkForEmptyList(){
@@ -107,12 +115,12 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     @Override
     public void onBasketItemRetrieved(Basket basket) {
 
-        items = basketElements;
-        itemIds = basketIDs;
+        //items = basketElements;
+        //itemIds = basketIDs;
 
         //Log.d("ids", ids.toString());
 
-
+    /*
         listView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(linearLayoutManager);
@@ -123,7 +131,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
             public void onItemClick(View view, int position) {
             }
         }));
-
+*/
     }
 
     @Override

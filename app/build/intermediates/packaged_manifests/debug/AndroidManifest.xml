@@ -22,6 +22,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.WGFinance" >
         <activity
+            android:name="View.After.ActivityPaymentOverview"
+            android:exported="false" />
+        <activity
             android:name="View.Before.JoinFlatActivity"
             android:exported="true" />
         <activity
@@ -35,6 +38,12 @@
             android:exported="true" />
         <activity
             android:name="View.Before.RegistrationActivity"
+            android:exported="true" />
+        <activity
+            android:name="View.After.ActivityBasketList"
+            android:exported="true" />
+        <activity
+            android:name="View.After.ActivityShoppingList"
             android:exported="true" />
         <activity
             android:name="View.Before.LoginActivity"

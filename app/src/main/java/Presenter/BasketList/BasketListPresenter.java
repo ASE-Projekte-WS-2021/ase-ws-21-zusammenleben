@@ -3,8 +3,6 @@ package Presenter.BasketList;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -12,6 +10,7 @@ import Entities.Basket;
 import Entities.Flat;
 import Entities.ShoppingItem;
 import Model.BasketListModel;
+import androidx.annotation.RequiresApi;
 
 public class BasketListPresenter implements BasketListContract.Presenter, BasketListContract.onBasketSuccessListener{
 
@@ -54,7 +53,7 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
         String flat = flatID;
         String basketID = "";
         ArrayList<ShoppingItem> shoppingItems = new ArrayList();
-        ShoppingItem item = new ShoppingItem("name", 0);
+        ShoppingItem item = new ShoppingItem();
         shoppingItems.add(item);
         Basket basket = new Basket(day, currentUser, flat, basketID, shoppingItems);
         basketListModel.addBasketToFirebase(basket);

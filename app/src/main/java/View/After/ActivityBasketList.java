@@ -6,12 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.myapplication.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +19,11 @@ import Entities.Flat;
 import Presenter.BasketList.BasketListContract;
 import Presenter.BasketList.BasketListPresenter;
 import Utils.RecyclerItemClickListener;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ActivityBasketList extends AppCompatActivity implements BasketListContract.View, BasketListContract.onBasketSuccessListener {
 
@@ -61,6 +60,9 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
     protected void onResume(){
         super.onResume();
         getCurrentUserEmail();
+        if(baskets != null) {
+            baskets.clear();
+        }
         mBasketListPresenter.retrieveFlat(currentUserEmail);
 
         Log.d("debug1", "View führt Anfrage aus");

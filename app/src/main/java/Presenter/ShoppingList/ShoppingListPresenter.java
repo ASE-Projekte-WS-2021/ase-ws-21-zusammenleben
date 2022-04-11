@@ -1,7 +1,5 @@
 package Presenter.ShoppingList;
 
-import android.util.Log;
-
 import Entities.Basket;
 import Entities.ShoppingItem;
 import Model.ShoppingListModel;
@@ -26,7 +24,7 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
     @Override
     public void onBasketItemRetrieved(Basket basket) {
         retrievedBasket = basket;
-        Log.d("check", retrievedBasket.getCurrentUser());
+        //Log.d("check", retrievedBasket.getCurrentUser());
     }
 
     @Override

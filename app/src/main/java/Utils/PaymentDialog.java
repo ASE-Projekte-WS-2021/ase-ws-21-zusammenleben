@@ -6,19 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import View.After.ActivityPaymentOverview;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import View.After.ActivityPaymentOverview;
-
 public class PaymentDialog extends AppCompatDialogFragment implements DialogListener{
-
-    FirebaseDatabase database;
-    DatabaseReference databaseReferencePayment;
-
-    String arrivedPurpose, arrivedReceiver, arrivedCost;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
