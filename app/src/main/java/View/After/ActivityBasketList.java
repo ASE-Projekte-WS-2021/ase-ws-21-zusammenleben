@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +30,7 @@ import Entities.Flat;
 import Presenter.BasketList.BasketListContract;
 import Presenter.BasketList.BasketListPresenter;
 import Utils.RecyclerItemClickListener;
+import View.Before.LoginActivity;
 
 public class ActivityBasketList extends AppCompatActivity implements BasketListContract.View, BasketListContract.onBasketSuccessListener {
 
@@ -52,6 +54,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         setupUIComponents();
         mBasketListPresenter = new BasketListPresenter(this);
         setupNavBar();
+        handleTopBar();
     }
 
     private void setupUIComponents(){
@@ -96,7 +99,23 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
     }
 
     private void handleTopBar(){
-
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.wg_screen:
+                        startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.logout:
+                        //firebaseAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void getCurrentUserEmail(){

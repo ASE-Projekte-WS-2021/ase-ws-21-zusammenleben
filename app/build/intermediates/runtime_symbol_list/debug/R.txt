@@ -3035,7 +3035,6 @@ int id scrollIndicatorDown 0x7f0901ac
 int id scrollIndicatorUp 0x7f0901ad
 int id scrollView 0x7f0901ae
 int id scrollable 0x7f0901af
-int id search 0x7f0901b0
 int id search_badge 0x7f0901b1
 int id search_bar 0x7f0901b2
 int id search_button 0x7f0901b3
@@ -3168,6 +3167,7 @@ int id visible 0x7f090236
 int id visible_removing_fragment_view_tag 0x7f090237
 int id west 0x7f090238
 int id wg 0x7f090245
+int id wg_screen 0x7f090249
 int id wide 0x7f090239
 int id withText 0x7f09023a
 int id withinBounds 0x7f09023b
