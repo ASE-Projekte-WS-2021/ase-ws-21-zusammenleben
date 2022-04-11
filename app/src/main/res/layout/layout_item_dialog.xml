@@ -37,11 +37,12 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/rounded"
-            android:textSize="17sp"
-            android:textColorHint="@color/TextFontColor"
+            android:fontFamily="@font/latoregular"
             android:hint="Artikel"
             android:minHeight="48dp"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColorHint="@color/TextFontColor"
+            android:textSize="17sp" />
 
         <EditText
             android:id="@+id/costItem"
@@ -50,14 +51,15 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
-            android:drawableLeft="@drawable/ic_baseline_euro_24"
             android:background="@drawable/rounded"
-            android:textSize="24sp"
-            android:textColorHint="@color/TextFontColor"
+            android:drawableLeft="@drawable/ic_baseline_euro_24"
+            android:fontFamily="@font/latoregular"
             android:hint="0.00"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
             android:padding="10dp"
+            android:textColorHint="@color/TextFontColor"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="@+id/layout_Item"
             app:layout_constraintTop_toTopOf="@+id/layout_Item" />
 
@@ -69,6 +71,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/rounded"
+            android:fontFamily="@font/latoregular"
             android:hint="Anzahl"
             android:inputType="number"
             android:minHeight="48dp"

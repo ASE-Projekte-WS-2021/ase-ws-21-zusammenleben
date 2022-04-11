@@ -50,11 +50,12 @@
         android:id="@+id/sumcosts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Sum Costs"
-        app:layout_constraintTop_toBottomOf="@+id/list_view_cost"
         android:layout_marginEnd="20dp"
+        android:fontFamily="@font/latoregular"
+        android:hint="Sum Costs"
+        app:layout_constraintBottom_toTopOf="@+id/bottomnavview"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomnavview"/>
+        app:layout_constraintTop_toBottomOf="@+id/list_view_cost" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

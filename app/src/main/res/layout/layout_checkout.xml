@@ -19,16 +19,16 @@
             android:id="@+id/inputNameCheckout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="80dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:padding="10dp"
+            android:layout_marginEnd="80dp"
             android:background="@drawable/rounded"
+            android:fontFamily="@font/latoregular"
+            android:hint="Name der Einkaufsliste"
+            android:padding="10dp"
             android:textColor="@color/TextFontColor"
             android:textColorHint="@color/TextFontColor"
-            android:textSize="24sp"
-            android:hint="Name der Einkaufsliste"
-            />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/costCheckout"
@@ -38,8 +38,10 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/rounded"
+            android:fontFamily="@font/latoregular"
             android:inputType="numberDecimal"
             android:minWidth="48dp"
+            android:minHeight="48dp"
             android:padding="10dp"
             android:textColor="@color/TextFontColor"
             android:textColorHint="@color/TextFontColor"
