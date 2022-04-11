@@ -34,6 +34,11 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
 
     }
 
+    @Override
+    public void deleteShoppingListItem(String itemID) {
+
+    }
+
 
     @Override
     public void onShoppingItemRetrieved(String basketID) {
@@ -42,6 +47,11 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
 
     @Override
     public void onShoppingItemAdded(String basketID) {
+
+    }
+
+    @Override
+    public void onShoppingListItemAltered(String itemID) {
 
     }
 }

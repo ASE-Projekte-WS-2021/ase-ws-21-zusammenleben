@@ -16,30 +16,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5466acb4-0a8d-44d3-9aed-16ddf343a907" name="Default Changelist" comment="Payments are now displayed Flat-specific">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Entities/Basket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Entities/ShoppingList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Model/BasketListModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Model/ForgotPasswordModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Model/ShoppingListModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Model/UserProfileModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/BasketList/BasketListContract.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/BasketList/BasketListPresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/ForgotPassword/ForgotPasswordContract.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/ForgotPassword/ForgotPasswordPresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/ShoppingList/ShoppingListContract.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/ShoppingList/ShoppingListPresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/UserProfile/UserProfileContract.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/UserProfile/UserProfilePresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityBasketList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityShoppingList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityUserProfile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/View/Before/ForgotPasswordActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Adapter/ShoppingItemAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Utils/ShoppingListDialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/shoppinglist_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Model/PaymentOverviewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Model/PaymentOverviewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/PaymentOverview/PaymentOverviewContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/PaymentOverview/PaymentOverviewContract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/PaymentOverview/PaymentOverviewPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/PaymentOverview/PaymentOverviewPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityPaymentOverview.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityPaymentOverview.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Entities/ShoppingItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Entities/ShoppingItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Model/ShoppingListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Model/ShoppingListModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/ShoppingList/ShoppingListContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/ShoppingList/ShoppingListContract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/ShoppingList/ShoppingListPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/ShoppingList/ShoppingListPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityBasketList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityBasketList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityShoppingList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityShoppingList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_shoppinglist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_shoppinglist.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +37,7 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Laute\.android\avd\Pixel_3_API_28.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Android\.android\avd\Pixel_2_API_28.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -88,10 +76,10 @@
       <list>
         <option value="valueResourceFile" />
         <option value="navigationResourceFile" />
-        <option value="layoutResourceFile" />
         <option value="resourceFile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -105,6 +93,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="238VT8KoknFzvVCKZnEE6Rhr4z9" />
   <component name="ProjectViewState">

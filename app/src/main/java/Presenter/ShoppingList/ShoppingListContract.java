@@ -9,24 +9,32 @@ public interface ShoppingListContract {
 
     interface View{
         void onBasketItemRetrieved(Basket basket);
-        void onShoppingItemAdded(ShoppingItem item);
+        void onShoppingItemAdded(ShoppingItem shoppingItemId);
     }
 
     interface Presenter{
         void retrieveBasketItem(String basketID);
         void onBasketItemRetrieved(Basket basket);
-        void addShoppingItem(String basketID, ShoppingItem item);
+        void addShoppingItem(String basketID, ShoppingItem shoppingItemId);
+        void deleteShoppingListItem (String shoppingItemId);
     }
 
     interface Model{
         Basket retrieveBasketItemFromFirebase(String basketID);
-        void addShoppingItemToFirebase(String basketID, ShoppingItem item);
-        ArrayList<ShoppingItem> retrieveShoppingItemFromFirebase(String basketID);
+        void addShoppingItemToFirebase(String basketID, ShoppingItem shoppingItemId);
+        ArrayList<ShoppingItem> retrieveShoppingItemFromFirebase(String shoppingItemId);
+        void deleteItemFromFirebase (String shoppingItemId);
     }
 
     interface onShoppingSuccessListener{
         void onBasketItemRetrieved(Basket basket);
-        void onShoppingItemRetrieved(String basketID);
-        void onShoppingItemAdded(String basketID);
+        void onShoppingItemRetrieved(String shoppingItemId);
+        void onShoppingItemAdded(String shoppingItemId);
+        void onShoppingListItemAltered (String shoppingItemId);
     }
 }
+
+
+//ShoppingItemDelete, ShoppingItemEdit
+//Darstellung über Dialog in View
+//Altered soll delete und edit handln

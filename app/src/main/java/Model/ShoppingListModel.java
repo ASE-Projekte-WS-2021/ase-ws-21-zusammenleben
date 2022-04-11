@@ -2,6 +2,7 @@ package Model;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +24,8 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
     private static final String BASKETPATH = "Baskets";
     Basket retrievedBasket;
     ArrayList<ShoppingItem> shoppingItems;
+
+    String shoppingItemId;
 
     public ShoppingListModel(ShoppingListContract.onShoppingSuccessListener onShoppingSuccessListener){
         this.mOnShoppingSuccessListener = onShoppingSuccessListener;
@@ -58,11 +61,28 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
     @Override
     public void addShoppingItemToFirebase(String basketID, ShoppingItem item) {
 
+        refBasket.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
+
+                DatabaseReference reference = refBasket.child(basketID).child("list").push();
+                String uniqueFirebaseID = reference.getKey();
+                item.setShoppingItemId(uniqueFirebaseID);
+                reference.setValue(item);
+                shoppingItemId = item.getShoppingItemId();
+                mOnShoppingSuccessListener.onShoppingItemAdded(shoppingItemId);
+            }
+        });
     }
 
     @Override
     public ArrayList<ShoppingItem> retrieveShoppingItemFromFirebase(String basketID) {
         return null;
+    }
+
+    @Override
+    public void deleteItemFromFirebase(String itemID) {
+
     }
 
     @Override
@@ -77,6 +97,11 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
 
     @Override
     public void onShoppingItemAdded(String basketID) {
+
+    }
+
+    @Override
+    public void onShoppingListItemAltered(String itemID) {
 
     }
 }

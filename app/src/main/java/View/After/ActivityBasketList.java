@@ -40,6 +40,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
     BasketAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
