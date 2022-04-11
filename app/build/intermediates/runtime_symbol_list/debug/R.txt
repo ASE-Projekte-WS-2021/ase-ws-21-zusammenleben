@@ -2725,6 +2725,7 @@ int id btn_leaving 0x7f090079
 int id btn_login 0x7f09007a
 int id btn_logout 0x7f09007b
 int id btn_managePayments 0x7f09007c
+int id btn_resetPassword 0x7f090242
 int id btn_save_payment 0x7f09007d
 int id buttonPanel 0x7f09007e
 int id cache_measures 0x7f09007f
@@ -2835,6 +2836,7 @@ int id flip 0x7f0900e7
 int id floating 0x7f0900e8
 int id forever 0x7f0900e9
 int id forgot_password 0x7f0900ea
+int id forgot_password_email 0x7f090243
 int id found_flat_address 0x7f0900eb
 int id found_flat_owner 0x7f0900ec
 int id found_flat_people 0x7f0900ed
@@ -3008,6 +3010,7 @@ int id percent 0x7f090194
 int id pin 0x7f090195
 int id position 0x7f090196
 int id postLayout 0x7f090197
+int id progressBar 0x7f090244
 int id progress_circular 0x7f090198
 int id progress_horizontal 0x7f090199
 int id purpose 0x7f09019a
@@ -3121,7 +3124,6 @@ int id textSpacerNoButtons 0x7f090205
 int id textSpacerNoTitle 0x7f090206
 int id textStart 0x7f090207
 int id textTop 0x7f090208
-int id textView 0x7f090209
 int id text_input_end_icon 0x7f09020a
 int id text_input_error_icon 0x7f09020b
 int id text_input_start_icon 0x7f09020c

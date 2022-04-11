@@ -23,31 +23,47 @@
         android:theme="@style/Theme.WGFinance" >
         <activity
             android:name="View.After.ActivityPaymentOverview"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="View.Before.JoinFlatActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="View.Before.CreateFlatActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="View.Before.AddFlatActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="View.After.ActivityOverview"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="View.Before.RegistrationActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" />
+        <activity
+            android:name="View.Before.ForgotPasswordActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" />
         <activity
             android:name="View.After.ActivityBasketList"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="View.After.ActivityShoppingList"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="View.Before.LoginActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActioBar.FullScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

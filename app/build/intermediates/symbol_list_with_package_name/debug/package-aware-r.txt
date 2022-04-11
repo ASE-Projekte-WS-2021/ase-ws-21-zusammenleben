@@ -2726,6 +2726,7 @@ id btn_leaving
 id btn_login
 id btn_logout
 id btn_managePayments
+id btn_resetPassword
 id btn_save_payment
 id buttonPanel
 id cache_measures
@@ -2836,6 +2837,7 @@ id flip
 id floating
 id forever
 id forgot_password
+id forgot_password_email
 id found_flat_address
 id found_flat_owner
 id found_flat_people
@@ -3009,6 +3011,7 @@ id percent
 id pin
 id position
 id postLayout
+id progressBar
 id progress_circular
 id progress_horizontal
 id purpose
@@ -3122,7 +3125,6 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
-id textView
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
