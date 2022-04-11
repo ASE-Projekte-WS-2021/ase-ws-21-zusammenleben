@@ -51,6 +51,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         setContentView(R.layout.activity_basketlist);
         basketButton = findViewById(R.id.basketActionButton);
         recyclerView = findViewById(R.id.basketRecyclerView);
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     }
