@@ -12,6 +12,10 @@
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\font\\brlnrs_regular.xml"
     },
     {
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_euro_24.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable\\ic_baseline_euro_24.xml"
+    },
+    {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
     },
@@ -238,6 +242,10 @@
     {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_forgotpassword.xml.flat",
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\layout\\activity_forgotpassword.xml"
+    },
+    {
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable_rounded.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable\\rounded.xml"
     },
     {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_shopping_cart.xml.flat",

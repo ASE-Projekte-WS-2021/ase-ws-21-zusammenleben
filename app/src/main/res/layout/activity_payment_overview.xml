@@ -6,7 +6,27 @@
     android:layout_height="match_parent"
     android:layout_alignParentBottom="true">
 
-    <ImageView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/top_app_bar"
+            app:navigationIcon="@drawable/ic_back"
+            app:titleTextColor="@color/white"
+            app:title="Zahlungen" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--<ImageView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -14,166 +34,40 @@
         android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ImageContrastCheck" />
-
-    <TextView
-        android:id="@+id/payment_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/payments"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028" />
+        tools:ignore="ImageContrastCheck" />-->
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="410dp"
-        android:layout_height="528dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/background_for_login"
-        android:paddingEnd="30dp"
         android:paddingStart="30dp"
+        android:paddingEnd="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewSupporter"
         app:layout_constraintVertical_bias="0.189"
         tools:ignore="NotSibling">
 
-
-
-
-        <TextView
-            android:id="@+id/share_your_bill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Share your Bills with"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.225"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/insert_purpose"
-            app:layout_constraintVertical_bias="0.611" />
-
-        <EditText
-            android:id="@+id/insert_purpose"
-            android:layout_width="322dp"
-            android:layout_height="68dp"
-            android:drawableLeft="@drawable/ic_baseline_article_24"
-            android:drawablePadding="20dp"
-            android:ems="10"
-            android:hint="Add a description"
-            android:inputType="textPersonName"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_save_payment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.545" />
-
-        <TextView
-            android:id="@+id/purpose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Purpose"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_save_payment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.137"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.482" />
-
-        <TextView
-            android:id="@+id/total_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Total amount"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/insert_costs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.164"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.496" />
-
-        <EditText
-            android:id="@+id/insert_costs"
-            android:layout_width="322dp"
-            android:layout_height="68dp"
-            android:drawableLeft="@drawable/ic_baseline_attach_money_24"
-            android:drawablePadding="20dp"
-            android:ems="10"
-            android:hint="00.00"
-            android:inputType="text"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/share_your_bill"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.408" />
-
         <Button
             android:id="@+id/btn_save_payment"
-            android:layout_width="332dp"
-            android:layout_height="68dp"
-            android:text="Save Payment"
-            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/roundedcorners"
+            android:fontFamily="@font/latoregular"
+            android:text="@string/btn_savePayment"
+            android:textColor="@color/TextFontColor"
+            android:textAllCaps="false"
+            android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            app:layout_constraintVertical_bias="0.952" />
-
-        <TextView
-            android:id="@+id/costs_overview"
-            android:layout_width="91dp"
-            android:layout_height="52dp"
-            android:drawableRight="@drawable/ic_baseline_attach_money_24"
-            android:gravity="center"
-            android:hint="00.00"
-            android:inputType="textPersonName"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/insert_costs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.949"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.163" />
-
-        <TextView
-            android:layout_width="322dp"
-            android:layout_height="68dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/select_mates"
-            android:hint="Select your mates"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_save_payment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/share_your_bill"
-            app:layout_constraintVertical_bias="0.0"
-            android:drawableEnd="@android:drawable/arrow_down_float"
-            android:background="@android:drawable/editbox_background"/>
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <View
             android:id="@+id/view"
@@ -185,6 +79,121 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="NotSibling" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/total_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/latoregular"
+        android:text="@string/txtview_totalAmount"
+        android:textAlignment="center"
+        android:textColor="@color/TextFontColor"
+        android:textAllCaps="false"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.097"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <EditText
+        android:id="@+id/insert_costs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded"
+        android:drawableStart="@drawable/ic_baseline_euro_24"
+        android:drawablePadding="20dp"
+        android:ems="10"
+        android:fontFamily="@font/latoregular"
+        android:hint="@string/hint_value"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="@color/TextFontColor"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.204" />
+
+    <EditText
+        android:id="@+id/insert_purpose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded"
+        android:drawableStart="@drawable/ic_baseline_article_24"
+        android:drawablePadding="20dp"
+        android:ems="10"
+        android:fontFamily="@font/latoregular"
+        android:hint="@string/hint_message"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="@color/TextFontColor"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.303" />
+
+    <TextView
+        android:id="@+id/share_your_bill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/latoregular"
+        android:text="@string/hint_receiver"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/TextFontColor"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.446" />
+
+
+        <TextView
+            android:id="@+id/costs_overview"
+            android:layout_width="91dp"
+            android:layout_height="52dp"
+            android:gravity="center"
+            android:hint="00.00"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/insert_costs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.949"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.163"
+            app:drawableRightCompat="@drawable/ic_baseline_attach_money_24" />
+
+    <TextView
+        android:id="@+id/select_mates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/latoregular"
+        android:hint="@string/hint_chooseRoomate"
+        android:textColorHint="@color/TextFontColor"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525"
+        app:drawableEndCompat="@android:drawable/arrow_down_float" />
+
 
         <TextView
             android:id="@+id/show_email"
@@ -199,7 +208,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

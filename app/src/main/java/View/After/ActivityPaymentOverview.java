@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,8 +13,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.myapplication.R;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -24,6 +27,7 @@ import Entities.Flat;
 import Entities.Payment;
 import Presenter.PaymentOverview.PaymentOverviewContract;
 import Presenter.PaymentOverview.PaymentOverviewPresenter;
+import View.Before.LoginActivity;
 
 public class ActivityPaymentOverview extends AppCompatActivity implements PaymentOverviewContract.View {
 
@@ -44,12 +48,14 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
     ArrayList<Integer> memberPositions = new ArrayList<>();
     boolean cameFromDialog;
     String transmittedPaymentID, transmittedFlatID;
+    MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupUIComponents();
         mPaymentOverviewPresenter = new PaymentOverviewPresenter(this);
+        handleTopBar();
     }
 
     @Override
@@ -87,8 +93,36 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         insertCosts = findViewById(R.id.insert_costs);
         insertPurpose = findViewById(R.id.insert_purpose);
         selectMembers = findViewById(R.id.select_mates);
+        toolbar = findViewById(R.id.topAppBar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+    }
+
+    private void handleTopBar(){
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.wg_screen:
+                        startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.logout:
+                        //firebaseAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     @Override
