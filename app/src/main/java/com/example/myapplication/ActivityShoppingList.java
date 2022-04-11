@@ -21,7 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.entities.Flats;
 import com.example.myapplication.entities.ShoppingList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -87,8 +86,8 @@ public class ActivityShoppingList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shoppinglist);
         //find view by id
-        initFirebase();
-        getFlatIDinFirebase();
+        //initFirebase();
+        //getFlatIDinFirebase();
         initViews();
         initNavigationBar();
         initClickListeners();
@@ -359,12 +358,12 @@ public class ActivityShoppingList extends AppCompatActivity {
                 addItem();
                 break;
             case R.id.checkout_item:
-                checkForEmptyList();
+                //checkForEmptyList();
                 break;
         }
         return true;
     }
-
+/*
     private void checkForEmptyList(){
         if (list.size() != 0 && listcosts.size() != 0){
             ActivityShoppingList.this.checkout();
@@ -372,7 +371,7 @@ public class ActivityShoppingList extends AppCompatActivity {
         else {
             Toast.makeText(ActivityShoppingList.this, "Du hast noch keine Items in deiner Shopping Liste", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
     /*
      * method for adding item
@@ -451,7 +450,7 @@ public class ActivityShoppingList extends AppCompatActivity {
         });
     }*/
 
-
+/*
     private void checkout(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this);
@@ -592,5 +591,5 @@ public class ActivityShoppingList extends AppCompatActivity {
         databaseReferenceFlat = database.getReference("Flats");
         currentUser = firebaseAuth.getCurrentUser().getEmail();
     }
-
+*/
 }
