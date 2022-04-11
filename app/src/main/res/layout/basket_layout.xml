@@ -15,11 +15,7 @@
         android:orientation="horizontal">
 
         <TextView
-<<<<<<<< HEAD:app/src/main/res/layout/basket_layout.xml
             android:id="@+id/basketTitle"
-========
-            android:id="@+id/notetitle"
->>>>>>>> backup:app/src/main/res/layout/notes_layout.xml
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -40,11 +36,7 @@
             android:src="@drawable/ic_edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-<<<<<<<< HEAD:app/src/main/res/layout/basket_layout.xml
             app:layout_constraintStart_toEndOf="@+id/basketTitle"
-========
-            app:layout_constraintStart_toEndOf="@+id/notetitle"
->>>>>>>> backup:app/src/main/res/layout/notes_layout.xml
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -61,30 +53,6 @@
         android:textSize="18sp"
         android:ellipsize="marquee"/>
 
-<<<<<<<< HEAD:app/src/main/res/layout/basket_layout.xml
-========
-    <TextView
-        android:id="@+id/noteURL"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="4dp"
-        android:autoLink="web"
-        android:layout_marginBottom="4dp"
-        android:textColor="@color/black"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:id="@+id/notetextactivity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="8dp"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
->>>>>>>> backup:app/src/main/res/layout/notes_layout.xml
 
 
 </LinearLayout>

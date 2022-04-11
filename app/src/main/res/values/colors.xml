@@ -18,15 +18,17 @@
     <color name="colorNote4">#000000</color>
     <color name="colorDelete">#FF0000</color>
     <color name="colorSearchBackground">#333333</color>
-
     <color name="HeaderFontColor">#242583</color>
     <color name="TextFontColor">#553D67</color>
     <color name="NoteColor">#F62C72</color>
     <color name="HintColor">#99738E</color>
-    <color name="ButtonColor">#2F2FA2</color>
-    <color name="ButtonTextColor">#FFFFFF</color>
+    <!--<color name="ButtonColor">#69f0ae</color>-->
+    <color name="ButtonColor">#ffd480</color>
+    <!--<color name="ButtonColor">#2F2FA2</color>-->
+    <color name="ButtonTextColor">#553D67</color>
     <color name="IconColor">#707070</color>
     <color name="GradientEndColor">#7E7FB5</color>
     <color name="WarningRed">#FF0000</color>
+    <color name="grey">#eeeeee</color>
 
 </resources>
