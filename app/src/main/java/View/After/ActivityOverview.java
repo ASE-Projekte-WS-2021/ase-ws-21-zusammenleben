@@ -2,15 +2,19 @@ package View.After;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,6 +36,8 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
     FirebaseUser user;
     String currentUserEmail;
     OverviewPresenter mOverviewPresenter;
+    BottomNavigationView bottomNavigationView;
+    MaterialToolbar toolbar;
 
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
@@ -45,6 +51,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         setupUIComponents();
         mOverviewPresenter = new OverviewPresenter(this);
         onNewPaymentButtonClicked();
+        setupNavBar();
     }
 
     @Override
@@ -64,6 +71,9 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         setContentView(R.layout.activity_overview);
         createNewPayment = findViewById(R.id.btn_managePayments);
         recyclerView = findViewById(R.id.recyclerview_payments);
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.payment);
+        toolbar = findViewById(R.id.topAppBar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     }
@@ -76,6 +86,31 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
                 startActivity(i);
             }
         });
+    }
+
+    private void setupNavBar(){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.payment:
+                        return true;
+                    case R.id.wg:
+                        startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.shopping:
+                        startActivity(new Intent(getApplicationContext(),ActivityBasketList.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    private void handleTopBar(){
+
     }
 
     @Override

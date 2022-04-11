@@ -17,6 +17,7 @@ import com.example.myapplication.R;
 import Presenter.Login.LoginContract;
 import Presenter.Login.LoginPresenter;
 import View.After.ActivityBasketList;
+import View.After.ActivityOverview;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginContract.View {
 
@@ -62,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 checkLoginDetails();
                 break;
             case R.id.login_signup:
-                Intent registration = new Intent(LoginActivity.this, RegistrationActivity.class);
+                Intent registration = new Intent(LoginActivity.this, ActivityOverview.class);
                 startActivity(registration);
                 break;
             case R.id.forgot_password:
