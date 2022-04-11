@@ -38,18 +38,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/brlnrs_regular"
+            android:fontFamily="@font/latoregular"
             android:includeFontPadding="false"
             android:text="WGFinance"
-            android:textColor="@color/ButtonTextColor"
+            android:textColor="@color/white"
             android:textSize="30dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/brlnrs_regular"
+            android:fontFamily="@font/latoregular"
             android:text="@string/tag_line"
-            android:textColor="@color/ButtonTextColor"
+            android:textColor="@color/white"
             android:textSize="25dp" />
 
     </LinearLayout>
@@ -81,9 +81,8 @@
             android:layout_marginTop="25dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            android:textStyle="bold" />-->
+            android:textColor="@color/HeaderFontColor"
+            android:textSize="30dp" />-->
 
 
         <!--Registerinformation E-Mail and Password-->
@@ -95,11 +94,12 @@
             android:drawableLeft="@drawable/ic_baseline_person_24"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:fontFamily="@font/brlnrs_regular"
+            android:fontFamily="@font/latoregular"
             android:hint="Name"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:textColorHint="@color/HintColor"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -114,11 +114,12 @@
             android:drawableLeft="@drawable/ic_baseline_lock_24"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:fontFamily="@font/brlnrs_regular"
-            android:hint="Password"
+            android:fontFamily="@font/latoregular"
+            android:hint="Passwort"
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:textColorHint="@color/HintColor"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -133,11 +134,12 @@
             android:drawableLeft="@drawable/ic_baseline_local_post_office_24"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:fontFamily="@font/brlnrs_regular"
+            android:fontFamily="@font/latoregular"
             android:hint="E-Mail"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColorHint="@color/HintColor"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -149,10 +151,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
-            android:fontFamily="@font/brlnrs_regular"
+            android:fontFamily="@font/latoregular"
             android:text="Konto erstellen"
             android:textAllCaps="false"
-            android:textColor="@color/ButtonTextColor"
+            android:textColor="@color/TextFontColor"
             android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
