@@ -2685,6 +2685,7 @@ id animateToStart
 id antiClockwise
 id anticipate
 id appBarLayout
+id appBarLayout2
 id arc
 id asConfigured
 id async
@@ -3060,7 +3061,6 @@ id showCustom
 id showHome
 id showTitle
 id show_email
-id show_picture
 id signup_e_mail
 id signup_name
 id signup_password
@@ -3119,7 +3119,6 @@ id test_radiobutton_app_button_tint
 id text
 id text2
 id textEnd
-id textPageTitle
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart

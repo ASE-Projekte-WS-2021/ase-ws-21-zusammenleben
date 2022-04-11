@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,6 +38,8 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
     FirebaseUser user;
     String currentUserEmail;
     Flat currentFlat;
+    BottomNavigationView bottomNavigationView;
+    MaterialToolbar toolbar;
 
     ArrayList<ArrayList<String>> baskets;
     ArrayList<String> ids;
@@ -45,13 +51,16 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         super.onCreate(savedInstanceState);
         setupUIComponents();
         mBasketListPresenter = new BasketListPresenter(this);
+        setupNavBar();
     }
 
     private void setupUIComponents(){
         setContentView(R.layout.activity_basketlist);
         basketButton = findViewById(R.id.basketActionButton);
         recyclerView = findViewById(R.id.basketRecyclerView);
-
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.shopping);
+        toolbar = findViewById(R.id.topAppBar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     }
@@ -63,6 +72,31 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         mBasketListPresenter.retrieveFlat(currentUserEmail);
 
         Log.d("debug1", "View führt Anfrage aus");
+    }
+
+    private void setupNavBar(){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.payment:
+                        startActivity(new Intent(getApplicationContext(),ActivityOverview.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.wg:
+                        startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.shopping:
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    private void handleTopBar(){
+
     }
 
     private void getCurrentUserEmail(){
