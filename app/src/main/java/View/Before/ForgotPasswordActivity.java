@@ -64,7 +64,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onPassResetSuccess(String message) {
-        Toast.makeText(ForgotPasswordActivity.this, "Please, check your emails!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Bitte überprüfen Sie ihre Mails!", Toast.LENGTH_LONG).show();
         Intent login = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
         startActivity(login);
     }

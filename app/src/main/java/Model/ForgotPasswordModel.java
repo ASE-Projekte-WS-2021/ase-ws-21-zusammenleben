@@ -26,9 +26,9 @@ public class ForgotPasswordModel implements ForgotPasswordContract.Interactor {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            //mOnPassResetListener.onSuccess(task.getResult().toString());
+                            mOnPassResetListener.onSuccess("Erfolgreich");
                         } else {
-                            mOnPassResetListener.onFailure(task.getException().toString());
+                            mOnPassResetListener.onFailure("Fehlgeschlagen");
                         }
                     }
                 });

@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 checkLoginDetails();
                 break;
             case R.id.login_signup:
-                Intent registration = new Intent(LoginActivity.this, RegistrationActivity.class);
+                Intent registration = new Intent(LoginActivity.this, ActivityOverview.class);
                 startActivity(registration);
                 break;
             case R.id.forgot_password:

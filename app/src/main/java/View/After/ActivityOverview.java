@@ -122,7 +122,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.logout:
-                        //firebaseAuth.signOut();
+                        FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                         overridePendingTransition(0,0);
                         return true;

@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.myapplication.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import View.Before.LoginActivity;
 
@@ -68,7 +69,7 @@ public class ActivityUserProfile extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.logout:
-                        //firebaseAuth.signOut();
+                        FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                         overridePendingTransition(0,0);
                         return true;
