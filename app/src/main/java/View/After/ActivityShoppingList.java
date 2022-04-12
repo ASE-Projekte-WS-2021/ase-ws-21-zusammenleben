@@ -1,7 +1,6 @@
 package View.After;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -72,7 +71,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
                 onBackPressed();
             }
         });
@@ -90,12 +88,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
     private void handleAddItemDialog() {
         ShoppingListDialog shoppingListDialog = new ShoppingListDialog();
-        Log.d("BUG1", "got here!");
-        Bundle bundle = new Bundle();
-        bundle.putString("ITEMID", "1");
-        shoppingListDialog.setArguments(bundle);
         shoppingListDialog.show(getSupportFragmentManager(), "dialog");
-        Log.d("BUG1", "got here!");
     }
 
     private void addItem(){
@@ -152,5 +145,11 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     @Override
     public void onShoppingListItemAltered(String itemID) {
 
+    }
+
+    @Override public void onBackPressed()
+    {
+        super.onBackPressed();
+        this.finish();
     }
 }
