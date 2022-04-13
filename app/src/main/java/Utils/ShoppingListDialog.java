@@ -1,17 +1,9 @@
 package Utils;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
 
-import com.example.myapplication.R;
-
-import View.After.ActivityShoppingList;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class ShoppingListDialog extends AppCompatDialogFragment implements DialogListener {
@@ -21,7 +13,7 @@ public class ShoppingListDialog extends AppCompatDialogFragment implements Dialo
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceBundle){
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Hinzufügen");
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -55,7 +47,8 @@ public class ShoppingListDialog extends AppCompatDialogFragment implements Dialo
         builder.setNegativeButton("Abbrechen", (dialog, which) -> dialog.dismiss());
         builder.show();
 
-        return builder.create();
+        return builder.create();*/
+        return null;
     }
 
     @Override

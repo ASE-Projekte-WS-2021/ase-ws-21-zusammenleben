@@ -1,10 +1,19 @@
 package View.After;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -16,12 +25,6 @@ import Entities.Basket;
 import Entities.ShoppingItem;
 import Presenter.ShoppingList.ShoppingListContract;
 import Presenter.ShoppingList.ShoppingListPresenter;
-import Utils.ShoppingListDialog;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class ActivityShoppingList extends AppCompatActivity implements ShoppingListContract.View, ShoppingListContract.onShoppingSuccessListener {
 
@@ -87,8 +90,37 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     }
 
     private void handleAddItemDialog() {
-        ShoppingListDialog shoppingListDialog = new ShoppingListDialog();
-        shoppingListDialog.show(getSupportFragmentManager(), "dialog");
+        /*ShoppingListDialog shoppingListDialog = new ShoppingListDialog();
+        shoppingListDialog.show(getSupportFragmentManager(), "dialog");*/
+        AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this);
+        builder.setTitle("Add New Item");
+
+        View dialogLayout = LayoutInflater.from(ActivityShoppingList.this).inflate(R.layout.layout_item_dialog, null, false);
+
+        builder.setView(dialogLayout);
+        EditText inputItem = dialogLayout.findViewById(R.id.inputItem);
+        EditText numItem = dialogLayout.findViewById(R.id.numItem);
+
+        builder.setPositiveButton("Hinzufügen", (dialog, which) -> {
+            if (!inputItem.getText().toString().isEmpty() && !numItem.getText().toString().isEmpty()) {
+                String transmittedItem = inputItem.getText().toString().trim();
+                String transmittedAmount = numItem.getText().toString().trim();
+                Intent intent = new Intent(getApplicationContext(), ActivityShoppingList.class);
+                Bundle sendBundle = new Bundle();
+                sendBundle.putString("ITEM", transmittedItem);
+                sendBundle.putString("AMOUNT", transmittedAmount);
+                intent.putExtras(sendBundle);
+                startActivity(intent);
+            } else {
+                inputItem.setError("Bitte fügen Sie ein Item hinzu");
+                numItem.setError("die Anzahl darf nicht null sein");
+            }
+        });
+
+        builder.setNegativeButton("Abbrechen", (dialog, which) -> dialog.dismiss());
+        builder.show();
+
+        //return builder.create();
     }
 
     private void addItem(){
