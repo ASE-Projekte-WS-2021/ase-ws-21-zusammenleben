@@ -2,8 +2,6 @@ package Model;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -12,12 +10,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import Entities.Basket;
 import Entities.Flat;
 import Entities.ShoppingItem;
 import Presenter.BasketList.BasketListContract;
+import androidx.annotation.NonNull;
 
 public class BasketListModel implements BasketListContract.Model, BasketListContract.onBasketSuccessListener {
 
@@ -86,7 +86,7 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
                         String title = snap.getValue(Basket.class).getTitle();
                         String currentUser = snap.getValue(Basket.class).getCurrentUser();
                         String basketID = snap.getValue(Basket.class).getBasketID();
-                        ArrayList<ShoppingItem> shoppingList = snap.getValue(Basket.class).getList();
+                        HashMap<String, ShoppingItem> shoppingList = snap.getValue(Basket.class).getShoppingList();
                         Basket basket = new Basket(title, currentUser, flatID, basketID, shoppingList);
                         baskets.add(basket);
                     }

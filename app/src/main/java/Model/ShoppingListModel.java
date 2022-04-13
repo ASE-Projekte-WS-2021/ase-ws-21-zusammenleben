@@ -1,7 +1,5 @@
 package Model;
 
-import androidx.annotation.NonNull;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -10,10 +8,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import Entities.Basket;
 import Entities.ShoppingItem;
 import Presenter.ShoppingList.ShoppingListContract;
+import androidx.annotation.NonNull;
 
 public class ShoppingListModel implements ShoppingListContract.Model, ShoppingListContract.onShoppingSuccessListener {
 
@@ -23,7 +23,7 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
     private static final String FIREBASEPATH = "https://wgfinance-b594f-default-rtdb.europe-west1.firebasedatabase.app/";
     private static final String BASKETPATH = "Baskets";
     Basket retrievedBasket;
-    ArrayList<ShoppingItem> shoppingItems;
+    HashMap<ShoppingItem,String> shoppingItems;
 
     String shoppingItemId;
 
@@ -41,7 +41,7 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
                         String title = snap.getValue(Basket.class).getTitle();
                         String creator = snap.getValue(Basket.class).getCurrentUser();
                         String flatID = snap.getValue(Basket.class).getFlatID();
-                        ArrayList<ShoppingItem> shoppingItems = snap.getValue(Basket.class).getList();
+                        HashMap<String,ShoppingItem> shoppingItems = snap.getValue(Basket.class).getShoppingList();
                         retrievedBasket = new Basket(title, creator, flatID, basketID, shoppingItems);
                     }
                 }
@@ -65,7 +65,7 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
             @Override
             public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
 
-                DatabaseReference reference = refBasket.child(basketID).child("list").push();
+                DatabaseReference reference = refBasket.child(basketID).child("shoppingList").push();
                 String uniqueFirebaseID = reference.getKey();
                 item.setShoppingItemId(uniqueFirebaseID);
                 reference.setValue(item);

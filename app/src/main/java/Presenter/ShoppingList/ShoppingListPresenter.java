@@ -29,7 +29,7 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
 
     @Override
     public void addShoppingItem(String basketID, ShoppingItem item) {
-
+        shoppingListModel.addShoppingItemToFirebase(basketID, item);
     }
 
     @Override

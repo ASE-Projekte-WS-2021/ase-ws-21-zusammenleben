@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import Entities.Basket;
 import Entities.Flat;
@@ -52,9 +53,9 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
         currentUser = mail;
         String flat = flatID;
         String basketID = "";
-        ArrayList<ShoppingItem> shoppingItems = new ArrayList();
-        ShoppingItem item = new ShoppingItem();
-        shoppingItems.add(item);
+        HashMap<String, ShoppingItem> shoppingItems = new HashMap<>();
+        //ShoppingItem item = new ShoppingItem();
+        //shoppingItems.put("x", item);
         Basket basket = new Basket(day, currentUser, flat, basketID, shoppingItems);
         basketListModel.addBasketToFirebase(basket);
     }
