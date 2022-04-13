@@ -1,5 +1,6 @@
 package View.Before;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import Presenter.JoinFlat.JoinFlatContract;
 import Presenter.JoinFlat.JoinFlatPresenter;
+import View.After.ActivityOverview;
 
 public class JoinFlatActivity extends AppCompatActivity implements JoinFlatContract.View {
 
@@ -69,6 +71,8 @@ public class JoinFlatActivity extends AppCompatActivity implements JoinFlatContr
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 String currentUserEmail = currentUser.getEmail();
                 mJoinFlatPresenter.addUserToFlat(currentUserEmail, founder);
+                Intent i = new Intent(JoinFlatActivity.this, ActivityOverview.class);
+                startActivity(i);
             }
         });
     }

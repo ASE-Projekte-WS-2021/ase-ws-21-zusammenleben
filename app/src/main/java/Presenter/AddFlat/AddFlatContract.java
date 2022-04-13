@@ -9,8 +9,8 @@ import Entities.Flat;
 public interface AddFlatContract {
 
     interface View{
-        void onAddFlatSuccess();
-        void onAddFlatFailed();
+        void onAddFlatSuccess(String message);
+        void onAddFlatFailed(String message);
     }
 
     interface Presenter{

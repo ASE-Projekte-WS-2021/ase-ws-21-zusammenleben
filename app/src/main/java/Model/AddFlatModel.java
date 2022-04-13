@@ -46,11 +46,11 @@ public class AddFlatModel implements AddFlatContract.Model, AddFlatContract.onAd
 
     @Override
     public void onSuccess(String message) {
-
+        //mAddFlatView.onAddFlatSuccess(message);
     }
 
     @Override
     public void onFailure(String message) {
-
+        //mAddFlatView.onAddFlatFailed(message);
     }
 }

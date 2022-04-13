@@ -12,8 +12,8 @@ public class AddFlatPresenter implements AddFlatContract.Presenter, AddFlatContr
     private AddFlatContract.View mAddFlatView;
     private AddFlatModel mAddFlatModel;
 
-    public AddFlatPresenter(AddFlatContract.View addFlatView){
-        this.mAddFlatView = addFlatView;
+    public AddFlatPresenter(AddFlatContract.View mAddFlatView){
+        this.mAddFlatView = mAddFlatView;
         mAddFlatModel = new AddFlatModel(this);
     }
 
@@ -25,9 +25,11 @@ public class AddFlatPresenter implements AddFlatContract.Presenter, AddFlatContr
 
     @Override
     public void onSuccess(String message) {
+        mAddFlatView.onAddFlatSuccess(message);
     }
 
     @Override
     public void onFailure(String message) {
+        mAddFlatView.onAddFlatFailed(message);
     }
 }

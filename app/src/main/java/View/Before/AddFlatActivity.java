@@ -1,5 +1,6 @@
 package View.Before;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 import Presenter.AddFlat.AddFlatContract;
 import Presenter.AddFlat.AddFlatPresenter;
+import View.After.ActivityOverview;
 
 public class AddFlatActivity extends AppCompatActivity implements AddFlatContract.View, View.OnClickListener {
 
@@ -32,8 +34,8 @@ public class AddFlatActivity extends AppCompatActivity implements AddFlatContrac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupUIComponents();
-        mAddFlatPresenter = new AddFlatPresenter(this);
         btnCreateFlat.setOnClickListener(this);
+        mAddFlatPresenter = new AddFlatPresenter(this);
     }
 
     private void setupUIComponents(){
@@ -67,17 +69,21 @@ public class AddFlatActivity extends AppCompatActivity implements AddFlatContrac
 
         if(!TextUtils.isEmpty(id) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(size.getText().toString())){
             mAddFlatPresenter.addFlat(this, address, id, members, flatSize);
+            Intent i = new Intent(AddFlatActivity.this, ActivityOverview.class);
+            startActivity(i);
         } else {
             Toast.makeText(getApplicationContext(), "Your input was invalid", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
-    public void onAddFlatSuccess() {
+    public void onAddFlatSuccess(String message) {
+        Toast.makeText(getApplicationContext(), "Ihr WG wurde erfolgreich angelegt.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onAddFlatFailed() {
+    public void onAddFlatFailed(String message) {
+        Toast.makeText(getApplicationContext(), "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Toast.LENGTH_SHORT).show();
     }
 
 }
