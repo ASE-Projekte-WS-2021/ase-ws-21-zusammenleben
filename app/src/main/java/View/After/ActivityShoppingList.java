@@ -19,6 +19,7 @@ import Entities.Basket;
 import Entities.ShoppingItem;
 import Presenter.ShoppingList.ShoppingListContract;
 import Presenter.ShoppingList.ShoppingListPresenter;
+import Utils.RecyclerItemClickListener;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     //das sind die Inputfelder im dialog builder
     EditText inputItem, numItem;
     MaterialToolbar toolbar;
+    RecyclerView recyclerView;
 
     ArrayList<ArrayList<String>> items;
     ArrayList<String> itemIds;
@@ -56,7 +58,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
     private void setupUIComponents(){
         setContentView(R.layout.activity_shoppinglist);
-        listView = findViewById(R.id.list_view);
+        recyclerView = findViewById(R.id.list_view);
         //listViewNum = findViewById(R.id.list_view_num);
         toolbar = findViewById(R.id.topAppBar);
 
@@ -151,13 +153,16 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
     @Override
     public void onBasketItemRetrieved(Basket basket) {
+    }
 
-        //items = basketElements;
-        //itemIds = basketIDs;
+    @Override
+    public void onShoppingItemAdded(ArrayList<ArrayList<String>> shoppingItems, ArrayList<String> shoppingItemIDs) {
+        items = shoppingItems;
+        itemIds = shoppingItemIDs;
 
-        //Log.d("ids", ids.toString());
+        Log.d("ids", items.toString());
 
-    /*
+
         listView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(linearLayoutManager);
@@ -167,17 +172,17 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
             @Override
             public void onItemClick(View view, int position) {
             }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
         }));
-*/
-    }
-
-    @Override
-    public void onShoppingItemAdded(ShoppingItem item) {
 
     }
 
     @Override
-    public void onShoppingItemRetrieved(String basketID) {
+    public void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList) {
 
     }
 

@@ -1,5 +1,7 @@
 package Model;
 
+import android.util.Log;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +26,7 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
     private static final String BASKETPATH = "Baskets";
     Basket retrievedBasket;
     HashMap<ShoppingItem,String> shoppingItems;
+    ArrayList<ShoppingItem> shoppingList = new ArrayList<>();
 
     String shoppingItemId;
 
@@ -77,7 +80,24 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
 
     @Override
     public ArrayList<ShoppingItem> retrieveShoppingItemFromFirebase(String basketID) {
-        return null;
+        refBasket.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snap : dataSnapshot.getChildren()){
+                    if(snap.getValue(Basket.class).getFlatID().equals(basketID)){
+                        String itemName = snap.child("shoppingList").getValue(ShoppingItem.class).getItemName();
+                        int itemQuantity = snap.child("shoppingList").getValue(ShoppingItem.class).getItemQuantity();
+                        String shoppingItemID = snap.child("shoppingList").getValue(ShoppingItem.class).getShoppingItemId();
+                        ShoppingItem shoppingItem = new ShoppingItem(itemName, itemQuantity, shoppingItemID);
+                        shoppingList.add(shoppingItem);
+                    }
+                }
+                mOnShoppingSuccessListener.onShoppingItemRetrieved(shoppingList);
+                Log.d("debug6", "model ist fertig, ab zurück");
+                shoppingList.clear();
+            }
+        });
+        return shoppingList;
     }
 
     @Override
@@ -91,7 +111,7 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
     }
 
     @Override
-    public void onShoppingItemRetrieved(String basketID) {
+    public void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList) {
 
     }
 

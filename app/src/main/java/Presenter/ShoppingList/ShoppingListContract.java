@@ -9,7 +9,7 @@ public interface ShoppingListContract {
 
     interface View{
         void onBasketItemRetrieved(Basket basket);
-        void onShoppingItemAdded(ShoppingItem shoppingItemId);
+        void onShoppingItemAdded(ArrayList<ArrayList<String>> shoppingItems, ArrayList<String> shoppingItemIDs);
     }
 
     interface Presenter{
@@ -28,7 +28,7 @@ public interface ShoppingListContract {
 
     interface onShoppingSuccessListener{
         void onBasketItemRetrieved(Basket basket);
-        void onShoppingItemRetrieved(String shoppingItemId);
+        void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList);
         void onShoppingItemAdded(String shoppingItemId);
         void onShoppingListItemAltered (String shoppingItemId);
     }
