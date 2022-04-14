@@ -3,6 +3,8 @@ package View.After;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -20,6 +22,8 @@ public class ActivityUserProfile extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     MaterialToolbar toolbar;
+    Button btnleaving, btninvite;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,9 @@ public class ActivityUserProfile extends AppCompatActivity {
 
     private void setupUIComponents(){
         setContentView(R.layout.activity_userprofile);
+        btnleaving = findViewById(R.id.btn_leaving);
+        btninvite = findViewById(R.id.btn_invite);
+        imageView = findViewById(R.id.headeruser);
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.wg);
         toolbar = findViewById(R.id.topAppBar);

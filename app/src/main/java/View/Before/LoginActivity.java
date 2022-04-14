@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -72,14 +73,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void checkLoginDetails(){
-        if(!TextUtils.isEmpty(loginEmail.getText().toString()) && !TextUtils.isEmpty(loginPassword.getText().toString())){
+        if (!Patterns.EMAIL_ADDRESS.matcher(loginEmail.getText().toString()).matches() || TextUtils.isEmpty(loginEmail.getText().toString())){
+            loginEmail.setError("Bitte geben Sie ihre korrekte E-Mail an.");
+            loginEmail.setFocusable(true);
+        } else if (TextUtils.isEmpty(loginPassword.getText().toString())){
+            loginPassword.setError("Bitte geben Sie ihr Passwort korrekt an.");
+            loginPassword.setFocusable(true);
+        } else {
+            initLogin(loginEmail.getText().toString(), loginPassword.getText().toString());
+        }
+
+        /*if(!TextUtils.isEmpty(loginEmail.getText().toString()) && !TextUtils.isEmpty(loginPassword.getText().toString())){
             initLogin(loginEmail.getText().toString(), loginPassword.getText().toString());
         } else {
-            loginEmail.setError("Bitte geben Sie eine gültige E-Mail an.");
+            loginPassword.setError("Bitte geben Sie ihr Passwort korrekt an.");
             loginEmail.setFocusable(true);
             loginPassword.setError("Bitte geben Sie ihr Passwort korrekt an.");
             loginPassword.setFocusable(true);
-        }
+            Toast.makeText(getApplicationContext(), "Bitte füllen Sie alle Pflichtfelder aus!", Toast.LENGTH_SHORT).show();
+        }*/
     }
 
     private void initLogin(String email, String password){
