@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import Entities.Basket;
 import Entities.ShoppingItem;
@@ -34,6 +35,7 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
         this.mOnShoppingSuccessListener = onShoppingSuccessListener;
     }
 
+
     @Override
     public Basket retrieveBasketItemFromFirebase(String basketID) {
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -50,6 +52,7 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
                 }
 
                 mOnShoppingSuccessListener.onBasketItemRetrieved(retrievedBasket);
+                Log.d("rutsche3", retrievedBasket.toString());
             }
 
             @Override
@@ -80,21 +83,27 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
 
     @Override
     public ArrayList<ShoppingItem> retrieveShoppingItemFromFirebase(String basketID) {
+        Log.d("rutscheCheck", basketID);
         refBasket.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snap : dataSnapshot.getChildren()){
-                    if(snap.getValue(Basket.class).getFlatID().equals(basketID)){
-                        String itemName = snap.child("shoppingList").getValue(ShoppingItem.class).getItemName();
-                        int itemQuantity = snap.child("shoppingList").getValue(ShoppingItem.class).getItemQuantity();
-                        String shoppingItemID = snap.child("shoppingList").getValue(ShoppingItem.class).getShoppingItemId();
-                        ShoppingItem shoppingItem = new ShoppingItem(itemName, itemQuantity, shoppingItemID);
-                        shoppingList.add(shoppingItem);
+                    if(snap.getValue(Basket.class).getBasketID().equals(basketID)){
+                        HashMap<String, ShoppingItem> item = (HashMap<String, ShoppingItem>) snap.child("shoppingList").getValue();
+                        for(Map.Entry<String, ShoppingItem> e : item.entrySet()) {
+                            String shoppingItemID = e.getKey();
+                            Log.d("rutscheCheck2", item.toString());
+                            //String itemName = snap.child("shoppingList").getValue(ShoppingItem.class).getItemName();
+                            //int itemQuantity = snap.child("shoppingList").getValue(ShoppingItem.class).getItemQuantity();
+                            //String shoppingItemID = snap.child("shoppingList").getValue(ShoppingItem.class).getShoppingItemId();
+                            //ShoppingItem shoppingItem = new ShoppingItem(itemName, itemQuantity, shoppingItemID);
+                            //shoppingList.add(shoppingItem);
+                        }
                     }
                 }
+                Log.d("rutsche5", shoppingList.toString());
                 mOnShoppingSuccessListener.onShoppingItemRetrieved(shoppingList);
-                Log.d("debug6", "model ist fertig, ab zurück");
-                shoppingList.clear();
+                //shoppingList.clear();
             }
         });
         return shoppingList;

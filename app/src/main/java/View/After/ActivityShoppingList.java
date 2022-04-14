@@ -72,6 +72,8 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         super.onResume();
         unpackIntentData();
         handleToolBarInteraction();
+        shoppingListPresenter.retrieveBasketItem(basketID);
+        Log.d("Rutsche1", basketID);
     }
 
     private void handleToolBarInteraction(){
@@ -135,7 +137,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     }
 
     private void addItem(){
-        Log.d("Debug5", transmittedAmount);
 
         ShoppingItem item = new ShoppingItem(transmittedItem, Integer.parseInt(transmittedAmount), "0");
         shoppingListPresenter.addShoppingItem(basketID, item);
@@ -160,7 +161,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         items = shoppingItems;
         itemIds = shoppingItemIDs;
 
-        Log.d("ids", items.toString());
 
 
         listView.setHasFixedSize(true);

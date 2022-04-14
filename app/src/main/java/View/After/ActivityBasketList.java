@@ -65,7 +65,6 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         }
         mBasketListPresenter.retrieveFlat(currentUserEmail);
 
-        Log.d("debug1", "View führt Anfrage aus");
     }
 
     private void getCurrentUserEmail(){
@@ -89,9 +88,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
     @Override
     public void onFlatFound(Flat flat) {
         currentFlat = flat;
-        Log.d("debug2", "hier ist die flat ID angekommen");
         mBasketListPresenter.retrieveBaskets(currentFlat.getId());
-        Log.d("debug3", "jetzt gehts los mit den baskets");
         onButtonClicked();
     }
 
@@ -103,7 +100,6 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         baskets = basketElements;
         ids = basketIDs;
 
-        Log.d("ids", ids.toString());
 
 
         recyclerView.setHasFixedSize(true);

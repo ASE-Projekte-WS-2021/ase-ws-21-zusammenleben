@@ -1,7 +1,5 @@
 package Model;
 
-import android.util.Log;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -77,7 +75,6 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
 
     @Override
     public ArrayList<Basket> retrieveBasketsFromFirebase(String flatID) {
-        Log.d("debug5", "model fängt an zu werkeln...");
         refBasket.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
@@ -92,7 +89,6 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
                     }
                 }
                 mOnBasketSuccessListener.onBasketsRetrieved(baskets);
-                Log.d("debug6", "model ist fertig, ab zurück");
                 baskets.clear();
             }
         });
