@@ -160,8 +160,9 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     public void onShoppingItemAdded(ArrayList<ArrayList<String>> shoppingItems, ArrayList<String> shoppingItemIDs) {
         items = shoppingItems;
         itemIds = shoppingItemIDs;
+        Log.d("Recycler", items.toString());
 
-
+        //NULL Pointer here. Needs to be fixed!
 
         listView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);

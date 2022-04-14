@@ -26,7 +26,7 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
     private static final String FIREBASEPATH = "https://wgfinance-b594f-default-rtdb.europe-west1.firebasedatabase.app/";
     private static final String BASKETPATH = "Baskets";
     Basket retrievedBasket;
-    HashMap<ShoppingItem,String> shoppingItems;
+    HashMap<String, ShoppingItem> shoppingItems = new HashMap<>();
     ArrayList<ShoppingItem> shoppingList = new ArrayList<>();
 
     String shoppingItemId;
@@ -89,15 +89,19 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
             public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snap : dataSnapshot.getChildren()){
                     if(snap.getValue(Basket.class).getBasketID().equals(basketID)){
-                        HashMap<String, ShoppingItem> item = (HashMap<String, ShoppingItem>) snap.child("shoppingList").getValue();
-                        for(Map.Entry<String, ShoppingItem> e : item.entrySet()) {
+                        shoppingItems = (HashMap<String, ShoppingItem>) snap.child("shoppingList").getValue();
+                        Log.d("rutscheCheck1", shoppingItems.toString());
+                        for(Map.Entry<String, ShoppingItem> e : shoppingItems.entrySet()) {
+                            Log.d("rutscheCheck1.5", e.toString());
                             String shoppingItemID = e.getKey();
-                            Log.d("rutscheCheck2", item.toString());
-                            //String itemName = snap.child("shoppingList").getValue(ShoppingItem.class).getItemName();
-                            //int itemQuantity = snap.child("shoppingList").getValue(ShoppingItem.class).getItemQuantity();
+                            Log.d("rutscheCheck2",shoppingItemID.toString());
+                            String x = snap.child("shoppingList").child(shoppingItemID).getValue().toString();
+                            Log.d("rutscheX", x);
+                            String itemName = snap.child("shoppingList").child(shoppingItemID).getValue(ShoppingItem.class).getItemName();
+                            int itemQuantity = snap.child("shoppingList").child(shoppingItemID).getValue(ShoppingItem.class).getItemQuantity();
                             //String shoppingItemID = snap.child("shoppingList").getValue(ShoppingItem.class).getShoppingItemId();
-                            //ShoppingItem shoppingItem = new ShoppingItem(itemName, itemQuantity, shoppingItemID);
-                            //shoppingList.add(shoppingItem);
+                            ShoppingItem shoppingItem = new ShoppingItem(itemName, itemQuantity, shoppingItemID);
+                            shoppingList.add(shoppingItem);
                         }
                     }
                 }

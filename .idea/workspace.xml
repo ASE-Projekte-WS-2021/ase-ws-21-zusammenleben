@@ -17,16 +17,11 @@
     <list default="true" id="5466acb4-0a8d-44d3-9aed-16ddf343a907" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/apk/debug/app-debug.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/2/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/2/classes.dex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/3/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/3/classes.dex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/5/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/5/classes.dex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Model/BasketListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Model/BasketListModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Model/ShoppingListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Model/ShoppingListModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/BasketList/BasketListPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/BasketList/BasketListPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenter/ShoppingList/ShoppingListPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenter/ShoppingList/ShoppingListPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityBasketList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityBasketList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityShoppingList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/After/ActivityShoppingList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -460,7 +455,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649894716053</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Progress ShoppingList Items in Firebase.V.3. RecyclerView InProgress">
+      <created>1649944488760</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1649944488760</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -485,6 +487,7 @@
     <MESSAGE value="Progress ShoppingList V.1. Bug hat Dialog Hanlder" />
     <MESSAGE value="Progress ShoppingList Items in Firebase.V.1. Noch keine Recyclerview Anzeige" />
     <MESSAGE value="Progress ShoppingList Items in Firebase.V.2. RecyclerView InProgress" />
-    <option name="LAST_COMMIT_MESSAGE" value="Progress ShoppingList Items in Firebase.V.2. RecyclerView InProgress" />
+    <MESSAGE value="Progress ShoppingList Items in Firebase.V.3. RecyclerView InProgress" />
+    <option name="LAST_COMMIT_MESSAGE" value="Progress ShoppingList Items in Firebase.V.3. RecyclerView InProgress" />
   </component>
 </project>
