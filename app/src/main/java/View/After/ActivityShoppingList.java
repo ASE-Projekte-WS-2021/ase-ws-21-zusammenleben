@@ -38,10 +38,10 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     //das sind die Inputfelder im dialog builder
     EditText inputItem, numItem;
     MaterialToolbar toolbar;
-    RecyclerView recyclerView;
 
     ArrayList<ArrayList<String>> items;
     ArrayList<String> itemIds;
+    RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
     ShoppingItemAdapter mItemsAdapter;
 
@@ -60,6 +60,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         setContentView(R.layout.activity_shoppinglist);
         recyclerView = findViewById(R.id.list_view);
         //listViewNum = findViewById(R.id.list_view_num);
+        Log.d("recyclertest", recyclerView.toString());
         toolbar = findViewById(R.id.topAppBar);
 
         ActionBar actionBar = getSupportActionBar();
@@ -72,7 +73,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         super.onResume();
         unpackIntentData();
         handleToolBarInteraction();
-        shoppingListPresenter.retrieveBasketItem(basketID);
         Log.d("Rutsche1", basketID);
     }
 
@@ -164,12 +164,12 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
         //NULL Pointer here. Needs to be fixed!
 
-        listView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
-        listView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(linearLayoutManager);
         mItemsAdapter = new ShoppingItemAdapter(this, items);
-        listView.setAdapter(mItemsAdapter);
-        listView.addOnItemTouchListener(new RecyclerItemClickListener(this, listView, new RecyclerItemClickListener.OnItemClickListener() {
+        recyclerView.setAdapter(mItemsAdapter);
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
             }

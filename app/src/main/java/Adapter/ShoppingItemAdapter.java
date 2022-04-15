@@ -6,12 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapter.MyViewHolder>{
 
@@ -28,7 +28,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     @Override
     public ShoppingItemAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shoppinglist_layout, parent, false);
-        ShoppingItemAdapter.MyViewHolder myViewHolder = new ShoppingItemAdapter.MyViewHolder(view);
+        MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
     }
 
@@ -52,5 +52,4 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
             shoppingItemAmount = itemView.findViewById(R.id.shoppingItemAmount);
         }
     }
-
 }
