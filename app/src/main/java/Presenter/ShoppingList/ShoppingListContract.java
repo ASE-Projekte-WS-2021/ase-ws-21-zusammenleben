@@ -31,6 +31,7 @@ public interface ShoppingListContract {
         void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList);
         void onShoppingItemAdded(String shoppingItemId);
         void onShoppingListItemAltered (String shoppingItemId);
+        void onShoppingItemDeleted (ShoppingItem item);
     }
 }
 

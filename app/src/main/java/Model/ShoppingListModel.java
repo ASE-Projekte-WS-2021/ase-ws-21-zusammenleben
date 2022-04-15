@@ -2,6 +2,8 @@ package Model;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,7 +18,6 @@ import java.util.Map;
 import Entities.Basket;
 import Entities.ShoppingItem;
 import Presenter.ShoppingList.ShoppingListContract;
-import androidx.annotation.NonNull;
 
 public class ShoppingListModel implements ShoppingListContract.Model, ShoppingListContract.onShoppingSuccessListener {
 
@@ -63,7 +64,7 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
         refBasket.addValueEventListener(valueEventListener);
         return retrievedBasket;
     }
-
+    //die selbe methode ist doch in zeile 133
     @Override
     public void addShoppingItemToFirebase(String basketID, ShoppingItem item) {
 
@@ -112,17 +113,17 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
         });
         return shoppingList;
     }
-
+    //NEW
     @Override
-    public void deleteItemFromFirebase(String itemID) {
-
+    public void deleteItemFromFirebase(String shoppingItemId) {
+        refBasket.child(shoppingItemId).removeValue();
     }
 
     @Override
     public void onBasketItemRetrieved(Basket basket) {
 
     }
-
+    // die Methode haben wir doch schon in Zeile 86
     @Override
     public void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList) {
 
@@ -135,6 +136,11 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
 
     @Override
     public void onShoppingListItemAltered(String itemID) {
+
+    }
+
+    @Override
+    public void onShoppingItemDeleted(ShoppingItem item) {
 
     }
 }

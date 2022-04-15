@@ -9,6 +9,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.myapplication.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -20,12 +27,6 @@ import Entities.ShoppingItem;
 import Presenter.ShoppingList.ShoppingListContract;
 import Presenter.ShoppingList.ShoppingListPresenter;
 import Utils.RecyclerItemClickListener;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class ActivityShoppingList extends AppCompatActivity implements ShoppingListContract.View, ShoppingListContract.onShoppingSuccessListener {
 
@@ -144,6 +145,10 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
     private void checkForEmptyList(){
         // todo
+        // warum brauchen wir das ?
+        if (items.isEmpty()){
+            // dann mach irgendwas
+        }
     }
 
     private void unpackIntentData(){
@@ -172,11 +177,29 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         listView.addOnItemTouchListener(new RecyclerItemClickListener(this, listView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+
             }
 
             @Override
             public void onLongItemClick(View view, int position) {
+               /* PopupMenu popupMenu = new PopupMenu(ActivityShoppingList.this, view);
+                popupMenu.getMenuInflater().inflate(R.menu.pop_up_menu, popupMenu.getMenu());
 
+                popupMenu.setOnMenuItemClickListener(itemIds -> {
+                    switch (itemIds.getItemId()){
+                        case R.id.item_update:
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this);
+                            View dialogOnUpdate = LayoutInflater.from(ActivityShoppingList.this).inflate(R.layout.layout_item_dialog, null, false);
+                            builder.setTitle("Update Item");
+                            final EditText inputItem = dialogOnUpdate.findViewById(R.id.inputItem);
+                            inputItem.setText(itemIds.get(position));
+                            final EditText costItem= dialogOnUpdate.findViewById(R.id.costItem);
+                            costItem.setText(listcosts.get(position));
+
+                            builder.setView(dialogOnUpdate);
+                    }
+                    return Boolean.parseBoolean(null);
+                });*/
             }
         }));
 
@@ -186,7 +209,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     public void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList) {
 
     }
-
+ // das haben wir doch schon in zeile 162
     @Override
     public void onShoppingItemAdded(String basketID) {
 
@@ -194,6 +217,11 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
     @Override
     public void onShoppingListItemAltered(String itemID) {
+
+    }
+
+    @Override
+    public void onShoppingItemDeleted(ShoppingItem item) {
 
     }
 }

@@ -2,6 +2,8 @@ package Presenter.BasketList;
 
 import android.os.Build;
 
+import androidx.annotation.RequiresApi;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +12,6 @@ import Entities.Basket;
 import Entities.Flat;
 import Entities.ShoppingItem;
 import Model.BasketListModel;
-import androidx.annotation.RequiresApi;
 
 public class BasketListPresenter implements BasketListContract.Presenter, BasketListContract.onBasketSuccessListener{
 
@@ -109,7 +110,5 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
     @Override
     public void retrieveBaskets(String id){
         baskets = basketListModel.retrieveBasketsFromFirebase(currentUserFlat.getId());
-
-
     }
 }

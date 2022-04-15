@@ -1,5 +1,7 @@
 package Model;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,7 +17,6 @@ import Entities.Basket;
 import Entities.Flat;
 import Entities.ShoppingItem;
 import Presenter.BasketList.BasketListContract;
-import androidx.annotation.NonNull;
 
 public class BasketListModel implements BasketListContract.Model, BasketListContract.onBasketSuccessListener {
 
@@ -107,6 +108,8 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
 
     @Override
     public void onBasketsRetrieved(ArrayList<Basket> baskets) {
-
+        //ist das nicht das was in Zeile 78 schon steht ?
     }
+
+    //public void onBasketDelete (){} todo
 }

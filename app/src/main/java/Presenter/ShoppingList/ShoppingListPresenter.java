@@ -74,4 +74,9 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
     public void onShoppingListItemAltered(String itemID) {
 
     }
+
+    @Override
+    public void onShoppingItemDeleted(ShoppingItem item) {
+
+    }
 }
