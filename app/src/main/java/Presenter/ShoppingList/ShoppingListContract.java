@@ -16,14 +16,14 @@ public interface ShoppingListContract {
         void retrieveBasketItem(String basketID);
         void onBasketItemRetrieved(Basket basket);
         void addShoppingItem(String basketID, ShoppingItem shoppingItemId);
-        void deleteShoppingListItem (String shoppingItemId);
+        void deleteShoppingListItem (String shoppingItemId, String basketId);
     }
 
     interface Model{
         Basket retrieveBasketItemFromFirebase(String basketID);
         void addShoppingItemToFirebase(String basketID, ShoppingItem shoppingItemId);
         ArrayList<ShoppingItem> retrieveShoppingItemFromFirebase(String shoppingItemId);
-        void deleteItemFromFirebase (String shoppingItemId);
+        void deleteItemFromFirebase (String shoppingItemId, String basketId);
     }
 
     interface onShoppingSuccessListener{

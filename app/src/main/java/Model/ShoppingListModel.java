@@ -1,9 +1,5 @@
 package Model;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,6 +14,7 @@ import java.util.Map;
 import Entities.Basket;
 import Entities.ShoppingItem;
 import Presenter.ShoppingList.ShoppingListContract;
+import androidx.annotation.NonNull;
 
 public class ShoppingListModel implements ShoppingListContract.Model, ShoppingListContract.onShoppingSuccessListener {
 
@@ -53,7 +50,6 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
                 }
 
                 mOnShoppingSuccessListener.onBasketItemRetrieved(retrievedBasket);
-                Log.d("rutsche3", retrievedBasket.toString());
             }
 
             @Override
@@ -99,17 +95,16 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
                         }
                     }
                 }
-                Log.d("rutsche5", shoppingList.toString());
                 mOnShoppingSuccessListener.onShoppingItemRetrieved(shoppingList);
                 shoppingList.clear();
             }
         });
         return shoppingList;
     }
-    //NEW
+
     @Override
-    public void deleteItemFromFirebase(String shoppingItemId) {
-        refBasket.child(shoppingItemId).removeValue();
+    public void deleteItemFromFirebase(String itemId, String basketId) {
+        refBasket.child(basketId).child("shoppingList").child(itemId).removeValue();
     }
 
     @Override

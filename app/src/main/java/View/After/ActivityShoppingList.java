@@ -9,13 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.myapplication.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -26,14 +19,20 @@ import Entities.Basket;
 import Entities.ShoppingItem;
 import Presenter.ShoppingList.ShoppingListContract;
 import Presenter.ShoppingList.ShoppingListPresenter;
+import Utils.DialogListener;
 import Utils.RecyclerItemClickListener;
+import Utils.ShoppingItemDialog;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class ActivityShoppingList extends AppCompatActivity implements ShoppingListContract.View, ShoppingListContract.onShoppingSuccessListener {
+public class ActivityShoppingList extends AppCompatActivity implements ShoppingListContract.View, ShoppingListContract.onShoppingSuccessListener, DialogListener {
 
     private ShoppingListPresenter shoppingListPresenter;
     String basketID;
-    //die Listen in denen die Items eingefügt werden
-    RecyclerView listView;
     //beim checkout wird der name des Baskets angezeigt ohne dass ich ihn verändern kann
     TextView inputCheckoutName;
     //das sind die Inputfelder im dialog builder
@@ -48,7 +47,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
     String transmittedItem, transmittedAmount;
 
-    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -60,8 +58,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     private void setupUIComponents(){
         setContentView(R.layout.activity_shoppinglist);
         recyclerView = findViewById(R.id.list_view);
-        //listViewNum = findViewById(R.id.list_view_num);
-        Log.d("recyclertest", recyclerView.toString());
         toolbar = findViewById(R.id.topAppBar);
 
         ActionBar actionBar = getSupportActionBar();
@@ -74,7 +70,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         super.onResume();
         unpackIntentData();
         handleToolBarInteraction();
-        Log.d("Rutsche1", basketID);
     }
 
     private void handleToolBarInteraction(){
@@ -165,9 +160,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     public void onShoppingItemAdded(ArrayList<ArrayList<String>> shoppingItems, ArrayList<String> shoppingItemIDs) {
         items = shoppingItems;
         itemIds = shoppingItemIDs;
-        Log.d("Recycler", items.toString());
-
-        //NULL Pointer here. Needs to be fixed!
 
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
@@ -182,6 +174,16 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
             @Override
             public void onLongItemClick(View view, int position) {
+
+                //Ferdis Code --> Delete funktioniert und auf diese Weise besitzt man eine ausgelagerte Diaglog Klasse
+
+                String sendData = items.get(position).toString();
+                String sendId = itemIds.get(position).toString();
+                handleItemDialog(sendId);
+
+
+               //
+
                /* PopupMenu popupMenu = new PopupMenu(ActivityShoppingList.this, view);
                 popupMenu.getMenuInflater().inflate(R.menu.pop_up_menu, popupMenu.getMenu());
 
@@ -203,6 +205,23 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
             }
         }));
 
+    }
+
+    private void handleItemDialog(String itemId){
+        ShoppingItemDialog shoppingItemDialog = new ShoppingItemDialog();
+        Bundle bundle = new Bundle();
+        bundle.putString("ITEMID", itemId);
+        shoppingItemDialog.setArguments(bundle);
+        shoppingItemDialog.show(getSupportFragmentManager(), "itemDialog");
+    }
+
+    @Override
+    public void onReturnValue(String itemId) {
+        shoppingListPresenter.deleteShoppingListItem(itemId, basketID);
+        finish();
+        overridePendingTransition(0,0);
+        startActivity(getIntent());
+        overridePendingTransition(0,0);
     }
 
     @Override

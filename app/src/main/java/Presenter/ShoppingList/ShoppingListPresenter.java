@@ -1,7 +1,5 @@
 package Presenter.ShoppingList;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 import Entities.Basket;
@@ -26,30 +24,27 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
     @Override
     public void retrieveBasketItem(String basketID) {
         shoppingListModel.retrieveBasketItemFromFirebase(basketID);
-        Log.d("rutsche2", "Presenter To Model");
     }
-    ///////
+
     @Override
     public void onBasketItemRetrieved(Basket basket) {
         retrievedBasket = basket;
-        Log.d("rutsche4", retrievedBasket.toString());
         shoppingListModel.retrieveShoppingItemFromFirebase(basket.getBasketID());
     }
-    ///////
+
     @Override
     public void addShoppingItem(String basketID, ShoppingItem item) {
         shoppingListModel.addShoppingItemToFirebase(basketID, item);
     }
 
     @Override
-    public void deleteShoppingListItem(String itemID) {
-
+    public void deleteShoppingListItem(String itemID, String basketID) {
+        shoppingListModel.deleteItemFromFirebase(itemID, basketID);
     }
 
 
     @Override
     public void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList) {
-        Log.d("rutsche6", shoppingList.toString());
         for(int i = 0 ; i < shoppingList.size() ; i++){
             String itemName = shoppingList.get(i).getItemName();
             String itemQuantity = String.valueOf(shoppingList.get(i).getItemQuantity());
@@ -57,11 +52,9 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
             ArrayList<String> shoppingItem = new ArrayList<>();
             shoppingItem.add(itemName);
             shoppingItem.add(itemQuantity);
-            Log.d("rutscheCheck3", shoppingItem.toString());
             shoppingItemIDs.add(shoppingItemID);
             shoppingItems.add(shoppingItem);
         }
-        Log.d("rutsche7", shoppingItems.toString());
         shoppingListView.onShoppingItemAdded(shoppingItems, shoppingItemIDs);
     }
 
