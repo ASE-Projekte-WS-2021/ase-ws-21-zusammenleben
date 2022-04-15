@@ -84,23 +84,16 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
 
     @Override
     public ArrayList<ShoppingItem> retrieveShoppingItemFromFirebase(String basketID) {
-        Log.d("rutscheCheck", basketID);
         refBasket.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snap : dataSnapshot.getChildren()){
                     if(snap.getValue(Basket.class).getBasketID().equals(basketID)){
                         shoppingItems = (HashMap<String, ShoppingItem>) snap.child("shoppingList").getValue();
-                        Log.d("rutscheCheck1", shoppingItems.toString());
                         for(Map.Entry<String, ShoppingItem> e : shoppingItems.entrySet()) {
-                            Log.d("rutscheCheck1.5", e.toString());
                             String shoppingItemID = e.getKey();
-                            Log.d("rutscheCheck2",shoppingItemID.toString());
-                            String x = snap.child("shoppingList").child(shoppingItemID).getValue().toString();
-                            Log.d("rutscheX", x);
                             String itemName = snap.child("shoppingList").child(shoppingItemID).getValue(ShoppingItem.class).getItemName();
                             int itemQuantity = snap.child("shoppingList").child(shoppingItemID).getValue(ShoppingItem.class).getItemQuantity();
-                            //String shoppingItemID = snap.child("shoppingList").getValue(ShoppingItem.class).getShoppingItemId();
                             ShoppingItem shoppingItem = new ShoppingItem(itemName, itemQuantity, shoppingItemID);
                             shoppingList.add(shoppingItem);
                         }
@@ -108,7 +101,7 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
                 }
                 Log.d("rutsche5", shoppingList.toString());
                 mOnShoppingSuccessListener.onShoppingItemRetrieved(shoppingList);
-                //shoppingList.clear();
+                shoppingList.clear();
             }
         });
         return shoppingList;

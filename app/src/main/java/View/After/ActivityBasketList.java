@@ -99,8 +99,9 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
     public void onBasketItemFound(ArrayList<ArrayList<String>> basketElements, ArrayList<String> basketIDs) {
         baskets = basketElements;
         ids = basketIDs;
+        Log.d("RecyclerTest", basketElements.toString());
 
-
+        Log.d("RecyclerTest", recyclerView.toString());
 
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
