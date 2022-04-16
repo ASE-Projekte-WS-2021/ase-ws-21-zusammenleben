@@ -92,9 +92,6 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         onButtonClicked();
     }
 
-
-
-    /////
     @Override
     public void onBasketItemFound(ArrayList<ArrayList<String>> basketElements, ArrayList<String> basketIDs) {
         baskets = basketElements;
@@ -127,7 +124,6 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         }));
     }
 
-    ////
 
     @Override
     public void startIntent() {

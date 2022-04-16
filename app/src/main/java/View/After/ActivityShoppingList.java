@@ -2,7 +2,6 @@ package View.After;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -72,27 +71,31 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         handleToolBarInteraction();
     }
 
-    private void handleToolBarInteraction(){
+    private void handleToolBarInteraction() {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ActivityBasketList.class);
                 finish();
-                overridePendingTransition(0,0);
+                overridePendingTransition(0, 0);
                 startActivity(intent);
-                overridePendingTransition(0,0);
+                overridePendingTransition(0, 0);
             }
         });
-
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-
-                handleAddItemDialog();
-                return false;
+                switch (item.getItemId()) {
+                    case R.id.add_item:
+                        handleAddItemDialog();
+                        break;
+                    case R.id.checkout_item:
+                        checkForEmptyList();
+                        break;
+                }
+                return true;
             }
         });
-
     }
 
     //TODO: Dialog auslagern
@@ -139,10 +142,12 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     }
 
     private void checkForEmptyList(){
-        // todo
-        // warum brauchen wir das ?
-        if (items.isEmpty()){
-            // dann mach irgendwas
+        if (items.isEmpty()) {
+            //todo: Toast anlegen
+            return;
+        }
+        else{
+
         }
     }
 
