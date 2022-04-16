@@ -3603,6 +3603,7 @@ string txtview_subject
 string txtview_totalAmount
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
+style AlertDialogStyle
 style AndroidThemeColorAccentYellow
 style Animation_AppCompat_Dialog
 style Animation_AppCompat_DropDownUp

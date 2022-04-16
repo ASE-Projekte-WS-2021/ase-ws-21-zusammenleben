@@ -3602,6 +3602,7 @@ int string txtview_subject 0x7f1000d1
 int string txtview_totalAmount 0x7f1000d2
 int style AlertDialog_AppCompat 0x7f110000
 int style AlertDialog_AppCompat_Light 0x7f110001
+int style AlertDialogStyle 0x7f110400
 int style AndroidThemeColorAccentYellow 0x7f110002
 int style Animation_AppCompat_Dialog 0x7f110003
 int style Animation_AppCompat_DropDownUp 0x7f110004

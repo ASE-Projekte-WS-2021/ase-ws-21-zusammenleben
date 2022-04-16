@@ -9,11 +9,13 @@ import android.os.Bundle;
 import View.After.ActivityPaymentOverview;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.example.myapplication.R;
+
 public class PaymentDialog extends AppCompatDialogFragment implements DialogListener{
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle);
         builder.setTitle("Zahlung Bearbeiten")
                 .setMessage("Bearbeite oder Lösche eine Zahlung")
                 .setPositiveButton("Bearbeiten", new DialogInterface.OnClickListener() {

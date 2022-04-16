@@ -10115,6 +10115,11 @@
         <item name="colorPrimary">@color/ButtonColor</item>
         <item name="colorOnPrimary">@color/ButtonColor</item>
         <item name="android:statusBarColor">@color/black</item>
+    </style><style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">@color/TextFontColor</item>
+        <item name="colorPrimary">@color/TextFontColor</item>
+        <item name="colorOnPrimary">@color/TextFontColor</item>
+        <item name="android:fontFamily">@font/latoregular</item>
     </style></file><file path="C:\Users\jonas\AndroidStudioProjects\ase-ws-21-zusammenleben\app\src\main\res\values\themes.xml" qualifiers=""><style name="Theme.WGFinance" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         
         <item name="colorPrimary">@color/ButtonColor</item>

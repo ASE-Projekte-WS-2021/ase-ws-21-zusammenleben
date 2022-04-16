@@ -10,11 +10,13 @@ import View.After.ActivityPaymentOverview;
 import View.After.ActivityShoppingList;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.example.myapplication.R;
+
 public class BasketDialog extends AppCompatDialogFragment implements DialogListener{
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle);
         builder.setTitle("Einkauf bearbeiten")
                 .setMessage("Bearbeite oder lösche einen Einkauf")
                 .setPositiveButton("Bearbeiten", new DialogInterface.OnClickListener() {

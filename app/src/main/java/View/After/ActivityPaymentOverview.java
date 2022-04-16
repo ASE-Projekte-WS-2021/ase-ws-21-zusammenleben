@@ -158,7 +158,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         selectMembers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                builder = new AlertDialog.Builder(ActivityPaymentOverview.this);
+                builder = new AlertDialog.Builder(ActivityPaymentOverview.this, R.style.AlertDialogStyle);
                 builder.setTitle(dialogTitle);
                 builder.setCancelable(false);
                 builder.setMultiChoiceItems(retrievedMemberNames, retrievedSelectedMembers, new DialogInterface.OnMultiChoiceClickListener() {
@@ -181,7 +181,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
     }
 
     private void setPositiveButton(){
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Ausführen", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 StringBuilder stringBuilder = new StringBuilder();
@@ -197,7 +197,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
     }
 
     private void setNegativeButton(){
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
@@ -206,7 +206,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
     }
 
     private void setNeutralButton(){
-        builder.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
+        builder.setNeutralButton("Auswahl aufheben", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 for (int j = 0 ; j < retrievedSelectedMembers.length ; j++){

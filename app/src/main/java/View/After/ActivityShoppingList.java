@@ -133,7 +133,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
 
     private void handleAddItemDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this, R.style.AlertDialogStyle);
         builder.setTitle("Neues Item hinzufügen");
 
         View dialogLayout = LayoutInflater.from(ActivityShoppingList.this).inflate(R.layout.layout_item_dialog, null, false);
