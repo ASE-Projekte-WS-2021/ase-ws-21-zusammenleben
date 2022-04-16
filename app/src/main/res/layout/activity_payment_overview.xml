@@ -110,7 +110,7 @@
         android:ems="10"
         android:fontFamily="@font/latoregular"
         android:hint="@string/hint_value"
-        android:inputType="text"
+        android:inputType="number"
         android:minHeight="48dp"
         android:textColorHint="@color/TextFontColor"
         android:textSize="24sp"
@@ -160,7 +160,7 @@
         app:layout_constraintVertical_bias="0.446" />
 
 
-        <TextView
+        <!--<TextView
             android:id="@+id/costs_overview"
             android:layout_width="91dp"
             android:layout_height="52dp"
@@ -176,7 +176,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.163"
-            app:drawableRightCompat="@drawable/ic_baseline_attach_money_24" />
+            app:drawableRightCompat="@drawable/ic_baseline_attach_money_24" />-->
 
     <TextView
         android:id="@+id/select_mates"
@@ -193,20 +193,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.525"
         app:drawableEndCompat="@android:drawable/arrow_down_float" />
-
-
-        <TextView
-            android:id="@+id/show_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:text="Email"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/header"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

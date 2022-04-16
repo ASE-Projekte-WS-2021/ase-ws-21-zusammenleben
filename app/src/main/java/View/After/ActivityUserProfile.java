@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,8 @@ public class ActivityUserProfile extends AppCompatActivity implements UserProfil
     MaterialToolbar toolbar;
     Button btnleaving, btninvite;
     ImageView imageView;
+    String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+    TextView showMail;
     int TAKE_IMAGE_CODE = 10001;
 
     Bitmap bitmap;
@@ -64,6 +67,8 @@ public class ActivityUserProfile extends AppCompatActivity implements UserProfil
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.wg);
         toolbar = findViewById(R.id.topAppBar);
+        showMail = findViewById(R.id.show_email);
+        showMail.setText(email);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     }
