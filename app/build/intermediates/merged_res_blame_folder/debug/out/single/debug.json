@@ -8,12 +8,12 @@
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\font_brlnrs_regular.xml.flat",
-        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\font\\brlnrs_regular.xml"
-    },
-    {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_euro_24.xml.flat",
         "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\drawable\\ic_baseline_euro_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\font_brlnrs_regular.xml.flat",
+        "source": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\src\\main\\res\\font\\brlnrs_regular.xml"
     },
     {
         "merged": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",

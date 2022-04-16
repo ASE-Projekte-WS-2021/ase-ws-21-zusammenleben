@@ -54,4 +54,11 @@
     <string name="hint_subject">Betreff</string>
     <string name="text_subject">Einladung in unsere WG!</string>
     <string name="hint_your_message">Ihre Nachricht</string>
+    <string name="hint_amount">Betrag</string>
+    <string name="hint_name_shoppinglist">Name der Einkaufsliste</string>
+    <string name="hint_article">Ware/Artikel</string>
+    <string name="hint_quantity">Anzahl</string>
+    <string name="txtview_cost">cost</string>
+    <string name="txtview_receiver">receiver</string>
+    <string name="txtview_purpose">purpose</string>
 </resources>

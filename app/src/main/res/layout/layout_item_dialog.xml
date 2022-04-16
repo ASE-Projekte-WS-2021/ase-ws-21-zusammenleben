@@ -25,7 +25,8 @@
             android:textColor="@color/TextFontColor"
             android:textColorHint="@color/HintColor"
             android:fontFamily="@font/latoregular"
-            android:hint="Ware/Artikel"
+            android:inputType="text"
+            android:hint="@string/hint_article"
             android:minHeight="48dp"
             android:padding="10dp" />
 
@@ -36,7 +37,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
-            android:hint="Anzahl"
+            android:hint="@string/hint_quantity"
             android:textColor="@color/TextFontColor"
             android:textColorHint="@color/HintColor"
             android:fontFamily="@font/latoregular"
