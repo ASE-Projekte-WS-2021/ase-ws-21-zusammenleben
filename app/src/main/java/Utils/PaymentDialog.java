@@ -14,9 +14,9 @@ public class PaymentDialog extends AppCompatDialogFragment implements DialogList
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Edit Payment")
-                .setMessage("Edit or delete this payment")
-                .setPositiveButton("edit", new DialogInterface.OnClickListener() {
+        builder.setTitle("Zahlung Bearbeiten")
+                .setMessage("Bearbeite oder Lösche eine Zahlung")
+                .setPositiveButton("Bearbeiten", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Bundle receiverBundle = getArguments();
@@ -36,7 +36,7 @@ public class PaymentDialog extends AppCompatDialogFragment implements DialogList
                     }
                 });
 
-        builder.setNegativeButton("delete", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Löschen", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Bundle receiverBundle = getArguments();

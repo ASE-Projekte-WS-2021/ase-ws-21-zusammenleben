@@ -107,7 +107,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
     private void handleAddItemDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this);
-        builder.setTitle("Add New Item");
+        builder.setTitle("Neues Item hinzufügen");
 
         View dialogLayout = LayoutInflater.from(ActivityShoppingList.this).inflate(R.layout.layout_item_dialog, null, false);
 
@@ -122,7 +122,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
                 addItem();
 
             } else {
-                inputItem.setError("Bitte fügen Sie ein Item hinzu");
+                inputItem.setError("Bitte füge ein Item hinzu");
                 numItem.setError("die Anzahl darf nicht null sein");
             }
         });
@@ -135,6 +135,10 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
         ShoppingItem item = new ShoppingItem(transmittedItem, Integer.parseInt(transmittedAmount), "0");
         shoppingListPresenter.addShoppingItem(basketID, item);
+        finish();
+        overridePendingTransition(0,0);
+        startActivity(getIntent());
+        overridePendingTransition(0,0);
     }
 
     private void checkForEmptyList(){

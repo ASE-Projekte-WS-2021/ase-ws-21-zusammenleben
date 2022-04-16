@@ -15,9 +15,9 @@ public class BasketDialog extends AppCompatDialogFragment implements DialogListe
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Edit Basket")
-                .setMessage("Edit or delete this basket")
-                .setPositiveButton("edit", new DialogInterface.OnClickListener() {
+        builder.setTitle("Einkauf bearbeiten")
+                .setMessage("Bearbeite oder lösche einen Einkauf")
+                .setPositiveButton("Bearbeiten", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Bundle receiverBundle = getArguments();
@@ -33,7 +33,7 @@ public class BasketDialog extends AppCompatDialogFragment implements DialogListe
                     }
                 });
 
-        builder.setNegativeButton("delete", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Löschen", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Bundle receiverBundle = getArguments();
