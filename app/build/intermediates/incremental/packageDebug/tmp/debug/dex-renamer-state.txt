@@ -1,4 +1,5 @@
 #Thu Apr 14 12:46:03 CEST 2022
+#Sat Apr 16 12:13:41 CEST 2022
 path.4=15/classes.dex
 path.3=11/classes.dex
 path.2=10/classes.dex
@@ -16,6 +17,11 @@ base.3=C\:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\b
 base.2=C\:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
 base.1=C\:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.0=C\:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.4=C\:\\Users\\Laute\\Documents\\GitHub\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
+base.3=C\:\\Users\\Laute\\Documents\\GitHub\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
+base.2=C\:\\Users\\Laute\\Documents\\GitHub\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
+base.1=C\:\\Users\\Laute\\Documents\\GitHub\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.0=C\:\\Users\\Laute\\Documents\\GitHub\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
@@ -32,3 +38,14 @@ base.6=C\:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\b
 renamed.4=classes5.dex
 base.5=C\:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
 base.10=C\:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
+base.9=C\:\\Users\\Laute\\Documents\\GitHub\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
+path.9=5/classes.dex
+renamed.7=classes8.dex
+base.8=C\:\\Users\\Laute\\Documents\\GitHub\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
+renamed.6=classes7.dex
+base.7=C\:\\Users\\Laute\\Documents\\GitHub\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\3\\classes.dex
+renamed.5=classes6.dex
+base.6=C\:\\Users\\Laute\\Documents\\GitHub\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
+renamed.4=classes5.dex
+base.5=C\:\\Users\\Laute\\Documents\\GitHub\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+base.10=C\:\\Users\\Laute\\Documents\\GitHub\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex

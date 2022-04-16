@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import Entities.Basket;
@@ -69,6 +70,7 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
                 DatabaseReference reference = refBasket.push();
                 String uniqueFirebaseID = reference.getKey();
                 basket.setBasketID(uniqueFirebaseID);
+                Log.d("basket", basket.getShoppingList().toString());
                 reference.setValue(basket);
                 mOnBasketSuccessListener.onBasketAddedSuccess();
             }
@@ -77,7 +79,6 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
 
     @Override
     public ArrayList<Basket> retrieveBasketsFromFirebase(String flatID) {
-        Log.d("debug5", "model fängt an zu werkeln...");
         refBasket.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
@@ -86,13 +87,12 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
                         String title = snap.getValue(Basket.class).getTitle();
                         String currentUser = snap.getValue(Basket.class).getCurrentUser();
                         String basketID = snap.getValue(Basket.class).getBasketID();
-                        ArrayList<ShoppingItem> shoppingList = snap.getValue(Basket.class).getList();
+                        HashMap<String, ShoppingItem> shoppingList = snap.getValue(Basket.class).getShoppingList();
                         Basket basket = new Basket(title, currentUser, flatID, basketID, shoppingList);
                         baskets.add(basket);
                     }
                 }
                 mOnBasketSuccessListener.onBasketsRetrieved(baskets);
-                Log.d("debug6", "model ist fertig, ab zurück");
                 baskets.clear();
             }
         });
@@ -111,6 +111,8 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
 
     @Override
     public void onBasketsRetrieved(ArrayList<Basket> baskets) {
-
+        //ist das nicht das was in Zeile 78 schon steht ?
     }
+
+    //public void onBasketDelete (){} todo
 }

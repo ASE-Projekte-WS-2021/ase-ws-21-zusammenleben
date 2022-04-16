@@ -1,6 +1,6 @@
 package Presenter.ShoppingList;
 
-import android.util.Log;
+import java.util.ArrayList;
 
 import Entities.Basket;
 import Entities.ShoppingItem;
@@ -12,6 +12,9 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
     private ShoppingListModel shoppingListModel;
     private ShoppingListContract.View shoppingListView;
     Basket retrievedBasket;
+
+    ArrayList<ArrayList<String>> shoppingItems = new ArrayList<>();
+    ArrayList<String> shoppingItemIDs = new ArrayList<>();
 
     public ShoppingListPresenter(ShoppingListContract.View shoppingListView){
         this.shoppingListView = shoppingListView;
@@ -26,22 +29,47 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
     @Override
     public void onBasketItemRetrieved(Basket basket) {
         retrievedBasket = basket;
-        Log.d("check", retrievedBasket.getCurrentUser());
+        shoppingListModel.retrieveShoppingItemFromFirebase(basket.getBasketID());
     }
 
     @Override
     public void addShoppingItem(String basketID, ShoppingItem item) {
+        shoppingListModel.addShoppingItemToFirebase(basketID, item);
+    }
 
+    @Override
+    public void deleteShoppingListItem(String itemID, String basketID) {
+        shoppingListModel.deleteItemFromFirebase(itemID, basketID);
     }
 
 
     @Override
-    public void onShoppingItemRetrieved(String basketID) {
-
+    public void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList) {
+        for(int i = 0 ; i < shoppingList.size() ; i++){
+            String itemName = shoppingList.get(i).getItemName();
+            String itemQuantity = String.valueOf(shoppingList.get(i).getItemQuantity());
+            String shoppingItemID = shoppingList.get(i).getShoppingItemId();
+            ArrayList<String> shoppingItem = new ArrayList<>();
+            shoppingItem.add(itemName);
+            shoppingItem.add(itemQuantity);
+            shoppingItemIDs.add(shoppingItemID);
+            shoppingItems.add(shoppingItem);
+        }
+        shoppingListView.onShoppingItemAdded(shoppingItems, shoppingItemIDs);
     }
 
     @Override
     public void onShoppingItemAdded(String basketID) {
+
+    }
+
+    @Override
+    public void onShoppingListItemAltered(String itemID) {
+
+    }
+
+    @Override
+    public void onShoppingItemDeleted(ShoppingItem item) {
 
     }
 }

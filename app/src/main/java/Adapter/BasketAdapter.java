@@ -17,18 +17,19 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.MyViewHold
 
     private Context context;
     private ArrayList<ArrayList<String>> baskets;
+    private ItemClickListener itemClickListener;
 
-    public BasketAdapter(Context context, ArrayList<ArrayList<String>> baskets){
-        this.context = context;
+    public BasketAdapter(ArrayList<ArrayList<String>> baskets, ItemClickListener itemClickListener){
         this.baskets = baskets;
+        this.itemClickListener = itemClickListener;
     }
 
     public BasketAdapter(ArrayList<ArrayList<String>> baskets){}
 
     @Override
-    public BasketAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.basket_layout, parent, false);
-        MyViewHolder myViewHolder = new MyViewHolder(view);
+        MyViewHolder myViewHolder = new MyViewHolder(view, itemClickListener);
         return myViewHolder;
     }
 
@@ -43,13 +44,25 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.MyViewHold
         return baskets.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView basketTitle, basketCreator;
+    public interface ItemClickListener{
+        void onItemClicked(int pos);
+    }
 
-        public MyViewHolder(@NonNull View itemView){
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView basketTitle, basketCreator;
+        ItemClickListener itemClickListener;
+
+        public MyViewHolder(@NonNull View itemView, ItemClickListener itemClickListener){
             super(itemView);
             basketTitle = itemView.findViewById(R.id.basketTitle);
             basketCreator = itemView.findViewById(R.id.basketCreator);
+            this.itemClickListener = itemClickListener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            itemClickListener.onItemClicked(getAdapterPosition());
         }
     }
 }

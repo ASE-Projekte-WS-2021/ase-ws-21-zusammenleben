@@ -1,12 +1,12 @@
 package Presenter.BasketList;
 
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import Entities.Basket;
 import Entities.Flat;
@@ -53,9 +53,9 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
         currentUser = mail;
         String flat = flatID;
         String basketID = "";
-        ArrayList<ShoppingItem> shoppingItems = new ArrayList();
-        ShoppingItem item = new ShoppingItem("name", 0);
-        shoppingItems.add(item);
+        HashMap<String, ShoppingItem> shoppingItems = new HashMap<>();
+        ShoppingItem item = new ShoppingItem("Start", 0, "abc");
+        shoppingItems.put("x", item);
         Basket basket = new Basket(day, currentUser, flat, basketID, shoppingItems);
         basketListModel.addBasketToFirebase(basket);
     }
@@ -94,7 +94,6 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
 
     @Override
     public void onBasketsRetrieved(ArrayList<Basket> baskets) {
-        Log.d("debug7", "presenter empfängt und delegiert");
         for(int i = 0 ; i < baskets.size() ; i++){
             String title = baskets.get(i).getTitle();
             String creator = baskets.get(i).getCurrentUser();
@@ -105,15 +104,11 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
             basketIDs.add(basketID);
             basketElements.add(basketElement);
         }
-        Log.d("debug8", "jetzt gehts an den view zurück");
         basketListView.onBasketItemFound(basketElements, basketIDs);
     }
 
     @Override
     public void retrieveBaskets(String id){
-        Log.d("debug4", "von presenter zu model");
         baskets = basketListModel.retrieveBasketsFromFirebase(currentUserFlat.getId());
-
-
     }
 }
