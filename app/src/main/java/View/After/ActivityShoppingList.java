@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -45,6 +47,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
     ShoppingItemAdapter mItemsAdapter;
+    BottomNavigationView bottomNavigationView;
 
     String transmittedItem, transmittedAmount;
 
@@ -60,6 +63,9 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         setContentView(R.layout.activity_shoppinglist);
         recyclerView = findViewById(R.id.list_view);
         toolbar = findViewById(R.id.topAppBar);
+        bottomNavigationView = findViewById(R.id.bottomnavview);
+        bottomNavigationView.setSelectedItemId(R.id.shopping);
+        setupNavBar();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -71,6 +77,27 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         super.onResume();
         unpackIntentData();
         handleToolBarInteraction();
+    }
+
+    private void setupNavBar(){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.payment:
+                        startActivity(new Intent(getApplicationContext(),ActivityOverview.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.wg:
+                        startActivity(new Intent(getApplicationContext(),ActivityUserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.shopping:
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void handleToolBarInteraction(){
