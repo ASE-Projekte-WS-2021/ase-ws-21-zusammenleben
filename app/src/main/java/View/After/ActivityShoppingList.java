@@ -89,17 +89,23 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
             @Override
             public boolean onMenuItemClick(MenuItem item) {
 
-                handleAddItemDialog();
-                return false;
+                switch (item.getItemId()) {
+
+                    case R.id.add_item:
+                        handleAddItemDialog();
+                        break;
+                    case R.id.checkout_item:
+                        //checkForEmptyList();
+                        break;
+                }
+                return true;
             }
         });
 
     }
 
-    //TODO: Dialog auslagern
+
     private void handleAddItemDialog() {
-        /*ShoppingListDialog shoppingListDialog = new ShoppingListDialog();
-        shoppingListDialog.show(getSupportFragmentManager(), "dialog");*/
         AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this);
         builder.setTitle("Add New Item");
 
@@ -113,12 +119,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
             if (!inputItem.getText().toString().isEmpty() && !numItem.getText().toString().isEmpty()) {
                 transmittedItem = inputItem.getText().toString().trim();
                 transmittedAmount = numItem.getText().toString().trim();
-                /*Intent intent = new Intent(getApplicationContext(), ActivityShoppingList.class);
-                Bundle sendBundle = new Bundle();
-                sendBundle.putString("ITEM", transmittedItem);
-                sendBundle.putString("AMOUNT", transmittedAmount);
-                intent.putExtras(sendBundle);
-                startActivity(intent);*/
                 addItem();
 
             } else {
@@ -129,8 +129,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
         builder.setNegativeButton("Abbrechen", (dialog, which) -> dialog.dismiss());
         builder.show();
-
-        //return builder.create();
     }
 
     private void addItem(){
@@ -140,8 +138,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     }
 
     private void checkForEmptyList(){
-        // todo
-        // warum brauchen wir das ?
         if (items.isEmpty()){
             // dann mach irgendwas
         }
@@ -161,7 +157,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     public void onShoppingItemAdded(ArrayList<ArrayList<String>> shoppingItems, ArrayList<String> shoppingItemIDs) {
         items = shoppingItems;
         itemIds = shoppingItemIDs;
-        Log.d("test123", items.toString());
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -174,34 +169,9 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
             @Override
             public void onLongItemClick(View view, int position) {
-
-                //Ferdis Code --> Delete funktioniert und auf diese Weise besitzt man eine ausgelagerte Diaglog Klasse
-
                 String sendData = items.get(position).toString();
                 String sendId = itemIds.get(position).toString();
                 handleItemDialog(sendId);
-
-
-                //
-
-               /* PopupMenu popupMenu = new PopupMenu(ActivityShoppingList.this, view);
-                popupMenu.getMenuInflater().inflate(R.menu.pop_up_menu, popupMenu.getMenu());
-
-                popupMenu.setOnMenuItemClickListener(itemIds -> {
-                    switch (itemIds.getItemId()){
-                        case R.id.item_update:
-                            AlertDialog.Builder builder = new AlertDialog.Builder(ActivityShoppingList.this);
-                            View dialogOnUpdate = LayoutInflater.from(ActivityShoppingList.this).inflate(R.layout.layout_item_dialog, null, false);
-                            builder.setTitle("Update Item");
-                            final EditText inputItem = dialogOnUpdate.findViewById(R.id.inputItem);
-                            inputItem.setText(itemIds.get(position));
-                            final EditText costItem= dialogOnUpdate.findViewById(R.id.costItem);
-                            costItem.setText(listcosts.get(position));
-
-                            builder.setView(dialogOnUpdate);
-                    }
-                    return Boolean.parseBoolean(null);
-                });*/
             }
         }));
 
@@ -228,7 +198,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     public void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList) {
 
     }
-    // das haben wir doch schon in zeile 162
+
     @Override
     public void onShoppingItemAdded(String basketID) {
 

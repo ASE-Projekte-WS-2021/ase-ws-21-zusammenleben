@@ -71,7 +71,6 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         super.onResume();
         getCurrentUserEmail();
         mBasketListPresenter.retrieveFlat(currentUserEmail);
-
     }
 
     private void setupNavBar(){
@@ -128,6 +127,10 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
             public void onClick(View view) {
                 baskets.clear();
                 mBasketListPresenter.createBasket(currentUserEmail, currentFlat.getId());
+                finish();
+                overridePendingTransition(0,0);
+                startActivity(getIntent());
+                overridePendingTransition(0,0);
             }
         });
     }

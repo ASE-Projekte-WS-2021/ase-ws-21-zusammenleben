@@ -4,8 +4,10 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import Entities.Basket;
@@ -49,12 +51,14 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void createBasket(String mail, String flatID){
-        day = translateDay(LocalDate.now().getDayOfWeek().name());
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        Date d = new Date();
+        day = translateDay(sdf.format(d));
         currentUser = mail;
         String flat = flatID;
         String basketID = "";
         HashMap<String, ShoppingItem> shoppingItems = new HashMap<>();
-        ShoppingItem item = new ShoppingItem("Start", 0, "abc");
+        ShoppingItem item = new ShoppingItem();
         shoppingItems.put("x", item);
         Basket basket = new Basket(day, currentUser, flat, basketID, shoppingItems);
         basketListModel.addBasketToFirebase(basket);
@@ -63,26 +67,27 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
 
     private String translateDay(String s){
         switch (s){
-            case "MONDAY":
+            case "Monday":
                 s = "Montagsliste";
-
-            case "TUESDAY":
+                break;
+            case "Tuesday":
                 s = "Dienstagsliste";
-
-            case "WEDNESDAY":
+                break;
+            case "Wednesday":
                 s = "Mittwochsliste";
-
-            case "THURSDAY":
+                break;
+            case "Thursday":
                 s = "Donnerstagsliste";
-
-            case "FRIDAY":
+                break;
+            case "Friday":
                 s = "Freitagsliste";
-
-            case "SATURDAY":
+                break;
+            case "Saturday":
                 s = "Samstagsliste";
-
-            case "SUNDAY":
+                break;
+            case "Sunday":
                 s = "Sonntagsliste";
+                break;
         }
         return s;
     }
