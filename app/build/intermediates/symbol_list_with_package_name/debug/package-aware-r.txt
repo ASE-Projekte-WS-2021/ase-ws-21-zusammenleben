@@ -2770,8 +2770,6 @@ id continuousVelocity
 id coordinator
 id cos
 id costCheckout
-id costItem
-id costs_overview
 id counterclockwise
 id currentState
 id custom
@@ -2813,7 +2811,6 @@ id easeInOut
 id easeOut
 id east
 id editButton_basket
-id editButton_shoppingItem
 id edit_query
 id editpayment_title
 id elastic

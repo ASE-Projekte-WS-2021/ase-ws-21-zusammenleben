@@ -116,4 +116,9 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
     public void retrieveBaskets(String id){
         baskets = basketListModel.retrieveBasketsFromFirebase(currentUserFlat.getId());
     }
+
+    @Override
+    public void deleteBasket(String id){
+        basketListModel.deleteBasketFromFirebase(id);
+    }
 }

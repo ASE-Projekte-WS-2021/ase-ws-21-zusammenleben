@@ -20,12 +20,14 @@ public interface BasketListContract {
         void createBasket(String mail, String flatID);
         void retrieveBaskets(String id);
         void saveBasket(Basket basket);
+        void deleteBasket(String id);
     }
 
     interface Model {
         Flat retrieveFlatFromFirebase(String email);
         void addBasketToFirebase(Basket basket);
         ArrayList<Basket> retrieveBasketsFromFirebase(String flatID);
+        void deleteBasketFromFirebase(String id);
     }
 
     interface onBasketSuccessListener {

@@ -13,13 +13,7 @@ public class ShoppingItemDialog extends AppCompatDialogFragment implements Dialo
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Edit ShoppingListItem")
-                .setMessage("Edit or delete this item")
-                .setPositiveButton("edit", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //Todo: edit item
-                    }
-                });
+                .setMessage("Delete this item");
 
         builder.setNegativeButton("delete", new DialogInterface.OnClickListener() {
             @Override

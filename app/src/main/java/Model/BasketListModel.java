@@ -111,8 +111,10 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
 
     @Override
     public void onBasketsRetrieved(ArrayList<Basket> baskets) {
-        //ist das nicht das was in Zeile 78 schon steht ?
     }
 
-    //public void onBasketDelete (){} todo
+    @Override
+    public void deleteBasketFromFirebase (String basketId){
+        refBasket.child(basketId).removeValue();
+    }
 }

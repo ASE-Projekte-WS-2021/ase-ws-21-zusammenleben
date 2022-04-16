@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import Utils.BasketDialog;
+import Utils.DialogListener;
+import Utils.PaymentDialog;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
@@ -29,7 +32,7 @@ import Utils.RecyclerItemClickListener;
 import View.Before.LoginActivity;
 
 
-public class ActivityBasketList extends AppCompatActivity implements BasketListContract.View, BasketListContract.onBasketSuccessListener, BasketAdapter.ItemClickListener {
+public class ActivityBasketList extends AppCompatActivity implements BasketListContract.View, BasketListContract.onBasketSuccessListener, BasketAdapter.ItemClickListener, DialogListener {
 
     FloatingActionButton basketButton;
     BasketListPresenter mBasketListPresenter;
@@ -143,7 +146,6 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         onButtonClicked();
     }
 
-    /////
     @Override
     public void onBasketItemFound(ArrayList<ArrayList<String>> basketElements, ArrayList<String> basketIDs) {
         baskets = basketElements;
@@ -158,8 +160,6 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         mAdapter = new BasketAdapter(baskets, this);
         recyclerView.setAdapter(mAdapter);
     }
-
-    ////
 
     @Override
     public void startIntent() {
@@ -192,16 +192,31 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
 
     @Override
     public void onItemClicked(int position) {
+        handleDialog(position);
+    }
+
+    private void handleDialog(int position) {
         baskets.get(position);
         Intent i = new Intent(ActivityBasketList.this, ActivityShoppingList.class);
         Bundle send = new Bundle();
         String sendData = baskets.get(position).toString();
         String sendId = ids.get(position).toString();
-        send.putString("BASKETDATA", sendData);
-        send.putString("BASKETID", sendId);
-        i.putExtras(send);
-        startActivity(i);
+
+        BasketDialog basketDialog = new BasketDialog();
+        Bundle bundle = new Bundle();
+        bundle.putString("BASKETDATA", sendData);
+        bundle.putString("BASKETID", sendId);
+        basketDialog.setArguments(bundle);
+        basketDialog.show(getSupportFragmentManager(), "basketDialog");
+
+    }
+
+    @Override
+    public void onReturnValue(String id) {
+        mBasketListPresenter.deleteBasket(id);
+        finish();
+        overridePendingTransition(0,0);
+        startActivity(getIntent());
+        overridePendingTransition(0,0);
     }
 }
-
-// TODO : Sonntagsliste - Tagesliste?
