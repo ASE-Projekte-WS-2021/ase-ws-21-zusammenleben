@@ -46,4 +46,12 @@
     <string name="hint_receiver">Du teilst deine Kosten mit</string>
     <string name="hint_chooseRoomate">Mitbewohner auswählen</string>
     <string name="note_options">Hi</string>
+    <string name="btn_send">Senden</string>
+    <string name="hint_recipient">Empfänger</string>
+    <string name="txtview_recipient">Empfänger</string>
+    <string name="txtview_subject">Betreff</string>
+    <string name="txtview_message">Ihre Nachricht</string>
+    <string name="hint_subject">Betreff</string>
+    <string name="text_subject">Einladung in unsere WG!</string>
+    <string name="hint_your_message">Ihre Nachricht</string>
 </resources>

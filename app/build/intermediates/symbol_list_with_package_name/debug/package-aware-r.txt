@@ -2524,6 +2524,7 @@ drawable googleg_standard_color_18
 drawable header
 drawable ic_add_outline
 drawable ic_back
+drawable ic_baselina_home_work_24_black
 drawable ic_baseline_add_24
 drawable ic_baseline_article_24
 drawable ic_baseline_attach_money_24
@@ -3010,6 +3011,10 @@ id payment_receiver
 id peekHeight
 id percent
 id pin
+id popupwindow_btn_send
+id popupwindow_edit_text_message
+id popupwindow_edit_text_subject
+id popupwindow_edit_text_to
 id position
 id postLayout
 id progressBar
@@ -3123,6 +3128,9 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView
+id textView3
+id textView4
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3353,6 +3361,7 @@ layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout one_line_payment
+layout popupwindow
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
@@ -3378,6 +3387,7 @@ menu example_menu
 menu example_menu2
 menu menu_add_item
 menu menu_add_shoppinglist
+menu menu_popup
 menu pop_up_menu
 menu top_app_bar
 mipmap ic_launcher

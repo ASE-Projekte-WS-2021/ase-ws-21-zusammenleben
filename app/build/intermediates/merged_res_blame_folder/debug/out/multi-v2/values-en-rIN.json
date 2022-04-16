@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Laute\\Documents\\GitHub\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rIN\\values-en-rIN.xml",
+            "outputFile": "C:\\Users\\jonas\\AndroidStudioProjects\\ase-ws-21-zusammenleben\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rIN\\values-en-rIN.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Laute\\.gradle\\caches\\transforms-3\\cb8e430002ce25b73d1bc88b81d48c8b\\transformed\\appcompat-1.4.1\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "source": "C:\\Users\\jonas\\.gradle\\caches\\transforms-3\\cb8e430002ce25b73d1bc88b81d48c8b\\transformed\\appcompat-1.4.1\\res\\values-en-rIN\\values-en-rIN.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Laute\\.gradle\\caches\\transforms-3\\1e0f59b4bf5a3aa137b588742988c728\\transformed\\core-1.7.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "source": "C:\\Users\\jonas\\.gradle\\caches\\transforms-3\\1e0f59b4bf5a3aa137b588742988c728\\transformed\\core-1.7.0\\res\\values-en-rIN\\values-en-rIN.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

@@ -85,7 +85,7 @@ public class ActivityUserProfile extends AppCompatActivity implements UserProfil
         btninvite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //deepLinks
+                //deepLinks (popupwindow.xml)
             }
         });
     }
