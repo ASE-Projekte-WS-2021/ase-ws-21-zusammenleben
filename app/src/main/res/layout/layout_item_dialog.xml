@@ -19,25 +19,32 @@
             android:id="@+id/inputItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="80dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:padding="10dp"
-            android:hint="Füge hier ein, was du einkaufen willst"
-             />
+            android:layout_marginEnd="80dp"
+            android:textColor="@color/TextFontColor"
+            android:textColorHint="@color/HintColor"
+            android:fontFamily="@font/latoregular"
+            android:hint="Ware/Artikel"
+            android:minHeight="48dp"
+            android:padding="10dp" />
 
         <EditText
             android:id="@+id/numItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
             android:hint="Anzahl"
+            android:textColor="@color/TextFontColor"
+            android:textColorHint="@color/HintColor"
+            android:fontFamily="@font/latoregular"
             android:inputType="number"
+            android:minHeight="48dp"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="@+id/layout_Item"
-            android:layout_marginTop="4dp"
-            app:layout_constraintTop_toTopOf="@+id/layout_Item"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"/>
+            app:layout_constraintTop_toTopOf="@+id/layout_Item" />
 
     </LinearLayout>
 
