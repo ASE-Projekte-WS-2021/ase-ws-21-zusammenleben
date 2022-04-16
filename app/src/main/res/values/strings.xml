@@ -45,4 +45,5 @@
     <string name="hint_message">Nachricht</string>
     <string name="hint_receiver">Du teilst deine Kosten mit</string>
     <string name="hint_chooseRoomate">Mitbewohner auswählen</string>
+    <string name="note_options">Hi</string>
 </resources>
