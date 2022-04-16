@@ -2,11 +2,19 @@ package View.After;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -21,12 +29,6 @@ import Presenter.ShoppingList.ShoppingListPresenter;
 import Utils.DialogListener;
 import Utils.RecyclerItemClickListener;
 import Utils.ShoppingItemDialog;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class ActivityShoppingList extends AppCompatActivity implements ShoppingListContract.View, ShoppingListContract.onShoppingSuccessListener, DialogListener {
 
@@ -71,31 +73,27 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         handleToolBarInteraction();
     }
 
-    private void handleToolBarInteraction() {
+    private void handleToolBarInteraction(){
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ActivityBasketList.class);
                 finish();
-                overridePendingTransition(0, 0);
+                overridePendingTransition(0,0);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
+                overridePendingTransition(0,0);
             }
         });
+
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.add_item:
-                        handleAddItemDialog();
-                        break;
-                    case R.id.checkout_item:
-                        checkForEmptyList();
-                        break;
-                }
-                return true;
+
+                handleAddItemDialog();
+                return false;
             }
         });
+
     }
 
     //TODO: Dialog auslagern
@@ -142,12 +140,10 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     }
 
     private void checkForEmptyList(){
-        if (items.isEmpty()) {
-            //todo: Toast anlegen
-            return;
-        }
-        else{
-
+        // todo
+        // warum brauchen wir das ?
+        if (items.isEmpty()){
+            // dann mach irgendwas
         }
     }
 
@@ -165,7 +161,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     public void onShoppingItemAdded(ArrayList<ArrayList<String>> shoppingItems, ArrayList<String> shoppingItemIDs) {
         items = shoppingItems;
         itemIds = shoppingItemIDs;
-
+        Log.d("test123", items.toString());
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -174,7 +170,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
             }
 
             @Override
@@ -187,7 +182,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
                 handleItemDialog(sendId);
 
 
-               //
+                //
 
                /* PopupMenu popupMenu = new PopupMenu(ActivityShoppingList.this, view);
                 popupMenu.getMenuInflater().inflate(R.menu.pop_up_menu, popupMenu.getMenu());
@@ -233,7 +228,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     public void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList) {
 
     }
- // das haben wir doch schon in zeile 162
+    // das haben wir doch schon in zeile 162
     @Override
     public void onShoppingItemAdded(String basketID) {
 

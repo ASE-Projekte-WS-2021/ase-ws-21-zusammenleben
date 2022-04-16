@@ -1,5 +1,9 @@
 package Model;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -14,7 +18,6 @@ import java.util.Map;
 import Entities.Basket;
 import Entities.ShoppingItem;
 import Presenter.ShoppingList.ShoppingListContract;
-import androidx.annotation.NonNull;
 
 public class ShoppingListModel implements ShoppingListContract.Model, ShoppingListContract.onShoppingSuccessListener {
 
@@ -83,15 +86,21 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
         refBasket.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot snap : dataSnapshot.getChildren()){
-                    if(snap.getValue(Basket.class).getBasketID().equals(basketID)){
-                        shoppingItems = (HashMap<String, ShoppingItem>) snap.child("shoppingList").getValue();
-                        for(Map.Entry<String, ShoppingItem> e : shoppingItems.entrySet()) {
-                            String shoppingItemID = e.getKey();
-                            String itemName = snap.child("shoppingList").child(shoppingItemID).getValue(ShoppingItem.class).getItemName();
-                            int itemQuantity = snap.child("shoppingList").child(shoppingItemID).getValue(ShoppingItem.class).getItemQuantity();
-                            ShoppingItem shoppingItem = new ShoppingItem(itemName, itemQuantity, shoppingItemID);
-                            shoppingList.add(shoppingItem);
+                Log.d("hier", "angekommen in onsucess");
+                for(DataSnapshot snap : dataSnapshot.getChildren()) {
+                    if (dataSnapshot.exists()) {
+                        if (snap.getValue(Basket.class).getBasketID().equals(basketID)) {
+                            Log.d("id vergleich", "aktuelle Firebase ID = " + snap.getValue(Basket.class).getBasketID() + "---" + "übergebene ID = " + basketID);
+                            Log.d("hier", snap.getValue(Basket.class).getBasketID());
+                            shoppingItems = (HashMap<String, ShoppingItem>) snap.child("shoppingList").getValue();
+                            Log.d("hier", shoppingItems.toString());
+                            for (Map.Entry<String, ShoppingItem> e : shoppingItems.entrySet()) {
+                                String shoppingItemID = e.getKey();
+                                String itemName = snap.child("shoppingList").child(shoppingItemID).getValue(ShoppingItem.class).getItemName();
+                                int itemQuantity = snap.child("shoppingList").child(shoppingItemID).getValue(ShoppingItem.class).getItemQuantity();
+                                ShoppingItem shoppingItem = new ShoppingItem(itemName, itemQuantity, shoppingItemID);
+                                shoppingList.add(shoppingItem);
+                            }
                         }
                     }
                 }
@@ -114,21 +123,17 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
     // die Methode haben wir doch schon in Zeile 86
     @Override
     public void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList) {
-
     }
 
     @Override
     public void onShoppingItemAdded(String basketID) {
-
     }
 
     @Override
     public void onShoppingListItemAltered(String itemID) {
-
     }
 
     @Override
     public void onShoppingItemDeleted(ShoppingItem item) {
-
     }
 }

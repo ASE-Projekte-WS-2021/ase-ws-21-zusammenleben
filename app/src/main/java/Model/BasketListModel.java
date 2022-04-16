@@ -1,5 +1,7 @@
 package Model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -68,6 +70,7 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
                 DatabaseReference reference = refBasket.push();
                 String uniqueFirebaseID = reference.getKey();
                 basket.setBasketID(uniqueFirebaseID);
+                Log.d("basket", basket.getShoppingList().toString());
                 reference.setValue(basket);
                 mOnBasketSuccessListener.onBasketAddedSuccess();
             }

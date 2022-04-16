@@ -54,8 +54,8 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
         String flat = flatID;
         String basketID = "";
         HashMap<String, ShoppingItem> shoppingItems = new HashMap<>();
-        //ShoppingItem item = new ShoppingItem();
-        //shoppingItems.put("x", item);
+        ShoppingItem item = new ShoppingItem("Start", 0, "abc");
+        shoppingItems.put("x", item);
         Basket basket = new Basket(day, currentUser, flat, basketID, shoppingItems);
         basketListModel.addBasketToFirebase(basket);
     }
