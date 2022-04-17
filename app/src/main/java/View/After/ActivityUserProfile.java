@@ -22,14 +22,18 @@ import com.example.myapplication.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.annotations.Nullable;
 
+import Entities.Flat;
 import Presenter.UserProfile.UserProfileContract;
 import Presenter.UserProfile.UserProfilePresenter;
+import Utils.DialogListener;
+import Utils.UserProfileDialog;
 import View.Before.CreateFlatActivity;
 import View.Before.LoginActivity;
 
-public class ActivityUserProfile extends AppCompatActivity implements UserProfileContract.View {
+public class ActivityUserProfile extends AppCompatActivity implements UserProfileContract.View, DialogListener {
 
     // UI components
     BottomNavigationView bottomNavigationView;
@@ -85,8 +89,8 @@ public class ActivityUserProfile extends AppCompatActivity implements UserProfil
         btnleaving.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CreateFlatActivity.class);
-                startActivity(intent);
+                UserProfileDialog userProfileDialog = new UserProfileDialog();
+                userProfileDialog.show(getSupportFragmentManager(), "dialog");
             }
         });
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -186,10 +190,25 @@ public class ActivityUserProfile extends AppCompatActivity implements UserProfil
         Toast.makeText(getApplicationContext(), "Profilbild geändert!", Toast.LENGTH_SHORT).show();
     }
 
+
     // interface method
     @Override
     public void onProfileFailure(String message) {
     }
 
+    @Override
+    public void onUserDeletedSuccess(String message) {
+        FirebaseAuth.getInstance().signOut();
+        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(i);
+    }
 
+    @Override
+    public void onReturnValue(String id) {
+        mProfilePresenter.deleteUser(email);
+        finish();
+        overridePendingTransition(0,0);
+        startActivity(getIntent());
+        overridePendingTransition(0,0);
+    }
 }

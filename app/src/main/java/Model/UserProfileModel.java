@@ -3,6 +3,7 @@ package Model;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -11,22 +12,35 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
+import Entities.Flat;
 import Presenter.UserProfile.UserProfileContract;
 
-public class UserProfileModel {
+public class UserProfileModel implements UserProfileContract.Model, UserProfileContract.onUserDeletedListener {
 
-    private UserProfileContract.onProfileListener mOnProfileListener;
+    private UserProfileContract.onUserDeletedListener onUserDeletedListener;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
+    private DatabaseReference refFlat = database.getReference(FLATPATH);
 
-    public UserProfileModel(UserProfileContract.onProfileListener onProfileListener){
-        this.mOnProfileListener = onProfileListener;
+    private static final String FIREBASEPATH = "https://wgfinance-b594f-default-rtdb.europe-west1.firebasedatabase.app/";
+    private static final String FLATPATH = "WG";
+    Flat retrievedFlat;
+
+    public UserProfileModel(UserProfileContract.onUserDeletedListener onUserDeletedListener){
+        this.onUserDeletedListener = onUserDeletedListener;
     }
-
 
     public void uploadimage(Activity activity, Bitmap bitmap) {
 
@@ -43,16 +57,12 @@ public class UserProfileModel {
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        //pd.dismiss();
                         getDownloadUrl(activity,reference);
-                        //Snackbar.make(findViewById(android.R.id.content), "Picture successfully changed", Snackbar.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        //pd.dismiss();
-                        //Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -63,8 +73,6 @@ public class UserProfileModel {
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        //Log.d(TAG, "onSuccess:" + uri);
-                        //Toast.makeText(ActivityUserProfile.this, "Succesfully", Toast.LENGTH_SHORT).show();
                         setUserProfileUrl(uri);
                     }
                 });
@@ -82,17 +90,55 @@ public class UserProfileModel {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        //mOnProfileListener.onSuccess("Success");
-
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        //mOnProfileListener.onSuccess("Failure");
                     }
                 });
 
     }
 
+    @Override
+    public void onFlatFound(Flat flat) {
+
+    }
+
+    @Override
+    public void onUserDeleted(String message) {
+
+    }
+
+
+    @Override
+    public Flat retrieveFlatFromFirebase(String email) {
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot snap : snapshot.getChildren()){
+                    List<String> members = snap.getValue(Flat.class).getMembers();
+                    if(members.contains(email)){
+                        String address = snap.getValue(Flat.class).getAddress();
+                        String id = snap.getValue(Flat.class).getId();
+                        int size = members.size();
+                        retrievedFlat = new Flat(address, id, members, size);
+                    }
+                }
+                onUserDeletedListener.onFlatFound(retrievedFlat);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        };
+        refFlat.addListenerForSingleValueEvent(valueEventListener);
+        return retrievedFlat;
+    }
+
+    @Override
+    public void deleteUserInFirebase(Flat flat) {
+        refFlat.child(flat.getId()).setValue(flat);
+        onUserDeletedListener.onUserDeleted("Deleted");
+    }
 }
