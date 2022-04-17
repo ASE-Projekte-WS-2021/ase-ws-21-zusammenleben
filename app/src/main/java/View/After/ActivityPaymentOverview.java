@@ -141,6 +141,18 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         });
     }
 
+    //Used to avoid NullPointerException
+    double ParseDouble(String strNumber) {
+        if (strNumber != null && strNumber.length() > 0) {
+            try {
+                return Double.parseDouble(strNumber);
+            } catch (Exception e) {
+                return -1;
+            }
+        }
+        return 0;
+    }
+
     // The callback data arrived, now the payment can be dealt with
     @Override
     public void onFlatFound(Flat flat) {
@@ -150,7 +162,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         btnSavePayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                double insertedCost = Double.parseDouble(insertCosts.getText().toString());
+                double insertedCost = ParseDouble(insertCosts.getText().toString());
                 String insertedPurpose = insertPurpose.getText().toString();
                 ArrayList<String> insertedReceivers = new ArrayList<>();
                 insertedReceivers.add(selectMembers.getText().toString());

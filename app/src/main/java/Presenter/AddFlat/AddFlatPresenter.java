@@ -24,10 +24,10 @@ public class AddFlatPresenter implements AddFlatContract.Presenter, AddFlatContr
     // We add a 5-character-random-code to the flatID to make sure that the flatID is always unique
     // This is important for later usage in DeepLink and JoinFlat
     @Override
-    public void addFlat(Activity activity, String address, String id, List<String> members, int size) {
+    public void addFlat(Activity activity, String name, String id, List<String> members, int size) {
         String randomID = UUID.randomUUID().toString().substring(0,5);
         String flatID = id+randomID;
-        Flat createdFlat = new Flat(address, flatID, members, size);
+        Flat createdFlat = new Flat(name, flatID, members, size);
         mAddFlatModel.addFlattoFirebase(createdFlat);
     }
 

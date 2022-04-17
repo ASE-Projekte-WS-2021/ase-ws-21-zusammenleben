@@ -48,7 +48,7 @@ public class AddFlatActivity extends AppCompatActivity implements AddFlatContrac
         btnCreateFlat = findViewById(R.id.btn_addFlat);
         flatIDText = findViewById(R.id.flat_profile_name);
         size = findViewById(R.id.size_of_flat);
-        flat_name = findViewById(R.id.flat_share_name);
+        //flat_name = findViewById(R.id.flat_share_name);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     }
@@ -66,20 +66,32 @@ public class AddFlatActivity extends AppCompatActivity implements AddFlatContrac
         currentUser = user.getEmail();
     }
 
+    //Used to avoid NullPointerException
+    int ParseInt(String strNumber) {
+        if (strNumber != null && strNumber.length() > 0) {
+            try {
+                return Integer.parseInt(strNumber);
+            } catch (Exception e) {
+                return -1;
+            }
+        }
+        return 0;
+    }
+
     // error handling
     private void checkInputData(){
         String id = flatIDText.getText().toString();
-        String address = flat_name.getText().toString();
-        int flatSize = Integer.valueOf(size.getText().toString());
+        String name = id;
+        int flatSize = ParseInt(size.getText().toString());
         ArrayList<String> members = new ArrayList<>();
         members.add(currentUser);
 
-        if(!TextUtils.isEmpty(id) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(size.getText().toString())){
-            mAddFlatPresenter.addFlat(this, address, id, members, flatSize);
+        if(!TextUtils.isEmpty(id) && !TextUtils.isEmpty(name) && !TextUtils.isEmpty(size.getText().toString())){
+            mAddFlatPresenter.addFlat(this,name, id, members, flatSize);
             Intent i = new Intent(AddFlatActivity.this, ActivityOverview.class);
             startActivity(i);
         } else {
-            Toast.makeText(getApplicationContext(), "Your input was invalid", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Bitte füllen alle Felder aus!", Toast.LENGTH_SHORT).show();
         }
     }
 
