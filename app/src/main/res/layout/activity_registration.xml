@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--Setup UI for SignUpScreen-->
-
     <ImageView
         android:id="@+id/headersignup"
         android:layout_width="match_parent"
@@ -70,22 +68,6 @@
         android:background="@drawable/background_for_login"
         android:paddingStart="30dp"
         android:paddingEnd="30dp">
-
-        <!--<TextView
-            android:id="@+id/label_signup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/label_signup"
-            android:gravity="center"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="25dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:textColor="@color/HeaderFontColor"
-            android:textSize="30dp" />-->
-
-
-        <!--Registerinformation E-Mail and Password-->
 
         <EditText
             android:id="@+id/signup_name"
