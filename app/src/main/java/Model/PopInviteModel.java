@@ -15,9 +15,14 @@ import Presenter.PopInvite.PopInviteContract;
 
 public class PopInviteModel implements PopInviteContract.Model, PopInviteContract.Listener {
 
+    // MVP components
     private PopInviteContract.Listener listener;
+
+    // Firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
     private DatabaseReference refFat = database.getReference(FLATPATH);
+
+    // Utils
     private static final String FIREBASEPATH = "https://wgfinance-b594f-default-rtdb.europe-west1.firebasedatabase.app/";
     private static final String FLATPATH = "WG";
     String flatID;
@@ -26,6 +31,7 @@ public class PopInviteModel implements PopInviteContract.Model, PopInviteContrac
         this.listener = listener;
     }
 
+    // Model -> Firebase
     @Override
     public void getFlatIDFromFirebase(String email) {
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -37,18 +43,17 @@ public class PopInviteModel implements PopInviteContract.Model, PopInviteContrac
                         flatID = snap.getValue(Flat.class).getId();
                     }
                 }
+                // When done - pass data to Presenter
                 listener.onFlatIDRetrieved(flatID);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         };
         refFat.addListenerForSingleValueEvent(valueEventListener);
     }
 
+    // interface method
     @Override
-    public void onFlatIDRetrieved(String flatID) {
-
-    }
+    public void onFlatIDRetrieved(String flatID) {}
 }

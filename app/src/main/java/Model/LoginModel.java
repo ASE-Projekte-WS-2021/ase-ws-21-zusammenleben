@@ -12,12 +12,14 @@ import Presenter.Login.LoginContract;
 
 public class LoginModel implements LoginContract.Interactor {
 
+    // MVP components
     private LoginContract.onLoginListener mOnLoginListener;
 
     public LoginModel(LoginContract.onLoginListener onLoginListener){
         this.mOnLoginListener = onLoginListener;
     }
 
+    // OnCompleteListener looks great on the UI, but seems a bit bulky
     @Override
     public void performFirebaseLogin(Activity activity, String email, String password){
         FirebaseAuth.getInstance()

@@ -11,6 +11,7 @@ import Model.AddFlatModel;
 
 public class AddFlatPresenter implements AddFlatContract.Presenter, AddFlatContract.onAddFlatListener{
 
+    // MVP components
     private AddFlatContract.View mAddFlatView;
     private AddFlatModel mAddFlatModel;
 
@@ -19,6 +20,9 @@ public class AddFlatPresenter implements AddFlatContract.Presenter, AddFlatContr
         mAddFlatModel = new AddFlatModel(this);
     }
 
+    // Presenter -> Model
+    // We add a 5-character-random-code to the flatID to make sure that the flatID is always unique
+    // This is important for later usage in DeepLink and JoinFlat
     @Override
     public void addFlat(Activity activity, String address, String id, List<String> members, int size) {
         String randomID = UUID.randomUUID().toString().substring(0,5);
@@ -27,11 +31,13 @@ public class AddFlatPresenter implements AddFlatContract.Presenter, AddFlatContr
         mAddFlatModel.addFlattoFirebase(createdFlat);
     }
 
+    // Presenter -> View
     @Override
     public void onSuccess(String message) {
         mAddFlatView.onAddFlatSuccess(message);
     }
 
+    // Presenter -> View
     @Override
     public void onFailure(String message) {
         mAddFlatView.onAddFlatFailed(message);

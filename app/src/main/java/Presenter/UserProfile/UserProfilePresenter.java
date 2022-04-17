@@ -26,7 +26,7 @@ public class UserProfilePresenter implements UserProfileContract.Presenter, User
 
     @Override
     public void changePicture(Activity activity, Bitmap bitmap) {
-        mProfileModel.uploadimage(activity, bitmap);
+        mProfileModel.uploadImage(activity, bitmap);
     }
 
     // init communication Presenter -> Model

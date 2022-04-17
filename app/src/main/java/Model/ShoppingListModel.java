@@ -21,15 +21,19 @@ import Presenter.ShoppingList.ShoppingListContract;
 
 public class ShoppingListModel implements ShoppingListContract.Model, ShoppingListContract.onShoppingSuccessListener {
 
+    // MVP components
     private ShoppingListContract.onShoppingSuccessListener mOnShoppingSuccessListener;
+
+    // Firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
     private DatabaseReference refBasket = database.getReference(BASKETPATH);
+
+    // Utils
     private static final String FIREBASEPATH = "https://wgfinance-b594f-default-rtdb.europe-west1.firebasedatabase.app/";
     private static final String BASKETPATH = "Baskets";
     Basket retrievedBasket;
     HashMap<String, ShoppingItem> shoppingItems = new HashMap<>();
     ArrayList<ShoppingItem> shoppingList = new ArrayList<>();
-
     String shoppingItemId;
 
     public ShoppingListModel(ShoppingListContract.onShoppingSuccessListener onShoppingSuccessListener){
@@ -37,6 +41,7 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
     }
 
 
+    // Model -> Firebase. This looks bulky but it is the same procedure as in every other Firebase Query
     @Override
     public Basket retrieveBasketItemFromFirebase(String basketID) {
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -51,26 +56,22 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
                         retrievedBasket = new Basket(title, creator, flatID, basketID, shoppingItems);
                     }
                 }
-
                 mOnShoppingSuccessListener.onBasketItemRetrieved(retrievedBasket);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         };
-
         refBasket.addValueEventListener(valueEventListener);
         return retrievedBasket;
     }
-    //die selbe methode ist doch in zeile 133
+
+    // Model -> Firebase. But do it with a callback to avoid time conflicts
     @Override
     public void addShoppingItemToFirebase(String basketID, ShoppingItem item) {
-
         refBasket.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
-
                 DatabaseReference reference = refBasket.child(basketID).child("shoppingList").push();
                 String uniqueFirebaseID = reference.getKey();
                 item.setShoppingItemId(uniqueFirebaseID);
@@ -81,12 +82,12 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
         });
     }
 
+    // Model -> Firebase. You need to filter the data with the basketID and create a new object
     @Override
     public ArrayList<ShoppingItem> retrieveShoppingItemFromFirebase(String basketID) {
         refBasket.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("hier", "angekommen in onsucess");
                 for(DataSnapshot snap : dataSnapshot.getChildren()) {
                     if (dataSnapshot.exists()) {
                         if (snap.getValue(Basket.class).getBasketID().equals(basketID)) {
@@ -101,6 +102,7 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
                         }
                     }
                 }
+                // Callback Model -> Presenter
                 mOnShoppingSuccessListener.onShoppingItemRetrieved(shoppingList);
                 shoppingList.clear();
             }
@@ -108,29 +110,25 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
         return shoppingList;
     }
 
+    // Model -> Firebase
     @Override
     public void deleteItemFromFirebase(String itemId, String basketId) {
         refBasket.child(basketId).child("shoppingList").child(itemId).removeValue();
     }
 
+    // interface methods
     @Override
-    public void onBasketItemRetrieved(Basket basket) {
-
-    }
-    // die Methode haben wir doch schon in Zeile 86
-    @Override
-    public void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList) {
-    }
+    public void onBasketItemRetrieved(Basket basket) {}
 
     @Override
-    public void onShoppingItemAdded(String basketID) {
-    }
+    public void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList) {}
 
     @Override
-    public void onShoppingListItemAltered(String itemID) {
-    }
+    public void onShoppingItemAdded(String basketID) {}
 
     @Override
-    public void onShoppingItemDeleted(ShoppingItem item) {
-    }
+    public void onShoppingListItemAltered(String itemID) {}
+
+    @Override
+    public void onShoppingItemDeleted(ShoppingItem item) {}
 }

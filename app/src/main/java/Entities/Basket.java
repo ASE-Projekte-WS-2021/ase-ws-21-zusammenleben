@@ -1,11 +1,9 @@
 package Entities;
-
 import java.util.HashMap;
 
 public class Basket {
     String title;
     String currentUser;
-    String timestamp;
     String flatID;
     String basketID;
     HashMap<String, ShoppingItem> shoppingList;
@@ -18,8 +16,8 @@ public class Basket {
         this.shoppingList = shoppingList;
     }
 
-    public Basket(){
-    }
+    // default empty constructor (required when working with Firebase)
+    public Basket(){}
 
     public HashMap<String, ShoppingItem> getShoppingList(){
         return shoppingList;

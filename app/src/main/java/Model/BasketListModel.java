@@ -22,21 +22,28 @@ import Presenter.BasketList.BasketListContract;
 
 public class BasketListModel implements BasketListContract.Model, BasketListContract.onBasketSuccessListener {
 
+    // MVP components
     private BasketListContract.onBasketSuccessListener mOnBasketSuccessListener;
+
+    // Firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
     private DatabaseReference refPayment = database.getReference(BASKETPATH);
     private DatabaseReference refFlat = database.getReference(FLATPATH);
     private DatabaseReference refBasket = database.getReference(BASKETPATH);
+
+    // Utils
     private static final String FIREBASEPATH = "https://wgfinance-b594f-default-rtdb.europe-west1.firebasedatabase.app/";
     private static final String BASKETPATH = "Baskets";
     private static final String FLATPATH = "WG";
-    Flat retrievedFlat;
     ArrayList<Basket> baskets = new ArrayList<>();
+    Flat retrievedFlat;
 
     public BasketListModel(BasketListContract.onBasketSuccessListener onBasketSuccessListener){
         this.mOnBasketSuccessListener = onBasketSuccessListener;
     }
 
+    // Model -> Firebase
+    // Filter with email, create object from Firebase data
     @Override
     public Flat retrieveFlatFromFirebase(String email) {
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -51,17 +58,18 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
                         retrievedFlat = new Flat(address, id, members, size);
                     }
                 }
+                // wait, when finished, go back to Presenter
                 mOnBasketSuccessListener.onFlatFoundSuccess(retrievedFlat);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         };
         refFlat.addListenerForSingleValueEvent(valueEventListener);
         return retrievedFlat;
     }
 
+    // Model -> Firebase
     @Override
     public void addBasketToFirebase(Basket basket) {
         refBasket.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
@@ -77,6 +85,7 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
         });
     }
 
+    // After fetching the flat, get all baskets with flat
     @Override
     public ArrayList<Basket> retrieveBasketsFromFirebase(String flatID) {
         refBasket.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
@@ -87,11 +96,13 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
                         String title = snap.getValue(Basket.class).getTitle();
                         String currentUser = snap.getValue(Basket.class).getCurrentUser();
                         String basketID = snap.getValue(Basket.class).getBasketID();
+                        // Attach a HashMap for each ShoppingItem as a dynamic data structure
                         HashMap<String, ShoppingItem> shoppingList = snap.getValue(Basket.class).getShoppingList();
                         Basket basket = new Basket(title, currentUser, flatID, basketID, shoppingList);
                         baskets.add(basket);
                     }
                 }
+                // wait, when finished -> back to Presenter
                 mOnBasketSuccessListener.onBasketsRetrieved(baskets);
                 baskets.clear();
             }
@@ -99,22 +110,20 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
         return baskets;
     }
 
-    @Override
-    public void onFlatFoundSuccess(Flat flat) {
-
-    }
-
-    @Override
-    public void onBasketAddedSuccess() {
-
-    }
-
-    @Override
-    public void onBasketsRetrieved(ArrayList<Basket> baskets) {
-    }
-
+    // Model -> Firebase
     @Override
     public void deleteBasketFromFirebase (String basketId){
         refBasket.child(basketId).removeValue();
     }
+
+    // interface methods
+    @Override
+    public void onFlatFoundSuccess(Flat flat) {}
+
+    @Override
+    public void onBasketAddedSuccess() {}
+
+    @Override
+    public void onBasketsRetrieved(ArrayList<Basket> baskets) {}
+
 }

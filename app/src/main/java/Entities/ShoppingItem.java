@@ -4,7 +4,6 @@ public class ShoppingItem {
 
     private String itemName;
     private int itemQuantity;
-
     String shoppingItemId;
 
     public ShoppingItem(String itemName, int itemQuantity, String shoppingItemId){
@@ -13,6 +12,7 @@ public class ShoppingItem {
         this.shoppingItemId = shoppingItemId;
     }
 
+    // default empty constructor (required when working with Firebase)
     public ShoppingItem(){}
 
     public String getItemName(){

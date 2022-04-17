@@ -1,5 +1,4 @@
 package Entities;
-
 import java.util.List;
 
 public class Flat {
@@ -15,8 +14,7 @@ public class Flat {
         this.address = address;
     }
 
-    public Flat(){
-    }
+    public Flat(){}
 
     public String getId(){
         return id;
@@ -35,7 +33,3 @@ public class Flat {
     }
 
 }
-
-// TODO : Modellieren - größe der wg vs größe der liste
-
-// TODO : ist die size nicht komplett obsolete ?

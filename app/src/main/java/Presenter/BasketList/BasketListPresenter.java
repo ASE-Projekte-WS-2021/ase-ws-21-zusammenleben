@@ -46,7 +46,8 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
         basketListView.onFlatFound(currentUserFlat);
     }
 
-    //
+    // This is a bit hacky - we create the object and initialize a HashMap to avoid null pointer
+    // Later, we clean the HashMaps's first object and start Presenter -> Model
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void createBasket(String mail, String flatID){
@@ -63,7 +64,8 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
         basketListModel.addBasketToFirebase(basket);
     }
 
-
+    // This is a bit hacky too. But even if it is hardcoded, it is clear what happens
+    // There is no easy library, java-function, etc. to translate from english to german
     private String translateDay(String s){
         switch (s){
             case "Monday":
@@ -91,11 +93,13 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
         return s;
     }
 
+    // After Model is finished
     @Override
     public void onBasketAddedSuccess() {
         baskets = basketListModel.retrieveBasketsFromFirebase(currentUserFlat.getId());
     }
 
+    // After Model is finished
     @Override
     public void onBasketsRetrieved(ArrayList<Basket> baskets) {
         for(int i = 0 ; i < baskets.size() ; i++){
@@ -108,9 +112,11 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
             basketIDs.add(basketID);
             basketElements.add(basketElement);
         }
+        // Presenter -> View
         basketListView.onBasketItemFound(basketElements, basketIDs);
     }
 
+    // Presenter -> Model
     @Override
     public void retrieveBaskets(String id){
         baskets = basketListModel.retrieveBasketsFromFirebase(currentUserFlat.getId());

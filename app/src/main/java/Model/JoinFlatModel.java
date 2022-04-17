@@ -18,37 +18,42 @@ import Presenter.JoinFlat.JoinFlatContract;
 
 public class JoinFlatModel implements JoinFlatContract.Model, JoinFlatContract.onJoinFlatListener {
 
+    // MVP components
     private JoinFlatContract.onJoinFlatListener onJoinFlatListener;
+
+    // Firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
     private DatabaseReference refFlat = database.getReference(FLATPATH);
+
+    // Utils
     private static final String FIREBASEPATH = "https://wgfinance-b594f-default-rtdb.europe-west1.firebasedatabase.app/";
     private static final String FLATPATH = "WG";
-    Flat foundFlat;
     ArrayList<Flat> flats = new ArrayList<>();
-    ArrayList<Flat> retrievedList = new ArrayList<>();
-
 
     public JoinFlatModel(JoinFlatContract.onJoinFlatListener onJoinFlatListener){
         this.onJoinFlatListener = onJoinFlatListener;
     }
 
+    // Model -> Firebase
     @Override
     public ArrayList<Flat> retrieveFlatFromFirebase(String flatPassword) {
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot snap : snapshot.getChildren()){
+                    // create the object from Firebase data
                     String id = snap.getValue(Flat.class).getId();
                     int size = snap.getValue(Flat.class).getSize();
                     List<String> members = snap.getValue(Flat.class).getMembers();
                     String address = snap.getValue(Flat.class).getAddress();
                     Flat flat = new Flat(address, id, members, size);
                     flats.add(flat);
-                    // abc
                 }
+                // wait, when finished, return to Presenter
                 onJoinFlatListener.onSuccess(flats);
             }
 
+            // wait, when not successful, return error message
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 onJoinFlatListener.onFailure(error.toString());
@@ -58,9 +63,10 @@ public class JoinFlatModel implements JoinFlatContract.Model, JoinFlatContract.o
         return flats;
     }
 
+    // Add an element (represented by E-Mail) to the List of users
+    // Model -> Firebase
     @Override
     public void addUserToFlatInFirebase(String email, String flatID) {
-        Log.d("arrived", email+flatID);
         refFlat.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -76,6 +82,7 @@ public class JoinFlatModel implements JoinFlatContract.Model, JoinFlatContract.o
                 }
             }
 
+            // When not successful, return error message
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 onJoinFlatListener.onFailure(error.toString());
@@ -83,13 +90,10 @@ public class JoinFlatModel implements JoinFlatContract.Model, JoinFlatContract.o
         });
     }
 
+    // interface methods
     @Override
-    public void onSuccess(ArrayList<Flat> flats) {
-
-    }
+    public void onSuccess(ArrayList<Flat> flats) {}
 
     @Override
-    public void onFailure(String message) {
-
-    }
+    public void onFailure(String message) {}
 }

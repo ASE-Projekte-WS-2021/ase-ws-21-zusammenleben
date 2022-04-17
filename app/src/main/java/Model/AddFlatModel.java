@@ -15,21 +15,26 @@ import Presenter.AddFlat.AddFlatContract;
 
 public class AddFlatModel implements AddFlatContract.Model, AddFlatContract.onAddFlatListener {
 
-    private AddFlatContract.View mAddFlatView;
+    // MVP components
     private AddFlatContract.onAddFlatListener mOnAddFlatListener;
 
+    // Firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
     private DatabaseReference refFlat;
+
+    // Utils
     private static final String FIREBASEPATH = "https://wgfinance-b594f-default-rtdb.europe-west1.firebasedatabase.app/";
-    private static final String FlatPATH = "WG";
+    private static final String FLATPATH = "WG";
 
     public AddFlatModel(AddFlatContract.onAddFlatListener onAddFlatListener){
         this.mOnAddFlatListener = onAddFlatListener;
     }
 
+    // Model -> Firebase
+    // In this case, a callback could be implemented, but is not necessary
     @Override
     public void addFlattoFirebase(Flat flat) {
-        refFlat = database.getReference(FlatPATH);
+        refFlat = database.getReference(FLATPATH);
         refFlat.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -44,13 +49,10 @@ public class AddFlatModel implements AddFlatContract.Model, AddFlatContract.onAd
         });
     }
 
+    // interface methods
     @Override
-    public void onSuccess(String message) {
-        //mAddFlatView.onAddFlatSuccess(message);
-    }
+    public void onSuccess(String message) {}
 
     @Override
-    public void onFailure(String message) {
-        //mAddFlatView.onAddFlatFailed(message);
-    }
+    public void onFailure(String message) {}
 }

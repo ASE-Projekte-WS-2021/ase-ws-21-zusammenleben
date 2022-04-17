@@ -12,12 +12,14 @@ import Presenter.ForgotPassword.ForgotPasswordContract;
 
 public class ForgotPasswordModel implements ForgotPasswordContract.Interactor {
 
+    // MVP components
     private ForgotPasswordContract.onPassRestListener mOnPassResetListener;
 
     public ForgotPasswordModel(ForgotPasswordContract.onPassRestListener onPassRestListener){
         this.mOnPassResetListener = onPassRestListener;
     }
 
+    // Using Firebase functions, Model -> Firebase
     @Override
     public void passwordReset(Activity activity, String email){
         FirebaseAuth.getInstance()

@@ -16,25 +16,29 @@ import Presenter.Overview.OverviewContract;
 
 public class OverviewModel implements OverviewContract.Model, OverviewContract.onPaymentListener {
 
+    // MVP components
     private OverviewContract.onPaymentListener mOnPaymentListener;
-    ArrayList<Payment> payments = new ArrayList<>();
+
+    // Firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
     private DatabaseReference refPayment = database.getReference(PAYMENTPATH);
+
+    // Utils
     private static final String FIREBASEPATH = "https://wgfinance-b594f-default-rtdb.europe-west1.firebasedatabase.app/";
     private static final String PAYMENTPATH = "Payment";
-
+    ArrayList<Payment> payments = new ArrayList<>();
 
     public OverviewModel(OverviewContract.onPaymentListener onPaymentListener){
         this.mOnPaymentListener = onPaymentListener;
     }
 
+    // Model -> Firebase. While developing, we found out that this Query may be the most time-consuming
+    // We added an onSuccessListener to make sure to wait until Query is finished
     @Override
     public ArrayList<Payment> retrievePaymentFromFirebase(String email) {
-        Log.d("123", "triggered in model");
         refPayment.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("123", "inside snapshot count" + String.valueOf(dataSnapshot.getChildrenCount()));
                 for(DataSnapshot snap : dataSnapshot.getChildren()){
                     if(snap.getValue(Payment.class).getCreator().equals(email) || snap.getValue(Payment.class).getReceiver().contains(email)){
                         ArrayList<String> receivers = snap.getValue(Payment.class).getReceiver();
@@ -47,6 +51,7 @@ public class OverviewModel implements OverviewContract.Model, OverviewContract.o
                         payments.add(p);
                     }
                 }
+                // back to presenter
                 mOnPaymentListener.onSuccess(payments);
                 payments.clear();
             }
@@ -54,13 +59,13 @@ public class OverviewModel implements OverviewContract.Model, OverviewContract.o
         return payments;
     }
 
+    // Model -> Firebase
     @Override
     public void deletePaymentFromFirebase(String id) {
         refPayment.child(id).removeValue();
     }
 
+    // interface method
     @Override
-    public void onSuccess(ArrayList<Payment> payments) {
-
-    }
+    public void onSuccess(ArrayList<Payment> payments) {}
 }

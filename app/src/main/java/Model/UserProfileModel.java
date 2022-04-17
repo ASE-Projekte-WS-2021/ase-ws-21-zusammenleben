@@ -30,19 +30,25 @@ import Presenter.UserProfile.UserProfileContract;
 
 public class UserProfileModel implements UserProfileContract.Model, UserProfileContract.onUserDeletedListener {
 
+    // MVP listener
     private UserProfileContract.onUserDeletedListener onUserDeletedListener;
+    
+    // Firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
     private DatabaseReference refFlat = database.getReference(FLATPATH);
 
+    // Utils
     private static final String FIREBASEPATH = "https://wgfinance-b594f-default-rtdb.europe-west1.firebasedatabase.app/";
     private static final String FLATPATH = "WG";
     Flat retrievedFlat;
-
+    
     public UserProfileModel(UserProfileContract.onUserDeletedListener onUserDeletedListener){
         this.onUserDeletedListener = onUserDeletedListener;
     }
 
-    public void uploadimage(Activity activity, Bitmap bitmap) {
+    // Model -> Firebase
+    // It is not stored inside the Realtime Database backend
+    public void uploadImage(Activity activity, Bitmap bitmap) {
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100,byteArrayOutputStream);
@@ -62,12 +68,12 @@ public class UserProfileModel implements UserProfileContract.Model, UserProfileC
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
-                    }
+                    public void onFailure(@NonNull Exception e) {}
                 });
 
     }
 
+    // Extract the URL
     public void getDownloadUrl(Activity activity, StorageReference reference){
         reference.getDownloadUrl()
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -79,9 +85,9 @@ public class UserProfileModel implements UserProfileContract.Model, UserProfileC
 
     }
 
+    // Init profile picture
     public void setUserProfileUrl(Uri uri){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
                 .setPhotoUri(uri)
                 .build();
@@ -97,20 +103,10 @@ public class UserProfileModel implements UserProfileContract.Model, UserProfileC
                     public void onFailure(@NonNull Exception e) {
                     }
                 });
-
     }
 
-    @Override
-    public void onFlatFound(Flat flat) {
-
-    }
-
-    @Override
-    public void onUserDeleted(String message) {
-
-    }
-
-
+    // Model -> Firebase
+    // Model -> Presenter with listener to wait until task is executed
     @Override
     public Flat retrieveFlatFromFirebase(String email) {
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -119,6 +115,7 @@ public class UserProfileModel implements UserProfileContract.Model, UserProfileC
                 for(DataSnapshot snap : snapshot.getChildren()){
                     List<String> members = snap.getValue(Flat.class).getMembers();
                     if(members.contains(email)){
+                        // create object from Firebase data
                         String address = snap.getValue(Flat.class).getAddress();
                         String id = snap.getValue(Flat.class).getId();
                         int size = members.size();
@@ -136,9 +133,17 @@ public class UserProfileModel implements UserProfileContract.Model, UserProfileC
         return retrievedFlat;
     }
 
+    // Model -> Firebase
     @Override
     public void deleteUserInFirebase(Flat flat) {
         refFlat.child(flat.getId()).setValue(flat);
         onUserDeletedListener.onUserDeleted("Deleted");
     }
+
+    // interface methods
+    @Override
+    public void onFlatFound(Flat flat) {}
+
+    @Override
+    public void onUserDeleted(String message) {}
 }
