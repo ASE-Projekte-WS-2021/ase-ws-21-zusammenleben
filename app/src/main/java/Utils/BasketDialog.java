@@ -14,8 +14,12 @@ import com.example.myapplication.R;
 
 public class BasketDialog extends AppCompatDialogFragment implements DialogListener{
 
+    // This dialog is the middle man between two activities
+    // The business logic is inside the mvp classes of ActivityBasketList and ActivityShoppingList
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
+        // initializing
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle);
         builder.setTitle("Einkauf bearbeiten")
                 .setMessage("Bearbeite oder lösche einen Einkauf")
@@ -35,6 +39,7 @@ public class BasketDialog extends AppCompatDialogFragment implements DialogListe
                     }
                 });
 
+        // interaction
         builder.setNegativeButton("Löschen", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -48,6 +53,7 @@ public class BasketDialog extends AppCompatDialogFragment implements DialogListe
         return builder.create();
     }
 
+    // interface method
     @Override
     public void onReturnValue(String id) {
     }

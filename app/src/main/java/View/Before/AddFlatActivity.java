@@ -23,11 +23,16 @@ import View.After.ActivityOverview;
 
 public class AddFlatActivity extends AppCompatActivity implements AddFlatContract.View, View.OnClickListener {
 
+    // UI components
     Button btnCreateFlat;
     EditText size, flat_name, flatIDText;
+
+    // Architectural
     AddFlatPresenter mAddFlatPresenter;
     FirebaseAuth mAuth;
     FirebaseUser user;
+
+    // Util
     String currentUser;
 
     @Override
@@ -54,12 +59,14 @@ public class AddFlatActivity extends AppCompatActivity implements AddFlatContrac
         checkInputData();
     }
 
+    // Querying the firebase for current user
     private void getCurrentUser(){
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         currentUser = user.getEmail();
     }
 
+    // error handling
     private void checkInputData(){
         String id = flatIDText.getText().toString();
         String address = flat_name.getText().toString();
@@ -76,6 +83,7 @@ public class AddFlatActivity extends AppCompatActivity implements AddFlatContrac
         }
     }
 
+    // user feedback
     @Override
     public void onAddFlatSuccess(String message) {
         Toast.makeText(getApplicationContext(), "Ihr WG wurde erfolgreich angelegt.", Toast.LENGTH_SHORT).show();

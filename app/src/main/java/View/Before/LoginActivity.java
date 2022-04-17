@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mLoginPresenter = new LoginPresenter(this);
     }
 
+    // handle user interaction
     public void onClick(View view){
         switch(view.getId()){
             case R.id.btn_login:
@@ -72,6 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    // error handling
     private void checkLoginDetails(){
         if (!Patterns.EMAIL_ADDRESS.matcher(loginEmail.getText().toString()).matches() || TextUtils.isEmpty(loginEmail.getText().toString())){
             loginEmail.setError("Bitte geben Sie ihre korrekte E-Mail an.");
@@ -82,33 +84,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             initLogin(loginEmail.getText().toString(), loginPassword.getText().toString());
         }
-
-        /*if(!TextUtils.isEmpty(loginEmail.getText().toString()) && !TextUtils.isEmpty(loginPassword.getText().toString())){
-            initLogin(loginEmail.getText().toString(), loginPassword.getText().toString());
-        } else {
-            loginPassword.setError("Bitte geben Sie ihr Passwort korrekt an.");
-            loginEmail.setFocusable(true);
-            loginPassword.setError("Bitte geben Sie ihr Passwort korrekt an.");
-            loginPassword.setFocusable(true);
-            Toast.makeText(getApplicationContext(), "Bitte füllen Sie alle Pflichtfelder aus!", Toast.LENGTH_SHORT).show();
-        }*/
     }
 
+    // start mvp transaction
     private void initLogin(String email, String password){
         mLoginPresenter.login(this, email, password);
     }
 
+
+    // mvp transaction complete
     @Override
     public void onLoginSuccess(String message) {
-        Log.d("login", "succesful!");
         Intent i = new Intent(LoginActivity.this, ActivityOverview.class);
         startActivity(i);
-        //Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onLoginFailure(String message) {
-        Log.d("login", message);
         Toast.makeText(getApplicationContext(), "Ungültige Anmeldeinformation.Bitte versuchen Sie es erneut!", Toast.LENGTH_SHORT).show();
     }
 }

@@ -17,9 +17,11 @@ import Presenter.ForgotPassword.ForgotPasswordPresenter;
 
 public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener, ForgotPasswordContract.View {
 
+    // UI components
     EditText emailforpassword;
     Button resetpassword;
 
+    // Architectural
     private ForgotPasswordPresenter mPasswordPresenter;
 
 

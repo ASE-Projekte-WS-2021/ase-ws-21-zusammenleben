@@ -19,10 +19,12 @@ import View.After.ActivityPopInvite;
 
 public class ActivityPopInvite extends AppCompatActivity implements PopInviteContract.Listener, PopInviteContract.View {
 
+    // UI components
     EditText text, recipient, subject;
     Button btnSend;
-    String userEmail, userMessage, lines;
-    String[] content;
+    String userEmail, lines;
+
+    // Architectural
     PopInvitePresenter popInvitePresenter;
 
     @Override
@@ -39,6 +41,8 @@ public class ActivityPopInvite extends AppCompatActivity implements PopInviteCon
         popInvitePresenter.getFlatID(userEmail);
     }
 
+    // Retrieve user email via intent, lightweight solution
+    // Just another way, you could do this with the MVP pattern or directly with firebase
     private void getCurrentUserEmail(){
         userEmail = getIntent().getExtras().getString("EMAIL");
     }
@@ -51,12 +55,15 @@ public class ActivityPopInvite extends AppCompatActivity implements PopInviteCon
         btnSend = findViewById(R.id.popupwindow_btn_send);
     }
 
+    // Build the text for the email, efficient method
+    // You could also put this into constants or resources, but the result will be the same
     @Override
     public void onFlatIDRetrieved(String id) {
         String firstLine = "  Hi,";
         String secondLine = "  please join my Flat. Inside the app, enter:";
         String thirdLine = "  " + id;
         String fourthLine = "  Click on this link to directly sign in!";
+        // Firebase dynamic link created in the backend
         String fifthLine = "  https://wgfinance.page.link/join";
         lines = firstLine + "\n" + secondLine + "\n" + thirdLine + "\n" + fourthLine + "\n" + fifthLine;
         text.setText(lines);
@@ -68,6 +75,7 @@ public class ActivityPopInvite extends AppCompatActivity implements PopInviteCon
         });
     }
 
+    // Send the email, e.g. GoogleMail Client. Should be installed on every phone
     private void sendMail(){
         String recipientList = recipient.getText().toString();
         String[] recipients = recipientList.split(",");

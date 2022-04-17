@@ -52,8 +52,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         checkRegistrationDetails();
     }
 
+    // error handling
     private void checkRegistrationDetails(){
-
         if (!Patterns.EMAIL_ADDRESS.matcher(signUpEmail.getText().toString()).matches() || TextUtils.isEmpty(signUpEmail.getText().toString())) {
             signUpEmail.setError("Bitte geben Sie ihre korrekte E-Mail an.");
             signUpEmail.setFocusable(true);
@@ -66,23 +66,14 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         } else {
             initLogin(signUpEmail.getText().toString(), signUpPassword.getText().toString(), signUpName.getText().toString());
         }
-
-        /*if(!TextUtils.isEmpty(signUpEmail.getText().toString()) && !TextUtils.isEmpty(signUpPassword.getText().toString())){
-          initLogin(signUpEmail.getText().toString(), signUpPassword.getText().toString(), signUpName.getText().toString());
-        } else {
-            signUpEmail.setError("Bitte geben Sie ihre E-Mail an.");
-            signUpEmail.setFocusable(true);
-            signUpPassword.setError("Bitte geben Sie ihr Passwort an.");
-            signUpPassword.setFocusable(true);
-        }*/
     }
 
+    // start mvp transaction
     private void initLogin(String email, String password, String name){
         mRegistrationPresenter.register(this, email, password, name);
-        //Intent i = new Intent(RegistrationActivity.this, CreateFlatActivity.class);
-        //startActivity(i);
     }
 
+    // mvp transaction complete
     @Override
     public void onRegistrationSuccess(FirebaseUser firebaseUser) {
         Toast.makeText(getApplicationContext(), "Ihr Konto wurde erfolgreich erstellt", Toast.LENGTH_SHORT).show();
@@ -92,7 +83,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onRegistrationFailure(String message) {
-        Log.d("fail", "fail");
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

@@ -37,7 +37,7 @@
     <string name="title_logout">Ausloggen</string>
     <string name="txtview_overview">Zahlungsübersicht</string>
     <string name="description_newpayment">newPayment</string>
-    <string name="txtview_depts">Offene Beträge:</string>
+    <string name="txtview_depts">Meine Schulden:</string>
     <string name="description_editBasket">Edit Basket</string>
     <string name="btn_savePayment">Zahlung speichern</string>
     <string name="txtview_totalAmount">Gesamtbetrag</string>

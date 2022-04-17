@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -32,17 +31,20 @@ import View.Before.LoginActivity;
 
 public class ActivityUserProfile extends AppCompatActivity implements UserProfileContract.View {
 
+    // UI components
     BottomNavigationView bottomNavigationView;
     MaterialToolbar toolbar;
     Button btnleaving, btninvite;
     ImageView imageView;
-    String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
     TextView showMail;
-    int TAKE_IMAGE_CODE = 10001;
-
     Bitmap bitmap;
-
+    
+    // Architectural
     private UserProfilePresenter mProfilePresenter;
+
+    // Utils
+    String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+    int TAKE_IMAGE_CODE = 10001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +53,19 @@ public class ActivityUserProfile extends AppCompatActivity implements UserProfil
         setupNavBar();
         handleTopBar();
         handleClicks();
+        retrievePhoto();
         mProfilePresenter = new UserProfilePresenter(this);
+    }
+    
+    // simple lightweight firebase query
+    private void retrievePhoto(){
         if (FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl() != null ){
             Glide.with(this)
                     .load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl())
                     .into(imageView);
         }
     }
-
+    
     private void setupUIComponents(){
         setContentView(R.layout.activity_userprofile);
         btnleaving = findViewById(R.id.btn_leaving);
@@ -73,6 +80,7 @@ public class ActivityUserProfile extends AppCompatActivity implements UserProfil
         actionBar.hide();
     }
 
+    // Listen for user interaction
     private void handleClicks(){
         btnleaving.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +92,7 @@ public class ActivityUserProfile extends AppCompatActivity implements UserProfil
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setpicture();
+                setPicture();
             }
         });
         btninvite.setOnClickListener(new View.OnClickListener() {
@@ -99,36 +107,35 @@ public class ActivityUserProfile extends AppCompatActivity implements UserProfil
         });
     }
 
-    private void setpicture(){
+    // pass image to screen
+    private void setPicture(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
             startActivityForResult(intent, TAKE_IMAGE_CODE);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(ActivityUserProfile.this, "Activity not found", Toast.LENGTH_SHORT).show();
         }
-
     }
 
-    private void picutre(Bitmap bitmap){
+    // Start mvp transaction
+    private void picture(Bitmap bitmap){
         mProfilePresenter.changePicture(this, bitmap);
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == TAKE_IMAGE_CODE){
-
             switch (resultCode){
                 case RESULT_OK:
                     Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                     imageView.setImageBitmap(bitmap);
-                    picutre(bitmap);
+                    picture(bitmap);
             }
         }
     }
 
-
+    // UI method
     private void setupNavBar(){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -150,6 +157,8 @@ public class ActivityUserProfile extends AppCompatActivity implements UserProfil
         });
     }
 
+
+    // UI method
     private void handleTopBar(){
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -170,17 +179,16 @@ public class ActivityUserProfile extends AppCompatActivity implements UserProfil
         });
     }
 
+    // Callback completed
     @Override
     public void onProfileSuccess(String message) {
-        Log.d("login", "succesful!");
-        picutre(bitmap);
+        picture(bitmap);
         Toast.makeText(getApplicationContext(), "Profilbild geändert!", Toast.LENGTH_SHORT).show();
     }
 
+    // interface method
     @Override
     public void onProfileFailure(String message) {
-        Log.d("login", "succesful!");
-        //Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
     }
 
 

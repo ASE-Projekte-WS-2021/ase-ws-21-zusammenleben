@@ -13,8 +13,12 @@ import com.example.myapplication.R;
 
 public class PaymentDialog extends AppCompatDialogFragment implements DialogListener{
 
+    // The dialog is the middle man between two activities - ShoppingList and PaymentOverview
+    // Here we connect our two features, the payment and the shoppinglist
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
+        // initialize
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle);
         builder.setTitle("Zahlung Bearbeiten")
                 .setMessage("Bearbeite oder Lösche eine Zahlung")
@@ -38,6 +42,7 @@ public class PaymentDialog extends AppCompatDialogFragment implements DialogList
                     }
                 });
 
+        // interaction
         builder.setNegativeButton("Löschen", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -51,6 +56,7 @@ public class PaymentDialog extends AppCompatDialogFragment implements DialogList
         return builder.create();
     }
 
+    // interface method
     @Override
     public void onReturnValue(String id) {
     }

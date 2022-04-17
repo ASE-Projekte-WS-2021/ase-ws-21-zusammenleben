@@ -8,8 +8,11 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
-    private OnItemClickListener mListener;
 
+    // This class is written externally and used in multiple Android RecyclerView implementations
+    // Source: https://gist.github.com/chetangani/ff9e8a7daa0c8f892578c9ec41edb4c8
+
+    private OnItemClickListener mListener;
     public interface OnItemClickListener {
         public void onItemClick(View view, int position);
 

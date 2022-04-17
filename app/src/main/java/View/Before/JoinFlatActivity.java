@@ -21,10 +21,12 @@ import View.After.ActivityOverview;
 
 public class JoinFlatActivity extends AppCompatActivity implements JoinFlatContract.View {
 
+    // UI components
     Button joinFlat, findFlat;
     EditText flatName;
     TextView foundFlatAddress, foundFlatOwner, foundFlatPeople;
 
+    // Architectural
     JoinFlatPresenter mJoinFlatPresenter;
 
     @Override
@@ -35,13 +37,14 @@ public class JoinFlatActivity extends AppCompatActivity implements JoinFlatContr
         handleSearchButtonClick();
     }
 
+    // user interaction
     private void handleSearchButtonClick(){
         findFlat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String searchFlat = flatName.getText().toString();
+                // start mvp transaction
                 mJoinFlatPresenter.retrieveFlat(searchFlat);
-                //WG foundWG = mJoinWGPresenter.sendFlat();
             }
         });
     }
@@ -59,6 +62,7 @@ public class JoinFlatActivity extends AppCompatActivity implements JoinFlatContr
     }
 
 
+    // Callback data arrived
     @Override
     public void onFlatFound(String founder, String id, int size) {
         foundFlatAddress.setText(founder);
@@ -70,6 +74,7 @@ public class JoinFlatActivity extends AppCompatActivity implements JoinFlatContr
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 String currentUserEmail = currentUser.getEmail();
+                // start another mvp transaction
                 mJoinFlatPresenter.addUserToFlat(currentUserEmail, founder);
                 Intent i = new Intent(JoinFlatActivity.this, ActivityOverview.class);
                 startActivity(i);
@@ -77,10 +82,9 @@ public class JoinFlatActivity extends AppCompatActivity implements JoinFlatContr
         });
     }
 
+    // Error handling
     @Override
     public void onFlatNotFound(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 }
-
-// TODO : address = flat ID -> bring das einheitlich zueinander

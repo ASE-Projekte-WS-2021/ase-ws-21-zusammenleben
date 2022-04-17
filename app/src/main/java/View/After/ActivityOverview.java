@@ -45,6 +45,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
     LinearLayoutManager linearLayoutManager;
     PaymentAdapter mAdapter;
     ArrayList<ArrayList <String>> payments;
+    TextView debtNumber;
 
 
     @Override
@@ -74,6 +75,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         setContentView(R.layout.activity_overview);
         createNewPayment = findViewById(R.id.btn_managePayments);
         recyclerView = findViewById(R.id.recyclerview_payments);
+        debtNumber = findViewById(R.id.debtNumber);
         bottomNavigationView = findViewById(R.id.bottomnavview);
         bottomNavigationView.setSelectedItemId(R.id.payment);
         toolbar = findViewById(R.id.topAppBar);

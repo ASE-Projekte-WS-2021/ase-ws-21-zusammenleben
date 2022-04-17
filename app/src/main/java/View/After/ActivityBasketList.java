@@ -34,19 +34,23 @@ import View.Before.LoginActivity;
 
 public class ActivityBasketList extends AppCompatActivity implements BasketListContract.View, BasketListContract.onBasketSuccessListener, BasketAdapter.ItemClickListener, DialogListener {
 
+    //UI components
+    BottomNavigationView bottomNavigationView;
+    MaterialToolbar toolbar;
     FloatingActionButton basketButton;
+    RecyclerView recyclerView;
+    LinearLayoutManager linearLayoutManager;
+
+    // Architecture components
     BasketListPresenter mBasketListPresenter;
     FirebaseAuth mAuth;
     FirebaseUser user;
+
+    // Util data
     String currentUserEmail;
     Flat currentFlat;
-    BottomNavigationView bottomNavigationView;
-    MaterialToolbar toolbar;
-
     ArrayList<ArrayList<String>> baskets;
     ArrayList<String> ids;
-    RecyclerView recyclerView;
-    LinearLayoutManager linearLayoutManager;
     BasketAdapter mAdapter;
 
     @Override
@@ -73,9 +77,11 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
     protected void onResume(){
         super.onResume();
         getCurrentUserEmail();
+        // start MVP transaction
         mBasketListPresenter.retrieveFlat(currentUserEmail);
     }
 
+    // UI method
     private void setupNavBar(){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -97,6 +103,8 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         });
     }
 
+
+    // UI method
     private void handleTopBar(){
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -117,12 +125,14 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         });
     }
 
+    // Retrieving userEmail right on the screen, simple method
     private void getCurrentUserEmail(){
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         currentUserEmail = user.getEmail();
     }
 
+    // create the payment and start MVP transaction
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void onButtonClicked(){
         basketButton.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +140,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
             public void onClick(View view) {
                 baskets.clear();
                 mBasketListPresenter.createBasket(currentUserEmail, currentFlat.getId());
+                // UI handling
                 finish();
                 overridePendingTransition(0,0);
                 startActivity(getIntent());
@@ -138,6 +149,7 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         });
     }
 
+    // MVP callback data has arrived, now handle user transaction
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onFlatFound(Flat flat) {
@@ -146,14 +158,12 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         onButtonClicked();
     }
 
+
+    // populate the recyclerview with the retrieved items
     @Override
     public void onBasketItemFound(ArrayList<ArrayList<String>> basketElements, ArrayList<String> basketIDs) {
         baskets = basketElements;
         ids = basketIDs;
-        Log.d("RecyclerTest", basketElements.toString());
-
-        Log.d("RecyclerTest", recyclerView.toString());
-
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -161,33 +171,13 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         recyclerView.setAdapter(mAdapter);
     }
 
-    @Override
-    public void startIntent() {
-
-    }
-
-    @Override
-    public void onFlatFoundSuccess(Flat flat) {
-
-    }
-
-    @Override
-    public void onBasketAddedSuccess() {
-
-    }
-
-    @Override
-    public void onBasketsRetrieved(ArrayList<Basket> baskets) {
-
-    }
-
+    // clear the data structure that populates the recyclerview, it is loaded in onResume()
     @Override
     protected void onPause(){
         super.onPause();
         if(baskets != null) {
             baskets.clear();
         }
-
     }
 
     @Override
@@ -195,13 +185,11 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         handleDialog(position);
     }
 
+    // send Data between dialog and activity
     private void handleDialog(int position) {
         baskets.get(position);
-        Intent i = new Intent(ActivityBasketList.this, ActivityShoppingList.class);
-        Bundle send = new Bundle();
         String sendData = baskets.get(position).toString();
-        String sendId = ids.get(position).toString();
-
+        String sendId = ids.get(position);
         BasketDialog basketDialog = new BasketDialog();
         Bundle bundle = new Bundle();
         bundle.putString("BASKETDATA", sendData);
@@ -211,12 +199,32 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
 
     }
 
+    // delete basket, mvp firebase transaction
     @Override
     public void onReturnValue(String id) {
         mBasketListPresenter.deleteBasket(id);
+        //UI handling
         finish();
         overridePendingTransition(0,0);
         startActivity(getIntent());
         overridePendingTransition(0,0);
+    }
+
+
+    // interface methods
+    @Override
+    public void startIntent() {
+    }
+
+    @Override
+    public void onFlatFoundSuccess(Flat flat) {
+    }
+
+    @Override
+    public void onBasketAddedSuccess() {
+    }
+
+    @Override
+    public void onBasketsRetrieved(ArrayList<Basket> baskets) {
     }
 }

@@ -31,24 +31,29 @@ import View.Before.LoginActivity;
 
 public class ActivityPaymentOverview extends AppCompatActivity implements PaymentOverviewContract.View {
 
-    PaymentOverviewPresenter mPaymentOverviewPresenter;
-    FirebaseAuth mAuth;
-    FirebaseUser user;
-    String currentUserEmail;
-    String dialogTitle = "Wer soll bezahlen?";
-
+    // UI components
     EditText insertCosts, insertPurpose;
     TextView selectMembers;
     Button btnSavePayment;
+    MaterialToolbar toolbar;
+
+    // Architectural components
+    PaymentOverviewPresenter mPaymentOverviewPresenter;
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+
+    // Util data
+    String currentUserEmail,transmittedPaymentID, transmittedFlatID;
+    boolean cameFromDialog;
+    private static final String DIALOGTITLE = "Wer soll bezahlen?";
     Flat currentFlat;
     int retrievedFlatSize;
+
+    // Checkbox data
     boolean[] retrievedSelectedMembers;
     String[] retrievedMemberNames;
     AlertDialog.Builder builder;
     ArrayList<Integer> memberPositions = new ArrayList<>();
-    boolean cameFromDialog;
-    String transmittedPaymentID, transmittedFlatID;
-    MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,8 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
     protected void onResume(){
         super.onResume();
         getCurrentUser();
+        // A bit hacky, but the try-catch enables us to re-use our Activity and MVP classes
+        // Edit the payment and create a new one in the same screen
         try{
             Bundle extras = getIntent().getExtras();
             cameFromDialog = extras.getBoolean("STATE");
@@ -69,6 +76,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
             cameFromDialog = false;
         }
 
+        // Unpack the attached data, of a payment should be edited and not newly created
         if(cameFromDialog){
             String transmittedPurpose = getIntent().getExtras().getString("PAYMENTPURPOSE");
             String transmittedCost = getIntent().getExtras().getString("PAYMENTCOST");
@@ -80,6 +88,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
     }
 
 
+    // Retrieve user from Firebase, simple and lightweight
     private void getCurrentUser(){
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -98,6 +107,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         actionBar.hide();
     }
 
+    // UI method
     private void handleTopBar(){
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -125,6 +135,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         });
     }
 
+    // The callback data arrived, now the payment can be dealt with
     @Override
     public void onFlatFound(Flat flat) {
         currentFlat = flat;
@@ -135,10 +146,9 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
             public void onClick(View view) {
                 double insertedCost = Double.parseDouble(insertCosts.getText().toString());
                 String insertedPurpose = insertPurpose.getText().toString();
-                //Split String for solo Strings in arrayList (But where?)
                 ArrayList<String> insertedReceivers = new ArrayList<>();
                 insertedReceivers.add(selectMembers.getText().toString());
-                // error handling hier einbauen
+                // boolean cameFromDialog explained in onResume()
                 if(cameFromDialog){
                     mPaymentOverviewPresenter.updatePayment(insertedCost, insertedPurpose, insertedReceivers, transmittedFlatID, transmittedPaymentID);
                 } else {
@@ -148,19 +158,23 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         });
     }
 
+    // Retrieve attached data
     private void unpackFlatData(){
         retrievedFlatSize = mPaymentOverviewPresenter.retrieveFlatSize(currentFlat);
         retrievedSelectedMembers = mPaymentOverviewPresenter.retrieveSelectedMembers(currentFlat);
         retrievedMemberNames = mPaymentOverviewPresenter.retrieveMemberNames(currentFlat);
     }
 
+    // Create the checkbox
     private void buildDialog(){
         selectMembers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // initializing
                 builder = new AlertDialog.Builder(ActivityPaymentOverview.this, R.style.AlertDialogStyle);
-                builder.setTitle(dialogTitle);
+                builder.setTitle(DIALOGTITLE);
                 builder.setCancelable(false);
+                // populating
                 builder.setMultiChoiceItems(retrievedMemberNames, retrievedSelectedMembers, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i, boolean isChecked) {
@@ -180,6 +194,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         });
     }
 
+    // listen for user input
     private void setPositiveButton(){
         builder.setPositiveButton("Ausführen", new DialogInterface.OnClickListener() {
             @Override
@@ -196,6 +211,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         });
     }
 
+    // listen for user input
     private void setNegativeButton(){
         builder.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
             @Override
@@ -205,6 +221,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         });
     }
 
+    // listen for user input
     private void setNeutralButton(){
         builder.setNeutralButton("Auswahl aufheben", new DialogInterface.OnClickListener() {
             @Override
@@ -219,13 +236,13 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
     }
 
     @Override
-    public void onPaymentFound(Payment payment) {
-    }
-
-    @Override
     public void startIntent() {
         Intent i = new Intent(ActivityPaymentOverview.this, ActivityOverview.class);
-        Log.d("123", "Intent ausgeführt");
         startActivity(i);
+    }
+
+    // interface method
+    @Override
+    public void onPaymentFound(Payment payment) {
     }
 }

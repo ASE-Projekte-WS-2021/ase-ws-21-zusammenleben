@@ -13,6 +13,10 @@ import com.example.myapplication.R;
 
 public class CreateFlatActivity extends AppCompatActivity{
 
+    // This Activity is a simple placeholder activity, therefore no mvp structure needed
+    // The interaction and data transactions happen inside other activities
+
+    // UI components
     Button btnCreateNewFlat, btnJoinFlat;
 
     @Override
@@ -30,6 +34,7 @@ public class CreateFlatActivity extends AppCompatActivity{
         actionBar.hide();
     }
 
+    // User interaction
     private void handleClicks(){
         btnCreateNewFlat.setOnClickListener(new View.OnClickListener() {
             @Override
