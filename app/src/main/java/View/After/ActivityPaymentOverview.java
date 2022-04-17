@@ -44,7 +44,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
 
     // Util data
     String currentUserEmail,transmittedPaymentID, transmittedFlatID;
-    boolean cameFromDialog;
+    boolean cameFromDialog, cameFromBasketDialog;
     private static final String DIALOGTITLE = "Wer soll bezahlen?";
     Flat currentFlat;
     int retrievedFlatSize;
@@ -72,8 +72,10 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
         try{
             Bundle extras = getIntent().getExtras();
             cameFromDialog = extras.getBoolean("STATE");
+            cameFromBasketDialog = extras.getBoolean("BASKETSTATE");
         } catch (NullPointerException e){
             cameFromDialog = false;
+            cameFromBasketDialog = false;
         }
 
         // Unpack the attached data, of a payment should be edited and not newly created
@@ -83,6 +85,10 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
             transmittedFlatID = getIntent().getExtras().getString("FLATID");
             transmittedPaymentID = getIntent().getExtras().getString("PAYMENTID");
             insertCosts.setText(transmittedCost);
+            insertPurpose.setText(transmittedPurpose);
+        }
+        if(cameFromBasketDialog){
+            String transmittedPurpose = getIntent().getExtras().getString("BASKETDATA");
             insertPurpose.setText(transmittedPurpose);
         }
     }

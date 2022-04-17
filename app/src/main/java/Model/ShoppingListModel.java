@@ -90,10 +90,7 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
                 for(DataSnapshot snap : dataSnapshot.getChildren()) {
                     if (dataSnapshot.exists()) {
                         if (snap.getValue(Basket.class).getBasketID().equals(basketID)) {
-                            Log.d("id vergleich", "aktuelle Firebase ID = " + snap.getValue(Basket.class).getBasketID() + "---" + "übergebene ID = " + basketID);
-                            Log.d("hier", snap.getValue(Basket.class).getBasketID());
                             shoppingItems = (HashMap<String, ShoppingItem>) snap.child("shoppingList").getValue();
-                            Log.d("hier", shoppingItems.toString());
                             for (Map.Entry<String, ShoppingItem> e : shoppingItems.entrySet()) {
                                 String shoppingItemID = e.getKey();
                                 String itemName = snap.child("shoppingList").child(shoppingItemID).getValue(ShoppingItem.class).getItemName();

@@ -78,6 +78,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="View.After.ActivityPopInvite"
+            android:exported="true"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity
             android:name="com.google.firebase.auth.internal.GenericIdpActivity"
             android:excludeFromRecents="true"
             android:exported="true"

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -46,7 +47,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     private ShoppingListPresenter shoppingListPresenter;
 
     // Util data
-    String basketID, transmittedItem, transmittedAmount;
+    String basketID, basketData, transmittedItem, transmittedAmount;
     ArrayList<ArrayList<String>> items;
     ArrayList<String> itemIds;
 
@@ -121,13 +122,26 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
                         handleAddItemDialog();
                         break;
                     case R.id.checkout_item:
-                        //checkForEmptyList();
+                        checkEmptyList();
                         break;
                 }
                 return true;
             }
         });
 
+    }
+
+    private void checkEmptyList() {
+        if(basketData == null){
+            Toast.makeText(getApplicationContext(), "Bitte füge zunächste ein Item hinzu.", Toast.LENGTH_SHORT).show();
+        }else{
+            Intent intent = new Intent(ActivityShoppingList.this, ActivityPaymentOverview.class);
+            Bundle sendBundle = new Bundle();
+            sendBundle.putBoolean("BASKETSTATE", true);
+            sendBundle.putString("BASKETDATA", basketData);
+            intent.putExtras(sendBundle);
+            startActivity(intent);
+        }
     }
 
     // handle the dialog
@@ -171,6 +185,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     private void unpackIntentData(){
         Bundle receivedData = getIntent().getExtras();
         basketID = receivedData.getString("BASKETID");
+        basketData = receivedData.getString("BASKETDATA");
         shoppingListPresenter.retrieveBasketItem(basketID);
     }
 

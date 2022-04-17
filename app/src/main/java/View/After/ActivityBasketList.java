@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import Utils.BasketDialog;
 import Utils.DialogListener;
@@ -188,7 +189,9 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
     // send Data between dialog and activity
     private void handleDialog(int position) {
         baskets.get(position);
-        String sendData = baskets.get(position).toString();
+        View v = recyclerView.getChildAt(position);
+        TextView basketTitle = v.findViewById(R.id.basketTitle);
+        String sendData = basketTitle.getText().toString();
         String sendId = ids.get(position);
         BasketDialog basketDialog = new BasketDialog();
         Bundle bundle = new Bundle();
