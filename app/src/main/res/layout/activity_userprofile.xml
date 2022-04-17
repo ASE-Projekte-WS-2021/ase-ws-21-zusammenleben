@@ -27,7 +27,7 @@
     <ImageView
         android:id="@+id/headeruser"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="300dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintTop_toTopOf="parent"
         android:scaleType="centerCrop"
@@ -36,10 +36,12 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/headeruser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/headeruser"/>
+        app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -85,24 +87,6 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="1dp" />-->
 
-        <Button
-            android:id="@+id/btn_invite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/roundedcorners"
-            android:fontFamily="@font/latoregular"
-            android:text="Freunde einladen"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/TextFontColor"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.703" />
-
         <!--<Button
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
@@ -120,6 +104,24 @@
             app:layout_constraintVertical_bias="0.701" />-->
 
         <Button
+            android:id="@+id/btn_invite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedcorners"
+            android:fontFamily="@font/latoregular"
+            android:text="Freunde einladen"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/TextFontColor"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_leaving"
+            app:layout_constraintVertical_bias="0.214" />
+
+        <Button
             android:id="@+id/btn_leaving"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,9 +134,9 @@
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.341" />
 
         <TextView
             android:id="@+id/show_email"
