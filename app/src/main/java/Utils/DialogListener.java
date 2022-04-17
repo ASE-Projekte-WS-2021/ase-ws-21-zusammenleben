@@ -1,6 +1,6 @@
 package Utils;
 
-// implemented in all three dialogs (Payment, Basket, ShoppingItem)
+// implemented in all four dialogs (Payment, Basket, ShoppingItem, UserProfile)
 public interface DialogListener {
     void onReturnValue(String id);
 }

@@ -8,11 +8,12 @@ import Model.ShoppingListModel;
 
 public class ShoppingListPresenter implements ShoppingListContract.Presenter, ShoppingListContract.onShoppingSuccessListener {
 
-    private ShoppingListContract.onShoppingSuccessListener mOnShoppingSuccessListener;
+    // MVP components
     private ShoppingListModel shoppingListModel;
     private ShoppingListContract.View shoppingListView;
-    Basket retrievedBasket;
 
+    // Utils
+    Basket retrievedBasket;
     ArrayList<ArrayList<String>> shoppingItems = new ArrayList<>();
     ArrayList<String> shoppingItemIDs = new ArrayList<>();
 
@@ -21,28 +22,33 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
         shoppingListModel = new ShoppingListModel(this);
     }
 
+    // init communication Presenter -> Model
     @Override
     public void retrieveBasketItem(String basketID) {
         shoppingListModel.retrieveBasketItemFromFirebase(basketID);
     }
 
+    // result from Model, new communication Presenter -> Model
     @Override
     public void onBasketItemRetrieved(Basket basket) {
         retrievedBasket = basket;
         shoppingListModel.retrieveShoppingItemFromFirebase(basket.getBasketID());
     }
 
+    // Presenter -> Model
     @Override
     public void addShoppingItem(String basketID, ShoppingItem item) {
         shoppingListModel.addShoppingItemToFirebase(basketID, item);
     }
 
+    // Presenter -> Model
     @Override
     public void deleteShoppingListItem(String itemID, String basketID) {
         shoppingListModel.deleteItemFromFirebase(itemID, basketID);
     }
 
 
+    // Unpack and prepare data from Model
     @Override
     public void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList) {
         for(int i = 0 ; i < shoppingList.size() ; i++){
@@ -55,21 +61,19 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
             shoppingItemIDs.add(shoppingItemID);
             shoppingItems.add(shoppingItem);
         }
+        // communication Presenter -> View
         shoppingListView.onShoppingItemAdded(shoppingItems, shoppingItemIDs);
     }
 
+    // interface method
     @Override
-    public void onShoppingItemAdded(String basketID) {
+    public void onShoppingItemAdded(String basketID) {}
 
-    }
-
+    // interface method
     @Override
-    public void onShoppingListItemAltered(String itemID) {
+    public void onShoppingListItemAltered(String itemID) {}
 
-    }
-
+    // interface method
     @Override
-    public void onShoppingItemDeleted(ShoppingItem item) {
-
-    }
+    public void onShoppingItemDeleted(ShoppingItem item) {}
 }

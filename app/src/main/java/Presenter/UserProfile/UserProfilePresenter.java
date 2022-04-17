@@ -12,9 +12,11 @@ import Model.UserProfileModel;
 
 public class UserProfilePresenter implements UserProfileContract.Presenter, UserProfileContract.onProfileListener, UserProfileContract.onUserDeletedListener {
 
+    // MVP components
     private UserProfileContract.View mProfileView;
     private UserProfileModel mProfileModel;
-    Flat retrievedFlat;
+
+    // Utils
     String userMail;
 
     public UserProfilePresenter (UserProfileContract.View mProfileView){
@@ -27,6 +29,7 @@ public class UserProfilePresenter implements UserProfileContract.Presenter, User
         mProfileModel.uploadimage(activity, bitmap);
     }
 
+    // init communication Presenter -> Model
     @Override
     public void deleteUser(String mail) {
         userMail = mail;
@@ -43,6 +46,9 @@ public class UserProfilePresenter implements UserProfileContract.Presenter, User
         mProfileView.onProfileFailure(message);
     }
 
+    // Delete the current user (identified with email previously)
+    // Get the list of members, drop the user, create new object, store it in firebase
+    // Maybe this could be done with a specific Firebase Query, but this works too
     @Override
     public void onFlatFound(Flat flat) {
         ArrayList<String> members = (ArrayList<String>) flat.getMembers();
@@ -58,6 +64,7 @@ public class UserProfilePresenter implements UserProfileContract.Presenter, User
         mProfileModel.deleteUserInFirebase(updatedFlat);
     }
 
+    // init communication Presenter -> View
     @Override
     public void onUserDeleted(String message) {
         mProfileView.onUserDeletedSuccess(message);

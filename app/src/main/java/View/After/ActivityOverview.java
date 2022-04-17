@@ -32,18 +32,21 @@ import View.Before.LoginActivity;
 
 public class ActivityOverview extends AppCompatActivity implements OverviewContract.View, DialogListener {
 
-
+    // UI components
     FloatingActionButton createNewPayment;
-    FirebaseAuth mAuth;
-    FirebaseUser user;
-    String currentUserEmail;
-    OverviewPresenter mOverviewPresenter;
     BottomNavigationView bottomNavigationView;
-    MaterialToolbar toolbar;
-
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
     PaymentAdapter mAdapter;
+    MaterialToolbar toolbar;
+
+    // Architectural
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+    OverviewPresenter mOverviewPresenter;
+
+    // Util
+    String currentUserEmail;
     ArrayList<ArrayList <String>> payments;
     TextView debtNumber;
 
@@ -58,13 +61,17 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         handleTopBar();
     }
 
+    // mvp transaction inside onResume so it is updated each time the screen is present
+    // (after onCreate, onStart, onRestart, etc.)
     @Override
     protected void onResume(){
         super.onResume();
         getCurrentUser();
+        // mvp transaction begins
         mOverviewPresenter.retrievePayment(currentUserEmail);
     }
 
+    // retrieve current user by querying firebase
     private void getCurrentUser(){
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -83,6 +90,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         actionBar.hide();
     }
 
+    // User interaction
     private void onNewPaymentButtonClicked(){
         createNewPayment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +101,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         });
     }
 
+    // UI method
     private void setupNavBar(){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -114,6 +123,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         });
     }
 
+    // UI method
     private void handleTopBar(){
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -134,8 +144,10 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         });
     }
 
+    // Callback done
     @Override
     public void onPaymentFound(ArrayList<ArrayList <String>> paymentsList, double debt) {
+        // init recyclerview and textview for debt
         payments = paymentsList;
         debtNumber.setText(String.valueOf(debt));
         recyclerView.setHasFixedSize(true);
@@ -143,6 +155,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         recyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new PaymentAdapter(this, payments);
         recyclerView.setAdapter(mAdapter);
+        // user interaction inside recyclerview
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -156,6 +169,7 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
     }
 
     private void handleDialog(int pos){
+        // retrieve data from clicked item
         View v = recyclerView.getChildAt(pos);
         TextView paymentPurpose = v.findViewById(R.id.payment_purpose);
         TextView paymentCost = v.findViewById(R.id.payment_cost);
@@ -164,33 +178,40 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         String flatID = payments.get(pos).get(3);
         String paymentID = payments.get(pos).get(4);
 
-
+        // attach data to dialog with Bundle
         PaymentDialog paymentDialog = new PaymentDialog();
         Bundle bundle = new Bundle();
         bundle.putString("PAYMENTPURPOSE", purpose);
         bundle.putString("PAYMENTCOST", cost);
         bundle.putString("FLATID", flatID);
         bundle.putString("PAYMENTID", paymentID);
+
+        // activate dialog
         paymentDialog.setArguments(bundle);
         paymentDialog.show(getSupportFragmentManager(), "dialog");
     }
 
+    // clearing the list that populates the recyclerview to avoid duplicate items
     @Override
     public void onPause(){
         super.onPause();
         payments.clear();
     }
 
-    @Override
-    public void onPaymentNotFound() {
-    }
-
+    // Starting mvp transaction after user input in dialog
     @Override
     public void onReturnValue(String id) {
         mOverviewPresenter.deletePayment(id);
+        // ui handling
         finish();
         overridePendingTransition(0,0);
         startActivity(getIntent());
         overridePendingTransition(0,0);
     }
+
+    // interface method
+    @Override
+    public void onPaymentNotFound() {
+    }
+
 }

@@ -9,51 +9,51 @@ import Model.JoinFlatModel;
 
 public class JoinFlatPresenter implements JoinFlatContract.Presenter, JoinFlatContract.onJoinFlatListener {
 
+    // MVP components
     private JoinFlatModel mJoinFlatModel;
     private JoinFlatContract.View mJoinFlatView;
-    private Flat foundFlat;
-    private ArrayList<Flat> flats = new ArrayList<>();
-    String flatKey;
+
+    // Util
+    private String flatID;
 
     public JoinFlatPresenter(JoinFlatContract.View joinFlatView){
         this.mJoinFlatView = joinFlatView;
         mJoinFlatModel = new JoinFlatModel(this);
     }
 
+    // Retrieve flatID, then Presenter -> Model
     @Override
     public void retrieveFlat(String flatPassword) {
-        flatKey = flatPassword;
+        flatID = flatPassword;
         mJoinFlatModel.retrieveFlatFromFirebase(flatPassword);
     }
 
-
+    // Presenter -> Model
     @Override
     public void addUserToFlat(String email, String flatID) {
         mJoinFlatModel.addUserToFlatInFirebase(email, flatID);
     }
 
+    // When Model is successful
     @Override
     public void onSuccess(ArrayList<Flat> flats) {
-        Log.d("given", flatKey);
+        Log.d("given", flatID);
         for(int i = 0; i < flats.size() ; i++) {
             Flat currentFlat = flats.get(i);
             String currentID = currentFlat.getId();
-            if(currentID.equals(flatKey)){
+            // filter through if-statement
+            if(currentID.equals(flatID)){
                 String foundID = currentFlat.getId();
                 String foundOwner = currentFlat.getMembers().get(0);
                 int foundSize = currentFlat.getSize();
+                // Presenter -> View
                 mJoinFlatView.onFlatFound(foundID, foundOwner, foundSize);
             }
         }
     }
 
+    // interface method
     @Override
     public void onFailure(String message) {
-
     }
 }
-
-
-// todo foundflat address found flat name. Ist es jetzt der Name oder die Adresse?
-
-// der rückwärtsweg fehlt noch - onWGNOTFOUND - error handling skippe ich gerade ziemlich - keine zeit

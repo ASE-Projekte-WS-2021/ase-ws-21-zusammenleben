@@ -17,9 +17,11 @@ import Model.BasketListModel;
 
 public class BasketListPresenter implements BasketListContract.Presenter, BasketListContract.onBasketSuccessListener{
 
-    private BasketListContract.onBasketSuccessListener mOnBasketSuccessListener;
+    // MVP components
     private BasketListModel basketListModel;
     private BasketListContract.View basketListView;
+
+    // Utils
     Flat currentUserFlat;
     String day, currentUser;
     ArrayList<Basket> baskets;
@@ -31,23 +33,20 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
         basketListModel = new BasketListModel(this);
     }
 
-
+    // Presenter -> Model
     @Override
     public void retrieveFlat(String email) {
         basketListModel.retrieveFlatFromFirebase(email);
     }
 
-    @Override
-    public void saveBasket(Basket basket) {
-
-    }
-
+    // When Model is successful
     @Override
     public void onFlatFoundSuccess(Flat flat) {
         currentUserFlat = flat;
         basketListView.onFlatFound(currentUserFlat);
     }
 
+    //
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void createBasket(String mail, String flatID){
@@ -121,4 +120,10 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
     public void deleteBasket(String id){
         basketListModel.deleteBasketFromFirebase(id);
     }
+
+    // interface method
+    @Override
+    public void saveBasket(Basket basket) {
+    }
+
 }

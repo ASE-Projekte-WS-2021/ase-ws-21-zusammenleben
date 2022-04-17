@@ -174,7 +174,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
                 builder = new AlertDialog.Builder(ActivityPaymentOverview.this, R.style.AlertDialogStyle);
                 builder.setTitle(DIALOGTITLE);
                 builder.setCancelable(false);
-                // populating
+                // populating the dialog boxes
                 builder.setMultiChoiceItems(retrievedMemberNames, retrievedSelectedMembers, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i, boolean isChecked) {
@@ -186,6 +186,7 @@ public class ActivityPaymentOverview extends AppCompatActivity implements Paymen
                         }
                     }
                 });
+                // decomposition of the three possible user item clicks
                 setPositiveButton();
                 setNegativeButton();
                 setNeutralButton();

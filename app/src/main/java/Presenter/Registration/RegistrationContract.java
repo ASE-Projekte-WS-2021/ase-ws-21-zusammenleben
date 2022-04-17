@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.google.firebase.auth.FirebaseUser;
 
 public interface RegistrationContract {
+
     interface View{
         void onRegistrationSuccess(FirebaseUser firebaseUser);
         void onRegistrationFailure(String message);
