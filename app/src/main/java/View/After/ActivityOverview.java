@@ -208,10 +208,4 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
         startActivity(getIntent());
         overridePendingTransition(0,0);
     }
-
-    // interface method
-    @Override
-    public void onPaymentNotFound() {
-    }
-
 }
