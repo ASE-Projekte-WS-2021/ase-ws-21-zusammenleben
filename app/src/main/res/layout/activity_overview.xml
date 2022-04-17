@@ -50,13 +50,14 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/Accent"
-        android:textSize="23sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.865" />
+
 
     <TextView
         android:id="@+id/debtNumber"
@@ -67,15 +68,13 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/Accent"
-        android:textSize="23sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.635"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.865"/>
-
-
+        app:layout_constraintVertical_bias="0.869" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_managePayments"

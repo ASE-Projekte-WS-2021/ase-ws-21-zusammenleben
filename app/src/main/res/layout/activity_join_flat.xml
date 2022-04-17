@@ -80,7 +80,7 @@
             android:id="@+id/btn_joinFlat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="64dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/latoregular"
             android:text="@string/btn_joinWG"
@@ -107,10 +107,10 @@
             android:textSize="25sp"
             app:layout_constraintBottom_toTopOf="@+id/btn_joinFlat"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.918"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/flat_name"
-            app:layout_constraintVertical_bias="0.037" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/flat_name"
@@ -141,14 +141,16 @@
             android:ems="10"
             android:fontFamily="@font/latoregular"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_joinFlat"
+            android:textSize="20sp"
+            android:textColor="@color/TextFontColor"
+            app:drawableLeftCompat="@drawable/ic_baseline_location_city_24"
+            app:layout_constraintBottom_toTopOf="@+id/found_flat_people"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.737"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_findFlat"
-            app:layout_constraintVertical_bias="0.105"
-            tools:ignore="SpeakableTextPresentCheck"
-            app:drawableLeftCompat="@drawable/ic_baseline_location_city_24" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/found_flat_owner"
@@ -160,34 +162,36 @@
             android:minHeight="48dp"
             android:textColorHint="@color/HintColor"
             android:textSize="20sp"
+            android:textColor="@color/TextFontColor"
+            app:drawableLeftCompat="@drawable/ic_baseline_person_24"
             app:layout_constraintBottom_toTopOf="@+id/btn_joinFlat"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.737"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.808"
-            tools:ignore="SpeakableTextPresentCheck"
-            app:drawableLeftCompat="@drawable/ic_baseline_person_24" />
+            app:layout_constraintTop_toBottomOf="@+id/found_flat_people"
+            app:layout_constraintVertical_bias="0.13"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/found_flat_people"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:drawablePadding="20dp"
             android:ems="10"
             android:fontFamily="@font/latoregular"
             android:hint=""
+            android:textSize="20sp"
+            android:textColor="@color/TextFontColor"
             android:minHeight="48dp"
             android:textColorHint="@color/HintColor"
-            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_baseline_group_add_24"
             app:layout_constraintBottom_toTopOf="@+id/found_flat_owner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/found_flat_address"
-            app:layout_constraintVertical_bias="0.581"
-            tools:ignore="SpeakableTextPresentCheck"
-            app:drawableLeftCompat="@drawable/ic_baseline_group_add_24" />
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
