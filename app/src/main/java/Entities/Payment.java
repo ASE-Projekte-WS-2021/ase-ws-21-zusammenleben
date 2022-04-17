@@ -7,6 +7,7 @@ public class Payment {
     double cost;
     String purpose, creator, flatID, paymentID;
     ArrayList<String> receiver;
+    String receiverString;
 
     public Payment(double cost, String purpose, String creator, ArrayList<String> receiver, String flatID, String paymentID){
         this.cost = cost;
@@ -15,6 +16,16 @@ public class Payment {
         this.receiver = receiver;
         this.flatID = flatID;
         this.paymentID = paymentID;
+    }
+
+    // debt payment constructor
+    public Payment(double cost, String receiverString){
+        this.cost = cost;
+        this.receiverString = receiverString;
+    }
+
+    public String getReceiverString(){
+        return receiverString;
     }
 
     public Payment() {}

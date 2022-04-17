@@ -135,8 +135,9 @@ public class ActivityOverview extends AppCompatActivity implements OverviewContr
     }
 
     @Override
-    public void onPaymentFound(ArrayList<ArrayList <String>> paymentsList) {
+    public void onPaymentFound(ArrayList<ArrayList <String>> paymentsList, double debt) {
         payments = paymentsList;
+        debtNumber.setText(String.valueOf(debt));
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);

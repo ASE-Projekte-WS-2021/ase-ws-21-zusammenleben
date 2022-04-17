@@ -13,6 +13,10 @@ public class OverviewPresenter implements OverviewContract.Presenter, OverviewCo
     private OverviewModel mOverviewModel;
     ArrayList<ArrayList <String>> paymentsList = new ArrayList<>();
     OverviewContract.onPaymentListener mOnPaymentListener;
+    String currentUserEmail;
+    double debt;
+
+    ArrayList<Payment> debtList = new ArrayList<>();
 
     public OverviewPresenter(OverviewContract.View overviewView){
         this.mOverviewView = overviewView;
@@ -21,6 +25,7 @@ public class OverviewPresenter implements OverviewContract.Presenter, OverviewCo
 
     @Override
     public void retrievePayment(String email) {
+        currentUserEmail = email;
         Log.d("123", "triggered in Presenter!");
         mOverviewModel.retrievePaymentFromFirebase(email);
     }
@@ -33,6 +38,7 @@ public class OverviewPresenter implements OverviewContract.Presenter, OverviewCo
     @Override
     public void onSuccess(ArrayList<Payment> payments) {
         Log.d("123 wieder in presenter", String.valueOf(payments.size()));
+        debtList.clear();
         for(int i = 0 ; i < payments.size() ; i++){
             String purpose = payments.get(i).getPurpose();
             String receivers = payments.get(i).getReceiver().toString();
@@ -40,6 +46,8 @@ public class OverviewPresenter implements OverviewContract.Presenter, OverviewCo
             String flatID = payments.get(i).getFlatID();
             String paymentID = payments.get(i).getPaymentID();
             ArrayList<String> arrList = new ArrayList<>();
+            Payment debtPayment = new Payment(Double.valueOf(cost), receivers);
+            debtList.add(debtPayment);
             arrList.add(purpose);
             arrList.add(receivers);
             arrList.add(cost);
@@ -47,7 +55,28 @@ public class OverviewPresenter implements OverviewContract.Presenter, OverviewCo
             arrList.add(paymentID);
             paymentsList.add(arrList);
         }
-        Log.d("123 view size ", String.valueOf(paymentsList.size()));
-        mOverviewView.onPaymentFound(paymentsList);
+        calculateDebts();
+        debtList.clear();
+        mOverviewView.onPaymentFound(paymentsList, debt);
+    }
+
+    private void calculateDebts(){
+        Log.d("check1", String.valueOf(debtList.size()));
+        for(int i = 0; i < debtList.size(); i++){
+            String receivers = debtList.get(i).getReceiverString();
+            double cost = debtList.get(i).getCost();
+            if(receivers.contains(currentUserEmail)){
+                int counter = 1;
+                for(int j = 0 ; j < receivers.length() ; j++){
+                    if(receivers.charAt(j) == ','){
+                        counter++;
+                    }
+                }
+
+                double currentDebt = cost / counter;
+                debt = debt + currentDebt;
+            }
+        }
+        Log.d("test", String.valueOf(debt));
     }
 }
