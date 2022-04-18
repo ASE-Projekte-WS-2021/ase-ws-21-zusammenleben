@@ -1,7 +1,5 @@
 package Presenter.ForgotPassword;
-
 import android.app.Activity;
-
 import Model.ForgotPasswordModel;
 
 public class ForgotPasswordPresenter implements ForgotPasswordContract.Presenter,ForgotPasswordContract.onPassRestListener {

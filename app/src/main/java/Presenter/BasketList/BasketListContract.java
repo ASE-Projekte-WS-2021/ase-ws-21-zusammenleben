@@ -1,7 +1,6 @@
 package Presenter.BasketList;
 
 import java.util.ArrayList;
-
 import Entities.Basket;
 import Entities.Flat;
 

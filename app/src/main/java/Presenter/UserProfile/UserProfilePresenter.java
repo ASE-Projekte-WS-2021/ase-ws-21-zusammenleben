@@ -2,12 +2,8 @@ package Presenter.UserProfile;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.util.Log;
-
 import java.util.ArrayList;
-
 import Entities.Flat;
-import Entities.User;
 import Model.UserProfileModel;
 
 public class UserProfilePresenter implements UserProfileContract.Presenter, UserProfileContract.onProfileListener, UserProfileContract.onUserDeletedListener {

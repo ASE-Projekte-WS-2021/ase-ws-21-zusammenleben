@@ -1,11 +1,8 @@
 package Presenter.AddFlat;
 
 import android.app.Activity;
-import android.util.Log;
-
 import java.util.List;
 import java.util.UUID;
-
 import Entities.Flat;
 import Model.AddFlatModel;
 

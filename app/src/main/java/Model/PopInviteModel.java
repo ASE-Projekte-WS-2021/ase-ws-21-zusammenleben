@@ -1,15 +1,12 @@
 package Model;
-
+import android.util.Log;
 import androidx.annotation.NonNull;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.List;
-
 import Entities.Flat;
 import Presenter.PopInvite.PopInviteContract;
 
@@ -20,7 +17,7 @@ public class PopInviteModel implements PopInviteContract.Model, PopInviteContrac
 
     // Firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
-    private DatabaseReference refFat = database.getReference(FLATPATH);
+    private DatabaseReference refFlat = database.getReference(FLATPATH);
 
     // Utils
     private static final String FIREBASEPATH = "https://wgfinance-b594f-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -34,10 +31,12 @@ public class PopInviteModel implements PopInviteContract.Model, PopInviteContrac
     // Model -> Firebase
     @Override
     public void getFlatIDFromFirebase(String email) {
+        Log.d("test13", email);
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot snap : snapshot.getChildren()){
+                    Log.d("test", snap.getValue().toString());
                     List<String> members = snap.getValue(Flat.class).getMembers();
                     if(members.contains(email)){
                         flatID = snap.getValue(Flat.class).getId();
@@ -50,7 +49,7 @@ public class PopInviteModel implements PopInviteContract.Model, PopInviteContrac
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         };
-        refFat.addListenerForSingleValueEvent(valueEventListener);
+        refFlat.addListenerForSingleValueEvent(valueEventListener);
     }
 
     // interface method

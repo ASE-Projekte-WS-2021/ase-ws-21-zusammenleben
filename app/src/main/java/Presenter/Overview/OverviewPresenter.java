@@ -1,7 +1,4 @@
 package Presenter.Overview;
-
-import android.util.Log;
-
 import java.util.ArrayList;
 
 import Entities.Payment;
@@ -69,6 +66,7 @@ public class OverviewPresenter implements OverviewContract.Presenter, OverviewCo
 
     // calculating the sum of each payment, thus the debt
     private void calculateDebts(){
+        debt = 0.0;
         for(int i = 0; i < debtList.size(); i++){
             String receivers = debtList.get(i).getReceiverString();
             double cost = debtList.get(i).getCost();

@@ -1,12 +1,8 @@
 package Model;
-
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,11 +16,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
 import java.util.List;
-
 import Entities.Flat;
 import Presenter.UserProfile.UserProfileContract;
 

@@ -1,5 +1,4 @@
 package Presenter.ForgotPassword;
-
 import android.app.Activity;
 
 public interface ForgotPasswordContract {
