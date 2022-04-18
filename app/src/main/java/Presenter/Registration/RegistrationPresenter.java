@@ -1,8 +1,6 @@
 package Presenter.Registration;
 
 import android.app.Activity;
-import android.util.Log;
-
 import com.google.firebase.auth.FirebaseUser;
 
 import Model.RegistrationModel;

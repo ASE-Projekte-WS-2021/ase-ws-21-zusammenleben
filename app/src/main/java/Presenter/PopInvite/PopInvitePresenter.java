@@ -1,4 +1,6 @@
 package Presenter.PopInvite;
+import android.util.Log;
+
 import Model.PopInviteModel;
 
 public class PopInvitePresenter implements PopInviteContract.Presenter, PopInviteContract.Listener {
@@ -25,6 +27,7 @@ public class PopInvitePresenter implements PopInviteContract.Presenter, PopInvit
     @Override
     public void onFlatIDRetrieved(String id) {
         flatID = id;
+        Log.d("test4", id);
         mPopInviteView.onFlatIDRetrieved(flatID);
     }
 }

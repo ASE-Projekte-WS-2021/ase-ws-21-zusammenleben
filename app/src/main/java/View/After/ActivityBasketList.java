@@ -2,14 +2,12 @@ package View.After;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import Utils.BasketDialog;
 import Utils.DialogListener;
-import Utils.PaymentDialog;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
@@ -29,7 +27,6 @@ import Entities.Basket;
 import Entities.Flat;
 import Presenter.BasketList.BasketListContract;
 import Presenter.BasketList.BasketListPresenter;
-import Utils.RecyclerItemClickListener;
 import View.Before.LoginActivity;
 
 

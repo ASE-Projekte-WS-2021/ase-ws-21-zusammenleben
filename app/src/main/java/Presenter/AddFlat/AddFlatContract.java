@@ -1,9 +1,6 @@
 package Presenter.AddFlat;
-
 import android.app.Activity;
-
 import java.util.List;
-
 import Entities.Flat;
 
 public interface AddFlatContract {

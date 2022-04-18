@@ -1,10 +1,6 @@
 package View.After;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +11,6 @@ import com.example.myapplication.R;
 
 import Presenter.PopInvite.PopInviteContract;
 import Presenter.PopInvite.PopInvitePresenter;
-import View.After.ActivityPopInvite;
 
 public class ActivityPopInvite extends AppCompatActivity implements PopInviteContract.Listener, PopInviteContract.View {
 
@@ -64,7 +59,7 @@ public class ActivityPopInvite extends AppCompatActivity implements PopInviteCon
         String thirdLine = "  " + id;
         String fourthLine = "  Click on this link to directly sign in!";
         // Firebase dynamic link created in the backend
-        String fifthLine = "  https://wgfinance.page.link/join";
+        String fifthLine = "  https://wgfinance2.page.link/join";
         lines = firstLine + "\n" + secondLine + "\n" + thirdLine + "\n" + fourthLine + "\n" + fifthLine;
         text.setText(lines);
         btnSend.setOnClickListener(new View.OnClickListener() {

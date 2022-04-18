@@ -2,7 +2,6 @@ package View.Before;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -39,7 +38,6 @@ public class CreateFlatActivity extends AppCompatActivity{
         btnCreateNewFlat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("clicked", "create");
                 Intent create = new Intent(CreateFlatActivity.this, AddFlatActivity.class);
                 startActivity(create);
             }
@@ -48,7 +46,6 @@ public class CreateFlatActivity extends AppCompatActivity{
         btnJoinFlat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("clicked", "join");
                 Intent join = new Intent(CreateFlatActivity.this, JoinFlatActivity.class);
                 startActivity(join);
             }

@@ -22,15 +22,11 @@ import com.example.myapplication.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.annotations.Nullable;
-
-import Entities.Flat;
 import Presenter.UserProfile.UserProfileContract;
 import Presenter.UserProfile.UserProfilePresenter;
 import Utils.DialogListener;
 import Utils.UserProfileDialog;
-import View.Before.CreateFlatActivity;
 import View.Before.LoginActivity;
 
 public class ActivityUserProfile extends AppCompatActivity implements UserProfileContract.View, DialogListener {

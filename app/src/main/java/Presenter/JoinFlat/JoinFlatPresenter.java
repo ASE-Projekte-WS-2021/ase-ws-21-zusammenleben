@@ -1,9 +1,7 @@
 package Presenter.JoinFlat;
 
 import android.util.Log;
-
 import java.util.ArrayList;
-
 import Entities.Flat;
 import Model.JoinFlatModel;
 
