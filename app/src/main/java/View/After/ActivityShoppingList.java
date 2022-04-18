@@ -2,6 +2,7 @@ package View.After;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,7 +48,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     String basketID, basketData, transmittedItem, transmittedAmount;
     ArrayList<ArrayList<String>> items;
     ArrayList<String> itemIds;
-    boolean isTheFirstTime = true;
+    boolean isTheFirstTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -67,6 +68,21 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         actionBar.hide();
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+        isTheFirstTime = true;
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        if(items.size() > 1){
+            for(int i = 1 ; i < items.size() ; i++){
+                items.remove(i);
+            }
+        }
+    }
 
     @Override
     protected void onResume(){
@@ -170,7 +186,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
 
     // Start mvp transaction
     private void addItem(){
-        ShoppingItem item = new ShoppingItem(transmittedItem, Integer.parseInt(transmittedAmount), "0");
+        ShoppingItem item = new ShoppingItem(transmittedItem, transmittedAmount, "0");
         shoppingListPresenter.addShoppingItem(basketID, item);
         // UI handling
         finish();
@@ -191,12 +207,7 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     @Override
     public void onShoppingItemAdded(ArrayList<ArrayList<String>> shoppingItems, ArrayList<String> shoppingItemIDs) {
         items = shoppingItems;
-        // init a default item for the user interface
-        items.remove(0);
-        ArrayList<String> firstElementPlaceholder = new ArrayList<>();
-        firstElementPlaceholder.add("Name");
-        firstElementPlaceholder.add("Anzahl");
-        items.add(0, firstElementPlaceholder);
+        Log.d("in activity", String.valueOf(items.size()));
         itemIds = shoppingItemIDs;
         // populate the recyclerview with data from callback
         recyclerView.setHasFixedSize(true);
@@ -204,13 +215,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
         recyclerView.setLayoutManager(linearLayoutManager);
         mItemsAdapter = new ShoppingItemAdapter(this, items);
         recyclerView.setAdapter(mItemsAdapter);
-
-        // After populating the recyclerview with user input, the default value gets overwritten
-        if(items.size() > 1 && items.get(0).equals(firstElementPlaceholder) && isTheFirstTime){
-            items.remove(0);
-            isTheFirstTime = false;
-            mItemsAdapter.notifyDataSetChanged();
-        }
 
         // handle which item has been clicked on
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {

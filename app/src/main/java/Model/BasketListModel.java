@@ -1,4 +1,6 @@
 package Model;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -6,6 +8,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +35,7 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
     private static final String FLATPATH = "WG";
     ArrayList<Basket> baskets = new ArrayList<>();
     Flat retrievedFlat;
+    Object object;
 
     public BasketListModel(BasketListContract.onBasketSuccessListener onBasketSuccessListener){
         this.mOnBasketSuccessListener = onBasketSuccessListener;
@@ -85,13 +90,18 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
             @Override
             public void onSuccess(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snap : dataSnapshot.getChildren()){
-                    if(snap.getValue(Basket.class).getFlatID().equals(flatID)){
-                        String title = snap.getValue(Basket.class).getTitle();
-                        String currentUser = snap.getValue(Basket.class).getCurrentUser();
-                        String basketID = snap.getValue(Basket.class).getBasketID();
-                        // Attach a HashMap for each ShoppingItem as a dynamic data structure
-                        HashMap<String, ShoppingItem> shoppingList = snap.getValue(Basket.class).getShoppingList();
-                        Basket basket = new Basket(title, currentUser, flatID, basketID, shoppingList);
+                    if(snap.getValue().toString().contains(flatID)){
+                        List<ShoppingItem> shoppingItems = new ArrayList<>();
+                        DataSnapshot innerList = snap.child("shoppingList");
+                        for(DataSnapshot inner : innerList.getChildren()){
+                            ShoppingItem innerShoppingItem = inner.getValue(ShoppingItem.class);
+                            shoppingItems.add(innerShoppingItem);
+                        }
+                        Object innerTitle = snap.child("title").getValue();
+                        Object innerBasketID = snap.child("basketID").getValue();
+                        Object innerCurrentUser = snap.child("currentUser").getValue();
+
+                        Basket basket = new Basket(innerTitle.toString(), innerCurrentUser.toString(), flatID, innerBasketID.toString(), (ArrayList<ShoppingItem>) shoppingItems);
                         baskets.add(basket);
                     }
                 }
