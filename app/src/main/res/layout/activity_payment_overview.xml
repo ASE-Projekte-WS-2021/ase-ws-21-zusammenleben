@@ -26,16 +26,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!--<ImageView
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/startscreenheader"
-        android:contentDescription="@string/app_name"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ImageContrastCheck" />-->
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -158,25 +148,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.446" />
-
-
-        <!--<TextView
-            android:id="@+id/costs_overview"
-            android:layout_width="91dp"
-            android:layout_height="52dp"
-            android:gravity="center"
-            android:hint="00.00"
-            android:inputType="textPersonName"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/insert_costs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.949"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.163"
-            app:drawableRightCompat="@drawable/ic_baseline_attach_money_24" />-->
 
     <TextView
         android:id="@+id/select_mates"
