@@ -28,5 +28,6 @@
     <color name="GradientEndColor">#7E7FB5</color>
     <color name="WarningRed">#FF0000</color>
     <color name="grey">#eeeeee</color>
+    <color name= "green">#00ff00</color>
 
 </resources>
