@@ -57,8 +57,7 @@ public class JoinFlatModel implements JoinFlatContract.Model, JoinFlatContract.o
         return flats;
     }
 
-    // Add an element (represented by E-Mail) to the List of users
-    // Model -> Firebase
+    // Add an element (represented by E-Mail) to the List of users, Model -> Firebase
     @Override
     public void addUserToFlatInFirebase(String email, String flatID) {
         refFlat.addListenerForSingleValueEvent(new ValueEventListener() {
