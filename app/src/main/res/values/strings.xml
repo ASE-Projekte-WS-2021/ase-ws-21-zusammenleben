@@ -61,4 +61,5 @@
     <string name="txtview_cost">cost</string>
     <string name="txtview_receiver">receiver</string>
     <string name="txtview_purpose">purpose</string>
+    <string name="email">Email</string>
 </resources>
