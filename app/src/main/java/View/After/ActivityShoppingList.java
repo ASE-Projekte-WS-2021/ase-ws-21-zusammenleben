@@ -2,7 +2,6 @@ package View.After;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -207,7 +206,6 @@ public class ActivityShoppingList extends AppCompatActivity implements ShoppingL
     @Override
     public void onShoppingItemAdded(ArrayList<ArrayList<String>> shoppingItems, ArrayList<String> shoppingItemIDs) {
         items = shoppingItems;
-        Log.d("in activity", String.valueOf(items.size()));
         itemIds = shoppingItemIDs;
         // populate the recyclerview with data from callback
         recyclerView.setHasFixedSize(true);

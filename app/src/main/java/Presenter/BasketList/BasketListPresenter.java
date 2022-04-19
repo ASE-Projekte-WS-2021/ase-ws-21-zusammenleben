@@ -52,7 +52,7 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
         currentUser = mail;
         String basketID = "";
         ArrayList<ShoppingItem> shoppingItems = new ArrayList<>();
-        ShoppingItem placeholderItem = new ShoppingItem("name", "0", "id");
+        ShoppingItem placeholderItem = new ShoppingItem("Name", "Anzahl", "id");
         shoppingItems.add(placeholderItem);
         Basket basket = new Basket(day, currentUser, flatID, basketID, shoppingItems);
         basketListModel.addBasketToFirebase(basket);

@@ -1,9 +1,6 @@
 package Presenter.ShoppingList;
-
 import android.util.Log;
-
 import java.util.ArrayList;
-
 import Entities.Basket;
 import Entities.ShoppingItem;
 import Model.ShoppingListModel;

@@ -9,11 +9,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import Entities.Basket;
 import Entities.ShoppingItem;
 import Presenter.ShoppingList.ShoppingListContract;
@@ -32,7 +29,6 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
     private static final String BASKETPATH = "Baskets";
     Basket retrievedBasket;
     ArrayList<ShoppingItem> shoppingList = new ArrayList<>();
-    ArrayList<ShoppingItem> retrievedShoppingList = new ArrayList<>();
     String shoppingItemId;
 
     public ShoppingListModel(ShoppingListContract.onShoppingSuccessListener onShoppingSuccessListener){
@@ -41,6 +37,8 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
 
 
     // Model -> Firebase. This looks bulky but it is the same procedure as in every other Firebase Query
+    // Firebase does not support dealing with objects such as ShoppingItem at this position inside the tree
+    // You need to get the data inside the Snapshot with an object and construct your own ShoppingItem
     @Override
     public Basket retrieveBasketItemFromFirebase(String basketID) {
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -48,17 +46,22 @@ public class ShoppingListModel implements ShoppingListContract.Model, ShoppingLi
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot snap : snapshot.getChildren()){
                     if(snap.getValue().toString().contains(basketID)){
+                        // Extract data as objects, then convert it to strings
                         Object innerCurrentUser = snap.child("currentUser").getValue();
                         Object innerFlatID = snap.child("flatID").getValue();
                         Object innerTitle = snap.child("title").getValue();
                         List<ShoppingItem> shoppingItems = new ArrayList<>();
                         DataSnapshot innerList = snap.child("shoppingList");
+                        // Iterating one step further inside the tree
                         for(DataSnapshot inner : innerList.getChildren()){
                             ShoppingItem innerShoppingItem = inner.getValue(ShoppingItem.class);
                             shoppingItems.add(innerShoppingItem);
                         }
-
-                        retrievedBasket = new Basket(innerTitle.toString(), innerCurrentUser.toString(), innerFlatID.toString(), basketID, (ArrayList<ShoppingItem>) shoppingItems);
+                        retrievedBasket = new Basket(innerTitle.toString(),
+                                innerCurrentUser.toString(),
+                                innerFlatID.toString(),
+                                basketID,
+                                (ArrayList<ShoppingItem>) shoppingItems);
                     }
                 }
                 mOnShoppingSuccessListener.onBasketItemRetrieved(retrievedBasket);
