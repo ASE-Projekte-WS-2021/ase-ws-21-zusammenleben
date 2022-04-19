@@ -1,11 +1,8 @@
 package Presenter.PaymentOverview;
-
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import Entities.Flat;
 import Entities.Payment;
 import Model.PaymentOverviewModel;

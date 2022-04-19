@@ -1,8 +1,6 @@
 package Presenter.UserProfile;
-
 import android.app.Activity;
 import android.graphics.Bitmap;
-
 import Entities.Flat;
 
 public interface UserProfileContract {

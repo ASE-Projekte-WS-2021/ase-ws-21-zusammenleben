@@ -1,13 +1,10 @@
 package View.Before;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.myapplication.R;
 
 public class CreateFlatActivity extends AppCompatActivity{

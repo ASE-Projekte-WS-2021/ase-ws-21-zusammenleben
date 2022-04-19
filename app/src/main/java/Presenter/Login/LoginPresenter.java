@@ -1,7 +1,5 @@
 package Presenter.Login;
-
 import android.app.Activity;
-
 import Model.LoginModel;
 
 public class LoginPresenter implements LoginContract.Presenter, LoginContract.onLoginListener {

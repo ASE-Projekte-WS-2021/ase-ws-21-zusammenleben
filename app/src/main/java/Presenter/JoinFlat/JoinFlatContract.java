@@ -1,5 +1,4 @@
 package Presenter.JoinFlat;
-
 import java.util.ArrayList;
 
 import Entities.Flat;

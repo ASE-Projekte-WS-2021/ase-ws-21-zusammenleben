@@ -1,5 +1,4 @@
 package Adapter;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 
 public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.MyViewHolder> {
 
-    private Context context;
     private ArrayList<ArrayList<String>> baskets;
     private ItemClickListener itemClickListener;
 

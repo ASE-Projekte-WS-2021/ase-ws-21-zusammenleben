@@ -1,5 +1,4 @@
 package Presenter.Login;
-
 import android.app.Activity;
 
 public interface LoginContract {

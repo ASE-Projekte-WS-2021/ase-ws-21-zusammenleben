@@ -1,12 +1,9 @@
 package Utils;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-
-import View.After.ActivityPaymentOverview;
 import View.After.ActivityShoppingList;
 import androidx.appcompat.app.AppCompatDialogFragment;
 

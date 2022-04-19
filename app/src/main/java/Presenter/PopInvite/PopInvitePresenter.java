@@ -1,6 +1,5 @@
 package Presenter.PopInvite;
 import android.util.Log;
-
 import Model.PopInviteModel;
 
 public class PopInvitePresenter implements PopInviteContract.Presenter, PopInviteContract.Listener {

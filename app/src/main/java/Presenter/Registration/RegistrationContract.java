@@ -1,5 +1,4 @@
 package Presenter.Registration;
-
 import android.app.Activity;
 
 import com.google.firebase.auth.FirebaseUser;

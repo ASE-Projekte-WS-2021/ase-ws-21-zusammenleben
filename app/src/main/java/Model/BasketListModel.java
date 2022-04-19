@@ -20,7 +20,6 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
 
     // Firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASEPATH);
-    private DatabaseReference refPayment = database.getReference(BASKETPATH);
     private DatabaseReference refFlat = database.getReference(FLATPATH);
     private DatabaseReference refBasket = database.getReference(BASKETPATH);
 
@@ -93,6 +92,7 @@ public class BasketListModel implements BasketListContract.Model, BasketListCont
                             ShoppingItem innerShoppingItem = inner.getValue(ShoppingItem.class);
                             shoppingItems.add(innerShoppingItem);
                         }
+
                         // User objects, then convert it to strings
                         Object innerTitle = snap.child("title").getValue();
                         Object innerBasketID = snap.child("basketID").getValue();

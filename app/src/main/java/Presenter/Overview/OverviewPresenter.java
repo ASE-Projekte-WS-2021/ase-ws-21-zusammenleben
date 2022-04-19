@@ -1,6 +1,5 @@
 package Presenter.Overview;
 import java.util.ArrayList;
-
 import Entities.Payment;
 import Model.OverviewModel;
 

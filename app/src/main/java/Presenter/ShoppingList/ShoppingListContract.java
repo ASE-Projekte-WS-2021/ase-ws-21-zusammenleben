@@ -1,7 +1,5 @@
 package Presenter.ShoppingList;
-
 import java.util.ArrayList;
-
 import Entities.Basket;
 import Entities.ShoppingItem;
 

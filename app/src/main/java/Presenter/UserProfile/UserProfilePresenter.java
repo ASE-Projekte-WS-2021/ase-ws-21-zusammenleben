@@ -1,5 +1,4 @@
 package Presenter.UserProfile;
-
 import android.app.Activity;
 import android.graphics.Bitmap;
 import java.util.ArrayList;

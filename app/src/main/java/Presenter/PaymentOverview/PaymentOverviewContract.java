@@ -1,7 +1,5 @@
 package Presenter.PaymentOverview;
-
 import java.util.ArrayList;
-
 import Entities.Flat;
 import Entities.Payment;
 

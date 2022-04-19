@@ -1,8 +1,6 @@
 package Presenter.Registration;
-
 import android.app.Activity;
 import com.google.firebase.auth.FirebaseUser;
-
 import Model.RegistrationModel;
 
 public class RegistrationPresenter implements RegistrationContract.Presenter, RegistrationContract.onRegistrationListener{

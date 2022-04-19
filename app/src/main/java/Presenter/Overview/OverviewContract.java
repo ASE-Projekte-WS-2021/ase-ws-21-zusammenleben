@@ -1,7 +1,5 @@
 package Presenter.Overview;
-
 import java.util.ArrayList;
-
 import Entities.Payment;
 
 public interface OverviewContract {
