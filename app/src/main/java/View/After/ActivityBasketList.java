@@ -136,7 +136,9 @@ public class ActivityBasketList extends AppCompatActivity implements BasketListC
         basketButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                baskets.clear();
+                if(baskets!= null){
+                    baskets.clear();
+                }
                 mBasketListPresenter.createBasket(currentUserEmail, currentFlat.getId());
                 // UI handling
                 finish();

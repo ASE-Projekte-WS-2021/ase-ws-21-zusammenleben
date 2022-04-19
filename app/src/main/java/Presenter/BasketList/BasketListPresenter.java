@@ -50,12 +50,11 @@ public class BasketListPresenter implements BasketListContract.Presenter, Basket
         Date d = new Date();
         day = translateDay(sdf.format(d));
         currentUser = mail;
-        String flat = flatID;
         String basketID = "";
-        HashMap<String, ShoppingItem> shoppingItems = new HashMap<>();
-        ShoppingItem item = new ShoppingItem();
-        shoppingItems.put("x", item);
-        Basket basket = new Basket(day, currentUser, flat, basketID, shoppingItems);
+        ArrayList<ShoppingItem> shoppingItems = new ArrayList<>();
+        ShoppingItem placeholderItem = new ShoppingItem("Name", "Anzahl", "id");
+        shoppingItems.add(placeholderItem);
+        Basket basket = new Basket(day, currentUser, flatID, basketID, shoppingItems);
         basketListModel.addBasketToFirebase(basket);
     }
 

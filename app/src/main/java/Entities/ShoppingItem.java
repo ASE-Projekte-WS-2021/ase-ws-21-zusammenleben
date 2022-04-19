@@ -2,11 +2,9 @@ package Entities;
 
 public class ShoppingItem {
 
-    private String itemName;
-    private int itemQuantity;
-    String shoppingItemId;
+    String itemName, itemQuantity, shoppingItemId;
 
-    public ShoppingItem(String itemName, int itemQuantity, String shoppingItemId){
+    public ShoppingItem(String itemName, String itemQuantity, String shoppingItemId){
         this.itemName = itemName;
         this.itemQuantity = itemQuantity;
         this.shoppingItemId = shoppingItemId;
@@ -19,7 +17,7 @@ public class ShoppingItem {
         return itemName;
     }
 
-    public int getItemQuantity(){
+    public String getItemQuantity(){
         return itemQuantity;
     }
 

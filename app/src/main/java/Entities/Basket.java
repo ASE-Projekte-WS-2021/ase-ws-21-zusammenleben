@@ -1,4 +1,5 @@
 package Entities;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Basket {
@@ -6,9 +7,9 @@ public class Basket {
     String currentUser;
     String flatID;
     String basketID;
-    HashMap<String, ShoppingItem> shoppingList;
+    ArrayList<ShoppingItem> shoppingList;
 
-    public Basket(String title, String currentUser, String flatID, String basketID, HashMap<String, ShoppingItem> shoppingList) {
+    public Basket(String title, String currentUser, String flatID, String basketID, ArrayList<ShoppingItem> shoppingList) {
         this.title = title;
         this.currentUser = currentUser;
         this.flatID = flatID;
@@ -19,11 +20,10 @@ public class Basket {
     // default empty constructor (required when working with Firebase)
     public Basket(){}
 
-    public HashMap<String, ShoppingItem> getShoppingList(){
+    public ArrayList<ShoppingItem> getShoppingList(){
         return shoppingList;
     }
-
-    public void setList(HashMap<String, ShoppingItem> shoppingList){
+    public void setList(ArrayList<ShoppingItem> shoppingList){
         this.shoppingList = shoppingList;
     }
 

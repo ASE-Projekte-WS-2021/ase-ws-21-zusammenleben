@@ -1,7 +1,6 @@
 package Presenter.ShoppingList;
-
+import android.util.Log;
 import java.util.ArrayList;
-
 import Entities.Basket;
 import Entities.ShoppingItem;
 import Model.ShoppingListModel;
@@ -32,7 +31,7 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
     @Override
     public void onBasketItemRetrieved(Basket basket) {
         retrievedBasket = basket;
-        shoppingListModel.retrieveShoppingItemFromFirebase(basket.getBasketID());
+        shoppingListModel.retrieveShoppingItemsFromFirebase(basket.getBasketID());
     }
 
     // Presenter -> Model
@@ -51,7 +50,10 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
     // Unpack and prepare data from Model
     @Override
     public void onShoppingItemRetrieved(ArrayList<ShoppingItem> shoppingList) {
+        Log.d("presenter", shoppingList.toString());
+
         for(int i = 0 ; i < shoppingList.size() ; i++){
+            Log.d("presenter", shoppingList.get(i).toString());
             String itemName = shoppingList.get(i).getItemName();
             String itemQuantity = String.valueOf(shoppingList.get(i).getItemQuantity());
             String shoppingItemID = shoppingList.get(i).getShoppingItemId();
@@ -63,6 +65,11 @@ public class ShoppingListPresenter implements ShoppingListContract.Presenter, Sh
         }
         // communication Presenter -> View
         shoppingListView.onShoppingItemAdded(shoppingItems, shoppingItemIDs);
+    }
+
+    @Override
+    public void deleteFirstItem(String basketID){
+        shoppingListModel.deleteFirstItemInFirebase(basketID);
     }
 
     // interface method
