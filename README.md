@@ -9,6 +9,8 @@ Moving into a new flat share is usually very stressful. One roommate leaves and 
 Users of the WGFinance application can easily create new WGs or be invited via a link. Users can create a list for a common purchase. After the payments that have been made have been entered into the application and divided among any number of flatmates, they are displayed in an overview.
 Through the simple overview, payments made are offset against each other. The payments made are kept in an archived overview. And if the apartment community should dissolve, then the resignation is just a simple click away.
 
+You are curious and would like to get a closer look at how the application works ? Then take a look at this presentation: https://docs.google.com/presentation/d/1Y4zgpaFYuZw3AfzjOi0BxOH_nknpo67mGxpXVJBZH0c/edit?usp=sharing
+
 <p align="center">
  <img src="https://github.com/ASE-Projekte-WS-2021/ase-ws-21-zusammenleben/blob/main/imagesforwiki/screens_WGFinance.PNG" style="border-radius: 12px; width: 80%;"/><br />
 </p>
