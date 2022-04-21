@@ -3,10 +3,8 @@
 
 Der Neubezug in eine WG ist meistens sehr stressig. Ein*e Mitbewohner*in geht und ein*e Neue*r kommt hinzu. Dabei ist es keine Seltenheit, dass Möbelstücke, die aus der WG-Kasse gezahlt wurden, von dem/der neuen Mitbewohner*in übernommen werden und Zahlungen geleistet werden sollen. Meistens wird einfach eine Summe grob überschlagen und ein Betrag eingefordert, für den niemand einen Beleg zu haben scheint. Oft handelt es sich aber nicht nur um ein Möbelstück, sondern um eine ganze Reihe von Dingen, die gemeinsam bezahlt wurden, nun in der WG bleiben sollen, aber eine Person entschädigt werden möchte. Besonders in Wohngemeinschaften, in denen es zu ständigem Wechsel der Mitbewohner*innen kommt, entstehen dadurch finanzielle Ungleichgewichte. Falsch notierte Rechnungen von über einem Jahr, geliehenes Geld oder eine Einkaufsbeteiligung, die vergessen wurde aufzulösen, sind Probleme, die durchaus in den meisten WGs auf die Mitbewohner*innen zu kommen. Die App WGFinance löst dieses Problem durch einen ganzheitlichen, in den WG-Alltag integrierbaren und vollständig digitalen Ansatz.
 
-Nutzer*innen können nach dem Einkauf Zahlungen, die geleistet wurden in die Anwendung eintragen und auf beliebig viele Mitbewohner*innen aufteilen.
-Durch die einfache Übersicht werden geleistete Zahlungen miteinander verrechnet und am Ende eines Zeitraums erhalten alle beteiligten Nutzer*innen eine Begleich-Aufforderung, der sie in der App nachkommen können. Die geleisteten Zahlungen können daraufhin aus der App entfernt werden, bleiben aber in einer archivierten Übersicht erhalten. 
-
-In einer Gesamtübersicht können alle Ausgaben und die Verwendungszwecke in Kategorien eingesehen werden. So kann auch nach längerer Zeit über das Speichern der Ausgaben in einer Datenbank Anteilsrechnungen exakt weitergereicht werden.
+Nutzer*innen können für einen gemeinsamen Einkauf eine Liste anlegen. Nachdem die Zahlungen, die geleistet, in die Anwendung eingetragen und auf beliebig viele Mitbewohner*innen aufgeteilt wurden, werden diese in einer Übersicht angezeigt.
+Durch die einfache Übersicht werden geleistete Zahlungen miteinander verrechnet. Die geleisteten Zahlungen bleiben aber in archivierten Übersicht erhalten. 
 
 <br/>
 
@@ -15,8 +13,7 @@ In einer Gesamtübersicht können alle Ausgaben und die Verwendungszwecke in Kat
 1. Make sure, that Java (>= version 11) is installed and set up correctly (check with javac -version command)
   - If another version was installed previously and the environment variable is corrected, you may need to restart
   - https://www.oracle.com/java/technologies/downloads/#jdk17-windows
-2. Setup git hooks by executing the `setup_githooks` scripts in `tools`
-3. Copy the `.env.template` file, rename it to `.env` and fill in all necessary data (you will need a google maps API key)
+2. Download the Git-Hub repository - or the existing APK - and run the application.
 
 <br/>
 
@@ -53,6 +50,7 @@ If a version tag (e.g. v1) was added, it will be released on the github project.
 3. Work on your branch
 4. Progress was merged after everyone was done to the backup branch.
 5. Merge conflicts were resolved.
+
 <br/>
 
 ## Contributors
