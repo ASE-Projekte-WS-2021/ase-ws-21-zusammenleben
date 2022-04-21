@@ -1,5 +1,5 @@
-<p align="center">
- <img src="https://drive.google.com/file/d/11sMSc6c_WDjkM567Van8vt_lrHuUPma6/view?usp=sharing" style="border-radius: 12px; width: 80%;"/><br />
+<p align="left">
+ <img src="https://github.com/ASE-Projekte-WS-2021/ase-ws-21-zusammenleben/blob/main/imagesforwiki/icon_WGFinance.png" style="border-radius: 12px; width: 10%;"/><br />
 </p>
 
 # WGFinance: Better together
