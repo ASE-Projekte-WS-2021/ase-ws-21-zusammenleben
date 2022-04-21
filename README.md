@@ -55,4 +55,4 @@ If a version tag (e.g. v1) was added, it will be released on the github project.
 ## Contributors
 
 The individual team members did not have fixed areas of responsibility. Everybody worked in many areas, yet thematic focuses have emerged over time.
-To learn more about the division of tasks and the schedule follow this link: https://tinyurl.com/y25f6kdn 
+To learn more about the division of tasks and the schedule follow this link to our Google Drive Doc: https://tinyurl.com/y25f6kdn 
