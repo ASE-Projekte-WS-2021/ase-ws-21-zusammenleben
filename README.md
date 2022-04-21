@@ -1,12 +1,20 @@
+<p align="left">
+ <img src="https://github.com/ASE-Projekte-WS-2021/ase-ws-21-zusammenleben/blob/main/imagesforwiki/icon_WGFinance.png" style="border-radius: 12px; width: 10%;"/><br />
+</p>
+
 # WGFinance: Better together
 
+Moving into a new flat share is usually very stressful. One roommate leaves and a new one joins. It is not uncommon that furniture that was paid for out of the flat-sharing fund is taken over by the new flatmate and payments have to be made. Usually, a sum is simply roughly estimated and an amount is demanded for which no one seems to have a receipt. Often, however, it is not just a piece of furniture, but a whole series of things that were paid for together, but are now to remain in the shared apartment, but one person wants to be compensated. Especially in shared flats, where there is a constant change of flatmates, this creates financial imbalances. Incorrectly noted bills of more than one year, borrowed money or a purchase participation which was forgotten to dissolve, are problems which come quite in most WGs on the flatmates/inside. The app WGFinance solves this problem with a holistic, fully digital approach that can be integrated into the daily life of the flat-sharing community.
 
-Der Neubezug in eine WG ist meistens sehr stressig. Ein*e Mitbewohner*in geht und ein*e Neue*r kommt hinzu. Dabei ist es keine Seltenheit, dass Möbelstücke, die aus der WG-Kasse gezahlt wurden, von dem/der neuen Mitbewohner*in übernommen werden und Zahlungen geleistet werden sollen. Meistens wird einfach eine Summe grob überschlagen und ein Betrag eingefordert, für den niemand einen Beleg zu haben scheint. Oft handelt es sich aber nicht nur um ein Möbelstück, sondern um eine ganze Reihe von Dingen, die gemeinsam bezahlt wurden, nun in der WG bleiben sollen, aber eine Person entschädigt werden möchte. Besonders in Wohngemeinschaften, in denen es zu ständigem Wechsel der Mitbewohner*innen kommt, entstehen dadurch finanzielle Ungleichgewichte. Falsch notierte Rechnungen von über einem Jahr, geliehenes Geld oder eine Einkaufsbeteiligung, die vergessen wurde aufzulösen, sind Probleme, die durchaus in den meisten WGs auf die Mitbewohner*innen zu kommen. Die App WGFinance löst dieses Problem durch einen ganzheitlichen, in den WG-Alltag integrierbaren und vollständig digitalen Ansatz.
+Users of the WGFinance application can easily create new WGs or be invited via a link. Users can create a list for a common purchase. After the payments that have been made have been entered into the application and divided among any number of flatmates, they are displayed in an overview.
+Through the simple overview, payments made are offset against each other. The payments made are kept in an archived overview. And if the apartment community should dissolve, then the resignation is just a simple click away.
 
-Nutzer*innen können nach dem Einkauf Zahlungen, die geleistet wurden in die Anwendung eintragen und auf beliebig viele Mitbewohner*innen aufteilen.
-Durch die einfache Übersicht werden geleistete Zahlungen miteinander verrechnet und am Ende eines Zeitraums erhalten alle beteiligten Nutzer*innen eine Begleich-Aufforderung, der sie in der App nachkommen können. Die geleisteten Zahlungen können daraufhin aus der App entfernt werden, bleiben aber in einer archivierten Übersicht erhalten. 
+You are curious and would like to get a closer look at how the application works ? Then take a look at this presentation: https://docs.google.com/presentation/d/1Y4zgpaFYuZw3AfzjOi0BxOH_nknpo67mGxpXVJBZH0c/edit?usp=sharing
 
-In einer Gesamtübersicht können alle Ausgaben und die Verwendungszwecke in Kategorien eingesehen werden. So kann auch nach längerer Zeit über das Speichern der Ausgaben in einer Datenbank Anteilsrechnungen exakt weitergereicht werden.
+<p align="center">
+ <img src="https://github.com/ASE-Projekte-WS-2021/ase-ws-21-zusammenleben/blob/main/imagesforwiki/screens_WGFinance.PNG" style="border-radius: 12px; width: 80%;"/><br />
+</p>
+
 
 <br/>
 
@@ -15,8 +23,7 @@ In einer Gesamtübersicht können alle Ausgaben und die Verwendungszwecke in Kat
 1. Make sure, that Java (>= version 11) is installed and set up correctly (check with javac -version command)
   - If another version was installed previously and the environment variable is corrected, you may need to restart
   - https://www.oracle.com/java/technologies/downloads/#jdk17-windows
-2. Setup git hooks by executing the `setup_githooks` scripts in `tools`
-3. Copy the `.env.template` file, rename it to `.env` and fill in all necessary data (you will need a google maps API key)
+2. Download the Git-Hub repository - or the existing APK - and run the application.
 
 <br/>
 
@@ -53,9 +60,10 @@ If a version tag (e.g. v1) was added, it will be released on the github project.
 3. Work on your branch
 4. Progress was merged after everyone was done to the backup branch.
 5. Merge conflicts were resolved.
+
 <br/>
 
 ## Contributors
 
 The individual team members did not have fixed areas of responsibility. Everybody worked in many areas, yet thematic focuses have emerged over time.
-To learn more about the division of tasks and the schedule follow this link: https://tinyurl.com/y25f6kdn 
+To learn more about the division of tasks and the schedule follow this link to our Google Drive Doc: https://tinyurl.com/y25f6kdn 
