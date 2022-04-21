@@ -27,7 +27,7 @@ You are curious and would like to get a closer look at how the application works
 
 <br/>
 
-##Git Hooks
+## Git Hooks
 
 On every commit git automatically runs checkstyle before committing.
 
