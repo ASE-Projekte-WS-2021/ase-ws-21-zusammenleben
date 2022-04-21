@@ -10,7 +10,7 @@ Users of the WGFinance application can easily create new WGs or be invited via a
 Through the simple overview, payments made are offset against each other. The payments made are kept in an archived overview. And if the apartment community should dissolve, then the resignation is just a simple click away.
 
 <p align="center">
- <img src="https://drive.google.com/file/d/14AeWrzOE9uUVjFh23pTXzoZPCwBCdvhE/view?usp=sharing" style="border-radius: 12px; width: 80%;"/><br />
+ <img src="https://github.com/ASE-Projekte-WS-2021/ase-ws-21-zusammenleben/blob/main/imagesforwiki/screens_WGFinance.PNG" style="border-radius: 12px; width: 80%;"/><br />
 </p>
 
 
